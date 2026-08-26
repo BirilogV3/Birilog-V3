@@ -10,8 +10,12 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <title>BiriLog V3 - Envios</title>
+  <title>BiriLog V3 - Novo Envio</title>
 
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -40,9 +44,14 @@
         Helvetica,
         sans-serif;
 
-      background: #f1f5f9;
+      background:
+        linear-gradient(
+          135deg,
+          #f4f7fb,
+          #eef2f7
+        );
 
-      color: #1e293b;
+      color: #1f2937;
 
     }
 
@@ -69,7 +78,9 @@
       position: fixed;
 
       left: 0;
+
       top: 0;
+
       bottom: 0;
 
       display: flex;
@@ -93,7 +104,8 @@
 
     .logo-area {
 
-      padding: 28px 22px;
+      padding:
+        28px 22px;
 
       border-bottom:
         1px solid
@@ -109,9 +121,11 @@
     .logo-icon {
 
       width: 58px;
+
       height: 58px;
 
-      margin: 0 auto 12px;
+      margin:
+        0 auto 12px;
 
       border-radius: 16px;
 
@@ -172,15 +186,14 @@
 
     .menu {
 
-      padding: 20px 12px;
+      padding:
+        20px 12px;
 
       flex: 1;
 
       min-height: 0;
 
       overflow-y: auto;
-
-      scrollbar-width: thin;
 
     }
 
@@ -217,7 +230,8 @@
 
       gap: 12px;
 
-      padding: 13px 14px;
+      padding:
+        13px 14px;
 
       margin-bottom: 4px;
 
@@ -394,7 +408,8 @@
 
       color: #e2e8f0;
 
-      padding: 11px 10px;
+      padding:
+        11px 10px;
 
       min-height: 40px;
 
@@ -405,8 +420,6 @@
       font-size: 11px;
 
       font-weight: 700;
-
-      transition: 0.2s;
 
     }
 
@@ -424,7 +437,7 @@
 
     .logout:disabled {
 
-      opacity: 0.60;
+      opacity: 0.6;
 
       cursor: wait;
 
@@ -527,6 +540,7 @@
     .status-dot {
 
       width: 7px;
+
       height: 7px;
 
       border-radius: 50%;
@@ -537,26 +551,34 @@
 
 
     /* =====================================================
-       CONTEÚDO
+       CONTENT
        ===================================================== */
 
     .content {
 
       padding: 30px;
 
+      max-width: 1100px;
+
+      margin: 0 auto;
+
     }
 
 
-    .page-title {
+    /* =====================================================
+       CABEÇALHO DA PÁGINA
+       ===================================================== */
+
+    .page-header {
 
       margin-bottom: 22px;
 
     }
 
 
-    .page-title h1 {
+    .page-title {
 
-      font-size: 18px;
+      font-size: 21px;
 
       font-weight: 800;
 
@@ -565,7 +587,7 @@
     }
 
 
-    .page-title p {
+    .page-subtitle {
 
       margin-top: 5px;
 
@@ -584,11 +606,12 @@
 
       display: none;
 
-      margin-bottom: 20px;
-
-      padding: 13px 16px;
+      padding:
+        13px 16px;
 
       border-radius: 9px;
+
+      margin-bottom: 18px;
 
       font-size: 11px;
 
@@ -627,23 +650,23 @@
     }
 
 
-    /* =====================================================
-       CARDS
-       ===================================================== */
+    .mensagem.info {
 
-    .cards {
+      display: block;
 
-      display: grid;
+      background: #eff6ff;
 
-      grid-template-columns:
-        repeat(4, 1fr);
+      color: #1d4ed8;
 
-      gap: 18px;
-
-      margin-bottom: 22px;
+      border:
+        1px solid #bfdbfe;
 
     }
 
+
+    /* =====================================================
+       CARD
+       ===================================================== */
 
     .card {
 
@@ -654,90 +677,127 @@
 
       border-radius: 14px;
 
-      padding: 20px;
+      padding: 25px;
+
+      margin-bottom: 20px;
 
       box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
+        0 4px 16px
+        rgba(0,0,0,0.05);
 
     }
 
 
-    .card-label {
+    .card-title {
 
-      font-size: 10px;
+      display: flex;
 
-      color: #64748b;
+      align-items: center;
 
-      font-weight: 700;
+      gap: 10px;
 
-      text-transform: uppercase;
-
-    }
-
-
-    .card-value {
-
-      margin-top: 8px;
-
-      font-size: 28px;
+      font-size: 15px;
 
       font-weight: 800;
 
-      color: #0f172a;
+      color: #1976d2;
+
+      padding-bottom: 14px;
+
+      margin-bottom: 20px;
+
+      border-bottom:
+        1px solid #edf0f3;
+
+    }
+
+
+    .card-icon {
+
+      width: 31px;
+
+      height: 31px;
+
+      border-radius: 8px;
+
+      background: #e8f1fb;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
 
     }
 
 
     /* =====================================================
-       PAINEL
+       GRID
        ===================================================== */
 
-    .panel {
-
-      background: white;
-
-      border:
-        1px solid #e2e8f0;
-
-      border-radius: 14px;
-
-      padding: 22px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
-    }
-
-
-    /* =====================================================
-       FILTROS
-       ===================================================== */
-
-    .toolbar {
+    .linha {
 
       display: grid;
 
       grid-template-columns:
-        2fr 1fr auto auto;
+        1fr 1fr;
 
-      gap: 10px;
+      gap: 18px;
 
-      margin-bottom: 20px;
+      margin-bottom: 18px;
 
     }
 
 
-    .toolbar input,
-    .toolbar select {
+    .campo {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    .campo label {
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      color: #475569;
+
+      margin-bottom: 7px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .3px;
+
+    }
+
+
+    .obrigatorio {
+
+      color: #dc2626;
+
+      margin-left: 3px;
+
+    }
+
+
+    /* =====================================================
+       CAMPOS
+       ===================================================== */
+
+    input,
+    select,
+    textarea {
 
       width: 100%;
 
-      height: 42px;
+      min-height: 43px;
 
       padding:
-        0 12px;
+        10px 12px;
 
       border:
         1px solid #cbd5e1;
@@ -746,17 +806,32 @@
 
       background: #f8fafc;
 
-      color: #334155;
+      color: #0f172a;
+
+      font-size: 12px;
 
       outline: none;
 
-      font-size: 11px;
+      transition:
+        border-color .2s,
+        box-shadow .2s,
+        background .2s;
 
     }
 
 
-    .toolbar input:focus,
-    .toolbar select:focus {
+    input:hover,
+    select:hover,
+    textarea:hover {
+
+      border-color: #94a3b8;
+
+    }
+
+
+    input:focus,
+    select:focus,
+    textarea:focus {
 
       background: white;
 
@@ -769,6 +844,206 @@
     }
 
 
+    input::placeholder,
+    textarea::placeholder {
+
+      color: #9ca3af;
+
+    }
+
+
+    textarea {
+
+      min-height: 105px;
+
+      resize: vertical;
+
+      line-height: 1.5;
+
+    }
+
+
+    .campo-nf input {
+
+      border:
+        2px solid #1976d2;
+
+      background: #f8fbff;
+
+      font-weight: 700;
+
+    }
+
+
+    /* =====================================================
+       CLIENTE
+       ===================================================== */
+
+    .cliente-wrapper {
+
+      position: relative;
+
+    }
+
+
+    .cliente-pesquisa {
+
+      position: relative;
+
+    }
+
+
+    .cliente-pesquisa input {
+
+      padding-left: 36px;
+
+    }
+
+
+    .cliente-icone {
+
+      position: absolute;
+
+      left: 12px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size: 14px;
+
+      pointer-events: none;
+
+    }
+
+
+    .resultados-clientes {
+
+      display: none;
+
+      position: absolute;
+
+      left: 0;
+
+      right: 0;
+
+      top: calc(100% + 4px);
+
+      background: white;
+
+      border:
+        1px solid #cbd5e1;
+
+      border-radius: 8px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(15,23,42,.12);
+
+      max-height: 220px;
+
+      overflow-y: auto;
+
+      z-index: 300;
+
+    }
+
+
+    .cliente-item {
+
+      padding:
+        11px 12px;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      color: #334155;
+
+    }
+
+
+    .cliente-item:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+    .cliente-item:hover {
+
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+    }
+
+
+    .cliente-codigo {
+
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      color: #94a3b8;
+
+      font-weight: 500;
+
+    }
+
+
+    .cliente-selecionado {
+
+      display: none;
+
+      margin-top: 6px;
+
+      padding:
+        6px 9px;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border-radius: 6px;
+
+      font-size: 9px;
+
+      font-weight: 700;
+
+    }
+
+
+    /* =====================================================
+       BOTÕES
+       ===================================================== */
+
+    .acoes {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 10px;
+
+      margin-top: 20px;
+
+      padding-top: 18px;
+
+      border-top:
+        1px solid #edf0f3;
+
+    }
+
+
     .btn {
 
       border: none;
@@ -776,7 +1051,7 @@
       border-radius: 8px;
 
       padding:
-        10px 15px;
+        11px 19px;
 
       cursor: pointer;
 
@@ -784,26 +1059,31 @@
 
       font-weight: 800;
 
-      white-space: nowrap;
+      transition: .2s;
 
     }
 
 
-    .btn-primary {
+    .btn:hover {
 
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
-      color: white;
+      transform:
+        translateY(-1px);
 
     }
 
 
-    .btn-secondary {
+    .btn:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+      transform: none;
+
+    }
+
+
+    .btn-limpar {
 
       background: #f1f5f9;
 
@@ -815,236 +1095,22 @@
     }
 
 
-    /* =====================================================
-       TABELA
-       ===================================================== */
+    .btn-salvar {
 
-    .table-wrapper {
-
-      width: 100%;
-
-      overflow-x: auto;
-
-    }
-
-
-    table {
-
-      width: 100%;
-
-      min-width: 1000px;
-
-      border-collapse: collapse;
-
-    }
-
-
-    th {
-
-      padding:
-        11px 8px;
-
-      text-align: center;
-
-      background: #0f172a;
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #125ca5
+        );
 
       color: white;
 
-      font-size: 9px;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-
-    }
-
-
-    td {
-
-      padding:
-        11px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
-      font-size: 10px;
-
-      color: #334155;
-
-      text-align: center;
-
-      white-space: nowrap;
-
-    }
-
-
-    tbody tr:hover td {
-
-      background: #f8fafc;
-
-    }
-
-
-    .nf {
-
-      font-weight: 800;
-
-      color: #1976d2;
-
-    }
-
-
-    .transportadora {
-
-      font-weight: 700;
-
-    }
-
-
-    /* =====================================================
-       STATUS
-       ===================================================== */
-
-    .status {
-
-      display: inline-block;
-
-      padding:
-        5px 9px;
-
-      border-radius: 20px;
-
-      font-size: 8px;
-
-      font-weight: 800;
-
-      color: white;
-
-      text-transform: uppercase;
-
-    }
-
-
-    .coletado {
-
-      background: #1565C0;
-
-    }
-
-
-    .transito {
-
-      background: #FF9800;
-
-    }
-
-
-    .entregue {
-
-      background: #4CAF50;
-
-    }
-
-
-    .atrasado {
-
-      background: #E53935;
-
-    }
-
-
-    .padrao {
-
-      background: #64748b;
-
-    }
-
-
-    /* =====================================================
-       AÇÕES
-       ===================================================== */
-
-    .acoes {
-
-      display: flex;
-
-      justify-content: center;
-
-      gap: 5px;
-
-    }
-
-
-    .btn-mini {
-
-      border: none;
-
-      border-radius: 6px;
-
-      padding:
-        6px 8px;
-
-      cursor: pointer;
-
-      font-size: 9px;
-
-      font-weight: 700;
-
-    }
-
-
-    .btn-ver {
-
-      background: #dbeafe;
-
-      color: #1d4ed8;
-
-    }
-
-
-    .btn-editar {
-
-      background: #fef3c7;
-
-      color: #92400e;
-
-    }
-
-
-    .btn-excluir {
-
-      background: #fee2e2;
-
-      color: #b91c1c;
-
-    }
-
-
-    .carregando,
-    .vazio,
-    .erro-tabela {
-
-      padding:
-        30px;
-
-      font-weight: 700;
-
-      text-align: center;
-
-    }
-
-
-    .carregando,
-    .vazio {
-
-      color: #64748b;
-
-    }
-
-
-    .erro-tabela {
-
-      color: #dc2626;
+      min-width: 170px;
+
+      box-shadow:
+        0 5px 14px
+        rgba(25,118,210,.20);
 
     }
 
@@ -1060,7 +1126,7 @@
       inset: 0;
 
       background:
-        rgba(248,250,252,0.88);
+        rgba(248,250,252,.88);
 
       display: none;
 
@@ -1088,7 +1154,7 @@
 
       box-shadow:
         0 20px 50px
-        rgba(15,23,42,0.18);
+        rgba(15,23,42,.18);
 
     }
 
@@ -1143,20 +1209,12 @@
        RESPONSIVO
        ===================================================== */
 
-    @media (max-width: 1100px) {
+    @media (max-width: 900px) {
 
-      .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
-      }
-
-
-      .toolbar {
+      .linha {
 
         grid-template-columns:
-          1fr 1fr;
+          1fr;
 
       }
 
@@ -1194,6 +1252,7 @@
       .logo-icon {
 
         width: 42px;
+
         height: 42px;
 
         font-size: 20px;
@@ -1285,6 +1344,7 @@
       .status-dot {
 
         width: 8px;
+
         height: 8px;
 
       }
@@ -1297,32 +1357,23 @@
       }
 
 
-      .cards {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .toolbar {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-
-      .toolbar .btn {
-
-        width: 100%;
-
-      }
-
-
-      .panel {
+      .card {
 
         padding: 18px;
+
+      }
+
+
+      .acoes {
+
+        flex-direction: column;
+
+      }
+
+
+      .acoes .btn {
+
+        width: 100%;
 
       }
 
@@ -1352,7 +1403,7 @@
        ===================================================== -->
 
   <div
-    id="loadingTela"
+    id="loading"
     class="loading"
   >
 
@@ -1542,7 +1593,9 @@
     </nav>
 
 
-    <!-- USUÁRIO -->
+    <!-- =================================================
+         USUÁRIO
+         ================================================= -->
 
     <div class="user-area">
 
@@ -1555,14 +1608,12 @@
           USUÁRIO
         </div>
 
-
         <div
           id="usuarioEmail"
           class="user-email"
         >
           -
         </div>
-
 
         <div
           id="usuarioPerfil"
@@ -1603,11 +1654,11 @@
       <div>
 
         <div class="header-title">
-          Envios
+          Novo Envio
         </div>
 
         <div class="header-subtitle">
-          Acompanhamento e gerenciamento dos envios
+          Cadastro e controle de notas fiscais
         </div>
 
       </div>
@@ -1627,153 +1678,505 @@
     <section class="content">
 
 
+      <!-- =================================================
+           CABEÇALHO
+           ================================================= -->
+
+      <div class="page-header">
+
+        <div class="page-title">
+          📦 NOVO ENVIO
+        </div>
+
+        <div class="page-subtitle">
+          CADASTRO E CONTROLE DE ENVIO DE NOTAS FISCAIS
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           MENSAGEM
+           ================================================= -->
+
       <div
         id="mensagem"
         class="mensagem"
       ></div>
 
 
-      <div class="page-title">
+      <!-- =================================================
+           DADOS DO ENVIO
+           ================================================= -->
 
-        <h1>
-          📦 LISTA DE ENVIOS
-        </h1>
+      <div class="card">
 
-        <p>
-          ACOMPANHAMENTO E GERENCIAMENTO DOS ENVIOS
-        </p>
+
+        <div class="card-title">
+
+          <div class="card-icon">
+            📋
+          </div>
+
+          DADOS DO ENVIO
+
+        </div>
+
+
+        <!-- NF / CLIENTE -->
+
+        <div class="linha">
+
+
+          <div class="campo campo-nf">
+
+            <label for="nf">
+
+              NÚMERO DA NF
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <input
+              type="text"
+              id="nf"
+              placeholder="DIGITE O NÚMERO DA NF"
+              autocomplete="off"
+              maxlength="50"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="clientePesquisa">
+
+              CLIENTE
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <div class="cliente-wrapper">
+
+
+              <div class="cliente-pesquisa">
+
+                <span class="cliente-icone">
+                  🔎
+                </span>
+
+                <input
+                  type="text"
+                  id="clientePesquisa"
+                  placeholder="DIGITE O NOME DO CLIENTE"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div
+                id="resultadosClientes"
+                class="resultados-clientes"
+              ></div>
+
+
+              <div
+                id="clienteSelecionado"
+                class="cliente-selecionado"
+              ></div>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- UF / CIDADE -->
+
+        <div class="linha">
+
+
+          <div class="campo">
+
+            <label for="uf">
+
+              UF
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <select id="uf">
+
+              <option value="">
+                SELECIONE
+              </option>
+
+              <option value="TO">
+                TOCANTINS
+              </option>
+
+              <option value="PA">
+                PARÁ
+              </option>
+
+              <option value="MA">
+                MARANHÃO
+              </option>
+
+              <option value="GO">
+                GOIÁS
+              </option>
+
+              <option value="BA">
+                BAHIA
+              </option>
+
+              <option value="PI">
+                PIAUÍ
+              </option>
+
+              <option value="MT">
+                MATO GROSSO
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="cidade">
+
+              CIDADE
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <input
+              type="text"
+              id="cidade"
+              placeholder="DIGITE A CIDADE"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+        </div>
+
+
+        <!-- TRANSPORTADORA / STATUS -->
+
+        <div class="linha">
+
+
+          <div class="campo">
+
+            <label for="transportadora">
+
+              TRANSPORTADORA
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <select id="transportadora">
+
+              <option value="">
+                CARREGANDO...
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="status">
+
+              STATUS
+
+              <span class="obrigatorio">
+                *
+              </span>
+
+            </label>
+
+
+            <select id="status">
+
+              <option value="COLETADO">
+                📦 COLETADO
+              </option>
+
+              <option value="EM TRANSITO">
+                🚚 EM TRÂNSITO
+              </option>
+
+              <option value="ENTREGUE">
+                ✅ ENTREGUE
+              </option>
+
+              <option value="ATRASADO">
+                ⚠️ ATRASADO
+              </option>
+
+            </select>
+
+          </div>
+
+
+        </div>
+
 
       </div>
 
 
-      <div class="panel">
+      <!-- =================================================
+           DADOS DA CARGA
+           ================================================= -->
+
+      <div class="card">
 
 
-        <div class="toolbar">
+        <div class="card-title">
 
+          <div class="card-icon">
+            📦
+          </div>
 
-          <input
-            type="text"
-            id="pesquisa"
-            placeholder="PESQUISAR NF, CLIENTE, CIDADE..."
-            autocomplete="off"
-          >
-
-
-          <select
-            id="status"
-          >
-
-            <option value="">
-              TODOS OS STATUS
-            </option>
-
-            <option value="COLETADO">
-              COLETADO
-            </option>
-
-            <option value="EM TRANSITO">
-              EM TRANSITO
-            </option>
-
-            <option value="ENTREGUE">
-              ENTREGUE
-            </option>
-
-            <option value="ATRASADO">
-              ATRASADO
-            </option>
-
-          </select>
-
-
-          <button
-            type="button"
-            class="btn btn-primary"
-            onclick="filtrar()"
-          >
-
-            🔎 PESQUISAR
-
-          </button>
-
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="carregarEnvios()"
-          >
-
-            🔄 ATUALIZAR
-
-          </button>
-
+          DADOS DA CARGA
 
         </div>
 
 
-        <div
-          id="contador"
-          style="
-            display:inline-block;
-            background:#e3f2fd;
-            color:#1565C0;
-            padding:7px 12px;
-            border-radius:20px;
-            font-size:11px;
-            font-weight:bold;
-            margin-bottom:15px;
-          "
-        >
-
-          0 ENVIOS
-
-        </div>
+        <div class="linha">
 
 
-        <div class="table-wrapper">
+          <div class="campo">
 
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>NF</th>
-                <th>CLIENTE</th>
-                <th>CIDADE</th>
-                <th>UF</th>
-                <th>TRANSPORTADORA</th>
-                <th>STATUS</th>
-                <th>VOLUMES</th>
-                <th>PESO</th>
-                <th>AÇÕES</th>
-
-              </tr>
-
-            </thead>
+            <label for="valor">
+              VALOR DA CARGA
+            </label>
 
 
-            <tbody
-              id="tabelaEnvios"
+            <input
+              type="number"
+              id="valor"
+              step="0.01"
+              min="0"
+              placeholder="0,00"
             >
 
-              <tr>
+          </div>
 
-                <td
-                  colspan="9"
-                  class="carregando"
-                >
 
-                  🔄 CARREGANDO ENVIOS...
+          <div class="campo">
 
-                </td>
+            <label for="peso">
+              PESO (KG)
+            </label>
 
-              </tr>
 
-            </tbody>
+            <input
+              type="number"
+              id="peso"
+              step="0.01"
+              min="0"
+              placeholder="0,00"
+            >
 
-          </table>
+          </div>
+
+
+        </div>
+
+
+        <div class="linha">
+
+
+          <div class="campo">
+
+            <label for="volumes">
+              VOLUMES
+            </label>
+
+
+            <input
+              type="number"
+              id="volumes"
+              min="1"
+              step="1"
+              value="1"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="dataEnvio">
+              DATA DE ENVIO
+            </label>
+
+
+            <input
+              type="date"
+              id="dataEnvio"
+            >
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           PRAZOS
+           ================================================= -->
+
+      <div class="card">
+
+
+        <div class="card-title">
+
+          <div class="card-icon">
+            📅
+          </div>
+
+          PRAZOS E ENTREGA
+
+        </div>
+
+
+        <div class="linha">
+
+
+          <div class="campo">
+
+            <label for="previsao">
+              PREVISÃO DE ENTREGA
+            </label>
+
+
+            <input
+              type="date"
+              id="previsao"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="dataEntrega">
+              DATA DE ENTREGA
+            </label>
+
+
+            <input
+              type="date"
+              id="dataEntrega"
+            >
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           OBSERVAÇÃO
+           ================================================= -->
+
+      <div class="card">
+
+
+        <div class="card-title">
+
+          <div class="card-icon">
+            📝
+          </div>
+
+          OBSERVAÇÕES
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="observacao">
+            OBSERVAÇÃO
+          </label>
+
+
+          <textarea
+            id="observacao"
+            placeholder="DIGITE UMA OBSERVAÇÃO, SE NECESSÁRIO..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- AÇÕES -->
+
+        <div class="acoes">
+
+
+          <button
+            type="button"
+            class="btn btn-limpar"
+            onclick="limparCampos()"
+          >
+
+            🧹 LIMPAR
+
+          </button>
+
+
+          <button
+            type="button"
+            id="btnSalvar"
+            class="btn btn-salvar"
+            onclick="salvarEnvio()"
+          >
+
+            💾 SALVAR ENVIO
+
+          </button>
+
 
         </div>
 
@@ -1786,6 +2189,10 @@
 
   </main>
 
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script>
 
@@ -1817,8 +2224,12 @@
       null;
 
 
-    let envios =
+    let clientes =
       [];
+
+
+    let clienteSelecionadoAtual =
+      null;
 
 
     /* =====================================================
@@ -1930,10 +2341,16 @@
         preencherUsuario();
 
 
+        definirDataHoje();
+
+
+        await Promise.all([
+          carregarClientes(),
+          carregarTransportadoras()
+        ]);
+
+
         esconderLoading();
-
-
-        await carregarEnvios();
 
       }
 
@@ -1962,7 +2379,7 @@
 
 
     /* =====================================================
-       PREENCHER USUÁRIO
+       USUÁRIO
        ===================================================== */
 
     function preencherUsuario() {
@@ -2003,556 +2420,422 @@
 
 
     /* =====================================================
-       CARREGAR ENVIOS
+       CLIENTES
        ===================================================== */
 
-    async function carregarEnvios() {
+    async function carregarClientes() {
 
-      const tabela =
-        document.getElementById(
-          "tabelaEnvios"
+      const resultado =
+        await supabaseClient
+
+          .from("clientes")
+
+          .select(
+            "id,codigo,nome,cidade,uf"
+          )
+
+          .order(
+            "nome",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (
+        resultado.error
+      ) {
+
+        console.error(
+          "Erro ao carregar clientes:",
+          resultado.error
         );
 
+        clientes =
+          [];
 
-      mostrarLoading(
-        "CARREGANDO ENVIOS..."
+        return;
+
+      }
+
+
+      clientes =
+        resultado.data ||
+        [];
+
+    }
+
+
+    /* =====================================================
+       PESQUISA DE CLIENTE
+       ===================================================== */
+
+    const campoCliente =
+      document.getElementById(
+        "clientePesquisa"
       );
 
 
-      tabela.innerHTML =
-        `
-          <tr>
-
-            <td
-              colspan="9"
-              class="carregando"
-            >
-
-              🔄 CARREGANDO ENVIOS...
-
-            </td>
-
-          </tr>
-        `;
+    const resultadosClientes =
+      document.getElementById(
+        "resultadosClientes"
+      );
 
 
-      try {
+    campoCliente.addEventListener(
+      "input",
+      function() {
 
-        /*
-        ---------------------------------------------------
-        IMPORTANTE:
-
-        NÃO UTILIZAMOS created_at AQUI.
-
-        Isso evita erro caso sua tabela envios
-        não possua essa coluna.
-        ---------------------------------------------------
-        */
-
-        const resultado =
-          await supabaseClient
-
-            .from("envios")
-
-            .select("*");
+        const texto =
+          normalizarTexto(
+            campoCliente.value
+          );
 
 
-        if (
-          resultado.error
-        ) {
+        clienteSelecionadoAtual =
+          null;
 
-          throw resultado.error;
+
+        document.getElementById(
+          "clienteSelecionado"
+        ).style.display =
+          "none";
+
+
+        resultadosClientes.innerHTML =
+          "";
+
+
+        if (!texto) {
+
+          resultadosClientes.style.display =
+            "none";
+
+          return;
 
         }
 
 
-        envios =
-          resultado.data || [];
+        const encontrados =
+          clientes.filter(
+            function(cliente) {
+
+              const nome =
+                normalizarTexto(
+                  cliente.nome
+                );
 
 
-        /*
-        ---------------------------------------------------
-        ORDENAÇÃO SEGURA
+              const codigo =
+                normalizarTexto(
+                  cliente.codigo
+                );
 
-        Se existir uma coluna created_at,
-        usamos ela.
-
-        Caso não exista,
-        simplesmente mantemos a ordem
-        retornada pelo Supabase.
-        ---------------------------------------------------
-        */
-
-        if (
-          envios.length > 1 &&
-          envios[0].created_at !== undefined
-        ) {
-
-          envios.sort(
-            function(a,b) {
 
               return (
-                new Date(
-                  b.created_at
-                ) -
-                new Date(
-                  a.created_at
-                )
+                nome.includes(texto) ||
+                codigo.includes(texto)
               );
 
             }
           );
 
+
+        if (
+          encontrados.length === 0
+        ) {
+
+          resultadosClientes.innerHTML =
+            `
+              <div class="cliente-item">
+                NENHUM CLIENTE ENCONTRADO
+              </div>
+            `;
+
+
+          resultadosClientes.style.display =
+            "block";
+
+          return;
+
         }
 
 
-        desenharTabela(
-          envios
-        );
+        encontrados
+          .slice(0, 20)
+          .forEach(
+            function(cliente) {
 
-      }
+              const item =
+                document.createElement(
+                  "div"
+                );
 
 
-      catch (erro) {
+              item.className =
+                "cliente-item";
 
-        console.error(
-          "Erro ao carregar envios:",
-          erro
-        );
 
+              const nome =
+                String(
+                  cliente.nome ||
+                  ""
+                ).toUpperCase();
 
-        envios =
-          [];
 
+              const codigo =
+                String(
+                  cliente.codigo ||
+                  ""
+                ).toUpperCase();
 
-        tabela.innerHTML =
-          `
-            <tr>
 
-              <td
-                colspan="9"
-                class="erro-tabela"
-              >
+              item.innerHTML =
+                `
+                  ${escapeHTML(nome)}
 
-                ❌ ERRO AO CARREGAR OS ENVIOS.
+                  <span class="cliente-codigo">
+                    CÓDIGO: ${escapeHTML(codigo)}
+                  </span>
+                `;
 
-                <br><br>
 
-                <small>
-                  ${escapeHTML(
-                    obterMensagemErro(
-                      erro
-                    )
-                  )}
-                </small>
+              item.addEventListener(
+                "click",
+                function() {
 
-              </td>
+                  selecionarCliente(
+                    cliente
+                  );
 
-            </tr>
-          `;
+                }
+              );
 
 
-        mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
-          "erro"
-        );
-
-      }
-
-
-      finally {
-
-        esconderLoading();
-
-      }
-
-    }
-
-
-    /* =====================================================
-       DESENHAR
-       ===================================================== */
-
-    function desenharTabela(
-      lista
-    ) {
-
-      const tabela =
-        document.getElementById(
-          "tabelaEnvios"
-        );
-
-
-      const contador =
-        document.getElementById(
-          "contador"
-        );
-
-
-      contador.textContent =
-        lista.length +
-        (
-          lista.length === 1
-            ? " ENVIO"
-            : " ENVIOS"
-        );
-
-
-      tabela.innerHTML =
-        "";
-
-
-      if (
-        lista.length === 0
-      ) {
-
-        tabela.innerHTML =
-          `
-            <tr>
-
-              <td
-                colspan="9"
-                class="vazio"
-              >
-
-                📭 NENHUM ENVIO ENCONTRADO.
-
-              </td>
-
-            </tr>
-          `;
-
-        return;
-
-      }
-
-
-      lista.forEach(
-        function(item) {
-
-
-          const nf =
-            item.nf ??
-            item.NF ??
-            "";
-
-
-          const cliente =
-            item.cliente ??
-            item.CLIENTE ??
-            "";
-
-
-          const cidade =
-            item.cidade ??
-            item.CIDADE ??
-            "";
-
-
-          const uf =
-            item.uf ??
-            item.UF ??
-            "";
-
-
-          const transportadora =
-            item.transportadora ??
-            item.TRANSPORTADORA ??
-            "";
-
-
-          const peso =
-            Number(
-              item.peso ??
-              item.PESO ??
-              0
-            );
-
-
-          const volumes =
-            item.volumes ??
-            item.VOLUMES ??
-            0;
-
-
-          const status =
-            normalizarStatus(
-              item.status ??
-              item.STATUS ??
-              "COLETADO"
-            );
-
-
-          let classeStatus =
-            "padrao";
-
-
-          if (
-            status ===
-            "COLETADO"
-          ) {
-
-            classeStatus =
-              "coletado";
-
-          }
-
-          else if (
-            status ===
-            "EM TRANSITO"
-          ) {
-
-            classeStatus =
-              "transito";
-
-          }
-
-          else if (
-            status ===
-            "ENTREGUE"
-          ) {
-
-            classeStatus =
-              "entregue";
-
-          }
-
-          else if (
-            status ===
-            "ATRASADO"
-          ) {
-
-            classeStatus =
-              "atrasado";
-
-          }
-
-
-          const tr =
-            document.createElement(
-              "tr"
-            );
-
-
-          adicionarCelula(
-            tr,
-            nf,
-            "nf"
-          );
-
-
-          adicionarCelula(
-            tr,
-            cliente
-          );
-
-
-          adicionarCelula(
-            tr,
-            cidade
-          );
-
-
-          adicionarCelula(
-            tr,
-            uf
-          );
-
-
-          adicionarCelula(
-            tr,
-            transportadora,
-            "transportadora"
-          );
-
-
-          const tdStatus =
-            document.createElement(
-              "td"
-            );
-
-
-          const spanStatus =
-            document.createElement(
-              "span"
-            );
-
-
-          spanStatus.className =
-            "status " +
-            classeStatus;
-
-
-          spanStatus.textContent =
-            status;
-
-
-          tdStatus.appendChild(
-            spanStatus
-          );
-
-
-          tr.appendChild(
-            tdStatus
-          );
-
-
-          adicionarCelula(
-            tr,
-            volumes
-          );
-
-
-          adicionarCelula(
-            tr,
-            peso.toFixed(2) +
-            " KG"
-          );
-
-
-          /* AÇÕES */
-
-          const tdAcoes =
-            document.createElement(
-              "td"
-            );
-
-
-          const divAcoes =
-            document.createElement(
-              "div"
-            );
-
-
-          divAcoes.className =
-            "acoes";
-
-
-          const btnVer =
-            document.createElement(
-              "button"
-            );
-
-
-          btnVer.type =
-            "button";
-
-
-          btnVer.className =
-            "btn-mini btn-ver";
-
-
-          btnVer.textContent =
-            "👁";
-
-
-          btnVer.title =
-            "VER";
-
-
-          btnVer.onclick =
-            function() {
-
-              visualizarEnvio(
+              resultadosClientes.appendChild(
                 item
               );
 
-            };
+            }
+          );
 
 
-          const btnEditar =
+        resultadosClientes.style.display =
+          "block";
+
+      }
+    );
+
+
+    /* =====================================================
+       SELECIONAR CLIENTE
+       ===================================================== */
+
+    function selecionarCliente(
+      cliente
+    ) {
+
+      if (!cliente) {
+
+        return;
+
+      }
+
+
+      clienteSelecionadoAtual =
+        cliente;
+
+
+      const nome =
+        String(
+          cliente.nome ||
+          ""
+        ).trim().toUpperCase();
+
+
+      campoCliente.value =
+        nome;
+
+
+      resultadosClientes.style.display =
+        "none";
+
+
+      const info =
+        document.getElementById(
+          "clienteSelecionado"
+        );
+
+
+      info.textContent =
+        "✅ CLIENTE SELECIONADO: " +
+        nome;
+
+
+      info.style.display =
+        "block";
+
+
+      if (
+        cliente.uf
+      ) {
+
+        document.getElementById(
+          "uf"
+        ).value =
+          String(
+            cliente.uf
+          ).toUpperCase();
+
+      }
+
+
+      if (
+        cliente.cidade
+      ) {
+
+        document.getElementById(
+          "cidade"
+        ).value =
+          String(
+            cliente.cidade
+          ).toUpperCase();
+
+      }
+
+    }
+
+
+    /* =====================================================
+       TRANSPORTADORAS
+       ===================================================== */
+
+    async function carregarTransportadoras() {
+
+      const select =
+        document.getElementById(
+          "transportadora"
+        );
+
+
+      const resultado =
+        await supabaseClient
+
+          .from("transportadoras")
+
+          .select(
+            "*"
+          );
+
+
+      if (
+        resultado.error
+      ) {
+
+        console.error(
+          "Erro ao carregar transportadoras:",
+          resultado.error
+        );
+
+
+        select.innerHTML =
+          `
+            <option value="">
+              ERRO AO CARREGAR TRANSPORTADORAS
+            </option>
+          `;
+
+        return;
+
+      }
+
+
+      let lista =
+        resultado.data ||
+        [];
+
+
+      /*
+      -----------------------------------------------------
+      TENTAR DESCOBRIR O CAMPO DO NOME
+      -----------------------------------------------------
+      */
+
+      lista =
+        lista.map(
+          function(item) {
+
+            return (
+
+              item.nome ||
+
+              item.name ||
+
+              item.transportadora ||
+
+              item.descricao ||
+
+              ""
+
+            );
+
+          }
+        )
+        .filter(
+          function(nome) {
+
+            return String(
+              nome
+            ).trim() !== "";
+
+          }
+        );
+
+
+      lista =
+        lista.map(
+          function(nome) {
+
+            return String(
+              nome
+            )
+            .trim()
+            .toUpperCase();
+
+          }
+        );
+
+
+      lista =
+        [...new Set(lista)];
+
+
+      lista.sort();
+
+
+      select.innerHTML =
+        '<option value="">SELECIONE</option>';
+
+
+      lista.forEach(
+        function(nome) {
+
+          const option =
             document.createElement(
-              "button"
+              "option"
             );
 
 
-          btnEditar.type =
-            "button";
+          option.value =
+            nome;
 
 
-          btnEditar.className =
-            "btn-mini btn-editar";
+          option.textContent =
+            nome;
 
 
-          btnEditar.textContent =
-            "✏️";
-
-
-          btnEditar.title =
-            "EDITAR";
-
-
-          btnEditar.onclick =
-            function() {
-
-              editarEnvio(
-                nf
-              );
-
-            };
-
-
-          const btnExcluir =
-            document.createElement(
-              "button"
-            );
-
-
-          btnExcluir.type =
-            "button";
-
-
-          btnExcluir.className =
-            "btn-mini btn-excluir";
-
-
-          btnExcluir.textContent =
-            "🗑️";
-
-
-          btnExcluir.title =
-            "EXCLUIR";
-
-
-          btnExcluir.onclick =
-            function() {
-
-              excluirEnvio(
-                nf
-              );
-
-            };
-
-
-          divAcoes.appendChild(
-            btnVer
-          );
-
-
-          divAcoes.appendChild(
-            btnEditar
-          );
-
-
-          divAcoes.appendChild(
-            btnExcluir
-          );
-
-
-          tdAcoes.appendChild(
-            divAcoes
-          );
-
-
-          tr.appendChild(
-            tdAcoes
-          );
-
-
-          tabela.appendChild(
-            tr
+          select.appendChild(
+            option
           );
 
         }
@@ -2562,301 +2845,417 @@
 
 
     /* =====================================================
-       ADICIONAR CÉLULA
+       SALVAR ENVIO
        ===================================================== */
 
-    function adicionarCelula(
-      linha,
-      valor,
-      classe
-    ) {
+    async function salvarEnvio() {
 
-      const td =
-        document.createElement(
-          "td"
+      const btn =
+        document.getElementById(
+          "btnSalvar"
         );
 
-
-      if (classe) {
-
-        td.className =
-          classe;
-
-      }
-
-
-      td.textContent =
-        valor ??
-        "";
-
-
-      linha.appendChild(
-        td
-      );
-
-    }
-
-
-    /* =====================================================
-       FILTRAR
-       ===================================================== */
-
-    function filtrar() {
-
-      const texto =
-        normalizarTexto(
-          document.getElementById(
-            "pesquisa"
-          ).value
-        );
-
-
-      const statusSelecionado =
-        normalizarStatus(
-          document.getElementById(
-            "status"
-          ).value
-        );
-
-
-      const filtrado =
-        envios.filter(
-          function(item) {
-
-
-            const textoLinha =
-              normalizarTexto(
-
-                String(
-                  item.nf ??
-                  ""
-                ) +
-                " " +
-                String(
-                  item.cliente ??
-                  ""
-                ) +
-                " " +
-                String(
-                  item.cidade ??
-                  ""
-                ) +
-                " " +
-                String(
-                  item.uf ??
-                  ""
-                ) +
-                " " +
-                String(
-                  item.transportadora ??
-                  ""
-                )
-
-              );
-
-
-            const textoOK =
-              !texto ||
-              textoLinha.includes(
-                texto
-              );
-
-
-            const statusAtual =
-              normalizarStatus(
-                item.status
-              );
-
-
-            const statusOK =
-              !statusSelecionado ||
-              statusAtual ===
-              statusSelecionado;
-
-
-            return (
-              textoOK &&
-              statusOK
-            );
-
-          }
-        );
-
-
-      desenharTabela(
-        filtrado
-      );
-
-    }
-
-
-    /* =====================================================
-       VISUALIZAR
-       ===================================================== */
-
-    function visualizarEnvio(
-      item
-    ) {
 
       const nf =
-        item.nf ??
-        "";
+        String(
+          document.getElementById(
+            "nf"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
 
 
       const cliente =
-        item.cliente ??
-        "";
+        clienteSelecionadoAtual
+          ? String(
+              clienteSelecionadoAtual.nome ||
+              ""
+            )
+            .trim()
+            .toUpperCase()
+          : String(
+              document.getElementById(
+                "clientePesquisa"
+              ).value ||
+              ""
+            )
+            .trim()
+            .toUpperCase();
 
 
       const cidade =
-        item.cidade ??
-        "";
+        String(
+          document.getElementById(
+            "cidade"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
 
 
       const uf =
-        item.uf ??
-        "";
+        String(
+          document.getElementById(
+            "uf"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
 
 
       const transportadora =
-        item.transportadora ??
-        "";
-
-
-      const valor =
-        Number(
-          item.valor ??
-          0
-        ).toLocaleString(
-          "pt-BR",
-          {
-            style:
-              "currency",
-            currency:
-              "BRL"
-          }
-        );
-
-
-      const peso =
-        Number(
-          item.peso ??
-          0
-        ).toFixed(2);
-
-
-      const volumes =
-        item.volumes ??
-        0;
+        String(
+          document.getElementById(
+            "transportadora"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
 
 
       const status =
-        normalizarStatus(
-          item.status
-        );
+        String(
+          document.getElementById(
+            "status"
+          ).value ||
+          "COLETADO"
+        )
+        .trim()
+        .toUpperCase();
+
+
+      const valorTexto =
+        document.getElementById(
+          "valor"
+        ).value;
+
+
+      const pesoTexto =
+        document.getElementById(
+          "peso"
+        ).value;
+
+
+      const volumesTexto =
+        document.getElementById(
+          "volumes"
+        ).value;
+
+
+      const dataEnvio =
+        document.getElementById(
+          "dataEnvio"
+        ).value;
+
+
+      const previsao =
+        document.getElementById(
+          "previsao"
+        ).value;
+
+
+      const dataEntrega =
+        document.getElementById(
+          "dataEntrega"
+        ).value;
 
 
       const observacao =
-        item.observacao ??
-        "";
+        String(
+          document.getElementById(
+            "observacao"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
 
 
-      alert(
+      /* =================================================
+         VALIDAÇÕES
+         ================================================= */
 
-        "NF: " +
-        nf +
+      if (!nf) {
 
-        "\n\nCLIENTE: " +
-        cliente +
-
-        "\nCIDADE: " +
-        cidade +
-        " - " +
-        uf +
-
-        "\nTRANSPORTADORA: " +
-        transportadora +
-
-        "\n\nVALOR: " +
-        valor +
-
-        "\nVOLUMES: " +
-        volumes +
-
-        "\nPESO: " +
-        peso +
-        " KG" +
-
-        "\n\nSTATUS: " +
-        status +
-
-        "\n\nOBSERVAÇÃO: " +
-        observacao
-
-      );
-
-    }
-
-
-    /* =====================================================
-       EDITAR
-       ===================================================== */
-
-    function editarEnvio(
-      nf
-    ) {
-
-      alert(
-
-        "A EDIÇÃO DA NF SERÁ REALIZADA PELO MÓDULO ATUALIZAR NF.\n\n" +
-        "NF: " +
-        nf
-
-      );
-
-    }
-
-
-    /* =====================================================
-       EXCLUIR
-       ===================================================== */
-
-    async function excluirEnvio(
-      nf
-    ) {
-
-      const confirmar =
-        window.confirm(
-          "DESEJA REALMENTE EXCLUIR A NF " +
-          nf +
-          "?"
+        mostrarMensagem(
+          "INFORME O NÚMERO DA NF.",
+          "erro"
         );
 
 
-      if (!confirmar) {
+        document
+          .getElementById(
+            "nf"
+          )
+          .focus();
+
 
         return;
 
       }
+
+
+      if (!cliente) {
+
+        mostrarMensagem(
+          "INFORME OU SELECIONE O CLIENTE.",
+          "erro"
+        );
+
+
+        document
+          .getElementById(
+            "clientePesquisa"
+          )
+          .focus();
+
+
+        return;
+
+      }
+
+
+      if (!uf) {
+
+        mostrarMensagem(
+          "SELECIONE A UF.",
+          "erro"
+        );
+
+
+        return;
+
+      }
+
+
+      if (!cidade) {
+
+        mostrarMensagem(
+          "INFORME A CIDADE.",
+          "erro"
+        );
+
+
+        return;
+
+      }
+
+
+      if (!transportadora) {
+
+        mostrarMensagem(
+          "SELECIONE A TRANSPORTADORA.",
+          "erro"
+        );
+
+
+        return;
+
+      }
+
+
+      const valor =
+        valorTexto
+          ? Number(
+              valorTexto
+            )
+          : 0;
+
+
+      const peso =
+        pesoTexto
+          ? Number(
+              pesoTexto
+            )
+          : 0;
+
+
+      const volumes =
+        volumesTexto
+          ? Number(
+              volumesTexto
+            )
+          : 1;
+
+
+      if (
+        Number.isNaN(
+          valor
+        )
+      ) {
+
+        mostrarMensagem(
+          "VALOR DA CARGA INVÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        Number.isNaN(
+          peso
+        )
+      ) {
+
+        mostrarMensagem(
+          "PESO INVÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isInteger(
+          volumes
+        ) ||
+        volumes < 1
+      ) {
+
+        mostrarMensagem(
+          "INFORME UMA QUANTIDADE DE VOLUMES VÁLIDA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      /* =================================================
+         CONFIRMAR NF DUPLICADA
+         ================================================= */
+
+      btn.disabled =
+        true;
+
+      btn.textContent =
+        "🔄 SALVANDO...";
+
+
+      mostrarMensagem(
+        "SALVANDO ENVIO...",
+        "info"
+      );
 
 
       try {
 
-        mostrarLoading(
-          "EXCLUINDO ENVIO..."
-        );
+        const consultaNF =
+          await supabaseClient
 
+            .from("envios")
+
+            .select(
+              "id"
+            )
+
+            .eq(
+              "nf",
+              nf
+            )
+            
+            .limit(1);
+
+
+        if (
+          consultaNF.error
+        ) {
+
+          throw consultaNF.error;
+
+        }
+
+
+        if (
+          consultaNF.data &&
+          consultaNF.data.length > 0
+        ) {
+
+          throw new Error(
+            "A NF " +
+            nf +
+            " JÁ ESTÁ CADASTRADA."
+          );
+
+        }
+
+
+        /* =================================================
+           OBJETO DO ENVIO
+           ================================================= */
+
+        const dadosEnvio = {
+
+          nf:
+            nf,
+
+          cliente:
+            cliente,
+
+          cidade:
+            cidade,
+
+          uf:
+            uf,
+
+          transportadora:
+            transportadora,
+
+          valor:
+            valor,
+
+          peso:
+            peso,
+
+          volumes:
+            volumes,
+
+          data_envio:
+            dataEnvio
+              ? dataEnvio
+              : null,
+
+          previsao:
+            previsao
+              ? previsao
+              : null,
+
+          data_entrega:
+            dataEntrega
+              ? dataEntrega
+              : null,
+
+          status:
+            status,
+
+          observacao:
+            observacao
+
+        };
+
+
+        /* =================================================
+           INSERIR
+           ================================================= */
 
         const resultado =
           await supabaseClient
 
             .from("envios")
 
-            .delete()
-
-            .eq(
-              "nf",
-              nf
+            .insert(
+              dadosEnvio
             );
 
 
@@ -2870,14 +3269,16 @@
 
 
         mostrarMensagem(
-          "NF " +
+          "✅ ENVIO DA NF " +
           nf +
-          " EXCLUÍDA COM SUCESSO.",
+          " SALVO COM SUCESSO.",
           "sucesso"
         );
 
 
-        await carregarEnvios();
+        limparCampos(
+          false
+        );
 
       }
 
@@ -2885,7 +3286,7 @@
       catch (erro) {
 
         console.error(
-          "Erro ao excluir:",
+          "Erro ao salvar envio:",
           erro
         );
 
@@ -2902,7 +3303,11 @@
 
       finally {
 
-        esconderLoading();
+        btn.disabled =
+          false;
+
+        btn.textContent =
+          "💾 SALVAR ENVIO";
 
       }
 
@@ -2910,47 +3315,167 @@
 
 
     /* =====================================================
-       NORMALIZAR TEXTO
+       LIMPAR
        ===================================================== */
 
-    function normalizarTexto(
-      valor
+    function limparCampos(
+      esconder = true
     ) {
 
-      return String(
-        valor ||
-        ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
+      document.getElementById(
+        "nf"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "clientePesquisa"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "resultadosClientes"
+      ).innerHTML =
+        "";
+
+
+      document.getElementById(
+        "resultadosClientes"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "clienteSelecionado"
+      ).textContent =
+        "";
+
+
+      document.getElementById(
+        "clienteSelecionado"
+      ).style.display =
+        "none";
+
+
+      clienteSelecionadoAtual =
+        null;
+
+
+      document.getElementById(
+        "uf"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "cidade"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "transportadora"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "valor"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "peso"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "volumes"
+      ).value =
+        "1";
+
+
+      definirDataHoje();
+
+
+      document.getElementById(
+        "previsao"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "dataEntrega"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "status"
+      ).value =
+        "COLETADO";
+
+
+      document.getElementById(
+        "observacao"
+      ).value =
+        "";
+
+
+      if (
+        esconder
+      ) {
+
+        esconderMensagem();
+
+      }
 
     }
 
 
     /* =====================================================
-       NORMALIZAR STATUS
+       DATA DE HOJE
        ===================================================== */
 
-    function normalizarStatus(
-      valor
-    ) {
+    function definirDataHoje() {
 
-      return String(
-        valor ||
-        ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
+      const hoje =
+        new Date();
+
+
+      const ano =
+        hoje.getFullYear();
+
+
+      const mes =
+        String(
+          hoje.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      const dia =
+        String(
+          hoje.getDate()
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      document.getElementById(
+        "dataEnvio"
+      ).value =
+        ano +
+        "-" +
+        mes +
+        "-" +
+        dia;
 
     }
 
@@ -2999,7 +3524,7 @@
 
       const elemento =
         document.getElementById(
-          "loadingTela"
+          "loading"
         );
 
 
@@ -3009,7 +3534,9 @@
         );
 
 
-      if (textoElemento) {
+      if (
+        textoElemento
+      ) {
 
         textoElemento.textContent =
           texto ||
@@ -3018,7 +3545,9 @@
       }
 
 
-      if (elemento) {
+      if (
+        elemento
+      ) {
 
         elemento.style.display =
           "flex";
@@ -3032,11 +3561,13 @@
 
       const elemento =
         document.getElementById(
-          "loadingTela"
+          "loading"
         );
 
 
-      if (elemento) {
+      if (
+        elemento
+      ) {
 
         elemento.style.display =
           "none";
@@ -3100,75 +3631,59 @@
     }
 
 
-    /* =====================================================
-       ERRO
-       ===================================================== */
+    function esconderMensagem() {
 
-    function obterMensagemErro(
-      erro
-    ) {
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
 
       if (
-        erro &&
-        erro.message
+        elemento
       ) {
 
-        const mensagem =
-          String(
-            erro.message
-          );
+        elemento.textContent =
+          "";
 
 
-        const texto =
-          mensagem.toLowerCase();
+        elemento.className =
+          "mensagem";
 
 
-        if (
-          texto.includes(
-            "row-level security"
-          ) ||
-          texto.includes(
-            "permission denied"
-          )
-        ) {
-
-          return (
-            "SEM PERMISSÃO PARA ACESSAR OS ENVIOS."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "relation"
-          ) &&
-          texto.includes(
-            "does not exist"
-          )
-        ) {
-
-          return (
-            'A TABELA "ENVIOS" NÃO EXISTE NO SUPABASE.'
-          );
-
-        }
-
-
-        return mensagem.toUpperCase();
+        elemento.style.display =
+          "none";
 
       }
-
-
-      return (
-        "NÃO FOI POSSÍVEL CARREGAR OS ENVIOS."
-      );
 
     }
 
 
     /* =====================================================
-       SEGURANÇA HTML
+       NORMALIZAÇÃO
+       ===================================================== */
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       ESCAPAR HTML
        ===================================================== */
 
     function escapeHTML(
@@ -3204,12 +3719,174 @@
 
 
     /* =====================================================
-       ENTER
+       ERROS
+       ===================================================== */
+
+    function obterMensagemErro(
+      erro
+    ) {
+
+      if (
+        erro &&
+        erro.message
+      ) {
+
+        const mensagem =
+          String(
+            erro.message
+          );
+
+
+        const texto =
+          mensagem.toLowerCase();
+
+
+        if (
+          texto.includes(
+            "duplicate"
+          ) ||
+          texto.includes(
+            "unique"
+          )
+        ) {
+
+          return (
+            "ESTA NF JÁ ESTÁ CADASTRADA."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "row-level security"
+          ) ||
+          texto.includes(
+            "permission denied"
+          )
+        ) {
+
+          return (
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA CADASTRAR ENVIOS."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "relation"
+          ) &&
+          texto.includes(
+            "does not exist"
+          )
+        ) {
+
+          return (
+            'A TABELA "ENVIOS" NÃO FOI ENCONTRADA NO SUPABASE.'
+          );
+
+        }
+
+
+        return mensagem.toUpperCase();
+
+      }
+
+
+      return (
+        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+      );
+
+    }
+
+
+    /* =====================================================
+       FECHAR RESULTADOS DO CLIENTE
+       ===================================================== */
+
+    document.addEventListener(
+      "click",
+      function(evento) {
+
+        const campo =
+          document.getElementById(
+            "clientePesquisa"
+          );
+
+
+        const resultados =
+          document.getElementById(
+            "resultadosClientes"
+          );
+
+
+        if (
+          !campo.contains(
+            evento.target
+          ) &&
+          !resultados.contains(
+            evento.target
+          )
+        ) {
+
+          resultados.style.display =
+            "none";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       MAIÚSCULAS
+       ===================================================== */
+
+    document.addEventListener(
+      "input",
+      function(evento) {
+
+        const elemento =
+          evento.target;
+
+
+        if (
+          elemento &&
+          elemento.tagName ===
+          "INPUT" &&
+          elemento.type ===
+          "text"
+        ) {
+
+          elemento.value =
+            elemento.value.toUpperCase();
+
+        }
+
+
+        if (
+          elemento &&
+          elemento.tagName ===
+          "TEXTAREA"
+        ) {
+
+          elemento.value =
+            elemento.value.toUpperCase();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       ENTER NO CAMPO NF
        ===================================================== */
 
     document
       .getElementById(
-        "pesquisa"
+        "nf"
       )
       .addEventListener(
         "keydown",
@@ -3222,7 +3899,12 @@
 
             evento.preventDefault();
 
-            filtrar();
+
+            document
+              .getElementById(
+                "clientePesquisa"
+              )
+              .focus();
 
           }
 
@@ -3278,7 +3960,9 @@
         );
 
 
-      if (botao) {
+      if (
+        botao
+      ) {
 
         botao.disabled =
           true;
@@ -3308,7 +3992,6 @@
       redirecionarLogin();
 
     }
-
 
   </script>
 
