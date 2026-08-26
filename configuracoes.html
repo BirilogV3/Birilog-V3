@@ -1,0 +1,3435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>BiriLog V3 - Configurações</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #f1f5f9;
+
+      color: #1e293b;
+
+    }
+
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
+
+    .sidebar {
+
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      width: 250px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #0f172a,
+          #172554
+        );
+
+      color: white;
+
+      display: flex;
+
+      flex-direction: column;
+
+      z-index: 100;
+
+      box-shadow:
+        5px 0 20px
+        rgba(0,0,0,0.10);
+
+      overflow: hidden;
+
+    }
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
+
+    .logo-area {
+
+      padding: 28px 22px;
+
+      text-align: center;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+    .logo-icon {
+
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 12px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #0d47a1
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 28px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(25,118,210,0.30);
+
+    }
+
+    .logo-title {
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+    }
+
+    .logo-title span {
+
+      color: #60a5fa;
+
+    }
+
+    .logo-version {
+
+      margin-top: 5px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+      letter-spacing: 1px;
+
+    }
+
+    /* =====================================================
+       MENU
+       ===================================================== */
+
+    .menu {
+
+      padding: 20px 12px;
+
+      flex: 1;
+
+      min-height: 0;
+
+      overflow-y: auto;
+
+    }
+
+    .menu-title {
+
+      padding:
+        0 12px 10px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+      letter-spacing: 1px;
+
+    }
+
+    .menu-item {
+
+      width: 100%;
+
+      border: none;
+
+      background: transparent;
+
+      color: #cbd5e1;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px 14px;
+
+      margin-bottom: 4px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      text-align: left;
+
+      transition: 0.2s;
+
+    }
+
+    .menu-item:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+    }
+
+    .menu-item.active {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+
+    }
+
+    .menu-icon {
+
+      width: 22px;
+
+      text-align: center;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+
+    }
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    .user-area {
+
+      padding: 15px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      background:
+        rgba(0,0,0,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+    .user-card {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border-radius: 10px;
+
+      padding: 12px;
+
+    }
+
+    .user-name {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: white;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+    .user-email {
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      color: #94a3b8;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+    .user-profile {
+
+      margin-top: 6px;
+
+      font-size: 10px;
+
+      color: #60a5fa;
+
+      text-transform: uppercase;
+
+      font-weight: 700;
+
+    }
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    .logout {
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: #e2e8f0;
+
+      padding: 11px 10px;
+
+      min-height: 38px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+
+    }
+
+    .logout:hover {
+
+      background: #dc2626;
+
+      border-color: #dc2626;
+
+      color: white;
+
+    }
+
+    .logout:disabled {
+
+      opacity: 0.6;
+
+      cursor: wait;
+
+    }
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .main {
+
+      margin-left: 250px;
+
+      width:
+        calc(100% - 250px);
+
+      min-height: 100vh;
+
+    }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .header {
+
+      height: 75px;
+
+      background: white;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0 30px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+
+    }
+
+    .header-title {
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+    .header-subtitle {
+
+      margin-top: 3px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+    .status-online {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding:
+        7px 12px;
+
+      border-radius: 20px;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+    .status-dot {
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+
+    }
+
+    /* =====================================================
+       CONTENT
+       ===================================================== */
+
+    .content {
+
+      padding: 30px;
+
+    }
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    .mensagem {
+
+      display: none;
+
+      margin-bottom: 20px;
+
+      padding: 13px 16px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      text-align: center;
+
+    }
+
+    .mensagem.sucesso {
+
+      display: block;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+    .mensagem.erro {
+
+      display: block;
+
+      background: #fef2f2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+
+    }
+
+    .mensagem.info {
+
+      display: block;
+
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+      border:
+        1px solid #bfdbfe;
+
+    }
+
+    /* =====================================================
+       TÍTULO
+       ===================================================== */
+
+    .page-title {
+
+      margin-bottom: 22px;
+
+    }
+
+    .page-title h1 {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+    .page-title p {
+
+      margin-top: 5px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 22px;
+
+    }
+
+    .card {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+    }
+
+    .card-label {
+
+      font-size: 10px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+    }
+
+    .card-value {
+
+      margin-top: 8px;
+
+      font-size: 23px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+    /* =====================================================
+       GRID DE CONFIGURAÇÕES
+       ===================================================== */
+
+    .config-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 20px;
+
+    }
+
+    /* =====================================================
+       PAINEL
+       ===================================================== */
+
+    .panel {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+      margin-bottom: 20px;
+
+    }
+
+    .panel-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+
+    }
+
+    .panel-title {
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+    .panel-subtitle {
+
+      margin-top: 4px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+    }
+
+    /* =====================================================
+       CAMPOS
+       ===================================================== */
+
+    .campo {
+
+      display: flex;
+
+      flex-direction: column;
+
+      margin-bottom: 16px;
+
+    }
+
+    .campo:last-child {
+
+      margin-bottom: 0;
+
+    }
+
+    .campo label {
+
+      margin-bottom: 7px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      color: #475569;
+
+      text-transform: uppercase;
+
+    }
+
+    .campo input,
+    .campo select,
+    .campo textarea {
+
+      width: 100%;
+
+      min-height: 43px;
+
+      padding:
+        10px 12px;
+
+      border:
+        1px solid #cbd5e1;
+
+      border-radius: 8px;
+
+      background: #f8fafc;
+
+      color: #0f172a;
+
+      outline: none;
+
+      font-size: 12px;
+
+      transition:
+        border-color .2s,
+        box-shadow .2s,
+        background .2s;
+
+    }
+
+    .campo textarea {
+
+      min-height: 100px;
+
+      resize: vertical;
+
+      line-height: 1.5;
+
+    }
+
+    .campo input:focus,
+    .campo select:focus,
+    .campo textarea:focus {
+
+      background: white;
+
+      border-color: #1976d2;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,0.10);
+
+    }
+
+    /* =====================================================
+       SWITCH
+       ===================================================== */
+
+    .opcao {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding:
+        14px 0;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+    }
+
+    .opcao:last-child {
+
+      border-bottom: none;
+
+    }
+
+    .opcao-texto {
+
+      flex: 1;
+
+    }
+
+    .opcao-titulo {
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      color: #334155;
+
+    }
+
+    .opcao-descricao {
+
+      margin-top: 4px;
+
+      font-size: 9px;
+
+      line-height: 1.5;
+
+      color: #94a3b8;
+
+    }
+
+    .switch {
+
+      position: relative;
+
+      width: 46px;
+
+      height: 25px;
+
+      flex-shrink: 0;
+
+    }
+
+    .switch input {
+
+      opacity: 0;
+
+      width: 0;
+      height: 0;
+
+    }
+
+    .slider {
+
+      position: absolute;
+
+      inset: 0;
+
+      cursor: pointer;
+
+      background: #cbd5e1;
+
+      border-radius: 20px;
+
+      transition: .2s;
+
+    }
+
+    .slider:before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 19px;
+      height: 19px;
+
+      left: 3px;
+      top: 3px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      transition: .2s;
+
+      box-shadow:
+        0 2px 5px
+        rgba(0,0,0,.15);
+
+    }
+
+    .switch input:checked + .slider {
+
+      background: #1976d2;
+
+    }
+
+    .switch input:checked + .slider:before {
+
+      transform:
+        translateX(21px);
+
+    }
+
+    /* =====================================================
+       AÇÕES
+       ===================================================== */
+
+    .acoes {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 10px;
+
+      margin-top: 20px;
+
+      padding-top: 18px;
+
+      border-top:
+        1px solid #f1f5f9;
+
+    }
+
+    .btn {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding:
+        11px 17px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      transition: .2s;
+
+    }
+
+    .btn:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+    .btn:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+      transform: none;
+
+    }
+
+    .btn-primary {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 14px
+        rgba(37,99,235,0.20);
+
+    }
+
+    .btn-secondary {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+      border:
+        1px solid #e2e8f0;
+
+    }
+
+    .btn-danger {
+
+      background: #fee2e2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+
+    }
+
+    /* =====================================================
+       INFORMAÇÕES DO SISTEMA
+       ===================================================== */
+
+    .info-item {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding:
+        12px 0;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+    }
+
+    .info-item:last-child {
+
+      border-bottom: none;
+
+    }
+
+    .info-label {
+
+      font-size: 10px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+    }
+
+    .info-value {
+
+      font-size: 11px;
+
+      color: #0f172a;
+
+      font-weight: 800;
+
+      text-align: right;
+
+      word-break: break-word;
+
+    }
+
+    /* =====================================================
+       ALERTA
+       ===================================================== */
+
+    .aviso {
+
+      margin-top: 18px;
+
+      padding: 13px;
+
+      border-radius: 9px;
+
+      background: #fffbeb;
+
+      color: #92400e;
+
+      border:
+        1px solid #fde68a;
+
+      font-size: 10px;
+
+      line-height: 1.5;
+
+      font-weight: 600;
+
+    }
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(248,250,252,.88);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      backdrop-filter: blur(2px);
+
+    }
+
+    .loading-box {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding:
+        25px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 50px
+        rgba(15,23,42,.18);
+
+    }
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      margin:
+        0 auto 12px;
+
+      border:
+        3px solid #dbeafe;
+
+      border-top-color:
+        #1976d2;
+
+      border-radius: 50%;
+
+      animation:
+        girar .8s linear infinite;
+
+    }
+
+    .loading-text {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+    }
+
+    @keyframes girar {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
+    @media (max-width: 1100px) {
+
+      .cards {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+      .config-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+
+        width: 70px;
+
+      }
+
+      .logo-title,
+      .logo-version,
+      .menu-title,
+      .menu-item span:not(.menu-icon),
+      .user-card {
+
+        display: none;
+
+      }
+
+      .logo-area {
+
+        padding:
+          18px 8px;
+
+      }
+
+      .logo-icon {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+
+      }
+
+      .menu {
+
+        padding:
+          15px 8px;
+
+      }
+
+      .menu-item {
+
+        justify-content: center;
+
+        padding:
+          13px 5px;
+
+      }
+
+      .user-area {
+
+        padding:
+          10px 8px;
+
+      }
+
+      .logout {
+
+        font-size: 0;
+
+        padding:
+          12px 5px;
+
+        min-height: 42px;
+
+      }
+
+      .logout::before {
+
+        content: "🚪";
+
+        font-size: 17px;
+
+      }
+
+      .main {
+
+        margin-left: 70px;
+
+        width:
+          calc(100% - 70px);
+
+      }
+
+      .header {
+
+        padding:
+          0 18px;
+
+      }
+
+      .header-title {
+
+        font-size: 17px;
+
+      }
+
+      .status-online {
+
+        font-size: 0;
+
+        padding: 9px;
+
+      }
+
+      .status-dot {
+
+        width: 8px;
+        height: 8px;
+
+      }
+
+      .content {
+
+        padding: 18px;
+
+      }
+
+      .cards {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+      .acoes {
+
+        flex-direction: column;
+
+      }
+
+      .acoes .btn {
+
+        width: 100%;
+
+      }
+
+      .panel {
+
+        padding: 18px;
+
+      }
+
+    }
+
+    @media (max-width: 450px) {
+
+      .header-subtitle {
+
+        display: none;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
+  <div
+    id="loading"
+    class="loading"
+  >
+
+    <div class="loading-box">
+
+      <div class="spinner"></div>
+
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+
+    <div class="logo-area">
+
+      <div class="logo-icon">
+        🚚
+      </div>
+
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
+
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+
+        <span class="menu-icon">
+          📊
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+
+        <span class="menu-icon">
+          📦
+        </span>
+
+        <span>
+          Envios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irParaPesquisarNF()"
+      >
+
+        <span class="menu-icon">
+          🔎
+        </span>
+
+        <span>
+          Pesquisar NF
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+
+        <span class="menu-icon">
+          👥
+        </span>
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+
+        <span class="menu-icon">
+          🚛
+        </span>
+
+        <span>
+          Transportadoras
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+
+    </nav>
+
+
+    <!-- USUÁRIO -->
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
+        </div>
+
+        <div
+          id="usuarioEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+
+        🚪 SAIR DO SISTEMA
+
+      </button>
+
+    </div>
+
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+
+    <header class="header">
+
+      <div>
+
+        <div class="header-title">
+          Configurações
+        </div>
+
+        <div class="header-subtitle">
+          Parâmetros gerais e preferências do BiriLog
+        </div>
+
+      </div>
+
+
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+
+      <!-- =================================================
+           MENSAGEM
+           ================================================= -->
+
+      <div
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+
+      <!-- =================================================
+           TÍTULO
+           ================================================= -->
+
+      <div class="page-title">
+
+        <h1>
+          ⚙️ CONFIGURAÇÕES DO SISTEMA
+        </h1>
+
+        <p>
+          Personalize o comportamento e as informações exibidas no BiriLog.
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           CARDS
+           ================================================= -->
+
+      <div class="cards">
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Sistema
+          </div>
+
+          <div
+            id="cardSistema"
+            class="card-value"
+          >
+            BiriLog V3
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Empresa
+          </div>
+
+          <div
+            id="cardEmpresa"
+            class="card-value"
+          >
+            BIRIVET
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Status
+          </div>
+
+          <div
+            id="cardStatus"
+            class="card-value"
+          >
+            ONLINE
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Versão
+          </div>
+
+          <div
+            id="cardVersao"
+            class="card-value"
+          >
+            V3.0
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           CONFIGURAÇÕES
+           ================================================= -->
+
+      <div class="config-grid">
+
+
+        <!-- =================================================
+             INFORMAÇÕES DA EMPRESA
+             ================================================= -->
+
+        <div class="panel">
+
+
+          <div class="panel-header">
+
+            <div>
+
+              <div class="panel-title">
+                🏢 INFORMAÇÕES DA EMPRESA
+              </div>
+
+              <div class="panel-subtitle">
+                Dados exibidos nos módulos do sistema.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="nomeEmpresa">
+              Nome da Empresa
+            </label>
+
+            <input
+              type="text"
+              id="nomeEmpresa"
+              value="BIRIVET"
+              maxlength="100"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="nomeSistema">
+              Nome do Sistema
+            </label>
+
+            <input
+              type="text"
+              id="nomeSistema"
+              value="BIRILOG"
+              maxlength="50"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="versaoSistema">
+              Versão
+            </label>
+
+            <input
+              type="text"
+              id="versaoSistema"
+              value="V3.0"
+              maxlength="20"
+            >
+
+          </div>
+
+
+          <div class="campo">
+
+            <label for="rodape">
+              Texto do Rodapé
+            </label>
+
+            <textarea
+              id="rodape"
+              maxlength="250"
+            >BIRIVET • SISTEMA DE CONTROLE LOGÍSTICO</textarea>
+
+          </div>
+
+
+          <div class="acoes">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="restaurarEmpresa()"
+            >
+
+              ↩️ RESTAURAR
+
+            </button>
+
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="btnEmpresa"
+              onclick="salvarConfiguracoesEmpresa()"
+            >
+
+              💾 SALVAR
+
+            </button>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             PREFERÊNCIAS
+             ================================================= -->
+
+        <div class="panel">
+
+
+          <div class="panel-header">
+
+            <div>
+
+              <div class="panel-title">
+                🎛️ PREFERÊNCIAS
+              </div>
+
+              <div class="panel-subtitle">
+                Defina comportamentos do sistema.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="opcao">
+
+            <div class="opcao-texto">
+
+              <div class="opcao-titulo">
+                ATUALIZAÇÃO AUTOMÁTICA
+              </div>
+
+              <div class="opcao-descricao">
+                Atualiza automaticamente os dados do sistema.
+              </div>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="autoAtualizacao"
+                checked
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="opcao">
+
+            <div class="opcao-texto">
+
+              <div class="opcao-titulo">
+                ALERTAS DE ENTREGA
+              </div>
+
+              <div class="opcao-descricao">
+                Permite exibir alertas de entregas atrasadas.
+              </div>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="alertasEntrega"
+                checked
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="opcao">
+
+            <div class="opcao-texto">
+
+              <div class="opcao-titulo">
+                CONFIRMAÇÃO AO EXCLUIR
+              </div>
+
+              <div class="opcao-descricao">
+                Solicita confirmação antes de excluir registros.
+              </div>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="confirmarExclusao"
+                checked
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="opcao">
+
+            <div class="opcao-texto">
+
+              <div class="opcao-titulo">
+                TEXTO EM MAIÚSCULAS
+              </div>
+
+              <div class="opcao-descricao">
+                Mantém os principais campos de texto em maiúsculas.
+              </div>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="textoMaiusculo"
+                checked
+              >
+
+              <span class="slider"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="acoes">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="restaurarPreferencias()"
+            >
+
+              ↩️ RESTAURAR
+
+            </button>
+
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="salvarPreferencias()"
+            >
+
+              💾 SALVAR
+
+            </button>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMAÇÕES TÉCNICAS
+             ================================================= -->
+
+        <div class="panel">
+
+
+          <div class="panel-header">
+
+            <div>
+
+              <div class="panel-title">
+                🖥️ INFORMAÇÕES DO SISTEMA
+              </div>
+
+              <div class="panel-subtitle">
+                Informações técnicas desta instalação.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              Plataforma
+            </div>
+
+            <div
+              id="infoPlataforma"
+              class="info-value"
+            >
+              GITHUB PAGES
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              Banco de Dados
+            </div>
+
+            <div class="info-value">
+              SUPABASE
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              Autenticação
+            </div>
+
+            <div class="info-value">
+              SUPABASE AUTH
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              Usuário Atual
+            </div>
+
+            <div
+              id="infoUsuario"
+              class="info-value"
+            >
+              -
+            </div>
+
+          </div>
+
+
+          <div class="info-item">
+
+            <div class="info-label">
+              Perfil Atual
+            </div>
+
+            <div
+              id="infoPerfil"
+              class="info-value"
+            >
+              -
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             MANUTENÇÃO
+             ================================================= -->
+
+        <div class="panel">
+
+
+          <div class="panel-header">
+
+            <div>
+
+              <div class="panel-title">
+                🛠️ MANUTENÇÃO
+              </div>
+
+              <div class="panel-subtitle">
+                Ferramentas administrativas do sistema.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label>
+              Cache Local
+            </label>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="limparCache()"
+            >
+
+              🧹 LIMPAR DADOS LOCAIS
+
+            </button>
+
+          </div>
+
+
+          <div class="campo">
+
+            <label>
+              Verificação
+            </label>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="verificarConexao()"
+            >
+
+              🔌 TESTAR CONEXÃO SUPABASE
+
+            </button>
+
+          </div>
+
+
+          <div class="aviso">
+
+            ⚠️ AS OPÇÕES DESTA ÁREA DEVEM SER UTILIZADAS
+            COM CUIDADO. CONFIGURAÇÕES CRÍTICAS DE BANCO
+            E AUTENTICAÇÃO DEVEM SER ALTERADAS DIRETAMENTE
+            NO SUPABASE.
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <script>
+
+
+    /* =====================================================
+       SUPABASE
+       ===================================================== */
+
+    const SUPABASE_URL =
+      "https://sjfwjwwkomrcalahqanw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================================
+       VARIÁVEIS
+       ===================================================== */
+
+    let usuarioAtual =
+      null;
+
+
+    const CONFIG_PADRAO = {
+
+      empresa:
+        "BIRIVET",
+
+      sistema:
+        "BIRILOG",
+
+      versao:
+        "V3.0",
+
+      rodape:
+        "BIRIVET • SISTEMA DE CONTROLE LOGÍSTICO",
+
+      autoAtualizacao:
+        true,
+
+      alertasEntrega:
+        true,
+
+      confirmarExclusao:
+        true,
+
+      textoMaiusculo:
+        true
+
+    };
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+
+    async function iniciar() {
+
+      try {
+
+        mostrarLoading(
+          "VERIFICANDO SESSÃO..."
+        );
+
+
+        const resultado =
+          await supabaseClient.auth.getSession();
+
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+
+        const session =
+          resultado.data &&
+          resultado.data.session;
+
+
+        if (!session) {
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        const authUser =
+          session.user;
+
+
+        const consulta =
+          await supabaseClient
+
+            .from("usuarios")
+
+            .select(
+              "id,nome,email,perfil,ativo"
+            )
+
+            .eq(
+              "auth_id",
+              authUser.id
+            )
+
+            .maybeSingle();
+
+
+        if (
+          consulta.error
+        ) {
+
+          throw consulta.error;
+
+        }
+
+
+        if (
+          !consulta.data
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        if (
+          consulta.data.ativo === false
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        usuarioAtual =
+          consulta.data;
+
+
+        preencherUsuario();
+
+        preencherInformacoes();
+
+        carregarConfiguracoes();
+
+        esconderLoading();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao iniciar Configurações:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          obterMensagemErro(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       VERIFICAR ADMINISTRADOR
+       ===================================================== */
+
+    function ehAdministrador() {
+
+      if (!usuarioAtual) {
+
+        return false;
+
+      }
+
+
+      const perfil =
+        String(
+          usuarioAtual.perfil ||
+          ""
+        )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+
+      return (
+        perfil ===
+        "ADMIN" ||
+        perfil ===
+        "ADMINISTRADOR"
+      );
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    function preencherUsuario() {
+
+      if (!usuarioAtual) {
+
+        return;
+
+      }
+
+
+      const nome =
+        usuarioAtual.nome ||
+        usuarioAtual.email ||
+        "USUÁRIO";
+
+
+      const email =
+        usuarioAtual.email ||
+        "-";
+
+
+      const perfil =
+        usuarioAtual.perfil ||
+        "USUÁRIO";
+
+
+      document.getElementById(
+        "usuarioNome"
+      ).textContent =
+        String(
+          nome
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "usuarioEmail"
+      ).textContent =
+        email;
+
+
+      document.getElementById(
+        "usuarioPerfil"
+      ).textContent =
+        String(
+          perfil
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "infoUsuario"
+      ).textContent =
+        String(
+          nome
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "infoPerfil"
+      ).textContent =
+        String(
+          perfil
+        ).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       INFORMAÇÕES
+       ===================================================== */
+
+    function preencherInformacoes() {
+
+      const configuracoes =
+        obterConfiguracoes();
+
+
+      document.getElementById(
+        "cardSistema"
+      ).textContent =
+        configuracoes.sistema;
+
+
+      document.getElementById(
+        "cardEmpresa"
+      ).textContent =
+        configuracoes.empresa;
+
+
+      document.getElementById(
+        "cardVersao"
+      ).textContent =
+        configuracoes.versao;
+
+
+      document.getElementById(
+        "cardStatus"
+      ).textContent =
+        "ONLINE";
+
+    }
+
+
+    /* =====================================================
+       CARREGAR CONFIGURAÇÕES
+       ===================================================== */
+
+    function carregarConfiguracoes() {
+
+      const salvo =
+        localStorage.getItem(
+          "birilog_configuracoes"
+        );
+
+
+      let configuracoes =
+        CONFIG_PADRAO;
+
+
+      if (salvo) {
+
+        try {
+
+          configuracoes =
+            Object.assign(
+              {},
+              CONFIG_PADRAO,
+              JSON.parse(
+                salvo
+              )
+            );
+
+        }
+
+        catch (erro) {
+
+          console.warn(
+            "Configuração local inválida.",
+            erro
+          );
+
+        }
+
+      }
+
+
+      document.getElementById(
+        "nomeEmpresa"
+      ).value =
+        configuracoes.empresa;
+
+
+      document.getElementById(
+        "nomeSistema"
+      ).value =
+        configuracoes.sistema;
+
+
+      document.getElementById(
+        "versaoSistema"
+      ).value =
+        configuracoes.versao;
+
+
+      document.getElementById(
+        "rodape"
+      ).value =
+        configuracoes.rodape;
+
+
+      document.getElementById(
+        "autoAtualizacao"
+      ).checked =
+        configuracoes.autoAtualizacao;
+
+
+      document.getElementById(
+        "alertasEntrega"
+      ).checked =
+        configuracoes.alertasEntrega;
+
+
+      document.getElementById(
+        "confirmarExclusao"
+      ).checked =
+        configuracoes.confirmarExclusao;
+
+
+      document.getElementById(
+        "textoMaiusculo"
+      ).checked =
+        configuracoes.textoMaiusculo;
+
+
+      preencherInformacoes();
+
+    }
+
+
+    /* =====================================================
+       OBTER CONFIGURAÇÕES
+       ===================================================== */
+
+    function obterConfiguracoes() {
+
+      const salvo =
+        localStorage.getItem(
+          "birilog_configuracoes"
+        );
+
+
+      if (!salvo) {
+
+        return Object.assign(
+          {},
+          CONFIG_PADRAO
+        );
+
+      }
+
+
+      try {
+
+        return Object.assign(
+          {},
+          CONFIG_PADRAO,
+          JSON.parse(
+            salvo
+          )
+        );
+
+      }
+
+      catch (erro) {
+
+        return Object.assign(
+          {},
+          CONFIG_PADRAO
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SALVAR EMPRESA
+       ===================================================== */
+
+    function salvarConfiguracoesEmpresa() {
+
+      if (!ehAdministrador()) {
+
+        mostrarMensagem(
+          "APENAS ADMINISTRADORES PODEM ALTERAR AS CONFIGURAÇÕES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const empresa =
+        document.getElementById(
+          "nomeEmpresa"
+        ).value.trim();
+
+
+      const sistema =
+        document.getElementById(
+          "nomeSistema"
+        ).value.trim();
+
+
+      const versao =
+        document.getElementById(
+          "versaoSistema"
+        ).value.trim();
+
+
+      const rodape =
+        document.getElementById(
+          "rodape"
+        ).value.trim();
+
+
+      if (
+        !empresa ||
+        !sistema ||
+        !versao
+      ) {
+
+        mostrarMensagem(
+          "PREENCHA OS CAMPOS OBRIGATÓRIOS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const configuracoes =
+        obterConfiguracoes();
+
+
+      configuracoes.empresa =
+        empresa.toUpperCase();
+
+
+      configuracoes.sistema =
+        sistema.toUpperCase();
+
+
+      configuracoes.versao =
+        versao.toUpperCase();
+
+
+      configuracoes.rodape =
+        rodape.toUpperCase();
+
+
+      localStorage.setItem(
+        "birilog_configuracoes",
+        JSON.stringify(
+          configuracoes
+        )
+      );
+
+
+      document.getElementById(
+        "btnEmpresa"
+      ).textContent =
+        "✅ SALVO";
+
+
+      preencherInformacoes();
+
+
+      mostrarMensagem(
+        "CONFIGURAÇÕES DA EMPRESA SALVAS.",
+        "sucesso"
+      );
+
+
+      setTimeout(
+        function() {
+
+          document.getElementById(
+            "btnEmpresa"
+          ).textContent =
+            "💾 SALVAR";
+
+        },
+        1500
+      );
+
+    }
+
+
+    /* =====================================================
+       RESTAURAR EMPRESA
+       ===================================================== */
+
+    function restaurarEmpresa() {
+
+      if (!ehAdministrador()) {
+
+        mostrarMensagem(
+          "APENAS ADMINISTRADORES PODEM ALTERAR AS CONFIGURAÇÕES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "nomeEmpresa"
+      ).value =
+        CONFIG_PADRAO.empresa;
+
+
+      document.getElementById(
+        "nomeSistema"
+      ).value =
+        CONFIG_PADRAO.sistema;
+
+
+      document.getElementById(
+        "versaoSistema"
+      ).value =
+        CONFIG_PADRAO.versao;
+
+
+      document.getElementById(
+        "rodape"
+      ).value =
+        CONFIG_PADRAO.rodape;
+
+
+      mostrarMensagem(
+        "DADOS PADRÃO RESTAURADOS. CLIQUE EM SALVAR PARA CONFIRMAR.",
+        "info"
+      );
+
+    }
+
+
+    /* =====================================================
+       SALVAR PREFERÊNCIAS
+       ===================================================== */
+
+    function salvarPreferencias() {
+
+      if (!ehAdministrador()) {
+
+        mostrarMensagem(
+          "APENAS ADMINISTRADORES PODEM ALTERAR AS CONFIGURAÇÕES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const configuracoes =
+        obterConfiguracoes();
+
+
+      configuracoes.autoAtualizacao =
+        document.getElementById(
+          "autoAtualizacao"
+        ).checked;
+
+
+      configuracoes.alertasEntrega =
+        document.getElementById(
+          "alertasEntrega"
+        ).checked;
+
+
+      configuracoes.confirmarExclusao =
+        document.getElementById(
+          "confirmarExclusao"
+        ).checked;
+
+
+      configuracoes.textoMaiusculo =
+        document.getElementById(
+          "textoMaiusculo"
+        ).checked;
+
+
+      localStorage.setItem(
+        "birilog_configuracoes",
+        JSON.stringify(
+          configuracoes
+        )
+      );
+
+
+      mostrarMensagem(
+        "PREFERÊNCIAS SALVAS COM SUCESSO.",
+        "sucesso"
+      );
+
+    }
+
+
+    /* =====================================================
+       RESTAURAR PREFERÊNCIAS
+       ===================================================== */
+
+    function restaurarPreferencias() {
+
+      if (!ehAdministrador()) {
+
+        mostrarMensagem(
+          "APENAS ADMINISTRADORES PODEM ALTERAR AS CONFIGURAÇÕES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "autoAtualizacao"
+      ).checked =
+        CONFIG_PADRAO.autoAtualizacao;
+
+
+      document.getElementById(
+        "alertasEntrega"
+      ).checked =
+        CONFIG_PADRAO.alertasEntrega;
+
+
+      document.getElementById(
+        "confirmarExclusao"
+      ).checked =
+        CONFIG_PADRAO.confirmarExclusao;
+
+
+      document.getElementById(
+        "textoMaiusculo"
+      ).checked =
+        CONFIG_PADRAO.textoMaiusculo;
+
+
+      mostrarMensagem(
+        "PREFERÊNCIAS PADRÃO RESTAURADAS. CLIQUE EM SALVAR PARA CONFIRMAR.",
+        "info"
+      );
+
+    }
+
+
+    /* =====================================================
+       LIMPAR CACHE LOCAL
+       ===================================================== */
+
+    function limparCache() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA LIMPAR AS CONFIGURAÇÕES LOCAIS DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      localStorage.removeItem(
+        "birilog_configuracoes"
+      );
+
+
+      carregarConfiguracoes();
+
+
+      mostrarMensagem(
+        "DADOS LOCAIS LIMPOS.",
+        "sucesso"
+      );
+
+    }
+
+
+    /* =====================================================
+       TESTAR CONEXÃO
+       ===================================================== */
+
+    async function verificarConexao() {
+
+      mostrarLoading(
+        "TESTANDO CONEXÃO..."
+      );
+
+
+      try {
+
+        const resultado =
+          await supabaseClient
+
+            .from("usuarios")
+
+            .select("id")
+            
+            .limit(1);
+
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          "CONEXÃO COM O SUPABASE REALIZADA COM SUCESSO.",
+          "sucesso"
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro de conexão:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CONECTAR AO SUPABASE.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      if (!pagina) {
+
+        return;
+
+      }
+
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
+
+    function irParaPesquisarNF() {
+
+      window.location.href =
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    function mostrarLoading(
+      texto
+    ) {
+
+      const loading =
+        document.getElementById(
+          "loading"
+        );
+
+
+      const textoLoading =
+        document.getElementById(
+          "loadingText"
+        );
+
+
+      if (textoLoading) {
+
+        textoLoading.textContent =
+          texto ||
+          "CARREGANDO...";
+
+      }
+
+
+      if (loading) {
+
+        loading.style.display =
+          "flex";
+
+      }
+
+    }
+
+
+    function esconderLoading() {
+
+      const loading =
+        document.getElementById(
+          "loading"
+        );
+
+
+      if (loading) {
+
+        loading.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
+
+      if (!elemento) {
+
+        return;
+
+      }
+
+
+      elemento.textContent =
+        texto;
+
+
+      elemento.className =
+        "mensagem " +
+        tipo;
+
+
+      elemento.style.display =
+        "block";
+
+
+      clearTimeout(
+        window.timerMensagem
+      );
+
+
+      window.timerMensagem =
+        setTimeout(
+          function() {
+
+            elemento.style.display =
+              "none";
+
+          },
+          5000
+        );
+
+    }
+
+
+    /* =====================================================
+       ERROS
+       ===================================================== */
+
+    function obterMensagemErro(
+      erro
+    ) {
+
+      if (
+        erro &&
+        erro.message
+      ) {
+
+        const mensagem =
+          String(
+            erro.message
+          );
+
+
+        const texto =
+          mensagem.toLowerCase();
+
+
+        if (
+          texto.includes(
+            "row-level security"
+          ) ||
+          texto.includes(
+            "permission denied"
+          )
+        ) {
+
+          return (
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
+          );
+
+        }
+
+
+        return mensagem.toUpperCase();
+
+      }
+
+
+      return (
+        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+      );
+
+    }
+
+
+    /* =====================================================
+       MAIÚSCULAS NOS CAMPOS
+       ===================================================== */
+
+    document.addEventListener(
+      "input",
+      function(evento) {
+
+        const elemento =
+          evento.target;
+
+
+        if (
+          elemento &&
+          elemento.tagName === "INPUT" &&
+          elemento.type === "text"
+        ) {
+
+          elemento.value =
+            elemento.value.toUpperCase();
+
+        }
+
+
+        if (
+          elemento &&
+          elemento.tagName === "TEXTAREA"
+        ) {
+
+          elemento.value =
+            elemento.value.toUpperCase();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       MONITORAR SESSÃO
+       ===================================================== */
+
+    supabaseClient.auth.onAuthStateChange(
+      function(
+        evento,
+        session
+      ) {
+
+        if (
+          evento ===
+          "SIGNED_OUT"
+        ) {
+
+          window.location.replace(
+            "index.html"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        await supabaseClient.auth.signOut();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
