@@ -12,7 +12,13 @@
 
   <title>BiriLog V3 - Envios</title>
 
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
 
@@ -21,6 +27,13 @@
       margin: 0;
       padding: 0;
     }
+
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
 
     body {
 
@@ -71,8 +84,14 @@
         5px 0 20px
         rgba(0,0,0,0.10);
 
+      overflow: hidden;
+
     }
 
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
 
     .logo-area {
 
@@ -83,6 +102,8 @@
       border-bottom:
         1px solid
         rgba(255,255,255,0.08);
+
+      flex-shrink: 0;
 
     }
 
@@ -110,6 +131,10 @@
       justify-content: center;
 
       font-size: 28px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(25,118,210,0.30);
 
     }
 
@@ -143,11 +168,17 @@
     }
 
 
+    /* =====================================================
+       MENU
+       ===================================================== */
+
     .menu {
 
       padding: 20px 12px;
 
       flex: 1;
+
+      min-height: 0;
 
       overflow-y: auto;
 
@@ -224,6 +255,10 @@
 
       color: white;
 
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+
     }
 
 
@@ -234,6 +269,8 @@
       text-align: center;
 
       font-size: 17px;
+
+      flex-shrink: 0;
 
     }
 
@@ -252,6 +289,8 @@
 
       background:
         rgba(0,0,0,0.08);
+
+      flex-shrink: 0;
 
     }
 
@@ -276,6 +315,12 @@
 
       color: white;
 
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
     }
 
 
@@ -287,11 +332,11 @@
 
       color: #94a3b8;
 
+      white-space: nowrap;
+
       overflow: hidden;
 
       text-overflow: ellipsis;
-
-      white-space: nowrap;
 
     }
 
@@ -304,22 +349,28 @@
 
       color: #60a5fa;
 
-      font-weight: 700;
-
       text-transform: uppercase;
+
+      font-weight: 700;
 
     }
 
+
+    /* =====================================================
+       BOTÃO SAIR
+       ===================================================== */
 
     .logout {
 
       width: 100%;
 
+      display: block;
+
+      visibility: visible;
+
+      opacity: 1;
+
       margin-top: 10px;
-
-      padding: 11px;
-
-      border-radius: 8px;
 
       border:
         1px solid
@@ -330,11 +381,22 @@
 
       color: #e2e8f0;
 
+      padding: 11px 10px;
+
+      min-height: 38px;
+
+      border-radius: 8px;
+
       cursor: pointer;
 
       font-size: 11px;
 
       font-weight: 700;
+
+      transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s;
 
     }
 
@@ -350,8 +412,24 @@
     }
 
 
+    .logout:active {
+
+      transform: scale(0.98);
+
+    }
+
+
+    .logout:disabled {
+
+      opacity: 0.65;
+
+      cursor: wait;
+
+    }
+
+
     /* =====================================================
-       PRINCIPAL
+       MAIN
        ===================================================== */
 
     .main {
@@ -360,8 +438,15 @@
 
       min-height: 100vh;
 
+      width:
+        calc(100% - 250px);
+
     }
 
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
 
     .header {
 
@@ -378,7 +463,8 @@
 
       justify-content: space-between;
 
-      padding: 0 30px;
+      padding:
+        0 30px;
 
       position: sticky;
 
@@ -419,7 +505,8 @@
 
       gap: 7px;
 
-      padding: 7px 12px;
+      padding:
+        7px 12px;
 
       border-radius: 20px;
 
@@ -445,6 +532,10 @@
 
     }
 
+
+    /* =====================================================
+       CONTEÚDO
+       ===================================================== */
 
     .content {
 
@@ -537,6 +628,20 @@
         0 4px 15px
         rgba(15,23,42,0.04);
 
+      transition: 0.2s;
+
+    }
+
+
+    .card:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 8px 22px
+        rgba(15,23,42,0.08);
+
     }
 
 
@@ -599,6 +704,8 @@
       justify-content: space-between;
 
       margin-bottom: 20px;
+
+      gap: 15px;
 
     }
 
@@ -688,6 +795,11 @@
 
       font-size: 12px;
 
+      transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background 0.2s;
+
     }
 
 
@@ -695,7 +807,14 @@
 
       resize: vertical;
 
-      min-height: 70px;
+      min-height: 80px;
+
+      line-height: 1.5;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     }
 
@@ -723,6 +842,10 @@
     }
 
 
+    /* =====================================================
+       BOTÕES FORMULÁRIO
+       ===================================================== */
+
     .form-acoes {
 
       display: flex;
@@ -733,6 +856,11 @@
 
       margin-top: 18px;
 
+      padding-top: 18px;
+
+      border-top:
+        1px solid #f1f5f9;
+
     }
 
 
@@ -742,13 +870,35 @@
 
       border-radius: 8px;
 
-      padding: 11px 17px;
+      padding:
+        11px 17px;
 
       cursor: pointer;
 
       font-size: 11px;
 
       font-weight: 800;
+
+      transition: 0.2s;
+
+    }
+
+
+    .btn:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .btn:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+      transform: none;
 
     }
 
@@ -764,41 +914,21 @@
 
       color: white;
 
+      box-shadow:
+        0 5px 14px
+        rgba(37,99,235,0.20);
+
     }
 
 
     .btn-secondary {
 
-      background: #e2e8f0;
+      background: #f1f5f9;
 
-      color: #334155;
+      color: #475569;
 
-    }
-
-
-    .btn-danger {
-
-      background: #fee2e2;
-
-      color: #b91c1c;
-
-    }
-
-
-    .btn:hover {
-
-      filter: brightness(0.97);
-
-      transform: translateY(-1px);
-
-    }
-
-
-    .btn:disabled {
-
-      opacity: .6;
-
-      cursor: wait;
+      border:
+        1px solid #e2e8f0;
 
     }
 
@@ -821,8 +951,9 @@
     }
 
 
-    .filtros input,
-    .filtros select {
+    .filtro {
+
+      width: 100%;
 
       height: 42px;
 
@@ -831,9 +962,12 @@
 
       border-radius: 8px;
 
-      padding: 0 12px;
+      padding:
+        0 12px;
 
       background: #f8fafc;
+
+      color: #334155;
 
       outline: none;
 
@@ -842,12 +976,15 @@
     }
 
 
-    .filtros input:focus,
-    .filtros select:focus {
+    .filtro:focus {
 
       background: white;
 
       border-color: #1976d2;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,0.10);
 
     }
 
@@ -869,16 +1006,17 @@
 
       width: 100%;
 
-      border-collapse: collapse;
+      min-width: 1050px;
 
-      min-width: 850px;
+      border-collapse: collapse;
 
     }
 
 
     th {
 
-      padding: 11px 8px;
+      padding:
+        11px 8px;
 
       text-align: left;
 
@@ -898,7 +1036,8 @@
 
     td {
 
-      padding: 12px 8px;
+      padding:
+        12px 8px;
 
       border-bottom:
         1px solid #f1f5f9;
@@ -912,18 +1051,23 @@
     }
 
 
-    tr:hover td {
+    tbody tr:hover td {
 
       background: #f8fafc;
 
     }
 
 
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
     .status {
 
       display: inline-block;
 
-      padding: 5px 8px;
+      padding:
+        5px 8px;
 
       border-radius: 20px;
 
@@ -932,6 +1076,8 @@
       font-weight: 800;
 
       text-transform: uppercase;
+
+      white-space: nowrap;
 
     }
 
@@ -981,6 +1127,10 @@
     }
 
 
+    /* =====================================================
+       AÇÕES
+       ===================================================== */
+
     .acoes {
 
       display: flex;
@@ -994,13 +1144,16 @@
 
       border: none;
 
-      padding: 6px 8px;
+      padding:
+        6px 8px;
 
       border-radius: 6px;
 
       cursor: pointer;
 
       font-size: 10px;
+
+      font-weight: 700;
 
     }
 
@@ -1036,7 +1189,7 @@
       inset: 0;
 
       background:
-        rgba(15,23,42,.55);
+        rgba(15,23,42,0.55);
 
       align-items: center;
 
@@ -1060,7 +1213,7 @@
 
       width: 100%;
 
-      max-width: 650px;
+      max-width: 700px;
 
       max-height: 90vh;
 
@@ -1074,7 +1227,7 @@
 
       box-shadow:
         0 25px 60px
-        rgba(0,0,0,.25);
+        rgba(0,0,0,0.25);
 
     }
 
@@ -1098,6 +1251,8 @@
 
       font-weight: 800;
 
+      color: #0f172a;
+
     }
 
 
@@ -1107,11 +1262,20 @@
 
       background: transparent;
 
-      font-size: 22px;
+      color: #64748b;
+
+      font-size: 24px;
+
+      line-height: 1;
 
       cursor: pointer;
 
-      color: #64748b;
+    }
+
+
+    .fechar:hover {
+
+      color: #0f172a;
 
     }
 
@@ -1127,9 +1291,9 @@
       inset: 0;
 
       background:
-        rgba(248,250,252,.85);
+        rgba(248,250,252,0.88);
 
-      display: flex;
+      display: none;
 
       align-items: center;
 
@@ -1137,18 +1301,25 @@
 
       z-index: 9999;
 
+      backdrop-filter: blur(2px);
+
     }
 
 
     .loading-box {
 
+      background: white;
+
+      border-radius: 14px;
+
+      padding:
+        25px 30px;
+
       text-align: center;
 
-      color: #64748b;
-
-      font-size: 12px;
-
-      font-weight: 700;
+      box-shadow:
+        0 20px 50px
+        rgba(15,23,42,0.18);
 
     }
 
@@ -1159,7 +1330,8 @@
 
       height: 35px;
 
-      margin: 0 auto 12px;
+      margin:
+        0 auto 12px;
 
       border:
         3px solid #dbeafe;
@@ -1171,6 +1343,17 @@
 
       animation:
         girar .8s linear infinite;
+
+    }
+
+
+    .loading-text {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      font-weight: 700;
 
     }
 
@@ -1196,7 +1379,7 @@
       .cards {
 
         grid-template-columns:
-          repeat(2,1fr);
+          repeat(2, 1fr);
 
       }
 
@@ -1204,7 +1387,7 @@
       .form-grid {
 
         grid-template-columns:
-          repeat(2,1fr);
+          repeat(2, 1fr);
 
       }
 
@@ -1213,6 +1396,14 @@
 
         grid-template-columns:
           1fr 1fr;
+
+      }
+
+
+      .campo-grande {
+
+        grid-column:
+          span 2;
 
       }
 
@@ -1241,7 +1432,8 @@
 
       .logo-area {
 
-        padding: 18px 8px;
+        padding:
+          18px 8px;
 
       }
 
@@ -1258,7 +1450,8 @@
 
       .menu {
 
-        padding: 15px 8px;
+        padding:
+          15px 8px;
 
       }
 
@@ -1267,7 +1460,16 @@
 
         justify-content: center;
 
-        padding: 13px 5px;
+        padding:
+          13px 5px;
+
+      }
+
+
+      .user-area {
+
+        padding:
+          10px 8px;
 
       }
 
@@ -1276,7 +1478,10 @@
 
         font-size: 0;
 
-        padding: 12px 5px;
+        padding:
+          12px 5px;
+
+        min-height: 42px;
 
       }
 
@@ -1294,12 +1499,40 @@
 
         margin-left: 70px;
 
+        width:
+          calc(100% - 70px);
+
       }
 
 
       .header {
 
-        padding: 0 18px;
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-title {
+
+        font-size: 17px;
+
+      }
+
+
+      .status-online {
+
+        font-size: 0;
+
+        padding: 9px;
+
+      }
+
+
+      .status-dot {
+
+        width: 8px;
+        height: 8px;
 
       }
 
@@ -1313,28 +1546,32 @@
 
       .cards {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
 
       }
 
 
       .form-grid {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
 
       }
 
 
       .campo-grande {
 
-        grid-column: span 1;
+        grid-column:
+          span 1;
 
       }
 
 
       .filtros {
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
 
       }
 
@@ -1349,6 +1586,30 @@
       .form-acoes .btn {
 
         width: 100%;
+
+      }
+
+
+      .panel {
+
+        padding: 18px;
+
+      }
+
+    }
+
+
+    @media (max-width: 450px) {
+
+      .header-subtitle {
+
+        display: none;
+
+      }
+
+      .header-title {
+
+        font-size: 16px;
 
       }
 
@@ -1375,7 +1636,12 @@
 
       <div class="spinner"></div>
 
-      CARREGANDO ENVIOS...
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
 
     </div>
 
@@ -1413,7 +1679,10 @@
       </div>
 
 
+      <!-- DASHBOARD -->
+
       <button
+        type="button"
         class="menu-item"
         onclick="irPara('dashboard.html')"
       >
@@ -1429,7 +1698,10 @@
       </button>
 
 
+      <!-- ENVIOS -->
+
       <button
+        type="button"
         class="menu-item active"
       >
 
@@ -1444,9 +1716,12 @@
       </button>
 
 
+      <!-- PESQUISAR NF - CORRIGIDO -->
+
       <button
+        type="button"
         class="menu-item"
-        onclick="irPara('pesquisa.html')"
+        onclick="irPara('pesquisar-nf.html')"
       >
 
         <span class="menu-icon">
@@ -1460,7 +1735,10 @@
       </button>
 
 
+      <!-- CLIENTES -->
+
       <button
+        type="button"
         class="menu-item"
         onclick="irPara('clientes.html')"
       >
@@ -1476,7 +1754,10 @@
       </button>
 
 
+      <!-- TRANSPORTADORAS -->
+
       <button
+        type="button"
         class="menu-item"
         onclick="irPara('transportadoras.html')"
       >
@@ -1492,7 +1773,10 @@
       </button>
 
 
+      <!-- RELATÓRIOS -->
+
       <button
+        type="button"
         class="menu-item"
         onclick="irPara('relatorios.html')"
       >
@@ -1510,6 +1794,8 @@
     </nav>
 
 
+    <!-- USUÁRIO -->
+
     <div class="user-area">
 
       <div class="user-card">
@@ -1521,12 +1807,14 @@
           USUÁRIO
         </div>
 
+
         <div
           id="usuarioEmail"
           class="user-email"
         >
           -
         </div>
+
 
         <div
           id="usuarioPerfil"
@@ -1539,7 +1827,9 @@
 
 
       <button
+        type="button"
         class="logout"
+        id="botaoSair"
         onclick="sair()"
       >
 
@@ -1549,15 +1839,18 @@
 
     </div>
 
+
   </aside>
 
 
   <!-- =====================================================
-       PRINCIPAL
+       MAIN
        ===================================================== -->
 
   <main class="main">
 
+
+    <!-- HEADER -->
 
     <header class="header">
 
@@ -1568,7 +1861,7 @@
         </div>
 
         <div class="header-subtitle">
-          Controle e acompanhamento dos envios
+          Cadastro e controle dos envios
         </div>
 
       </div>
@@ -1585,8 +1878,14 @@
     </header>
 
 
+    <!-- =================================================
+         CONTENT
+         ================================================= -->
+
     <section class="content">
 
+
+      <!-- MENSAGEM -->
 
       <div
         id="mensagem"
@@ -1674,6 +1973,7 @@
 
       <div class="panel">
 
+
         <div class="panel-header">
 
           <div>
@@ -1700,9 +2000,11 @@
           <div class="form-grid">
 
 
+            <!-- NF -->
+
             <div class="campo">
 
-              <label>
+              <label for="nf">
                 Nota Fiscal *
               </label>
 
@@ -1710,15 +2012,18 @@
                 type="text"
                 id="nf"
                 placeholder="NÚMERO DA NF"
+                autocomplete="off"
                 required
               >
 
             </div>
 
 
+            <!-- CLIENTE -->
+
             <div class="campo">
 
-              <label>
+              <label for="cliente">
                 Cliente *
               </label>
 
@@ -1726,31 +2031,37 @@
                 type="text"
                 id="cliente"
                 placeholder="NOME DO CLIENTE"
+                autocomplete="off"
                 required
               >
 
             </div>
 
 
+            <!-- CIDADE -->
+
             <div class="campo">
 
-              <label>
+              <label for="cidade">
                 Cidade *
               </label>
 
               <input
                 type="text"
                 id="cidade"
-                placeholder="CIDADE"
+                placeholder="CIDADE DE DESTINO"
+                autocomplete="off"
                 required
               >
 
             </div>
 
 
+            <!-- UF -->
+
             <div class="campo">
 
-              <label>
+              <label for="uf">
                 UF *
               </label>
 
@@ -1787,14 +2098,20 @@
                   BAHIA - BA
                 </option>
 
+                <option value="PI">
+                  PIAUÍ - PI
+                </option>
+
               </select>
 
             </div>
 
 
+            <!-- TRANSPORTADORA -->
+
             <div class="campo">
 
-              <label>
+              <label for="transportadora">
                 Transportadora *
               </label>
 
@@ -1802,16 +2119,19 @@
                 type="text"
                 id="transportadora"
                 placeholder="TRANSPORTADORA"
+                autocomplete="off"
                 required
               >
 
             </div>
 
 
+            <!-- VALOR -->
+
             <div class="campo">
 
-              <label>
-                Valor da NF *
+              <label for="valor">
+                Valor da NF
               </label>
 
               <input
@@ -1820,15 +2140,16 @@
                 placeholder="0,00"
                 step="0.01"
                 min="0"
-                required
               >
 
             </div>
 
 
+            <!-- VOLUMES -->
+
             <div class="campo">
 
-              <label>
+              <label for="volumes">
                 Volumes *
               </label>
 
@@ -1837,15 +2158,52 @@
                 id="volumes"
                 placeholder="QUANTIDADE"
                 min="1"
+                step="1"
+                value="1"
                 required
               >
 
             </div>
 
 
+            <!-- DATA ENVIO -->
+
             <div class="campo">
 
-              <label>
+              <label for="dataEnvio">
+                Data de Envio *
+              </label>
+
+              <input
+                type="date"
+                id="dataEnvio"
+                required
+              >
+
+            </div>
+
+
+            <!-- PREVISÃO -->
+
+            <div class="campo">
+
+              <label for="previsao">
+                Previsão de Entrega
+              </label>
+
+              <input
+                type="date"
+                id="previsao"
+              >
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="campo">
+
+              <label for="status">
                 Status *
               </label>
 
@@ -1875,15 +2233,17 @@
             </div>
 
 
+            <!-- OBSERVAÇÃO -->
+
             <div class="campo campo-grande">
 
-              <label>
+              <label for="observacao">
                 Observação
               </label>
 
               <textarea
                 id="observacao"
-                placeholder="OBSERVAÇÕES DO ENVIO"
+                placeholder="OBSERVAÇÕES SOBRE O ENVIO..."
               ></textarea>
 
             </div>
@@ -1892,6 +2252,8 @@
           </div>
 
 
+          <!-- BOTÕES -->
+
           <div class="form-acoes">
 
             <button
@@ -1899,22 +2261,27 @@
               class="btn btn-secondary"
               onclick="limparFormulario()"
             >
+
               LIMPAR
+
             </button>
 
 
             <button
               type="submit"
-              id="btnSalvar"
               class="btn btn-primary"
+              id="btnSalvar"
             >
+
               💾 SALVAR ENVIO
+
             </button>
 
           </div>
 
 
         </form>
+
 
       </div>
 
@@ -1925,6 +2292,7 @@
 
       <div class="panel">
 
+
         <div class="panel-header">
 
           <div>
@@ -1934,18 +2302,22 @@
             </div>
 
             <div class="panel-subtitle">
-              Consulte e gerencie os envios
+              Consulte e gerencie os envios do sistema.
             </div>
 
           </div>
 
 
           <button
+            type="button"
             class="btn btn-secondary"
             onclick="carregarEnvios()"
           >
+
             🔄 ATUALIZAR
+
           </button>
+
 
         </div>
 
@@ -1958,13 +2330,16 @@
           <input
             type="text"
             id="filtroTexto"
-            placeholder="🔎 PESQUISAR NF, CLIENTE OU TRANSPORTADORA"
+            class="filtro"
+            placeholder="🔎 NF, CLIENTE, CIDADE OU TRANSPORTADORA"
+            autocomplete="off"
             oninput="filtrarTabela()"
           >
 
 
           <select
             id="filtroStatus"
+            class="filtro"
             onchange="filtrarTabela()"
           >
 
@@ -1994,16 +2369,21 @@
           <input
             type="date"
             id="filtroData"
+            class="filtro"
             onchange="filtrarTabela()"
           >
 
 
           <button
+            type="button"
             class="btn btn-secondary"
             onclick="limparFiltros()"
           >
+
             LIMPAR
+
           </button>
+
 
         </div>
 
@@ -2047,11 +2427,15 @@
                 </th>
 
                 <th>
-                  STATUS
+                  DATA ENVIO
                 </th>
 
                 <th>
-                  DATA
+                  PREVISÃO
+                </th>
+
+                <th>
+                  STATUS
                 </th>
 
                 <th>
@@ -2063,19 +2447,23 @@
             </thead>
 
 
-            <tbody id="tabelaEnvios">
+            <tbody
+              id="tabelaEnvios"
+            >
 
               <tr>
 
                 <td
-                  colspan="10"
+                  colspan="11"
                   style="
                     text-align:center;
                     padding:30px;
                     color:#94a3b8;
                   "
                 >
+
                   CARREGANDO...
+
                 </td>
 
               </tr>
@@ -2086,10 +2474,12 @@
 
         </div>
 
+
       </div>
 
 
     </section>
+
 
   </main>
 
@@ -2103,6 +2493,7 @@
     class="modal"
   >
 
+
     <div class="modal-box">
 
 
@@ -2112,11 +2503,15 @@
           ✏️ EDITAR ENVIO
         </div>
 
+
         <button
+          type="button"
           class="fechar"
           onclick="fecharModal()"
         >
+
           ×
+
         </button>
 
       </div>
@@ -2126,6 +2521,7 @@
         id="formEditar"
         onsubmit="atualizarEnvio(event)"
       >
+
 
         <input
           type="hidden"
@@ -2138,7 +2534,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarNf">
               Nota Fiscal
             </label>
 
@@ -2153,7 +2549,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarCliente">
               Cliente
             </label>
 
@@ -2168,7 +2564,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarCidade">
               Cidade
             </label>
 
@@ -2183,13 +2579,14 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarUf">
               UF
             </label>
 
             <input
               type="text"
               id="editarUf"
+              maxlength="2"
               required
             >
 
@@ -2198,7 +2595,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarTransportadora">
               Transportadora
             </label>
 
@@ -2213,7 +2610,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarValor">
               Valor
             </label>
 
@@ -2230,7 +2627,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarVolumes">
               Volumes
             </label>
 
@@ -2238,6 +2635,7 @@
               type="number"
               id="editarVolumes"
               min="1"
+              step="1"
               required
             >
 
@@ -2246,7 +2644,7 @@
 
           <div class="campo">
 
-            <label>
+            <label for="editarStatus">
               Status
             </label>
 
@@ -2278,12 +2676,13 @@
 
           <div class="campo campo-grande">
 
-            <label>
+            <label for="editarObservacao">
               Observação
             </label>
 
             <textarea
               id="editarObservacao"
+              placeholder="OBSERVAÇÕES..."
             ></textarea>
 
           </div>
@@ -2299,23 +2698,30 @@
             class="btn btn-secondary"
             onclick="fecharModal()"
           >
+
             CANCELAR
+
           </button>
 
 
           <button
             type="submit"
-            id="btnAtualizar"
             class="btn btn-primary"
+            id="btnAtualizar"
           >
+
             💾 SALVAR ALTERAÇÕES
+
           </button>
 
         </div>
 
+
       </form>
 
+
     </div>
+
 
   </div>
 
@@ -2346,13 +2752,24 @@
       );
 
 
-    let usuarioAtual = null;
+    /* =====================================================
+       VARIÁVEIS
+       ===================================================== */
 
-    let todosEnvios = [];
+    let usuarioAtual =
+      null;
+
+
+    let todosEnvios =
+      [];
+
+
+    let carregandoInicial =
+      false;
 
 
     /* =====================================================
-       INICIAR
+       INICIALIZAÇÃO
        ===================================================== */
 
     document.addEventListener(
@@ -2363,21 +2780,45 @@
 
     async function iniciar() {
 
+      if (carregandoInicial) {
+
+        return;
+
+      }
+
+
+      carregandoInicial =
+        true;
+
+
       try {
 
-        const sessao =
+        mostrarLoading(
+          "VERIFICANDO SESSÃO..."
+        );
+
+
+        const resultadoSessao =
           await supabaseClient.auth.getSession();
 
 
         if (
-          sessao.error ||
-          !sessao.data ||
-          !sessao.data.session
+          resultadoSessao.error
         ) {
 
-          window.location.replace(
-            "index.html"
-          );
+          throw resultadoSessao.error;
+
+        }
+
+
+        const session =
+          resultadoSessao.data &&
+          resultadoSessao.data.session;
+
+
+        if (!session) {
+
+          redirecionarLogin();
 
           return;
 
@@ -2385,32 +2826,46 @@
 
 
         const authUser =
-          sessao.data.session.user;
+          session.user;
 
 
-        const consulta =
+        /* ==============================================
+           BUSCAR USUÁRIO DO BIRILOG
+           ============================================== */
+
+        const consultaUsuario =
           await supabaseClient
+
             .from("usuarios")
+
             .select(
-              "id,nome,email,perfil,ativo"
+              "id, nome, email, perfil, ativo"
             )
+
             .eq(
               "auth_id",
               authUser.id
             )
+
             .maybeSingle();
 
 
         if (
-          consulta.error ||
-          !consulta.data
+          consultaUsuario.error
+        ) {
+
+          throw consultaUsuario.error;
+
+        }
+
+
+        if (
+          !consultaUsuario.data
         ) {
 
           await supabaseClient.auth.signOut();
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -2418,14 +2873,12 @@
 
 
         if (
-          consulta.data.ativo === false
+          consultaUsuario.data.ativo === false
         ) {
 
           await supabaseClient.auth.signOut();
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -2433,35 +2886,65 @@
 
 
         usuarioAtual =
-          consulta.data;
+          consultaUsuario.data;
 
 
         preencherUsuario();
 
 
-        await carregarEnvios();
+        definirDataHoje();
 
 
         esconderLoading();
 
+
+        const app =
+          document.getElementById(
+            "app"
+          );
+
+
+        await carregarEnvios();
 
       }
 
       catch (erro) {
 
         console.error(
-          "Erro ao iniciar:",
+          "Erro ao iniciar módulo de envios:",
           erro
         );
 
+
         esconderLoading();
 
+
         mostrarMensagem(
-          "ERRO AO CARREGAR O MÓDULO DE ENVIOS.",
+          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO DE ENVIOS.",
           "erro"
         );
 
       }
+
+      finally {
+
+        carregandoInicial =
+          false;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REDIRECIONAR LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
@@ -2479,28 +2962,124 @@
       }
 
 
-      document.getElementById(
-        "usuarioNome"
-      ).textContent =
+      const nome =
+        usuarioAtual.nome ||
+        usuarioAtual.email ||
+        "USUÁRIO";
+
+
+      const email =
+        usuarioAtual.email ||
+        "-";
+
+
+      const perfil =
+        usuarioAtual.perfil ||
+        "USUÁRIO";
+
+
+      const elementoNome =
+        document.getElementById(
+          "usuarioNome"
+        );
+
+
+      const elementoEmail =
+        document.getElementById(
+          "usuarioEmail"
+        );
+
+
+      const elementoPerfil =
+        document.getElementById(
+          "usuarioPerfil"
+        );
+
+
+      if (elementoNome) {
+
+        elementoNome.textContent =
+          String(
+            nome
+          ).toUpperCase();
+
+      }
+
+
+      if (elementoEmail) {
+
+        elementoEmail.textContent =
+          email;
+
+      }
+
+
+      if (elementoPerfil) {
+
+        elementoPerfil.textContent =
+          String(
+            perfil
+          ).toUpperCase();
+
+      }
+
+    }
+
+
+    /* =====================================================
+       DATA DE HOJE
+       ===================================================== */
+
+    function definirDataHoje() {
+
+      const campo =
+        document.getElementById(
+          "dataEnvio"
+        );
+
+
+      if (
+        !campo ||
+        campo.value
+      ) {
+
+        return;
+
+      }
+
+
+      const hoje =
+        new Date();
+
+
+      const ano =
+        hoje.getFullYear();
+
+
+      const mes =
         String(
-          usuarioAtual.nome ||
-          "USUÁRIO"
-        ).toUpperCase();
+          hoje.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        );
 
 
-      document.getElementById(
-        "usuarioEmail"
-      ).textContent =
-        usuarioAtual.email || "-";
-
-
-      document.getElementById(
-        "usuarioPerfil"
-      ).textContent =
+      const dia =
         String(
-          usuarioAtual.perfil ||
-          "USUÁRIO"
-        ).toUpperCase();
+          hoje.getDate()
+        ).padStart(
+          2,
+          "0"
+        );
+
+
+      campo.value =
+        ano +
+        "-" +
+        mes +
+        "-" +
+        dia;
 
     }
 
@@ -2511,15 +3090,20 @@
 
     async function carregarEnvios() {
 
-      mostrarLoading();
+      mostrarLoading(
+        "CARREGANDO ENVIOS..."
+      );
 
 
       try {
 
         const resultado =
           await supabaseClient
+
             .from("envios")
+
             .select("*")
+
             .order(
               "created_at",
               {
@@ -2528,7 +3112,9 @@
             );
 
 
-        if (resultado.error) {
+        if (
+          resultado.error
+        ) {
 
           throw resultado.error;
 
@@ -2546,7 +3132,6 @@
 
         filtrarTabela();
 
-
       }
 
       catch (erro) {
@@ -2554,6 +3139,20 @@
         console.error(
           "Erro ao carregar envios:",
           erro
+        );
+
+
+        todosEnvios =
+          [];
+
+
+        atualizarCards(
+          []
+        );
+
+
+        renderizarTabela(
+          []
         );
 
 
@@ -2626,7 +3225,8 @@
 
           return normalizarStatus(
             envio.status
-          ) === status;
+          ) ===
+          status;
 
         }
       ).length;
@@ -2634,351 +3234,15 @@
     }
 
 
-    function normalizarStatus(
-      status
-    ) {
-
-      return String(
-        status || ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-    }
-
-
     /* =====================================================
-       FILTRAR
-       ===================================================== */
-
-    function filtrarTabela() {
-
-      const texto =
-        document.getElementById(
-          "filtroTexto"
-        ).value
-          .trim()
-          .toLowerCase();
-
-
-      const status =
-        document.getElementById(
-          "filtroStatus"
-        ).value;
-
-
-      const data =
-        document.getElementById(
-          "filtroData"
-        ).value;
-
-
-      const filtrados =
-        todosEnvios.filter(
-          function(envio) {
-
-            const nf =
-              String(
-                envio.nf || ""
-              ).toLowerCase();
-
-
-            const cliente =
-              String(
-                envio.cliente || ""
-              ).toLowerCase();
-
-
-            const transportadora =
-              String(
-                envio.transportadora || ""
-              ).toLowerCase();
-
-
-            const correspondeTexto =
-              !texto ||
-              nf.includes(texto) ||
-              cliente.includes(texto) ||
-              transportadora.includes(texto);
-
-
-            const correspondeStatus =
-              !status ||
-              normalizarStatus(
-                envio.status
-              ) === status;
-
-
-            let correspondeData = true;
-
-
-            if (data) {
-
-              const dataEnvio =
-                obterData(
-                  envio.created_at ||
-                  envio.data_envio
-                );
-
-
-              correspondeData =
-                dataEnvio === data;
-
-            }
-
-
-            return (
-              correspondeTexto &&
-              correspondeStatus &&
-              correspondeData
-            );
-
-          }
-        );
-
-
-      renderizarTabela(
-        filtrados
-      );
-
-    }
-
-
-    /* =====================================================
-       TABELA
-       ===================================================== */
-
-    function renderizarTabela(
-      envios
-    ) {
-
-      const tabela =
-        document.getElementById(
-          "tabelaEnvios"
-        );
-
-
-      if (!envios.length) {
-
-        tabela.innerHTML = `
-
-          <tr>
-
-            <td
-              colspan="10"
-              style="
-                text-align:center;
-                padding:30px;
-                color:#94a3b8;
-              "
-            >
-
-              NENHUM ENVIO ENCONTRADO.
-
-            </td>
-
-          </tr>
-
-        `;
-
-        return;
-
-      }
-
-
-      tabela.innerHTML =
-        envios
-          .map(
-            function(envio) {
-
-              const status =
-                normalizarStatus(
-                  envio.status
-                );
-
-
-              let classe =
-                "status-padrao";
-
-
-              if (
-                status ===
-                "ENTREGUE"
-              ) {
-
-                classe =
-                  "status-entregue";
-
-              }
-
-              else if (
-                status ===
-                "EM TRANSITO"
-              ) {
-
-                classe =
-                  "status-transito";
-
-              }
-
-              else if (
-                status ===
-                "ATRASADO"
-              ) {
-
-                classe =
-                  "status-atrasado";
-
-              }
-
-              else if (
-                status ===
-                "COLETADO"
-              ) {
-
-                classe =
-                  "status-coletado";
-
-              }
-
-
-              const valor =
-                Number(
-                  envio.valor || 0
-                ).toLocaleString(
-                  "pt-BR",
-                  {
-                    style: "currency",
-                    currency: "BRL"
-                  }
-                );
-
-
-              const data =
-                formatarData(
-                  envio.created_at ||
-                  envio.data_envio
-                );
-
-
-              return `
-
-                <tr>
-
-                  <td>
-                    <strong>
-                      ${escapeHTML(
-                        envio.nf || "-"
-                      )}
-                    </strong>
-                  </td>
-
-                  <td>
-                    ${escapeHTML(
-                      envio.cliente || "-"
-                    )}
-                  </td>
-
-                  <td>
-                    ${escapeHTML(
-                      envio.cidade || "-"
-                    )}
-                  </td>
-
-                  <td>
-                    ${escapeHTML(
-                      envio.uf || "-"
-                    )}
-                  </td>
-
-                  <td>
-                    ${escapeHTML(
-                      envio.transportadora || "-"
-                    )}
-                  </td>
-
-                  <td>
-                    ${valor}
-                  </td>
-
-                  <td>
-                    ${escapeHTML(
-                      envio.volumes || "-"
-                    )}
-                  </td>
-
-                  <td>
-
-                    <span
-                      class="status ${classe}"
-                    >
-
-                      ${escapeHTML(
-                        status ||
-                        "SEM STATUS"
-                      )}
-
-                    </span>
-
-                  </td>
-
-                  <td>
-                    ${data}
-                  </td>
-
-                  <td>
-
-                    <div class="acoes">
-
-                      <button
-                        class="btn-mini btn-editar"
-                        onclick="abrirEditar('${escapeJS(
-                          envio.id
-                        )}')"
-                        title="Editar"
-                      >
-                        ✏️
-                      </button>
-
-                      <button
-                        class="btn-mini btn-excluir"
-                        onclick="excluirEnvio('${escapeJS(
-                          envio.id
-                        )}')"
-                        title="Excluir"
-                      >
-                        🗑️
-                      </button>
-
-                    </div>
-
-                  </td>
-
-                </tr>
-
-              `;
-
-            }
-          )
-          .join("");
-
-    }
-
-
-    /* =====================================================
-       SALVAR
+       SALVAR ENVIO
        ===================================================== */
 
     async function salvarEnvio(
-      event
+      evento
     ) {
 
-      event.preventDefault();
+      evento.preventDefault();
 
 
       const botao =
@@ -2987,99 +3251,199 @@
         );
 
 
-      botao.disabled = true;
+      const nf =
+        document.getElementById(
+          "nf"
+        ).value.trim();
 
-      botao.textContent =
-        "SALVANDO...";
+
+      const cliente =
+        document.getElementById(
+          "cliente"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const cidade =
+        document.getElementById(
+          "cidade"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const uf =
+        document.getElementById(
+          "uf"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const transportadora =
+        document.getElementById(
+          "transportadora"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const valorTexto =
+        document.getElementById(
+          "valor"
+        ).value;
+
+
+      const volumesTexto =
+        document.getElementById(
+          "volumes"
+        ).value;
+
+
+      const dataEnvio =
+        document.getElementById(
+          "dataEnvio"
+        ).value;
+
+
+      const previsao =
+        document.getElementById(
+          "previsao"
+        ).value;
+
+
+      const status =
+        normalizarStatus(
+          document.getElementById(
+            "status"
+          ).value
+        );
+
+
+      const observacao =
+        document.getElementById(
+          "observacao"
+        ).value.trim()
+          .toUpperCase();
+
+
+      if (
+        !nf ||
+        !cliente ||
+        !cidade ||
+        !uf ||
+        !transportadora ||
+        !volumesTexto ||
+        !dataEnvio
+      ) {
+
+        mostrarMensagem(
+          "PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const volumes =
+        Number(
+          volumesTexto
+        );
+
+
+      const valor =
+        valorTexto
+          ? Number(
+              valorTexto
+            )
+          : 0;
+
+
+      if (
+        !Number.isFinite(
+          volumes
+        ) ||
+        volumes < 1
+      ) {
+
+        mostrarMensagem(
+          "INFORME UMA QUANTIDADE DE VOLUMES VÁLIDA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isFinite(
+          valor
+        ) ||
+        valor < 0
+      ) {
+
+        mostrarMensagem(
+          "INFORME UM VALOR DE CARGA VÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
 
 
       try {
 
-        const nf =
-          document.getElementById(
-            "nf"
-          ).value.trim();
+        botao.disabled =
+          true;
 
 
-        const cliente =
-          document.getElementById(
-            "cliente"
-          ).value.trim()
-            .toUpperCase();
+        botao.textContent =
+          "💾 SALVANDO...";
 
 
-        const cidade =
-          document.getElementById(
-            "cidade"
-          ).value.trim()
-            .toUpperCase();
+        mostrarLoading(
+          "SALVANDO ENVIO..."
+        );
 
 
-        const uf =
-          document.getElementById(
-            "uf"
-          ).value;
+        /* ==============================================
+           VERIFICAR DUPLICIDADE DA NF
+           ============================================== */
 
-
-        const transportadora =
-          document.getElementById(
-            "transportadora"
-          ).value.trim()
-            .toUpperCase();
-
-
-        const valor =
-          Number(
-            document.getElementById(
-              "valor"
-            ).value
-          );
-
-
-        const volumes =
-          Number(
-            document.getElementById(
-              "volumes"
-            ).value
-          );
-
-
-        const status =
-          document.getElementById(
-            "status"
-          ).value;
-
-
-        const observacao =
-          document.getElementById(
-            "observacao"
-          ).value.trim()
-            .toUpperCase();
-
-
-        /* ===============================================
-           VERIFICAR NF DUPLICADA
-           =============================================== */
-
-        const duplicada =
+        const consultaNF =
           await supabaseClient
+
             .from("envios")
-            .select("id,nf")
-            .eq("nf", nf)
-            .maybeSingle();
+
+            .select(
+              "id,nf"
+            )
+
+            .eq(
+              "nf",
+              nf
+            )
+            
+            .limit(1);
 
 
-        if (duplicada.error) {
+        if (
+          consultaNF.error
+        ) {
 
-          throw duplicada.error;
+          throw consultaNF.error;
 
         }
 
 
-        if (duplicada.data) {
+        if (
+          consultaNF.data &&
+          consultaNF.data.length > 0
+        ) {
 
           throw new Error(
-            "A NOTA FISCAL " +
+            "A NF " +
             nf +
             " JÁ ESTÁ CADASTRADA."
           );
@@ -3087,45 +3451,79 @@
         }
 
 
-        /* ===============================================
-           INSERIR
-           =============================================== */
+        /* ==============================================
+           DADOS DO NOVO ENVIO
+           ============================================== */
 
-        const insercao =
+        const dados = {
+
+          nf:
+            nf
+              .toUpperCase(),
+
+          cliente:
+            cliente,
+
+          cidade:
+            cidade,
+
+          uf:
+            uf,
+
+          transportadora:
+            transportadora,
+
+          valor:
+            valor,
+
+          volumes:
+            volumes,
+
+          data_envio:
+            dataEnvio,
+
+          previsao:
+            previsao ||
+            null,
+
+          status:
+            status ||
+            "COLETADO",
+
+          observacao:
+            observacao ||
+            null
+
+        };
+
+
+        /* ==============================================
+           INSERIR NO SUPABASE
+           ============================================== */
+
+        const resultado =
           await supabaseClient
+
             .from("envios")
-            .insert({
 
-              nf: nf,
-
-              cliente: cliente,
-
-              cidade: cidade,
-
-              uf: uf,
-
-              transportadora:
-                transportadora,
-
-              valor: valor,
-
-              volumes: volumes,
-
-              status: status,
-
-              observacao:
-                observacao || null
-
-            })
+            .insert([
+              dados
+            ])
+            
             .select()
             .single();
 
 
-        if (insercao.error) {
+        if (
+          resultado.error
+        ) {
 
-          throw insercao.error;
+          throw resultado.error;
 
         }
+
+
+        esconderLoading();
 
 
         mostrarMensagem(
@@ -3144,13 +3542,16 @@
       catch (erro) {
 
         console.error(
-          "Erro ao salvar:",
+          "Erro ao salvar envio:",
           erro
         );
 
 
+        esconderLoading();
+
+
         mostrarMensagem(
-          obterMensagemErro(
+          traduzirErro(
             erro
           ),
           "erro"
@@ -3160,7 +3561,9 @@
 
       finally {
 
-        botao.disabled = false;
+        botao.disabled =
+          false;
+
 
         botao.textContent =
           "💾 SALVAR ENVIO";
@@ -3171,7 +3574,7 @@
 
 
     /* =====================================================
-       ABRIR EDIÇÃO
+       EDITAR ENVIO
        ===================================================== */
 
     function abrirEditar(
@@ -3184,7 +3587,10 @@
 
             return String(
               item.id
-            ) === String(id);
+            ) ===
+            String(
+              id
+            );
 
           }
         );
@@ -3211,43 +3617,50 @@
       document.getElementById(
         "editarNf"
       ).value =
-        envio.nf || "";
+        envio.nf ||
+        "";
 
 
       document.getElementById(
         "editarCliente"
       ).value =
-        envio.cliente || "";
+        envio.cliente ||
+        "";
 
 
       document.getElementById(
         "editarCidade"
       ).value =
-        envio.cidade || "";
+        envio.cidade ||
+        "";
 
 
       document.getElementById(
         "editarUf"
       ).value =
-        envio.uf || "";
+        envio.uf ||
+        "";
 
 
       document.getElementById(
         "editarTransportadora"
       ).value =
-        envio.transportadora || "";
+        envio.transportadora ||
+        "";
 
 
       document.getElementById(
         "editarValor"
       ).value =
-        envio.valor || 0;
+        envio.valor ??
+        0;
 
 
       document.getElementById(
         "editarVolumes"
       ).value =
-        envio.volumes || 1;
+        envio.volumes ||
+        1;
 
 
       document.getElementById(
@@ -3261,7 +3674,8 @@
       document.getElementById(
         "editarObservacao"
       ).value =
-        envio.observacao || "";
+        envio.observacao ||
+        "";
 
 
       document.getElementById(
@@ -3274,14 +3688,14 @@
 
 
     /* =====================================================
-       ATUALIZAR
+       ATUALIZAR ENVIO
        ===================================================== */
 
     async function atualizarEnvio(
-      event
+      evento
     ) {
 
-      event.preventDefault();
+      evento.preventDefault();
 
 
       const botao =
@@ -3290,90 +3704,247 @@
         );
 
 
-      botao.disabled = true;
+      const id =
+        document.getElementById(
+          "editarId"
+        ).value;
 
-      botao.textContent =
-        "SALVANDO...";
+
+      const nf =
+        document.getElementById(
+          "editarNf"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const cliente =
+        document.getElementById(
+          "editarCliente"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const cidade =
+        document.getElementById(
+          "editarCidade"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const uf =
+        document.getElementById(
+          "editarUf"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const transportadora =
+        document.getElementById(
+          "editarTransportadora"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const valor =
+        Number(
+          document.getElementById(
+            "editarValor"
+          ).value
+        );
+
+
+      const volumes =
+        Number(
+          document.getElementById(
+            "editarVolumes"
+          ).value
+        );
+
+
+      const status =
+        normalizarStatus(
+          document.getElementById(
+            "editarStatus"
+          ).value
+        );
+
+
+      const observacao =
+        document.getElementById(
+          "editarObservacao"
+        ).value.trim()
+          .toUpperCase();
+
+
+      if (
+        !id ||
+        !nf ||
+        !cliente ||
+        !cidade ||
+        !uf ||
+        !transportadora
+      ) {
+
+        mostrarMensagem(
+          "PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isFinite(
+          valor
+        ) ||
+        valor < 0
+      ) {
+
+        mostrarMensagem(
+          "INFORME UM VALOR VÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !Number.isFinite(
+          volumes
+        ) ||
+        volumes < 1
+      ) {
+
+        mostrarMensagem(
+          "INFORME UMA QUANTIDADE DE VOLUMES VÁLIDA.",
+          "erro"
+        );
+
+        return;
+
+      }
 
 
       try {
 
-        const id =
-          document.getElementById(
-            "editarId"
-          ).value;
+        botao.disabled =
+          true;
+
+
+        botao.textContent =
+          "🔄 ATUALIZANDO...";
+
+
+        mostrarLoading(
+          "ATUALIZANDO ENVIO..."
+        );
+
+
+        /* ==============================================
+           VERIFICAR NF DUPLICADA
+           ============================================== */
+
+        const consultaNF =
+          await supabaseClient
+
+            .from("envios")
+
+            .select(
+              "id,nf"
+            )
+
+            .eq(
+              "nf",
+              nf
+            )
+            
+            .neq(
+              "id",
+              id
+            )
+            
+            .limit(1);
+
+
+        if (
+          consultaNF.error
+        ) {
+
+          throw consultaNF.error;
+
+        }
+
+
+        if (
+          consultaNF.data &&
+          consultaNF.data.length > 0
+        ) {
+
+          throw new Error(
+            "A NF " +
+            nf +
+            " JÁ ESTÁ CADASTRADA EM OUTRO ENVIO."
+          );
+
+        }
 
 
         const dados = {
 
           nf:
-            document.getElementById(
-              "editarNf"
-            ).value.trim(),
+            nf,
 
           cliente:
-            document.getElementById(
-              "editarCliente"
-            ).value.trim()
-              .toUpperCase(),
+            cliente,
 
           cidade:
-            document.getElementById(
-              "editarCidade"
-            ).value.trim()
-              .toUpperCase(),
+            cidade,
 
           uf:
-            document.getElementById(
-              "editarUf"
-            ).value.trim()
-              .toUpperCase(),
+            uf,
 
           transportadora:
-            document.getElementById(
-              "editarTransportadora"
-            ).value.trim()
-              .toUpperCase(),
+            transportadora,
 
           valor:
-            Number(
-              document.getElementById(
-                "editarValor"
-              ).value
-            ),
+            valor,
 
           volumes:
-            Number(
-              document.getElementById(
-                "editarVolumes"
-              ).value
-            ),
+            volumes,
 
           status:
-            document.getElementById(
-              "editarStatus"
-            ).value,
+            status ||
+            "COLETADO",
 
           observacao:
-            document.getElementById(
-              "editarObservacao"
-            ).value.trim()
-              .toUpperCase()
+            observacao ||
+            null
 
         };
 
 
         const resultado =
           await supabaseClient
+
             .from("envios")
-            .update(dados)
+
+            .update(
+              dados
+            )
+
             .eq(
               "id",
               id
             );
 
 
-        if (resultado.error) {
+        if (
+          resultado.error
+        ) {
 
           throw resultado.error;
 
@@ -3381,6 +3952,9 @@
 
 
         fecharModal();
+
+
+        esconderLoading();
 
 
         mostrarMensagem(
@@ -3396,13 +3970,16 @@
       catch (erro) {
 
         console.error(
-          "Erro ao atualizar:",
+          "Erro ao atualizar envio:",
           erro
         );
 
 
+        esconderLoading();
+
+
         mostrarMensagem(
-          obterMensagemErro(
+          traduzirErro(
             erro
           ),
           "erro"
@@ -3412,7 +3989,9 @@
 
       finally {
 
-        botao.disabled = false;
+        botao.disabled =
+          false;
+
 
         botao.textContent =
           "💾 SALVAR ALTERAÇÕES";
@@ -3423,7 +4002,7 @@
 
 
     /* =====================================================
-       EXCLUIR
+       EXCLUIR ENVIO
        ===================================================== */
 
     async function excluirEnvio(
@@ -3436,13 +4015,21 @@
 
             return String(
               item.id
-            ) === String(id);
+            ) ===
+            String(
+              id
+            );
 
           }
         );
 
 
       if (!envio) {
+
+        mostrarMensagem(
+          "ENVIO NÃO ENCONTRADO.",
+          "erro"
+        );
 
         return;
 
@@ -3464,26 +4051,36 @@
       }
 
 
-      mostrarLoading();
-
-
       try {
+
+        mostrarLoading(
+          "EXCLUINDO ENVIO..."
+        );
+
 
         const resultado =
           await supabaseClient
+
             .from("envios")
+
             .delete()
+
             .eq(
               "id",
               id
             );
 
 
-        if (resultado.error) {
+        if (
+          resultado.error
+        ) {
 
           throw resultado.error;
 
         }
+
+
+        esconderLoading();
 
 
         mostrarMensagem(
@@ -3499,13 +4096,16 @@
       catch (erro) {
 
         console.error(
-          "Erro ao excluir:",
+          "Erro ao excluir envio:",
           erro
         );
 
 
+        esconderLoading();
+
+
         mostrarMensagem(
-          obterMensagemErro(
+          traduzirErro(
             erro
           ),
           "erro"
@@ -3513,11 +4113,390 @@
 
       }
 
-      finally {
+    }
 
-        esconderLoading();
+
+    /* =====================================================
+       RENDERIZAR TABELA
+       ===================================================== */
+
+    function renderizarTabela(
+      lista
+    ) {
+
+      const tabela =
+        document.getElementById(
+          "tabelaEnvios"
+        );
+
+
+      if (!tabela) {
+
+        return;
 
       }
+
+
+      if (
+        !lista ||
+        lista.length === 0
+      ) {
+
+        tabela.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="11"
+              style="
+                text-align:center;
+                padding:30px;
+                color:#94a3b8;
+              "
+            >
+
+              📭 NENHUM ENVIO ENCONTRADO
+
+            </td>
+
+          </tr>
+
+        `;
+
+        return;
+
+      }
+
+
+      tabela.innerHTML =
+        lista
+          .map(
+            function(envio) {
+
+              const status =
+                normalizarStatus(
+                  envio.status
+                );
+
+
+              const classe =
+                obterClasseStatus(
+                  status
+                );
+
+
+              return `
+
+                <tr>
+
+                  <td>
+
+                    <strong>
+
+                      ${escapeHTML(
+                        envio.nf ||
+                        "-"
+                      )}
+
+                    </strong>
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.cliente ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.cidade ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.uf ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.transportadora ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${formatarValor(
+                      envio.valor
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.volumes ??
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${formatarData(
+                      envio.data_envio
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${formatarData(
+                      envio.previsao
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    <span
+                      class="status ${classe}"
+                    >
+
+                      ${escapeHTML(
+                        status ||
+                        "SEM STATUS"
+                      )}
+
+                    </span>
+
+                  </td>
+
+
+                  <td>
+
+                    <div class="acoes">
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-editar"
+                        title="Editar envio"
+                        onclick="abrirEditar('${escapeJS(
+                          envio.id
+                        )}')"
+                      >
+
+                        ✏️
+
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-excluir"
+                        title="Excluir envio"
+                        onclick="excluirEnvio('${escapeJS(
+                          envio.id
+                        )}')"
+                      >
+
+                        🗑️
+
+                      </button>
+
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       FILTRAR TABELA
+       ===================================================== */
+
+    function filtrarTabela() {
+
+      const campoTexto =
+        document.getElementById(
+          "filtroTexto"
+        );
+
+
+      const campoStatus =
+        document.getElementById(
+          "filtroStatus"
+        );
+
+
+      const campoData =
+        document.getElementById(
+          "filtroData"
+        );
+
+
+      const texto =
+        campoTexto
+          ? normalizarTexto(
+              campoTexto.value
+            )
+          : "";
+
+
+      const status =
+        campoStatus
+          ? normalizarStatus(
+              campoStatus.value
+            )
+          : "";
+
+
+      const data =
+        campoData
+          ? campoData.value
+          : "";
+
+
+      const filtrados =
+        todosEnvios.filter(
+          function(envio) {
+
+            const textoEnvio =
+              normalizarTexto(
+                (
+                  String(
+                    envio.nf ||
+                    ""
+                  ) +
+                  " " +
+                  String(
+                    envio.cliente ||
+                    ""
+                  ) +
+                  " " +
+                  String(
+                    envio.cidade ||
+                    ""
+                  ) +
+                  " " +
+                  String(
+                    envio.transportadora ||
+                    ""
+                  )
+                )
+              );
+
+
+            const buscaOk =
+              !texto ||
+              textoEnvio.includes(
+                texto
+              );
+
+
+            const statusOk =
+              !status ||
+              normalizarStatus(
+                envio.status
+              ) ===
+              status;
+
+
+            let dataOk =
+              true;
+
+
+            if (data) {
+
+              const dataEnvio =
+                obterDataISO(
+                  envio.data_envio ||
+                  envio.created_at
+                );
+
+
+              dataOk =
+                dataEnvio ===
+                data;
+
+            }
+
+
+            return (
+              buscaOk &&
+              statusOk &&
+              dataOk
+            );
+
+          }
+        );
+
+
+      renderizarTabela(
+        filtrados
+      );
+
+    }
+
+
+    /* =====================================================
+       LIMPAR FILTROS
+       ===================================================== */
+
+    function limparFiltros() {
+
+      document.getElementById(
+        "filtroTexto"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "filtroStatus"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "filtroData"
+      ).value =
+        "";
+
+
+      filtrarTabela();
 
     }
 
@@ -3538,6 +4517,15 @@
       ).value =
         "COLETADO";
 
+
+      document.getElementById(
+        "volumes"
+      ).value =
+        "1";
+
+
+      definirDataHoje();
+
     }
 
 
@@ -3557,153 +4545,127 @@
 
 
     /* =====================================================
-       FILTROS
+       STATUS
        ===================================================== */
 
-    function limparFiltros() {
-
-      document.getElementById(
-        "filtroTexto"
-      ).value = "";
-
-
-      document.getElementById(
-        "filtroStatus"
-      ).value = "";
-
-
-      document.getElementById(
-        "filtroData"
-      ).value = "";
-
-
-      filtrarTabela();
-
-    }
-
-
-    /* =====================================================
-       NAVEGAÇÃO
-       ===================================================== */
-
-    function irPara(
-      pagina
+    function normalizarStatus(
+      valor
     ) {
 
-      window.location.href =
-        pagina;
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    function obterClasseStatus(
+      status
+    ) {
+
+      if (
+        status ===
+        "ENTREGUE"
+      ) {
+
+        return "status-entregue";
+
+      }
+
+
+      if (
+        status ===
+        "EM TRANSITO"
+      ) {
+
+        return "status-transito";
+
+      }
+
+
+      if (
+        status ===
+        "ATRASADO"
+      ) {
+
+        return "status-atrasado";
+
+      }
+
+
+      if (
+        status ===
+        "COLETADO"
+      ) {
+
+        return "status-coletado";
+
+      }
+
+
+      return "status-padrao";
 
     }
 
 
     /* =====================================================
-       SAIR
+       FORMATAR VALOR
        ===================================================== */
 
-    async function sair() {
+    function formatarValor(
+      valor
+    ) {
 
-      const confirmar =
-        window.confirm(
-          "DESEJA REALMENTE SAIR DO BIRILOG?"
+      const numero =
+        Number(
+          valor ||
+          0
         );
 
 
-      if (!confirmar) {
+      return numero.toLocaleString(
+        "pt-BR",
+        {
+          style:
+            "currency",
 
-        return;
-
-      }
-
-
-      try {
-
-        await supabaseClient.auth.signOut();
-
-      }
-
-      catch (erro) {
-
-        console.error(
-          erro
-        );
-
-      }
-
-
-      window.location.replace(
-        "index.html"
+          currency:
+            "BRL"
+        }
       );
 
     }
 
 
     /* =====================================================
-       LOADING
-       ===================================================== */
-
-    function mostrarLoading() {
-
-      document.getElementById(
-        "loadingTela"
-      ).style.display =
-        "flex";
-
-    }
-
-
-    function esconderLoading() {
-
-      document.getElementById(
-        "loadingTela"
-      ).style.display =
-        "none";
-
-    }
-
-
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
-
-    function mostrarMensagem(
-      texto,
-      tipo
-    ) {
-
-      const elemento =
-        document.getElementById(
-          "mensagem"
-        );
-
-
-      elemento.textContent =
-        texto;
-
-
-      elemento.className =
-        "mensagem " +
-        tipo;
-
-
-      elemento.style.display =
-        "block";
-
-
-      setTimeout(
-        function() {
-
-          elemento.style.display =
-            "none";
-
-        },
-        5000
-      );
-
-    }
-
-
-    /* =====================================================
-       DATAS
+       FORMATAR DATA
        ===================================================== */
 
     function formatarData(
@@ -3717,29 +4679,88 @@
       }
 
 
-      const data =
-        new Date(
+      const texto =
+        String(
           valor
         );
 
 
-      if (isNaN(
-        data.getTime()
-      )) {
+      let data =
+        null;
+
+
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
+      ) {
+
+        const partes =
+          texto.split(
+            "-"
+          );
+
+
+        data =
+          new Date(
+            Number(
+              partes[0]
+            ),
+            Number(
+              partes[1]
+            ) - 1,
+            Number(
+              partes[2]
+            )
+          );
+
+      }
+
+      else {
+
+        data =
+          new Date(
+            valor
+          );
+
+      }
+
+
+      if (
+        isNaN(
+          data.getTime()
+        )
+      ) {
 
         return "-";
 
       }
 
 
-      return data.toLocaleDateString(
-        "pt-BR"
-      );
+      return String(
+        data.getDate()
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      String(
+        data.getMonth() + 1
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      data.getFullYear();
 
     }
 
 
-    function obterData(
+    /* =====================================================
+       OBTER DATA ISO
+       ===================================================== */
+
+    function obterDataISO(
       valor
     ) {
 
@@ -3750,35 +4771,49 @@
       }
 
 
+      const texto =
+        String(
+          valor
+        );
+
+
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
+      ) {
+
+        return texto;
+
+      }
+
+
       const data =
         new Date(
           valor
         );
 
 
-      if (isNaN(
-        data.getTime()
-      )) {
+      if (
+        isNaN(
+          data.getTime()
+        )
+      ) {
 
         return "";
 
       }
 
 
-      const ano =
-        data.getFullYear();
-
-
-      const mes =
+      return data.getFullYear() +
+        "-" +
         String(
           data.getMonth() + 1
         ).padStart(
           2,
           "0"
-        );
-
-
-      const dia =
+        ) +
+        "-" +
         String(
           data.getDate()
         ).padStart(
@@ -3786,20 +4821,11 @@
           "0"
         );
 
-
-      return (
-        ano +
-        "-" +
-        mes +
-        "-" +
-        dia
-      );
-
     }
 
 
     /* =====================================================
-       SEGURANÇA
+       ESCAPAR HTML
        ===================================================== */
 
     function escapeHTML(
@@ -3807,7 +4833,8 @@
     ) {
 
       return String(
-        valor || ""
+        valor ??
+        ""
       )
         .replace(
           /&/g,
@@ -3838,7 +4865,8 @@
     ) {
 
       return String(
-        valor || ""
+        valor ??
+        ""
       )
         .replace(
           /\\/g,
@@ -3861,28 +4889,365 @@
 
 
     /* =====================================================
-       ERROS
+       MENSAGEM
        ===================================================== */
 
-    function obterMensagemErro(
-      erro
+    function mostrarMensagem(
+      texto,
+      tipo
     ) {
 
-      if (
-        erro &&
-        erro.message
-      ) {
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
 
-        return String(
-          erro.message
-        ).toUpperCase();
+
+      if (!elemento) {
+
+        return;
 
       }
 
 
-      return "OCORREU UM ERRO NO SISTEMA.";
+      elemento.textContent =
+        texto;
+
+
+      elemento.className =
+        "mensagem " +
+        tipo;
+
+
+      elemento.style.display =
+        "block";
+
+
+      clearTimeout(
+        window.timerMensagem
+      );
+
+
+      window.timerMensagem =
+        setTimeout(
+          function() {
+
+            elemento.style.display =
+              "none";
+
+          },
+          5000
+        );
 
     }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    function mostrarLoading(
+      texto
+    ) {
+
+      const loading =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      const textoLoading =
+        document.getElementById(
+          "loadingText"
+        );
+
+
+      if (textoLoading) {
+
+        textoLoading.textContent =
+          texto ||
+          "CARREGANDO...";
+
+      }
+
+
+      if (loading) {
+
+        loading.style.display =
+          "flex";
+
+      }
+
+    }
+
+
+    function esconderLoading() {
+
+      const loading =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      if (loading) {
+
+        loading.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       TRADUZIR ERROS
+       ===================================================== */
+
+    function traduzirErro(
+      erro
+    ) {
+
+      if (
+        !erro ||
+        !erro.message
+      ) {
+
+        return (
+          "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+        );
+
+      }
+
+
+      const mensagem =
+        String(
+          erro.message
+        );
+
+
+      const texto =
+        mensagem.toLowerCase();
+
+
+      if (
+        texto.includes(
+          "duplicate"
+        ) ||
+        texto.includes(
+          "unique"
+        )
+      ) {
+
+        return (
+          "ESTA NOTA FISCAL JÁ ESTÁ CADASTRADA."
+        );
+
+      }
+
+
+      if (
+        texto.includes(
+          "row-level security"
+        ) ||
+        texto.includes(
+          "permission denied"
+        )
+      ) {
+
+        return (
+          "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
+        );
+
+      }
+
+
+      return mensagem.toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      if (!pagina) {
+
+        return;
+
+      }
+
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        await supabaseClient.auth.signOut();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       ENTER NA NF
+       ===================================================== */
+
+    document
+      .getElementById(
+        "nf"
+      )
+      .addEventListener(
+        "keydown",
+        function(evento) {
+
+          if (
+            evento.key ===
+            "Enter"
+          ) {
+
+            evento.preventDefault();
+
+            document
+              .getElementById(
+                "cliente"
+              )
+              .focus();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       ENTER NOS FILTROS
+       ===================================================== */
+
+    document
+      .getElementById(
+        "filtroTexto"
+      )
+      .addEventListener(
+        "keydown",
+        function(evento) {
+
+          if (
+            evento.key ===
+            "Enter"
+          ) {
+
+            evento.preventDefault();
+
+            filtrarTabela();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       FECHAR MODAL CLICANDO FORA
+       ===================================================== */
+
+    document
+      .getElementById(
+        "modalEditar"
+      )
+      .addEventListener(
+        "click",
+        function(evento) {
+
+          if (
+            evento.target ===
+            this
+          ) {
+
+            fecharModal();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       ESC FECHA MODAL
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(evento) {
+
+        if (
+          evento.key ===
+          "Escape"
+        ) {
+
+          fecharModal();
+
+        }
+
+      }
+    );
 
 
     /* =====================================================
@@ -3908,6 +5273,7 @@
 
       }
     );
+
 
   </script>
 
