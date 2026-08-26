@@ -13,10 +13,6 @@
   <title>BiriLog V3 - Envios</title>
 
 
-  <!-- =====================================================
-       SUPABASE
-       ===================================================== -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
@@ -183,6 +179,8 @@
       min-height: 0;
 
       overflow-y: auto;
+
+      scrollbar-width: thin;
 
     }
 
@@ -370,7 +368,7 @@
 
 
     /* =====================================================
-       BOTÃO SAIR
+       SAIR
        ===================================================== */
 
     .logout {
@@ -378,10 +376,6 @@
       width: 100%;
 
       display: block;
-
-      visibility: visible;
-
-      opacity: 1;
 
       position: relative;
 
@@ -412,11 +406,7 @@
 
       font-weight: 700;
 
-      transition:
-        background 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.2s;
+      transition: 0.2s;
 
     }
 
@@ -428,14 +418,6 @@
       border-color: #dc2626;
 
       color: white;
-
-    }
-
-
-    .logout:active {
-
-      transform:
-        scale(0.98);
 
     }
 
@@ -645,20 +627,6 @@
     }
 
 
-    .mensagem.info {
-
-      display: block;
-
-      background: #eff6ff;
-
-      color: #1d4ed8;
-
-      border:
-        1px solid #bfdbfe;
-
-    }
-
-
     /* =====================================================
        CARDS
        ===================================================== */
@@ -740,45 +708,6 @@
         0 4px 15px
         rgba(15,23,42,0.04);
 
-      margin-bottom: 20px;
-
-    }
-
-
-    .panel-header {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .panel-title {
-
-      font-size: 15px;
-
-      font-weight: 800;
-
-      color: #0f172a;
-
-    }
-
-
-    .panel-subtitle {
-
-      margin-top: 4px;
-
-      font-size: 10px;
-
-      color: #94a3b8;
-
     }
 
 
@@ -840,10 +769,6 @@
     }
 
 
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
-
     .btn {
 
       border: none;
@@ -859,18 +784,7 @@
 
       font-weight: 800;
 
-      transition:
-        0.2s;
-
       white-space: nowrap;
-
-    }
-
-
-    .btn:hover {
-
-      transform:
-        translateY(-1px);
 
     }
 
@@ -885,10 +799,6 @@
         );
 
       color: white;
-
-      box-shadow:
-        0 5px 14px
-        rgba(37,99,235,0.20);
 
     }
 
@@ -1012,8 +922,6 @@
 
       text-transform: uppercase;
 
-      white-space: nowrap;
-
     }
 
 
@@ -1111,10 +1019,6 @@
 
     }
 
-
-    /* =====================================================
-       VAZIO / CARREGANDO
-       ===================================================== */
 
     .carregando,
     .vazio,
@@ -1475,8 +1379,6 @@
   <aside class="sidebar">
 
 
-    <!-- LOGO -->
-
     <div class="logo-area">
 
       <div class="logo-icon">
@@ -1494,16 +1396,12 @@
     </div>
 
 
-    <!-- MENU -->
-
     <nav class="menu">
 
       <div class="menu-title">
         MENU PRINCIPAL
       </div>
 
-
-      <!-- DASHBOARD -->
 
       <button
         type="button"
@@ -1522,8 +1420,6 @@
       </button>
 
 
-      <!-- ENVIOS -->
-
       <button
         type="button"
         class="menu-item active"
@@ -1540,8 +1436,6 @@
 
       </button>
 
-
-      <!-- PESQUISAR NF -->
 
       <button
         type="button"
@@ -1560,8 +1454,6 @@
       </button>
 
 
-      <!-- CLIENTES -->
-
       <button
         type="button"
         class="menu-item"
@@ -1578,8 +1470,6 @@
 
       </button>
 
-
-      <!-- TRANSPORTADORAS -->
 
       <button
         type="button"
@@ -1598,8 +1488,6 @@
       </button>
 
 
-      <!-- RELATÓRIOS -->
-
       <button
         type="button"
         class="menu-item"
@@ -1617,8 +1505,6 @@
       </button>
 
 
-      <!-- USUÁRIOS -->
-
       <button
         type="button"
         class="menu-item"
@@ -1635,8 +1521,6 @@
 
       </button>
 
-
-      <!-- CONFIGURAÇÕES -->
 
       <button
         type="button"
@@ -1658,9 +1542,7 @@
     </nav>
 
 
-    <!-- =================================================
-         USUÁRIO
-         ================================================= -->
+    <!-- USUÁRIO -->
 
     <div class="user-area">
 
@@ -1691,8 +1573,6 @@
 
       </div>
 
-
-      <!-- BOTÃO SAIR -->
 
       <button
         type="button"
@@ -1747,19 +1627,11 @@
     <section class="content">
 
 
-      <!-- =================================================
-           MENSAGEM
-           ================================================= -->
-
       <div
         id="mensagem"
         class="mensagem"
       ></div>
 
-
-      <!-- =================================================
-           TÍTULO
-           ================================================= -->
 
       <div class="page-title">
 
@@ -1774,14 +1646,8 @@
       </div>
 
 
-      <!-- =================================================
-           PAINEL
-           ================================================= -->
-
       <div class="panel">
 
-
-        <!-- FILTROS -->
 
         <div class="toolbar">
 
@@ -1846,8 +1712,6 @@
         </div>
 
 
-        <!-- CONTADOR -->
-
         <div
           id="contador"
           style="
@@ -1867,10 +1731,6 @@
         </div>
 
 
-        <!-- =================================================
-             TABELA
-             ================================================= -->
-
         <div class="table-wrapper">
 
           <table>
@@ -1879,41 +1739,15 @@
 
               <tr>
 
-                <th>
-                  NF
-                </th>
-
-                <th>
-                  CLIENTE
-                </th>
-
-                <th>
-                  CIDADE
-                </th>
-
-                <th>
-                  UF
-                </th>
-
-                <th>
-                  TRANSPORTADORA
-                </th>
-
-                <th>
-                  STATUS
-                </th>
-
-                <th>
-                  VOLUMES
-                </th>
-
-                <th>
-                  PESO
-                </th>
-
-                <th>
-                  AÇÕES
-                </th>
+                <th>NF</th>
+                <th>CLIENTE</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>TRANSPORTADORA</th>
+                <th>STATUS</th>
+                <th>VOLUMES</th>
+                <th>PESO</th>
+                <th>AÇÕES</th>
 
               </tr>
 
@@ -1952,10 +1786,6 @@
 
   </main>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
 
   <script>
 
@@ -2041,11 +1871,7 @@
           session.user;
 
 
-        /* ==============================================
-           USUÁRIO BIRILOG
-           ============================================== */
-
-        const consulta =
+        const consultaUsuario =
           await supabaseClient
 
             .from("usuarios")
@@ -2063,16 +1889,16 @@
 
 
         if (
-          consulta.error
+          consultaUsuario.error
         ) {
 
-          throw consulta.error;
+          throw consultaUsuario.error;
 
         }
 
 
         if (
-          !consulta.data
+          !consultaUsuario.data
         ) {
 
           await supabaseClient.auth.signOut();
@@ -2085,7 +1911,7 @@
 
 
         if (
-          consulta.data.ativo === false
+          consultaUsuario.data.ativo === false
         ) {
 
           await supabaseClient.auth.signOut();
@@ -2098,7 +1924,7 @@
 
 
         usuarioAtual =
-          consulta.data;
+          consultaUsuario.data;
 
 
         preencherUsuario();
@@ -2124,7 +1950,9 @@
 
 
         mostrarMensagem(
-          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO DE ENVIOS.",
+          obterMensagemErro(
+            erro
+          ),
           "erro"
         );
 
@@ -2134,7 +1962,7 @@
 
 
     /* =====================================================
-       USUÁRIO
+       PREENCHER USUÁRIO
        ===================================================== */
 
     function preencherUsuario() {
@@ -2194,28 +2022,39 @@
       tabela.innerHTML =
         `
           <tr>
-            <td colspan="9" class="carregando">
+
+            <td
+              colspan="9"
+              class="carregando"
+            >
+
               🔄 CARREGANDO ENVIOS...
+
             </td>
+
           </tr>
         `;
 
 
       try {
 
+        /*
+        ---------------------------------------------------
+        IMPORTANTE:
+
+        NÃO UTILIZAMOS created_at AQUI.
+
+        Isso evita erro caso sua tabela envios
+        não possua essa coluna.
+        ---------------------------------------------------
+        */
+
         const resultado =
           await supabaseClient
 
             .from("envios")
 
-            .select("*")
-
-            .order(
-              "created_at",
-              {
-                ascending: false
-              }
-            );
+            .select("*");
 
 
         if (
@@ -2229,6 +2068,42 @@
 
         envios =
           resultado.data || [];
+
+
+        /*
+        ---------------------------------------------------
+        ORDENAÇÃO SEGURA
+
+        Se existir uma coluna created_at,
+        usamos ela.
+
+        Caso não exista,
+        simplesmente mantemos a ordem
+        retornada pelo Supabase.
+        ---------------------------------------------------
+        */
+
+        if (
+          envios.length > 1 &&
+          envios[0].created_at !== undefined
+        ) {
+
+          envios.sort(
+            function(a,b) {
+
+              return (
+                new Date(
+                  b.created_at
+                ) -
+                new Date(
+                  a.created_at
+                )
+              );
+
+            }
+          );
+
+        }
 
 
         desenharTabela(
@@ -2253,9 +2128,26 @@
         tabela.innerHTML =
           `
             <tr>
-              <td colspan="9" class="erro-tabela">
+
+              <td
+                colspan="9"
+                class="erro-tabela"
+              >
+
                 ❌ ERRO AO CARREGAR OS ENVIOS.
+
+                <br><br>
+
+                <small>
+                  ${escapeHTML(
+                    obterMensagemErro(
+                      erro
+                    )
+                  )}
+                </small>
+
               </td>
+
             </tr>
           `;
 
@@ -2280,7 +2172,7 @@
 
 
     /* =====================================================
-       DESENHAR TABELA
+       DESENHAR
        ===================================================== */
 
     function desenharTabela(
@@ -2319,9 +2211,16 @@
         tabela.innerHTML =
           `
             <tr>
-              <td colspan="9" class="vazio">
+
+              <td
+                colspan="9"
+                class="vazio"
+              >
+
                 📭 NENHUM ENVIO ENCONTRADO.
+
               </td>
+
             </tr>
           `;
 
@@ -2336,44 +2235,52 @@
 
           const nf =
             item.nf ??
+            item.NF ??
             "";
 
 
           const cliente =
-            item.cliente ||
+            item.cliente ??
+            item.CLIENTE ??
             "";
 
 
           const cidade =
-            item.cidade ||
+            item.cidade ??
+            item.CIDADE ??
             "";
 
 
           const uf =
-            item.uf ||
+            item.uf ??
+            item.UF ??
             "";
 
 
           const transportadora =
-            item.transportadora ||
+            item.transportadora ??
+            item.TRANSPORTADORA ??
             "";
 
 
           const peso =
             Number(
-              item.peso ||
+              item.peso ??
+              item.PESO ??
               0
             );
 
 
           const volumes =
             item.volumes ??
+            item.VOLUMES ??
             0;
 
 
           const status =
             normalizarStatus(
-              item.status ||
+              item.status ??
+              item.STATUS ??
               "COLETADO"
             );
 
@@ -2392,7 +2299,6 @@
 
           }
 
-
           else if (
             status ===
             "EM TRANSITO"
@@ -2403,7 +2309,6 @@
 
           }
 
-
           else if (
             status ===
             "ENTREGUE"
@@ -2413,7 +2318,6 @@
               "entregue";
 
           }
-
 
           else if (
             status ===
@@ -2432,100 +2336,37 @@
             );
 
 
-          /* NF */
-
-          const tdNF =
-            document.createElement(
-              "td"
-            );
-
-
-          tdNF.className =
-            "nf";
-
-
-          tdNF.textContent =
-            nf;
-
-
-          tr.appendChild(
-            tdNF
+          adicionarCelula(
+            tr,
+            nf,
+            "nf"
           );
 
 
-          /* CLIENTE */
-
-          const tdCliente =
-            document.createElement(
-              "td"
-            );
-
-
-          tdCliente.textContent =
-            cliente;
-
-
-          tr.appendChild(
-            tdCliente
+          adicionarCelula(
+            tr,
+            cliente
           );
 
 
-          /* CIDADE */
-
-          const tdCidade =
-            document.createElement(
-              "td"
-            );
-
-
-          tdCidade.textContent =
-            cidade;
-
-
-          tr.appendChild(
-            tdCidade
+          adicionarCelula(
+            tr,
+            cidade
           );
 
 
-          /* UF */
-
-          const tdUF =
-            document.createElement(
-              "td"
-            );
-
-
-          tdUF.textContent =
-            uf;
-
-
-          tr.appendChild(
-            tdUF
+          adicionarCelula(
+            tr,
+            uf
           );
 
 
-          /* TRANSPORTADORA */
-
-          const tdTransportadora =
-            document.createElement(
-              "td"
-            );
-
-
-          tdTransportadora.className =
-            "transportadora";
-
-
-          tdTransportadora.textContent =
-            transportadora;
-
-
-          tr.appendChild(
-            tdTransportadora
+          adicionarCelula(
+            tr,
+            transportadora,
+            "transportadora"
           );
 
-
-          /* STATUS */
 
           const tdStatus =
             document.createElement(
@@ -2558,38 +2399,16 @@
           );
 
 
-          /* VOLUMES */
-
-          const tdVolumes =
-            document.createElement(
-              "td"
-            );
-
-
-          tdVolumes.textContent =
-            volumes;
-
-
-          tr.appendChild(
-            tdVolumes
+          adicionarCelula(
+            tr,
+            volumes
           );
 
 
-          /* PESO */
-
-          const tdPeso =
-            document.createElement(
-              "td"
-            );
-
-
-          tdPeso.textContent =
+          adicionarCelula(
+            tr,
             peso.toFixed(2) +
-            " KG";
-
-
-          tr.appendChild(
-            tdPeso
+            " KG"
           );
 
 
@@ -2610,8 +2429,6 @@
           divAcoes.className =
             "acoes";
 
-
-          /* VER */
 
           const btnVer =
             document.createElement(
@@ -2645,8 +2462,6 @@
             };
 
 
-          /* EDITAR */
-
           const btnEditar =
             document.createElement(
               "button"
@@ -2678,8 +2493,6 @@
 
             };
 
-
-          /* EXCLUIR */
 
           const btnExcluir =
             document.createElement(
@@ -2749,6 +2562,42 @@
 
 
     /* =====================================================
+       ADICIONAR CÉLULA
+       ===================================================== */
+
+    function adicionarCelula(
+      linha,
+      valor,
+      classe
+    ) {
+
+      const td =
+        document.createElement(
+          "td"
+        );
+
+
+      if (classe) {
+
+        td.className =
+          classe;
+
+      }
+
+
+      td.textContent =
+        valor ??
+        "";
+
+
+      linha.appendChild(
+        td
+      );
+
+    }
+
+
+    /* =====================================================
        FILTRAR
        ===================================================== */
 
@@ -2779,27 +2628,27 @@
               normalizarTexto(
 
                 String(
-                  item.nf ||
+                  item.nf ??
                   ""
                 ) +
                 " " +
                 String(
-                  item.cliente ||
+                  item.cliente ??
                   ""
                 ) +
                 " " +
                 String(
-                  item.cidade ||
+                  item.cidade ??
                   ""
                 ) +
                 " " +
                 String(
-                  item.uf ||
+                  item.uf ??
                   ""
                 ) +
                 " " +
                 String(
-                  item.transportadora ||
+                  item.transportadora ??
                   ""
                 )
 
@@ -2842,7 +2691,7 @@
 
 
     /* =====================================================
-       VER ENVIO
+       VISUALIZAR
        ===================================================== */
 
     function visualizarEnvio(
@@ -2850,33 +2699,33 @@
     ) {
 
       const nf =
-        item.nf ||
+        item.nf ??
         "";
 
 
       const cliente =
-        item.cliente ||
+        item.cliente ??
         "";
 
 
       const cidade =
-        item.cidade ||
+        item.cidade ??
         "";
 
 
       const uf =
-        item.uf ||
+        item.uf ??
         "";
 
 
       const transportadora =
-        item.transportadora ||
+        item.transportadora ??
         "";
 
 
       const valor =
         Number(
-          item.valor ||
+          item.valor ??
           0
         ).toLocaleString(
           "pt-BR",
@@ -2891,13 +2740,13 @@
 
       const peso =
         Number(
-          item.peso ||
+          item.peso ??
           0
         ).toFixed(2);
 
 
       const volumes =
-        item.volumes ||
+        item.volumes ??
         0;
 
 
@@ -2908,7 +2757,7 @@
 
 
       const observacao =
-        item.observacao ||
+        item.observacao ??
         "";
 
 
@@ -3252,7 +3101,7 @@
 
 
     /* =====================================================
-       ERROS
+       ERRO
        ===================================================== */
 
     function obterMensagemErro(
@@ -3284,7 +3133,23 @@
         ) {
 
           return (
-            "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
+            "SEM PERMISSÃO PARA ACESSAR OS ENVIOS."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "relation"
+          ) &&
+          texto.includes(
+            "does not exist"
+          )
+        ) {
+
+          return (
+            'A TABELA "ENVIOS" NÃO EXISTE NO SUPABASE.'
           );
 
         }
@@ -3296,14 +3161,50 @@
 
 
       return (
-        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+        "NÃO FOI POSSÍVEL CARREGAR OS ENVIOS."
       );
 
     }
 
 
     /* =====================================================
-       ENTER NA PESQUISA
+       SEGURANÇA HTML
+       ===================================================== */
+
+    function escapeHTML(
+      valor
+    ) {
+
+      return String(
+        valor ??
+        ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* =====================================================
+       ENTER
        ===================================================== */
 
     document
@@ -3353,7 +3254,7 @@
 
 
     /* =====================================================
-       SAIR DO SISTEMA
+       SAIR
        ===================================================== */
 
     async function sair() {
@@ -3390,20 +3291,7 @@
 
       try {
 
-        const resultado =
-          await supabaseClient.auth.signOut();
-
-
-        if (
-          resultado.error
-        ) {
-
-          console.error(
-            "Erro ao sair:",
-            resultado.error
-          );
-
-        }
+        await supabaseClient.auth.signOut();
 
       }
 
