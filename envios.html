@@ -14,6 +14,54 @@
 
 
   <!-- =====================================================
+       CORREÇÃO DE CACHE
+       ===================================================== -->
+
+  <script>
+
+    (function() {
+
+      try {
+
+        const url =
+          new URL(
+            window.location.href
+          );
+
+
+        if (
+          !url.searchParams.has("_v")
+        ) {
+
+          url.searchParams.set(
+            "_v",
+            Date.now()
+          );
+
+
+          window.location.replace(
+            url.toString()
+          );
+
+        }
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao atualizar versão da página:",
+          erro
+        );
+
+      }
+
+    })();
+
+  </script>
+
+
+  <!-- =====================================================
        SUPABASE
        ===================================================== -->
 
@@ -195,6 +243,8 @@
 
       overflow-y: auto;
 
+      scrollbar-width: thin;
+
     }
 
 
@@ -244,9 +294,9 @@
       text-align: left;
 
       transition:
-        background 0.2s,
-        color 0.2s,
-        transform 0.2s;
+        background .2s,
+        color .2s,
+        transform .2s;
 
     }
 
@@ -264,7 +314,7 @@
     .menu-item:active {
 
       transform:
-        scale(0.99);
+        scale(.99);
 
     }
 
@@ -426,18 +476,21 @@
 
     .logout:hover {
 
-      background: #dc2626;
+      background:
+        #dc2626;
 
-      border-color: #dc2626;
+      border-color:
+        #dc2626;
 
-      color: white;
+      color:
+        white;
 
     }
 
 
     .logout:disabled {
 
-      opacity: 0.6;
+      opacity: .6;
 
       cursor: wait;
 
@@ -468,7 +521,8 @@
 
       height: 75px;
 
-      background: white;
+      background:
+        white;
 
       border-bottom:
         1px solid #e2e8f0;
@@ -526,9 +580,11 @@
 
       border-radius: 20px;
 
-      background: #f0fdf4;
+      background:
+        #f0fdf4;
 
-      color: #15803d;
+      color:
+        #15803d;
 
       font-size: 11px;
 
@@ -545,33 +601,34 @@
 
       border-radius: 50%;
 
-      background: #22c55e;
+      background:
+        #22c55e;
 
     }
 
 
     /* =====================================================
-       CONTENT
+       CONTEÚDO
        ===================================================== */
 
     .content {
 
-      padding: 30px;
+      padding:
+        30px;
 
-      max-width: 1100px;
+      max-width:
+        1100px;
 
-      margin: 0 auto;
+      margin:
+        0 auto;
 
     }
 
 
-    /* =====================================================
-       CABEÇALHO DA PÁGINA
-       ===================================================== */
-
     .page-header {
 
-      margin-bottom: 22px;
+      margin-bottom:
+        22px;
 
     }
 
@@ -582,7 +639,8 @@
 
       font-weight: 800;
 
-      color: #0f172a;
+      color:
+        #0f172a;
 
     }
 
@@ -593,7 +651,8 @@
 
       font-size: 11px;
 
-      color: #64748b;
+      color:
+        #64748b;
 
     }
 
@@ -611,7 +670,8 @@
 
       border-radius: 9px;
 
-      margin-bottom: 18px;
+      margin-bottom:
+        18px;
 
       font-size: 11px;
 
@@ -626,9 +686,11 @@
 
       display: block;
 
-      background: #f0fdf4;
+      background:
+        #f0fdf4;
 
-      color: #15803d;
+      color:
+        #15803d;
 
       border:
         1px solid #bbf7d0;
@@ -640,9 +702,11 @@
 
       display: block;
 
-      background: #fef2f2;
+      background:
+        #fef2f2;
 
-      color: #b91c1c;
+      color:
+        #b91c1c;
 
       border:
         1px solid #fecaca;
@@ -654,9 +718,11 @@
 
       display: block;
 
-      background: #eff6ff;
+      background:
+        #eff6ff;
 
-      color: #1d4ed8;
+      color:
+        #1d4ed8;
 
       border:
         1px solid #bfdbfe;
@@ -670,16 +736,20 @@
 
     .card {
 
-      background: white;
+      background:
+        white;
 
       border:
         1px solid #e2e8f0;
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
-      padding: 25px;
+      padding:
+        25px;
 
-      margin-bottom: 20px;
+      margin-bottom:
+        20px;
 
       box-shadow:
         0 4px 16px
@@ -700,11 +770,14 @@
 
       font-weight: 800;
 
-      color: #1976d2;
+      color:
+        #1976d2;
 
-      padding-bottom: 14px;
+      padding-bottom:
+        14px;
 
-      margin-bottom: 20px;
+      margin-bottom:
+        20px;
 
       border-bottom:
         1px solid #edf0f3;
@@ -718,9 +791,11 @@
 
       height: 31px;
 
-      border-radius: 8px;
+      border-radius:
+        8px;
 
-      background: #e8f1fb;
+      background:
+        #e8f1fb;
 
       display: flex;
 
@@ -732,7 +807,7 @@
 
 
     /* =====================================================
-       GRID
+       LINHAS
        ===================================================== */
 
     .linha {
@@ -744,16 +819,19 @@
 
       gap: 18px;
 
-      margin-bottom: 18px;
+      margin-bottom:
+        18px;
 
     }
 
 
     .campo {
 
-      display: flex;
+      display:
+        flex;
 
-      flex-direction: column;
+      flex-direction:
+        column;
 
     }
 
@@ -764,28 +842,34 @@
 
       font-weight: 800;
 
-      color: #475569;
+      color:
+        #475569;
 
-      margin-bottom: 7px;
+      margin-bottom:
+        7px;
 
-      text-transform: uppercase;
+      text-transform:
+        uppercase;
 
-      letter-spacing: .3px;
+      letter-spacing:
+        .3px;
 
     }
 
 
     .obrigatorio {
 
-      color: #dc2626;
+      color:
+        #dc2626;
 
-      margin-left: 3px;
+      margin-left:
+        3px;
 
     }
 
 
     /* =====================================================
-       CAMPOS
+       INPUTS
        ===================================================== */
 
     input,
@@ -802,15 +886,20 @@
       border:
         1px solid #cbd5e1;
 
-      border-radius: 8px;
+      border-radius:
+        8px;
 
-      background: #f8fafc;
+      background:
+        #f8fafc;
 
-      color: #0f172a;
+      color:
+        #0f172a;
 
-      font-size: 12px;
+      font-size:
+        12px;
 
-      outline: none;
+      outline:
+        none;
 
       transition:
         border-color .2s,
@@ -824,7 +913,8 @@
     select:hover,
     textarea:hover {
 
-      border-color: #94a3b8;
+      border-color:
+        #94a3b8;
 
     }
 
@@ -833,13 +923,15 @@
     select:focus,
     textarea:focus {
 
-      background: white;
+      background:
+        white;
 
-      border-color: #1976d2;
+      border-color:
+        #1976d2;
 
       box-shadow:
         0 0 0 3px
-        rgba(25,118,210,0.10);
+        rgba(25,118,210,.10);
 
     }
 
@@ -847,18 +939,22 @@
     input::placeholder,
     textarea::placeholder {
 
-      color: #9ca3af;
+      color:
+        #9ca3af;
 
     }
 
 
     textarea {
 
-      min-height: 105px;
+      min-height:
+        105px;
 
-      resize: vertical;
+      resize:
+        vertical;
 
-      line-height: 1.5;
+      line-height:
+        1.5;
 
     }
 
@@ -868,9 +964,11 @@
       border:
         2px solid #1976d2;
 
-      background: #f8fbff;
+      background:
+        #f8fbff;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
     }
 
@@ -881,71 +979,89 @@
 
     .cliente-wrapper {
 
-      position: relative;
+      position:
+        relative;
 
     }
 
 
     .cliente-pesquisa {
 
-      position: relative;
+      position:
+        relative;
 
     }
 
 
     .cliente-pesquisa input {
 
-      padding-left: 36px;
+      padding-left:
+        36px;
 
     }
 
 
     .cliente-icone {
 
-      position: absolute;
+      position:
+        absolute;
 
-      left: 12px;
+      left:
+        12px;
 
-      top: 50%;
+      top:
+        50%;
 
       transform:
         translateY(-50%);
 
-      font-size: 14px;
+      font-size:
+        14px;
 
-      pointer-events: none;
+      pointer-events:
+        none;
 
     }
 
 
     .resultados-clientes {
 
-      display: none;
+      display:
+        none;
 
-      position: absolute;
+      position:
+        absolute;
 
-      left: 0;
+      left:
+        0;
 
-      right: 0;
+      right:
+        0;
 
-      top: calc(100% + 4px);
+      top:
+        calc(100% + 4px);
 
-      background: white;
+      background:
+        white;
 
       border:
         1px solid #cbd5e1;
 
-      border-radius: 8px;
+      border-radius:
+        8px;
 
       box-shadow:
         0 8px 20px
         rgba(15,23,42,.12);
 
-      max-height: 220px;
+      max-height:
+        220px;
 
-      overflow-y: auto;
+      overflow-y:
+        auto;
 
-      z-index: 300;
+      z-index:
+        300;
 
     }
 
@@ -958,66 +1074,85 @@
       border-bottom:
         1px solid #f1f5f9;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
-      color: #334155;
+      color:
+        #334155;
 
     }
 
 
     .cliente-item:last-child {
 
-      border-bottom: none;
+      border-bottom:
+        none;
 
     }
 
 
     .cliente-item:hover {
 
-      background: #eff6ff;
+      background:
+        #eff6ff;
 
-      color: #1d4ed8;
+      color:
+        #1d4ed8;
 
     }
 
 
     .cliente-codigo {
 
-      display: block;
+      display:
+        block;
 
-      margin-top: 3px;
+      margin-top:
+        3px;
 
-      font-size: 9px;
+      font-size:
+        9px;
 
-      color: #94a3b8;
+      color:
+        #94a3b8;
 
-      font-weight: 500;
+      font-weight:
+        500;
 
     }
 
 
     .cliente-selecionado {
 
-      display: none;
+      display:
+        none;
 
-      margin-top: 6px;
+      margin-top:
+        6px;
 
       padding:
         6px 9px;
 
-      background: #f0fdf4;
+      background:
+        #f0fdf4;
 
-      color: #15803d;
+      color:
+        #15803d;
 
-      border-radius: 6px;
+      border-radius:
+        6px;
 
-      font-size: 9px;
+      font-size:
+        9px;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
     }
 
@@ -1028,15 +1163,20 @@
 
     .acoes {
 
-      display: flex;
+      display:
+        flex;
 
-      justify-content: flex-end;
+      justify-content:
+        flex-end;
 
-      gap: 10px;
+      gap:
+        10px;
 
-      margin-top: 20px;
+      margin-top:
+        20px;
 
-      padding-top: 18px;
+      padding-top:
+        18px;
 
       border-top:
         1px solid #edf0f3;
@@ -1046,20 +1186,26 @@
 
     .btn {
 
-      border: none;
+      border:
+        none;
 
-      border-radius: 8px;
+      border-radius:
+        8px;
 
       padding:
         11px 19px;
 
-      cursor: pointer;
+      cursor:
+        pointer;
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
-      transition: .2s;
+      transition:
+        .2s;
 
     }
 
@@ -1074,20 +1220,25 @@
 
     .btn:disabled {
 
-      opacity: .6;
+      opacity:
+        .6;
 
-      cursor: wait;
+      cursor:
+        wait;
 
-      transform: none;
+      transform:
+        none;
 
     }
 
 
     .btn-limpar {
 
-      background: #f1f5f9;
+      background:
+        #f1f5f9;
 
-      color: #475569;
+      color:
+        #475569;
 
       border:
         1px solid #e2e8f0;
@@ -1104,9 +1255,11 @@
           #125ca5
         );
 
-      color: white;
+      color:
+        white;
 
-      min-width: 170px;
+      min-width:
+        170px;
 
       box-shadow:
         0 5px 14px
@@ -1121,36 +1274,46 @@
 
     .loading {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
       background:
         rgba(248,250,252,.88);
 
-      display: none;
+      display:
+        none;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      z-index: 9999;
+      z-index:
+        9999;
 
-      backdrop-filter: blur(2px);
+      backdrop-filter:
+        blur(2px);
 
     }
 
 
     .loading-box {
 
-      background: white;
+      background:
+        white;
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       padding:
         25px 30px;
 
-      text-align: center;
+      text-align:
+        center;
 
       box-shadow:
         0 20px 50px
@@ -1161,9 +1324,11 @@
 
     .spinner {
 
-      width: 35px;
+      width:
+        35px;
 
-      height: 35px;
+      height:
+        35px;
 
       margin:
         0 auto 12px;
@@ -1174,7 +1339,8 @@
       border-top-color:
         #1976d2;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       animation:
         girar .8s linear infinite;
@@ -1184,11 +1350,14 @@
 
     .loading-text {
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      color: #64748b;
+      color:
+        #64748b;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
     }
 
@@ -1225,7 +1394,8 @@
 
       .sidebar {
 
-        width: 70px;
+        width:
+          70px;
 
       }
 
@@ -1236,7 +1406,8 @@
       .menu-item span:not(.menu-icon),
       .user-card {
 
-        display: none;
+        display:
+          none;
 
       }
 
@@ -1251,11 +1422,14 @@
 
       .logo-icon {
 
-        width: 42px;
+        width:
+          42px;
 
-        height: 42px;
+        height:
+          42px;
 
-        font-size: 20px;
+        font-size:
+          20px;
 
       }
 
@@ -1270,7 +1444,8 @@
 
       .menu-item {
 
-        justify-content: center;
+        justify-content:
+          center;
 
         padding:
           13px 5px;
@@ -1288,28 +1463,33 @@
 
       .logout {
 
-        font-size: 0;
+        font-size:
+          0;
 
         padding:
           12px 5px;
 
-        min-height: 42px;
+        min-height:
+          42px;
 
       }
 
 
       .logout::before {
 
-        content: "🚪";
+        content:
+          "🚪";
 
-        font-size: 17px;
+        font-size:
+          17px;
 
       }
 
 
       .main {
 
-        margin-left: 70px;
+        margin-left:
+          70px;
 
         width:
           calc(100% - 70px);
@@ -1327,53 +1507,62 @@
 
       .header-title {
 
-        font-size: 17px;
+        font-size:
+          17px;
 
       }
 
 
       .status-online {
 
-        font-size: 0;
+        font-size:
+          0;
 
-        padding: 9px;
+        padding:
+          9px;
 
       }
 
 
       .status-dot {
 
-        width: 8px;
+        width:
+          8px;
 
-        height: 8px;
+        height:
+          8px;
 
       }
 
 
       .content {
 
-        padding: 18px;
+        padding:
+          18px;
 
       }
 
 
       .card {
 
-        padding: 18px;
+        padding:
+          18px;
 
       }
 
 
       .acoes {
 
-        flex-direction: column;
+        flex-direction:
+          column;
 
       }
 
 
       .acoes .btn {
 
-        width: 100%;
+        width:
+          100%;
 
       }
 
@@ -1384,7 +1573,8 @@
 
       .header-subtitle {
 
-        display: none;
+        display:
+          none;
 
       }
 
@@ -1454,6 +1644,8 @@
       </div>
 
 
+      <!-- DASHBOARD -->
+
       <button
         type="button"
         class="menu-item"
@@ -1470,6 +1662,8 @@
 
       </button>
 
+
+      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -1488,6 +1682,8 @@
       </button>
 
 
+      <!-- PESQUISAR NF -->
+
       <button
         type="button"
         class="menu-item"
@@ -1504,6 +1700,8 @@
 
       </button>
 
+
+      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -1522,6 +1720,8 @@
       </button>
 
 
+      <!-- TRANSPORTADORAS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1538,6 +1738,8 @@
 
       </button>
 
+
+      <!-- RELATÓRIOS -->
 
       <button
         type="button"
@@ -1556,6 +1758,8 @@
       </button>
 
 
+      <!-- USUÁRIOS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1572,6 +1776,8 @@
 
       </button>
 
+
+      <!-- CONFIGURAÇÕES -->
 
       <button
         type="button"
@@ -2118,7 +2324,7 @@
 
 
       <!-- =================================================
-           OBSERVAÇÃO
+           OBSERVAÇÕES
            ================================================= -->
 
       <div class="card">
@@ -2149,8 +2355,6 @@
 
         </div>
 
-
-        <!-- AÇÕES -->
 
         <div class="acoes">
 
@@ -2437,7 +2641,8 @@
           .order(
             "nome",
             {
-              ascending: true
+              ascending:
+                true
             }
           );
 
@@ -2450,6 +2655,7 @@
           "Erro ao carregar clientes:",
           resultado.error
         );
+
 
         clientes =
           [];
@@ -2533,8 +2739,12 @@
 
 
               return (
-                nome.includes(texto) ||
-                codigo.includes(texto)
+                nome.includes(
+                  texto
+                ) ||
+                codigo.includes(
+                  texto
+                )
               );
 
             }
@@ -2562,7 +2772,10 @@
 
 
         encontrados
-          .slice(0, 20)
+          .slice(
+            0,
+            20
+          )
           .forEach(
             function(cliente) {
 
@@ -2580,22 +2793,33 @@
                 String(
                   cliente.nome ||
                   ""
-                ).toUpperCase();
+                )
+                .trim()
+                .toUpperCase();
 
 
               const codigo =
                 String(
                   cliente.codigo ||
                   ""
-                ).toUpperCase();
+                )
+                .trim()
+                .toUpperCase();
 
 
               item.innerHTML =
                 `
-                  ${escapeHTML(nome)}
+                  ${escapeHTML(
+                    nome
+                  )}
 
-                  <span class="cliente-codigo">
-                    CÓDIGO: ${escapeHTML(codigo)}
+                  <span
+                    class="cliente-codigo"
+                  >
+                    CÓDIGO:
+                    ${escapeHTML(
+                      codigo
+                    )}
                   </span>
                 `;
 
@@ -2650,7 +2874,9 @@
         String(
           cliente.nome ||
           ""
-        ).trim().toUpperCase();
+        )
+        .trim()
+        .toUpperCase();
 
 
       campoCliente.value =
@@ -2723,9 +2949,7 @@
 
           .from("transportadoras")
 
-          .select(
-            "*"
-          );
+          .select("*");
 
 
       if (
@@ -2745,6 +2969,7 @@
             </option>
           `;
 
+
         return;
 
       }
@@ -2755,28 +2980,16 @@
         [];
 
 
-      /*
-      -----------------------------------------------------
-      TENTAR DESCOBRIR O CAMPO DO NOME
-      -----------------------------------------------------
-      */
-
       lista =
         lista.map(
           function(item) {
 
             return (
-
               item.nome ||
-
               item.name ||
-
               item.transportadora ||
-
               item.descricao ||
-
               ""
-
             );
 
           }
@@ -2807,7 +3020,11 @@
 
 
       lista =
-        [...new Set(lista)];
+        [
+          ...new Set(
+            lista
+          )
+        ];
 
 
       lista.sort();
@@ -3132,12 +3349,9 @@
       }
 
 
-      /* =================================================
-         CONFIRMAR NF DUPLICADA
-         ================================================= */
-
       btn.disabled =
         true;
+
 
       btn.textContent =
         "🔄 SALVANDO...";
@@ -3150,6 +3364,10 @@
 
 
       try {
+
+        /* ===============================================
+           VERIFICAR NF DUPLICADA
+           =============================================== */
 
         const consultaNF =
           await supabaseClient
@@ -3164,8 +3382,10 @@
               "nf",
               nf
             )
-            
-            .limit(1);
+
+            .limit(
+              1
+            );
 
 
         if (
@@ -3191,9 +3411,9 @@
         }
 
 
-        /* =================================================
-           OBJETO DO ENVIO
-           ================================================= */
+        /* ===============================================
+           DADOS
+           =============================================== */
 
         const dadosEnvio = {
 
@@ -3245,9 +3465,9 @@
         };
 
 
-        /* =================================================
+        /* ===============================================
            INSERIR
-           ================================================= */
+           =============================================== */
 
         const resultado =
           await supabaseClient
@@ -3437,7 +3657,7 @@
 
 
     /* =====================================================
-       DATA DE HOJE
+       DATA HOJE
        ===================================================== */
 
     function definirDataHoje() {
@@ -3453,7 +3673,8 @@
       const mes =
         String(
           hoje.getMonth() + 1
-        ).padStart(
+        )
+        .padStart(
           2,
           "0"
         );
@@ -3462,7 +3683,8 @@
       const dia =
         String(
           hoje.getDate()
-        ).padStart(
+        )
+        .padStart(
           2,
           "0"
         );
@@ -3660,7 +3882,7 @@
 
 
     /* =====================================================
-       NORMALIZAÇÃO
+       NORMALIZAR
        ===================================================== */
 
     function normalizarTexto(
@@ -3671,7 +3893,9 @@
         valor ||
         ""
       )
-        .normalize("NFD")
+        .normalize(
+          "NFD"
+        )
         .replace(
           /[\u0300-\u036f]/g,
           ""
@@ -3802,7 +4026,7 @@
 
 
     /* =====================================================
-       FECHAR RESULTADOS DO CLIENTE
+       CLIQUE FORA DO CLIENTE
        ===================================================== */
 
     document.addEventListener(
@@ -3822,6 +4046,8 @@
 
 
         if (
+          campo &&
+          resultados &&
           !campo.contains(
             evento.target
           ) &&
@@ -3881,7 +4107,7 @@
 
 
     /* =====================================================
-       ENTER NO CAMPO NF
+       ENTER NF
        ===================================================== */
 
     document
@@ -3979,6 +4205,7 @@
 
       }
 
+
       catch (erro) {
 
         console.error(
@@ -3992,6 +4219,7 @@
       redirecionarLogin();
 
     }
+
 
   </script>
 
