@@ -1,0 +1,3567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>BiriLog V3 - Pesquisar NF</title>
+
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #f1f5f9;
+
+      color: #1e293b;
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
+
+    .sidebar {
+
+      width: 250px;
+
+      height: 100vh;
+
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #0f172a,
+          #172554
+        );
+
+      color: white;
+
+      display: flex;
+
+      flex-direction: column;
+
+      z-index: 100;
+
+      box-shadow:
+        5px 0 20px
+        rgba(0,0,0,0.10);
+
+      overflow: hidden;
+
+    }
+
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
+
+    .logo-area {
+
+      padding: 28px 22px;
+
+      text-align: center;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+
+    .logo-icon {
+
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 12px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #0d47a1
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 28px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(25,118,210,0.30);
+
+    }
+
+
+    .logo-title {
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+    }
+
+
+    .logo-title span {
+
+      color: #60a5fa;
+
+    }
+
+
+    .logo-version {
+
+      margin-top: 5px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    /* =====================================================
+       MENU
+       ===================================================== */
+
+    .menu {
+
+      padding: 20px 12px;
+
+      flex: 1;
+
+      min-height: 0;
+
+      overflow-y: auto;
+
+    }
+
+
+    .menu-title {
+
+      padding:
+        0 12px 10px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .menu-item {
+
+      width: 100%;
+
+      border: none;
+
+      background: transparent;
+
+      color: #cbd5e1;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px 14px;
+
+      margin-bottom: 4px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      text-align: left;
+
+      transition: 0.2s;
+
+    }
+
+
+    .menu-item:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+    }
+
+
+    .menu-item.active {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+
+    }
+
+
+    .menu-icon {
+
+      width: 22px;
+
+      text-align: center;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    .user-area {
+
+      padding: 15px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      background:
+        rgba(0,0,0,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+
+    .user-card {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border-radius: 10px;
+
+      padding: 12px;
+
+    }
+
+
+    .user-name {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: white;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+
+    .user-email {
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      color: #94a3b8;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+
+    .user-profile {
+
+      margin-top: 6px;
+
+      font-size: 10px;
+
+      color: #60a5fa;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    .logout {
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: #e2e8f0;
+
+      padding: 11px 10px;
+
+      min-height: 38px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+
+    }
+
+
+    .logout:hover {
+
+      background: #dc2626;
+
+      border-color: #dc2626;
+
+      color: white;
+
+    }
+
+
+    .logout:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+    }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .main {
+
+      margin-left: 250px;
+
+      width:
+        calc(100% - 250px);
+
+      min-height: 100vh;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .header {
+
+      height: 75px;
+
+      background: white;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0 30px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+
+    }
+
+
+    .header-title {
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .header-subtitle {
+
+      margin-top: 3px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+
+    .status-online {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding:
+        7px 12px;
+
+      border-radius: 20px;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+
+    .status-dot {
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+
+    }
+
+
+    /* =====================================================
+       CONTENT
+       ===================================================== */
+
+    .content {
+
+      padding: 30px;
+
+    }
+
+
+    /* =====================================================
+       MESSAGE
+       ===================================================== */
+
+    .mensagem {
+
+      display: none;
+
+      margin-bottom: 20px;
+
+      padding: 13px 16px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      text-align: center;
+
+    }
+
+
+    .mensagem.sucesso {
+
+      display: block;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+
+    .mensagem.erro {
+
+      display: block;
+
+      background: #fef2f2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+
+    }
+
+
+    .mensagem.info {
+
+      display: block;
+
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+      border:
+        1px solid #bfdbfe;
+
+    }
+
+
+    /* =====================================================
+       TÍTULO
+       ===================================================== */
+
+    .page-title {
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .page-title h1 {
+
+      font-size: 18px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .page-title p {
+
+      margin-top: 5px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+
+    /* =====================================================
+       PAINEL DE PESQUISA
+       ===================================================== */
+
+    .panel {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .panel-title {
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .panel-subtitle {
+
+      margin-top: 4px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+    }
+
+
+    /* =====================================================
+       BUSCA
+       ===================================================== */
+
+    .pesquisa-area {
+
+      display: grid;
+
+      grid-template-columns: 1fr auto;
+
+      gap: 10px;
+
+      margin-top: 18px;
+
+    }
+
+
+    .campo-pesquisa {
+
+      position: relative;
+
+    }
+
+
+    .campo-pesquisa input {
+
+      width: 100%;
+
+      height: 48px;
+
+      padding:
+        0 16px 0 44px;
+
+      border:
+        1px solid #cbd5e1;
+
+      border-radius: 9px;
+
+      background: #f8fafc;
+
+      outline: none;
+
+      font-size: 13px;
+
+      color: #0f172a;
+
+    }
+
+
+    .campo-pesquisa input:focus {
+
+      background: white;
+
+      border-color: #1976d2;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,0.10);
+
+    }
+
+
+    .icone-pesquisa {
+
+      position: absolute;
+
+      left: 15px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      font-size: 18px;
+
+      pointer-events: none;
+
+    }
+
+
+    .btn-pesquisar {
+
+      height: 48px;
+
+      padding:
+        0 24px;
+
+      border: none;
+
+      border-radius: 9px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      box-shadow:
+        0 5px 14px
+        rgba(37,99,235,0.20);
+
+    }
+
+
+    .btn-pesquisar:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    /* =====================================================
+       RESULTADO PRINCIPAL
+       ===================================================== */
+
+    .resultado {
+
+      display: none;
+
+    }
+
+
+    .resultado.aberto {
+
+      display: block;
+
+    }
+
+
+    .resultado-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 18px;
+
+      padding-bottom: 15px;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+    }
+
+
+    .resultado-titulo {
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .resultado-nf {
+
+      margin-top: 4px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+
+    /* =====================================================
+       STATUS GRANDE
+       ===================================================== */
+
+    .status {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 6px;
+
+      padding:
+        8px 12px;
+
+      border-radius: 20px;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+
+    }
+
+
+    .status-coletado {
+
+      background: #fef3c7;
+
+      color: #92400e;
+
+    }
+
+
+    .status-transito {
+
+      background: #dbeafe;
+
+      color: #1d4ed8;
+
+    }
+
+
+    .status-entregue {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+    }
+
+
+    .status-atrasado {
+
+      background: #fee2e2;
+
+      color: #b91c1c;
+
+    }
+
+
+    .status-padrao {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+    }
+
+
+    /* =====================================================
+       INFORMAÇÕES
+       ===================================================== */
+
+    .info-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 14px;
+
+    }
+
+
+    .info-box {
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 10px;
+
+      padding: 14px;
+
+      background: #f8fafc;
+
+    }
+
+
+    .info-label {
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      color: #94a3b8;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .info-value {
+
+      margin-top: 6px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: #334155;
+
+      word-break: break-word;
+
+    }
+
+
+    /* =====================================================
+       OBSERVAÇÃO
+       ===================================================== */
+
+    .observacao-box {
+
+      margin-top: 14px;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 10px;
+
+      padding: 15px;
+
+      background: #f8fafc;
+
+    }
+
+
+    .observacao-label {
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      color: #94a3b8;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .observacao-texto {
+
+      margin-top: 6px;
+
+      font-size: 11px;
+
+      color: #475569;
+
+      line-height: 1.5;
+
+      white-space: pre-wrap;
+
+    }
+
+
+    /* =====================================================
+       ALERTA
+       ===================================================== */
+
+    .alerta-entrega {
+
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 12px 14px;
+
+      border-radius: 9px;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+    }
+
+
+    .alerta-entrega.aberto {
+
+      display: block;
+
+    }
+
+
+    .alerta-verde {
+
+      background: #f0fdf4;
+
+      color: #166534;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+
+    .alerta-amarelo {
+
+      background: #fefce8;
+
+      color: #854d0e;
+
+      border:
+        1px solid #fde68a;
+
+    }
+
+
+    .alerta-vermelho {
+
+      background: #fef2f2;
+
+      color: #991b1b;
+
+      border:
+        1px solid #fecaca;
+
+    }
+
+
+    .alerta-azul {
+
+      background: #eff6ff;
+
+      color: #1d4ed8;
+
+      border:
+        1px solid #bfdbfe;
+
+    }
+
+
+    .alerta-neutro {
+
+      background: #f8fafc;
+
+      color: #475569;
+
+      border:
+        1px solid #e2e8f0;
+
+    }
+
+
+    /* =====================================================
+       HISTÓRICO
+       ===================================================== */
+
+    .historico {
+
+      margin-top: 20px;
+
+    }
+
+
+    .historico-titulo {
+
+      margin-bottom: 12px;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .historico-box {
+
+      overflow-x: auto;
+
+    }
+
+
+    table {
+
+      width: 100%;
+
+      border-collapse: collapse;
+
+    }
+
+
+    th {
+
+      padding:
+        10px 8px;
+
+      text-align: left;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+
+    }
+
+
+    td {
+
+      padding:
+        11px 8px;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+      color: #334155;
+
+      font-size: 10px;
+
+    }
+
+
+    /* =====================================================
+       SEM RESULTADO
+       ===================================================== */
+
+    .sem-resultado {
+
+      padding:
+        35px 20px;
+
+      text-align: center;
+
+      color: #94a3b8;
+
+    }
+
+
+    .sem-resultado-icon {
+
+      font-size: 35px;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    .sem-resultado-titulo {
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: #475569;
+
+    }
+
+
+    .sem-resultado-texto {
+
+      margin-top: 5px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(248,250,252,0.88);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      backdrop-filter: blur(2px);
+
+    }
+
+
+    .loading-box {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding:
+        25px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 50px
+        rgba(15,23,42,0.18);
+
+    }
+
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      margin:
+        0 auto 12px;
+
+      border:
+        3px solid #dbeafe;
+
+      border-top-color:
+        #1976d2;
+
+      border-radius: 50%;
+
+      animation:
+        girar .8s linear infinite;
+
+    }
+
+
+    .loading-text {
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+    }
+
+
+    @keyframes girar {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .info-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+
+        width: 70px;
+
+      }
+
+
+      .logo-title,
+      .logo-version,
+      .menu-title,
+      .menu-item span:not(.menu-icon),
+      .user-card {
+
+        display: none;
+
+      }
+
+
+      .logo-area {
+
+        padding:
+          18px 8px;
+
+      }
+
+
+      .logo-icon {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+
+      }
+
+
+      .menu {
+
+        padding:
+          15px 8px;
+
+      }
+
+
+      .menu-item {
+
+        justify-content: center;
+
+        padding:
+          13px 5px;
+
+      }
+
+
+      .user-area {
+
+        padding:
+          10px 8px;
+
+      }
+
+
+      .logout {
+
+        font-size: 0;
+
+        padding:
+          12px 5px;
+
+        min-height: 42px;
+
+      }
+
+
+      .logout::before {
+
+        content: "🚪";
+
+        font-size: 17px;
+
+      }
+
+
+      .main {
+
+        margin-left: 70px;
+
+        width:
+          calc(100% - 70px);
+
+      }
+
+
+      .header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-title {
+
+        font-size: 17px;
+
+      }
+
+
+      .status-online {
+
+        font-size: 0;
+
+        padding: 9px;
+
+      }
+
+
+      .status-dot {
+
+        width: 8px;
+        height: 8px;
+
+      }
+
+
+      .content {
+
+        padding: 18px;
+
+      }
+
+
+      .pesquisa-area {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .btn-pesquisar {
+
+        width: 100%;
+
+      }
+
+
+      .resultado-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+      }
+
+
+      .info-grid {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+    }
+
+
+    @media (max-width: 450px) {
+
+      .header-subtitle {
+
+        display: none;
+
+      }
+
+
+      .panel {
+
+        padding: 16px;
+
+      }
+
+
+      .page-title h1 {
+
+        font-size: 16px;
+
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
+  <div
+    id="loading"
+    class="loading"
+  >
+
+    <div class="loading-box">
+
+      <div class="spinner"></div>
+
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+
+    <div class="logo-area">
+
+      <div class="logo-icon">
+        🚚
+      </div>
+
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
+
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+
+        <span class="menu-icon">
+          📊
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+
+        <span class="menu-icon">
+          📦
+        </span>
+
+        <span>
+          Envios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          🔎
+        </span>
+
+        <span>
+          Pesquisar NF
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+
+        <span class="menu-icon">
+          👥
+        </span>
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+
+        <span class="menu-icon">
+          🚛
+        </span>
+
+        <span>
+          Transportadoras
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+    </nav>
+
+
+    <!-- =================================================
+         USUÁRIO
+         ================================================= -->
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
+        </div>
+
+
+        <div
+          id="usuarioEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+
+        🚪 SAIR DO SISTEMA
+
+      </button>
+
+    </div>
+
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+      <div>
+
+        <div class="header-title">
+          Pesquisar NF
+        </div>
+
+        <div class="header-subtitle">
+          Consulte rapidamente os dados de uma nota fiscal
+        </div>
+
+      </div>
+
+
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+
+    <!-- =================================================
+         CONTEÚDO
+         ================================================= -->
+
+    <section class="content">
+
+
+      <!-- MENSAGEM -->
+
+      <div
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+
+      <!-- TÍTULO -->
+
+      <div class="page-title">
+
+        <h1>
+          🔎 PESQUISA DE NOTA FISCAL
+        </h1>
+
+        <p>
+          Informe a NF para consultar os dados completos do envio.
+        </p>
+
+      </div>
+
+
+      <!-- =================================================
+           PESQUISA
+           ================================================= -->
+
+      <div class="panel">
+
+        <div class="panel-title">
+          Consultar Nota Fiscal
+        </div>
+
+        <div class="panel-subtitle">
+          A pesquisa é feita diretamente no banco de dados do BiriLog.
+        </div>
+
+
+        <div class="pesquisa-area">
+
+          <div class="campo-pesquisa">
+
+            <span class="icone-pesquisa">
+              🔎
+            </span>
+
+            <input
+              type="text"
+              id="campoNF"
+              placeholder="DIGITE O NÚMERO DA NF"
+              autocomplete="off"
+              inputmode="numeric"
+            >
+
+          </div>
+
+
+          <button
+            type="button"
+            class="btn-pesquisar"
+            id="btnPesquisar"
+            onclick="pesquisarNF()"
+          >
+
+            🔎 PESQUISAR NF
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           RESULTADO
+           ================================================= -->
+
+      <div
+        id="resultado"
+        class="resultado"
+      >
+
+
+        <div class="panel">
+
+
+          <div class="resultado-header">
+
+            <div>
+
+              <div
+                id="resultadoTitulo"
+                class="resultado-titulo"
+              >
+                ENVIO ENCONTRADO
+              </div>
+
+              <div
+                id="resultadoNF"
+                class="resultado-nf"
+              >
+                NF -
+              </div>
+
+            </div>
+
+
+            <div
+              id="resultadoStatus"
+              class="status status-padrao"
+            >
+              SEM STATUS
+            </div>
+
+          </div>
+
+
+          <!-- INFORMAÇÕES -->
+
+          <div class="info-grid">
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Cliente
+              </div>
+
+              <div
+                id="infoCliente"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Cidade
+              </div>
+
+              <div
+                id="infoCidade"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                UF
+              </div>
+
+              <div
+                id="infoUF"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Transportadora
+              </div>
+
+              <div
+                id="infoTransportadora"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Valor da NF
+              </div>
+
+              <div
+                id="infoValor"
+                class="info-value"
+              >
+                R$ 0,00
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Volumes
+              </div>
+
+              <div
+                id="infoVolumes"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Peso
+              </div>
+
+              <div
+                id="infoPeso"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Data de Envio
+              </div>
+
+              <div
+                id="infoDataEnvio"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Previsão
+              </div>
+
+              <div
+                id="infoPrevisao"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Data de Entrega
+              </div>
+
+              <div
+                id="infoDataEntrega"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                Última Atualização
+              </div>
+
+              <div
+                id="infoAtualizacao"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="info-box">
+
+              <div class="info-label">
+                ID do Registro
+              </div>
+
+              <div
+                id="infoID"
+                class="info-value"
+              >
+                -
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- ALERTA -->
+
+          <div
+            id="alertaEntrega"
+            class="alerta-entrega"
+          ></div>
+
+
+          <!-- OBSERVAÇÃO -->
+
+          <div class="observacao-box">
+
+            <div class="observacao-label">
+              Observação
+            </div>
+
+            <div
+              id="infoObservacao"
+              class="observacao-texto"
+            >
+              -
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           SEM RESULTADO
+           ================================================= -->
+
+      <div
+        id="semResultado"
+        class="panel"
+      >
+
+        <div class="sem-resultado">
+
+          <div class="sem-resultado-icon">
+            🔎
+          </div>
+
+          <div class="sem-resultado-titulo">
+            CONSULTE UMA NOTA FISCAL
+          </div>
+
+          <div class="sem-resultado-texto">
+            Digite a NF acima para visualizar os dados do envio.
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       CONFIGURAÇÃO SUPABASE
+       ===================================================== */
+
+    const SUPABASE_URL =
+      "https://sjfwjwwkomrcalahqanw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================================
+       VARIÁVEIS
+       ===================================================== */
+
+    let usuarioAtual = null;
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+
+    async function iniciar() {
+
+      try {
+
+        mostrarLoading(
+          "VERIFICANDO SESSÃO..."
+        );
+
+
+        const resultado =
+          await supabaseClient.auth.getSession();
+
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+
+        const session =
+          resultado.data &&
+          resultado.data.session;
+
+
+        if (!session) {
+
+          window.location.replace(
+            "index.html"
+          );
+
+          return;
+
+        }
+
+
+        const authUser =
+          session.user;
+
+
+        /* ==============================================
+           VERIFICAR USUÁRIO BIRILOG
+           ============================================== */
+
+        const consulta =
+          await supabaseClient
+
+            .from("usuarios")
+
+            .select(
+              "id, nome, email, perfil, ativo"
+            )
+
+            .eq(
+              "auth_id",
+              authUser.id
+            )
+
+            .maybeSingle();
+
+
+        if (
+          consulta.error
+        ) {
+
+          throw consulta.error;
+
+        }
+
+
+        if (
+          !consulta.data
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          window.location.replace(
+            "index.html"
+          );
+
+          return;
+
+        }
+
+
+        if (
+          consulta.data.ativo === false
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          window.location.replace(
+            "index.html"
+          );
+
+          return;
+
+        }
+
+
+        usuarioAtual =
+          consulta.data;
+
+
+        preencherUsuario();
+
+
+        esconderLoading();
+
+
+      }
+
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao iniciar:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CARREGAR A PÁGINA DE PESQUISA.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    function preencherUsuario() {
+
+      if (!usuarioAtual) {
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "usuarioNome"
+      ).textContent =
+        String(
+          usuarioAtual.nome ||
+          usuarioAtual.email ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "usuarioEmail"
+      ).textContent =
+        usuarioAtual.email ||
+        "-";
+
+
+      document.getElementById(
+        "usuarioPerfil"
+      ).textContent =
+        String(
+          usuarioAtual.perfil ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
+
+    async function pesquisarNF() {
+
+      const campo =
+        document.getElementById(
+          "campoNF"
+        );
+
+
+      const botao =
+        document.getElementById(
+          "btnPesquisar"
+        );
+
+
+      const nf =
+        String(
+          campo.value || ""
+        ).trim();
+
+
+      esconderResultado();
+
+
+      limparMensagem();
+
+
+      if (!nf) {
+
+        mostrarMensagem(
+          "DIGITE O NÚMERO DA NF PARA PESQUISAR.",
+          "erro"
+        );
+
+
+        campo.focus();
+
+        return;
+
+      }
+
+
+      try {
+
+        botao.disabled =
+          true;
+
+
+        botao.textContent =
+          "🔄 PESQUISANDO...";
+
+
+        mostrarLoading(
+          "PESQUISANDO NF " +
+          nf +
+          "..."
+        );
+
+
+        /* ==============================================
+           PESQUISA EXATA
+           ============================================== */
+
+        let consulta =
+          await supabaseClient
+
+            .from("envios")
+
+            .select("*")
+
+            .eq(
+              "nf",
+              nf
+            )
+            
+            .limit(1);
+
+
+        if (
+          consulta.error
+        ) {
+
+          throw consulta.error;
+
+        }
+
+
+        let envio =
+          consulta.data &&
+          consulta.data.length
+            ? consulta.data[0]
+            : null;
+
+
+        /* ==============================================
+           SEGUNDA TENTATIVA
+           Caso a NF tenha sido salva como texto diferente.
+           ============================================== */
+
+        if (!envio) {
+
+          const todos =
+            await supabaseClient
+
+              .from("envios")
+
+              .select("*")
+              
+              .order(
+                "created_at",
+                {
+                  ascending: false
+                }
+              );
+
+
+          if (
+            todos.error
+          ) {
+
+            throw todos.error;
+
+          }
+
+
+          const lista =
+            todos.data || [];
+
+
+          envio =
+            lista.find(
+              function(item) {
+
+                return String(
+                  item.nf || ""
+                )
+                .trim()
+                .toUpperCase() ===
+                nf.toUpperCase();
+
+              }
+            );
+
+        }
+
+
+        esconderLoading();
+
+
+        botao.disabled =
+          false;
+
+
+        botao.textContent =
+          "🔎 PESQUISAR NF";
+
+
+        /* ==============================================
+           NÃO ENCONTRADO
+           ============================================== */
+
+        if (!envio) {
+
+          mostrarMensagem(
+            "NENHUM ENVIO ENCONTRADO PARA A NF " +
+            nf +
+            ".",
+            "erro"
+          );
+
+
+          mostrarSemResultado();
+
+          return;
+
+        }
+
+
+        /* ==============================================
+           MOSTRAR
+           ============================================== */
+
+        mostrarResultado(
+          envio
+        );
+
+      }
+
+
+      catch (erro) {
+
+        console.error(
+          "Erro na pesquisa:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        botao.disabled =
+          false;
+
+
+        botao.textContent =
+          "🔎 PESQUISAR NF";
+
+
+        mostrarMensagem(
+          obterMensagemErro(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MOSTRAR RESULTADO
+       ===================================================== */
+
+    function mostrarResultado(
+      envio
+    ) {
+
+      document
+        .getElementById(
+          "resultado"
+        )
+        .classList.add(
+          "aberto"
+        );
+
+
+      document.getElementById(
+        "semResultado"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "resultadoTitulo"
+      ).textContent =
+        "ENVIO ENCONTRADO";
+
+
+      document.getElementById(
+        "resultadoNF"
+      ).textContent =
+        "NF " +
+        String(
+          envio.nf ||
+          "-"
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "infoCliente"
+      ).textContent =
+        envio.cliente ||
+        "-";
+
+
+      document.getElementById(
+        "infoCidade"
+      ).textContent =
+        envio.cidade ||
+        "-";
+
+
+      document.getElementById(
+        "infoUF"
+      ).textContent =
+        envio.uf ||
+        "-";
+
+
+      document.getElementById(
+        "infoTransportadora"
+      ).textContent =
+        envio.transportadora ||
+        "-";
+
+
+      document.getElementById(
+        "infoValor"
+      ).textContent =
+        formatarValor(
+          envio.valor
+        );
+
+
+      document.getElementById(
+        "infoVolumes"
+      ).textContent =
+        envio.volumes ??
+        "-";
+
+
+      document.getElementById(
+        "infoPeso"
+      ).textContent =
+        envio.peso !== null &&
+        envio.peso !== undefined &&
+        envio.peso !== ""
+          ? Number(
+              envio.peso
+            ).toLocaleString(
+              "pt-BR",
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              }
+            ) +
+            " KG"
+          : "-";
+
+
+      document.getElementById(
+        "infoDataEnvio"
+      ).textContent =
+        formatarData(
+          envio.data_envio
+        );
+
+
+      document.getElementById(
+        "infoPrevisao"
+      ).textContent =
+        formatarData(
+          envio.previsao
+        );
+
+
+      document.getElementById(
+        "infoDataEntrega"
+      ).textContent =
+        formatarData(
+          envio.data_entrega
+        );
+
+
+      document.getElementById(
+        "infoAtualizacao"
+      ).textContent =
+        formatarDataHora(
+          envio.updated_at ||
+          envio.atualizacao ||
+          envio.created_at
+        );
+
+
+      document.getElementById(
+        "infoID"
+      ).textContent =
+        envio.id ||
+        "-";
+
+
+      document.getElementById(
+        "infoObservacao"
+      ).textContent =
+        envio.observacao ||
+        "SEM OBSERVAÇÃO.";
+
+
+      atualizarStatus(
+        envio.status
+      );
+
+
+      atualizarAlerta(
+        envio
+      );
+
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
+    function atualizarStatus(
+      status
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "resultadoStatus"
+        );
+
+
+      const texto =
+        normalizarStatus(
+          status
+        );
+
+
+      let classe =
+        "status-padrao";
+
+
+      let icone =
+        "📌";
+
+
+      if (
+        texto ===
+        "COLETADO"
+      ) {
+
+        classe =
+          "status-coletado";
+
+        icone =
+          "📦";
+
+      }
+
+      else if (
+        texto ===
+        "EM TRANSITO"
+      ) {
+
+        classe =
+          "status-transito";
+
+        icone =
+          "🚚";
+
+      }
+
+      else if (
+        texto ===
+        "ENTREGUE"
+      ) {
+
+        classe =
+          "status-entregue";
+
+        icone =
+          "✅";
+
+      }
+
+      else if (
+        texto ===
+        "ATRASADO"
+      ) {
+
+        classe =
+          "status-atrasado";
+
+        icone =
+          "⚠️";
+
+      }
+
+
+      elemento.className =
+        "status " +
+        classe;
+
+
+      elemento.textContent =
+        icone +
+        " " +
+        (
+          texto ||
+          "SEM STATUS"
+        );
+
+    }
+
+
+    function normalizarStatus(
+      valor
+    ) {
+
+      return String(
+        valor || ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       ALERTA DE ENTREGA
+       ===================================================== */
+
+    function atualizarAlerta(
+      envio
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "alertaEntrega"
+        );
+
+
+      elemento.className =
+        "alerta-entrega";
+
+
+      elemento.textContent =
+        "";
+
+
+      const status =
+        normalizarStatus(
+          envio.status
+        );
+
+
+      const dataEntrega =
+        envio.data_entrega;
+
+
+      const previsao =
+        envio.previsao;
+
+
+      /* ================================================
+         ENTREGUE
+         ================================================ */
+
+      if (
+        status === "ENTREGUE" ||
+        dataEntrega
+      ) {
+
+        elemento.classList.add(
+          "aberto",
+          "alerta-verde"
+        );
+
+
+        elemento.textContent =
+          "🟢 ENVIO ENTREGUE.";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         SEM PREVISÃO
+         ================================================ */
+
+      if (!previsao) {
+
+        elemento.classList.add(
+          "aberto",
+          "alerta-neutro"
+        );
+
+
+        elemento.textContent =
+          "⚪ ENVIO SEM PREVISÃO DE ENTREGA.";
+
+        return;
+
+      }
+
+
+      const data =
+        criarData(
+          previsao
+        );
+
+
+      if (!data) {
+
+        return;
+
+      }
+
+
+      const hoje =
+        new Date();
+
+
+      hoje.setHours(
+        0,
+        0,
+        0,
+        0
+      );
+
+
+      data.setHours(
+        0,
+        0,
+        0,
+        0
+      );
+
+
+      /* ================================================
+         HOJE
+         ================================================ */
+
+      if (
+        data.getTime() ===
+        hoje.getTime()
+      ) {
+
+        elemento.classList.add(
+          "aberto",
+          "alerta-amarelo"
+        );
+
+
+        elemento.textContent =
+          "🟡 PREVISÃO DE ENTREGA PARA HOJE.";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         ATRASADO
+         ================================================ */
+
+      if (
+        data.getTime() <
+        hoje.getTime()
+      ) {
+
+        elemento.classList.add(
+          "aberto",
+          "alerta-vermelho"
+        );
+
+
+        elemento.textContent =
+          "🔴 A PREVISÃO DE ENTREGA ESTÁ ATRASADA.";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         NO PRAZO
+         ================================================ */
+
+      elemento.classList.add(
+        "aberto",
+        "alerta-azul"
+      );
+
+
+      elemento.textContent =
+        "🔵 ENVIO DENTRO DO PRAZO PREVISTO.";
+
+    }
+
+
+    /* =====================================================
+       SEM RESULTADO
+       ===================================================== */
+
+    function mostrarSemResultado() {
+
+      document.getElementById(
+        "resultado"
+      ).classList.remove(
+        "aberto"
+      );
+
+
+      document.getElementById(
+        "semResultado"
+      ).style.display =
+        "block";
+
+    }
+
+
+    function esconderResultado() {
+
+      document.getElementById(
+        "resultado"
+      ).classList.remove(
+        "aberto"
+      );
+
+    }
+
+
+    /* =====================================================
+       DATAS
+       ===================================================== */
+
+    function criarData(
+      valor
+    ) {
+
+      if (!valor) {
+
+        return null;
+
+      }
+
+
+      const texto =
+        String(
+          valor
+        );
+
+
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
+      ) {
+
+        const partes =
+          texto.split(
+            "-"
+          );
+
+
+        return new Date(
+          Number(partes[0]),
+          Number(partes[1]) - 1,
+          Number(partes[2])
+        );
+
+      }
+
+
+      const data =
+        new Date(
+          valor
+        );
+
+
+      if (
+        isNaN(
+          data.getTime()
+        )
+      ) {
+
+        return null;
+
+      }
+
+
+      return data;
+
+    }
+
+
+    function formatarData(
+      valor
+    ) {
+
+      const data =
+        criarData(
+          valor
+        );
+
+
+      if (!data) {
+
+        return "-";
+
+      }
+
+
+      return String(
+        data.getDate()
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      String(
+        data.getMonth() + 1
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      data.getFullYear();
+
+    }
+
+
+    function formatarDataHora(
+      valor
+    ) {
+
+      const data =
+        criarData(
+          valor
+        );
+
+
+      if (!data) {
+
+        return "-";
+
+      }
+
+
+      return String(
+        data.getDate()
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      String(
+        data.getMonth() + 1
+      ).padStart(
+        2,
+        "0"
+      ) +
+      "/" +
+      data.getFullYear() +
+      " " +
+      String(
+        data.getHours()
+      ).padStart(
+        2,
+        "0"
+      ) +
+      ":" +
+      String(
+        data.getMinutes()
+      ).padStart(
+        2,
+        "0"
+      );
+
+    }
+
+
+    /* =====================================================
+       VALOR
+       ===================================================== */
+
+    function formatarValor(
+      valor
+    ) {
+
+      const numero =
+        Number(
+          valor || 0
+        );
+
+
+      return numero.toLocaleString(
+        "pt-BR",
+        {
+          style: "currency",
+          currency: "BRL"
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
+
+      elemento.textContent =
+        texto;
+
+
+      elemento.className =
+        "mensagem " +
+        tipo;
+
+
+      elemento.style.display =
+        "block";
+
+
+      clearTimeout(
+        window.timerMensagem
+      );
+
+
+      window.timerMensagem =
+        setTimeout(
+          function() {
+
+            elemento.style.display =
+              "none";
+
+          },
+          5000
+        );
+
+    }
+
+
+    function limparMensagem() {
+
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
+
+      elemento.textContent =
+        "";
+
+
+      elemento.className =
+        "mensagem";
+
+
+      elemento.style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    function mostrarLoading(
+      texto
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "loading"
+        );
+
+
+      const textoElemento =
+        document.getElementById(
+          "loadingText"
+        );
+
+
+      if (textoElemento) {
+
+        textoElemento.textContent =
+          texto ||
+          "CARREGANDO...";
+
+      }
+
+
+      elemento.style.display =
+        "flex";
+
+    }
+
+
+    function esconderLoading() {
+
+      const elemento =
+        document.getElementById(
+          "loading"
+        );
+
+
+      elemento.style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        await supabaseClient.auth.signOut();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       ENTER NA PESQUISA
+       ===================================================== */
+
+    document
+      .getElementById(
+        "campoNF"
+      )
+      .addEventListener(
+        "keydown",
+        function(evento) {
+
+          if (
+            evento.key ===
+            "Enter"
+          ) {
+
+            evento.preventDefault();
+
+            pesquisarNF();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       LIMPAR PESQUISA AO DIGITAR
+       ===================================================== */
+
+    document
+      .getElementById(
+        "campoNF"
+      )
+      .addEventListener(
+        "input",
+        function() {
+
+          esconderResultado();
+
+          limparMensagem();
+
+        }
+      );
+
+
+    /* =====================================================
+       MONITORAR SESSÃO
+       ===================================================== */
+
+    supabaseClient.auth.onAuthStateChange(
+      function(
+        evento,
+        session
+      ) {
+
+        if (
+          evento ===
+          "SIGNED_OUT"
+        ) {
+
+          window.location.replace(
+            "index.html"
+          );
+
+        }
+
+      }
+    );
+
+
+  </script>
+
+
+</body>
+
+</html>
