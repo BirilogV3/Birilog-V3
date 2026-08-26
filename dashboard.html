@@ -1194,7 +1194,8 @@
 
       .user-area {
 
-        padding: 10px 8px;
+        padding:
+          10px 8px;
 
       }
 
@@ -1203,7 +1204,8 @@
 
         font-size: 0;
 
-        padding: 12px 5px;
+        padding:
+          12px 5px;
 
         min-height: 42px;
 
@@ -1476,7 +1478,7 @@
         <button
           type="button"
           class="menu-item active"
-          onclick="selecionarMenu(this)"
+          onclick="irPara('dashboard.html')"
         >
 
           <span class="menu-icon">
@@ -1495,7 +1497,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="selecionarMenu(this)"
+          onclick="irPara('envios.html')"
         >
 
           <span class="menu-icon">
@@ -1514,7 +1516,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="selecionarMenu(this)"
+          onclick="irParaPesquisarNF()"
         >
 
           <span class="menu-icon">
@@ -1533,7 +1535,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="selecionarMenu(this)"
+          onclick="irPara('clientes.html')"
         >
 
           <span class="menu-icon">
@@ -1552,7 +1554,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="selecionarMenu(this)"
+          onclick="irPara('transportadoras.html')"
         >
 
           <span class="menu-icon">
@@ -1571,7 +1573,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="selecionarMenu(this)"
+          onclick="irPara('relatorios.html')"
         >
 
           <span class="menu-icon">
@@ -1584,12 +1586,49 @@
 
         </button>
 
+
+        <!-- USUÁRIOS -->
+
+        <button
+          type="button"
+          class="menu-item"
+          onclick="irPara('usuarios.html')"
+        >
+
+          <span class="menu-icon">
+            🔐
+          </span>
+
+          <span>
+            Usuários
+          </span>
+
+        </button>
+
+
+        <!-- CONFIGURAÇÕES -->
+
+        <button
+          type="button"
+          class="menu-item"
+          onclick="irPara('configuracoes.html')"
+        >
+
+          <span class="menu-icon">
+            ⚙️
+          </span>
+
+          <span>
+            Configurações
+          </span>
+
+        </button>
+
+
       </nav>
 
 
-      <!-- =================================================
-           USUÁRIO
-           ================================================= -->
+      <!-- USUÁRIO -->
 
       <div class="user-area">
 
@@ -1914,9 +1953,12 @@
                       style="
                         text-align:center;
                         color:#94a3b8;
+                        padding:25px;
                       "
                     >
+
                       CARREGANDO...
+
                     </td>
 
                   </tr>
@@ -2121,12 +2163,15 @@
 
 
     /* =====================================================
-       USUÁRIO
+       VARIÁVEIS
        ===================================================== */
 
-    let usuarioAtual = null;
+    let usuarioAtual =
+      null;
 
-    let iniciandoDashboard = false;
+
+    let iniciandoDashboard =
+      false;
 
 
     /* =====================================================
@@ -2141,11 +2186,17 @@
 
     async function iniciarDashboard() {
 
-      if (iniciandoDashboard) {
+      if (
+        iniciandoDashboard
+      ) {
+
         return;
+
       }
 
-      iniciandoDashboard = true;
+
+      iniciandoDashboard =
+        true;
 
 
       try {
@@ -2154,8 +2205,12 @@
           await supabaseClient.auth.getSession();
 
 
-        if (resultado.error) {
+        if (
+          resultado.error
+        ) {
+
           throw resultado.error;
+
         }
 
 
@@ -2164,9 +2219,9 @@
           resultado.data.session;
 
 
-        /* ================================================
+        /* =================================================
            NÃO AUTENTICADO
-           ================================================ */
+           ================================================= */
 
         if (!session) {
 
@@ -2181,9 +2236,9 @@
           session.user;
 
 
-        /* ================================================
+        /* =================================================
            BUSCAR USUÁRIO
-           ================================================ */
+           ================================================= */
 
         const consulta =
           await supabaseClient
@@ -2202,12 +2257,18 @@
             .maybeSingle();
 
 
-        if (consulta.error) {
+        if (
+          consulta.error
+        ) {
+
           throw consulta.error;
+
         }
 
 
-        if (!consulta.data) {
+        if (
+          !consulta.data
+        ) {
 
           await supabaseClient.auth.signOut();
 
@@ -2231,9 +2292,9 @@
         }
 
 
-        /* ================================================
+        /* =================================================
            USUÁRIO OK
-           ================================================ */
+           ================================================= */
 
         usuarioAtual =
           consulta.data;
@@ -2241,7 +2302,9 @@
 
         preencherUsuario();
 
+
         esconderLoading();
+
 
         await carregarDashboard();
 
@@ -2266,7 +2329,9 @@
 
         setTimeout(
           function() {
+
             redirecionarLogin();
+
           },
           1500
         );
@@ -2276,7 +2341,8 @@
 
       finally {
 
-        iniciandoDashboard = false;
+        iniciandoDashboard =
+          false;
 
       }
 
@@ -2292,6 +2358,40 @@
       window.location.replace(
         "index.html"
       );
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO ENTRE MÓDULOS
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      if (!pagina) {
+
+        return;
+
+      }
+
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
+
+    function irParaPesquisarNF() {
+
+      window.location.href =
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
 
     }
 
@@ -2339,7 +2439,9 @@
     function preencherUsuario() {
 
       if (!usuarioAtual) {
+
         return;
+
       }
 
 
@@ -2386,7 +2488,9 @@
       if (elementoNome) {
 
         elementoNome.textContent =
-          String(nome).toUpperCase();
+          String(
+            nome
+          ).toUpperCase();
 
       }
 
@@ -2402,7 +2506,9 @@
       if (elementoPerfil) {
 
         elementoPerfil.textContent =
-          String(perfil).toUpperCase();
+          String(
+            perfil
+          ).toUpperCase();
 
       }
 
@@ -2411,7 +2517,9 @@
 
         elementoBoasVindas.textContent =
           "BEM-VINDO, " +
-          String(nome).toUpperCase();
+          String(
+            nome
+          ).toUpperCase();
 
       }
 
@@ -2441,10 +2549,12 @@
             );
 
 
-        if (resultado.error) {
+        if (
+          resultado.error
+        ) {
 
           console.warn(
-            "Não foi possível carregar a tabela envios:",
+            "Não foi possível carregar envios:",
             resultado.error
           );
 
@@ -2454,11 +2564,20 @@
           );
 
 
-          atualizarCards([]);
+          atualizarCards(
+            []
+          );
 
-          atualizarTabela([]);
 
-          atualizarResumo([]);
+          atualizarTabela(
+            []
+          );
+
+
+          atualizarResumo(
+            []
+          );
+
 
           return;
 
@@ -2494,11 +2613,19 @@
         );
 
 
-        atualizarCards([]);
+        atualizarCards(
+          []
+        );
 
-        atualizarTabela([]);
 
-        atualizarResumo([]);
+        atualizarTabela(
+          []
+        );
+
+
+        atualizarResumo(
+          []
+        );
 
       }
 
@@ -2509,7 +2636,9 @@
        CARDS
        ===================================================== */
 
-    function atualizarCards(envios) {
+    function atualizarCards(
+      envios
+    ) {
 
       const total =
         envios.length;
@@ -2608,7 +2737,8 @@
 
           return normalizarStatus(
             envio.status
-          ) === status;
+          ) ===
+          status;
 
         }
       ).length;
@@ -2621,7 +2751,8 @@
     ) {
 
       return String(
-        status || ""
+        status ||
+        ""
       )
         .normalize("NFD")
         .replace(
@@ -2649,7 +2780,9 @@
 
 
       if (!tabela) {
+
         return;
+
       }
 
 
@@ -2713,6 +2846,7 @@
 
               }
 
+
               else if (
                 status ===
                 "EM TRANSITO"
@@ -2723,6 +2857,7 @@
 
               }
 
+
               else if (
                 status ===
                 "ATRASADO"
@@ -2732,6 +2867,7 @@
                   "status-atrasado";
 
               }
+
 
               else if (
                 status ===
@@ -2753,7 +2889,8 @@
                     <strong>
 
                       ${escapeHTML(
-                        envio.nf || "-"
+                        envio.nf ||
+                        "-"
                       )}
 
                     </strong>
@@ -2764,7 +2901,8 @@
                   <td>
 
                     ${escapeHTML(
-                      envio.cliente || "-"
+                      envio.cliente ||
+                      "-"
                     )}
 
                   </td>
@@ -2773,7 +2911,8 @@
                   <td>
 
                     ${escapeHTML(
-                      envio.transportadora || "-"
+                      envio.transportadora ||
+                      "-"
                     )}
 
                   </td>
@@ -2920,7 +3059,9 @@
     ) {
 
       if (!total) {
+
         return 0;
+
       }
 
 
@@ -2974,231 +3115,6 @@
 
 
     /* =====================================================
-       MENU - NAVEGAÇÃO V3
-       ===================================================== */
-
-    function selecionarMenu(
-      elemento
-    ) {
-
-      if (!elemento) {
-        return;
-      }
-
-
-      document
-        .querySelectorAll(
-          ".menu-item"
-        )
-        .forEach(
-          function(item) {
-
-            item.classList.remove(
-              "active"
-            );
-
-          }
-        );
-
-
-      elemento.classList.add(
-        "active"
-      );
-
-
-      const texto =
-        elemento.querySelector(
-          "span:not(.menu-icon)"
-        );
-
-
-      if (!texto) {
-        return;
-      }
-
-
-      const nome =
-        texto.textContent.trim();
-
-
-      /* ================================================
-         DASHBOARD
-         ================================================ */
-
-      if (
-        nome ===
-        "Dashboard"
-      ) {
-
-        window.location.href =
-          "dashboard.html";
-
-        return;
-
-      }
-
-
-      /* ================================================
-         ENVIOS
-         ================================================ */
-
-      if (
-        nome ===
-        "Envios"
-      ) {
-
-        window.location.href =
-          "envios.html";
-
-        return;
-
-      }
-
-
-      /* ================================================
-         PESQUISAR NF
-         ================================================ */
-
-      if (
-        nome ===
-        "Pesquisar NF"
-      ) {
-
-        window.location.href =
-          "pesquisar-nf.html";
-
-        return;
-
-      }
-
-
-      /* ================================================
-         CLIENTES
-         ================================================ */
-
-      if (
-        nome ===
-        "Clientes"
-      ) {
-
-        window.location.href =
-          "clientes.html";
-
-        return;
-
-      }
-
-
-      /* ================================================
-         TRANSPORTADORAS
-         ================================================ */
-
-      if (
-        nome ===
-        "Transportadoras"
-      ) {
-
-        window.location.href =
-          "transportadoras.html";
-
-        return;
-
-      }
-
-
-      /* ================================================
-         RELATÓRIOS
-         ================================================ */
-
-      if (
-        nome ===
-        "Relatórios"
-      ) {
-
-        window.location.href =
-          "relatorios.html";
-
-        return;
-
-      }
-
-    }
-
-
-    /* =====================================================
-       SAIR DO SISTEMA
-       ===================================================== */
-
-    async function sair() {
-
-      const botao =
-        document.getElementById(
-          "botaoSair"
-        );
-
-
-      const confirmar =
-        window.confirm(
-          "DESEJA REALMENTE SAIR DO BIRILOG?"
-        );
-
-
-      if (!confirmar) {
-        return;
-      }
-
-
-      if (botao) {
-
-        botao.disabled =
-          true;
-
-        botao.textContent =
-          "SAINDO...";
-
-      }
-
-
-      try {
-
-        const resultado =
-          await supabaseClient.auth.signOut();
-
-
-        if (resultado.error) {
-
-          console.error(
-            "Erro ao sair:",
-            resultado.error
-          );
-
-        }
-
-      }
-
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao sair:",
-          erro
-        );
-
-      }
-
-
-      /* ================================================
-         SEMPRE VOLTA PARA O LOGIN
-         ================================================ */
-
-      window.location.replace(
-        "index.html"
-      );
-
-    }
-
-
-    /* =====================================================
        MENSAGEM
        ===================================================== */
 
@@ -3213,7 +3129,9 @@
 
 
       if (!elemento) {
+
         return;
+
       }
 
 
@@ -3232,7 +3150,7 @@
 
 
     /* =====================================================
-       ESCAPAR HTML
+       SEGURANÇA HTML
        ===================================================== */
 
     function escapeHTML(
@@ -3240,7 +3158,8 @@
     ) {
 
       return String(
-        valor || ""
+        valor ??
+        ""
       )
         .replace(
           /&/g,
@@ -3267,17 +3186,89 @@
 
 
     /* =====================================================
+       SAIR DO SISTEMA
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        const resultado =
+          await supabaseClient.auth.signOut();
+
+
+        if (
+          resultado.error
+        ) {
+
+          console.error(
+            "Erro ao sair:",
+            resultado.error
+          );
+
+        }
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
        MONITORAR SESSÃO
        ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
       function(
-        event,
+        evento,
         session
       ) {
 
         if (
-          event ===
+          evento ===
           "SIGNED_OUT"
         ) {
 
@@ -3291,7 +3282,7 @@
 
 
         if (
-          event ===
+          evento ===
           "TOKEN_REFRESHED" &&
           !session
         ) {
