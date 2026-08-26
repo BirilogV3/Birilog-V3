@@ -12,7 +12,13 @@
 
   <title>BiriLog V3 - Dashboard</title>
 
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
 
@@ -22,10 +28,12 @@
       padding: 0;
     }
 
+
     html,
     body {
       min-height: 100%;
     }
+
 
     body {
 
@@ -42,6 +50,7 @@
 
     }
 
+
     /* =====================================================
        APP
        ===================================================== */
@@ -55,6 +64,7 @@
       width: 100%;
 
     }
+
 
     /* =====================================================
        SIDEBAR
@@ -95,6 +105,7 @@
 
     }
 
+
     /* =====================================================
        LOGO
        ===================================================== */
@@ -112,6 +123,7 @@
       flex-shrink: 0;
 
     }
+
 
     .logo-icon {
 
@@ -143,6 +155,7 @@
 
     }
 
+
     .logo-title {
 
       font-size: 22px;
@@ -151,11 +164,13 @@
 
     }
 
+
     .logo-title span {
 
       color: #60a5fa;
 
     }
+
 
     .logo-version {
 
@@ -168,6 +183,7 @@
       letter-spacing: 1px;
 
     }
+
 
     /* =====================================================
        MENU
@@ -185,6 +201,7 @@
 
     }
 
+
     .menu-title {
 
       padding:
@@ -199,6 +216,7 @@
       letter-spacing: 1px;
 
     }
+
 
     .menu-item {
 
@@ -232,6 +250,7 @@
 
     }
 
+
     .menu-item:hover {
 
       background:
@@ -240,6 +259,7 @@
       color: white;
 
     }
+
 
     .menu-item.active {
 
@@ -258,6 +278,7 @@
 
     }
 
+
     .menu-icon {
 
       width: 22px;
@@ -269,6 +290,7 @@
       flex-shrink: 0;
 
     }
+
 
     /* =====================================================
        USUÁRIO
@@ -289,6 +311,7 @@
 
     }
 
+
     .user-card {
 
       background:
@@ -299,6 +322,7 @@
       padding: 12px;
 
     }
+
 
     .user-name {
 
@@ -316,6 +340,7 @@
 
     }
 
+
     .user-email {
 
       margin-top: 3px;
@@ -332,6 +357,7 @@
 
     }
 
+
     .user-profile {
 
       margin-top: 6px;
@@ -345,6 +371,7 @@
       font-weight: 700;
 
     }
+
 
     /* =====================================================
        BOTÃO SAIR
@@ -390,6 +417,7 @@
 
     }
 
+
     .logout:hover {
 
       background: #dc2626;
@@ -400,11 +428,13 @@
 
     }
 
+
     .logout:active {
 
       transform: scale(0.98);
 
     }
+
 
     .logout:disabled {
 
@@ -413,6 +443,7 @@
       cursor: wait;
 
     }
+
 
     /* =====================================================
        CONTEÚDO
@@ -428,6 +459,7 @@
       min-height: 100vh;
 
     }
+
 
     /* =====================================================
        HEADER
@@ -459,6 +491,7 @@
 
     }
 
+
     .header-title {
 
       font-size: 20px;
@@ -469,6 +502,7 @@
 
     }
 
+
     .header-subtitle {
 
       margin-top: 3px;
@@ -478,6 +512,7 @@
       color: #64748b;
 
     }
+
 
     .status-online {
 
@@ -502,6 +537,7 @@
 
     }
 
+
     .status-dot {
 
       width: 7px;
@@ -514,6 +550,7 @@
 
     }
 
+
     /* =====================================================
        CONTEÚDO PRINCIPAL
        ===================================================== */
@@ -524,11 +561,17 @@
 
     }
 
+
+    /* =====================================================
+       BOAS-VINDAS
+       ===================================================== */
+
     .welcome {
 
       margin-bottom: 22px;
 
     }
+
 
     .welcome-title {
 
@@ -540,6 +583,7 @@
 
     }
 
+
     .welcome-subtitle {
 
       margin-top: 4px;
@@ -549,6 +593,7 @@
       color: #64748b;
 
     }
+
 
     /* =====================================================
        CARDS
@@ -566,6 +611,7 @@
       margin-bottom: 25px;
 
     }
+
 
     .card {
 
@@ -586,6 +632,7 @@
 
     }
 
+
     .card:hover {
 
       transform:
@@ -597,6 +644,7 @@
 
     }
 
+
     .card-top {
 
       display: flex;
@@ -606,6 +654,7 @@
       justify-content: space-between;
 
     }
+
 
     .card-label {
 
@@ -620,6 +669,7 @@
       letter-spacing: .3px;
 
     }
+
 
     .card-icon {
 
@@ -640,6 +690,7 @@
 
     }
 
+
     .card-value {
 
       margin-top: 12px;
@@ -652,6 +703,7 @@
 
     }
 
+
     .card-info {
 
       margin-top: 5px;
@@ -661,6 +713,7 @@
       color: #94a3b8;
 
     }
+
 
     /* =====================================================
        PAINÉIS
@@ -676,6 +729,7 @@
       gap: 20px;
 
     }
+
 
     .panel {
 
@@ -694,6 +748,7 @@
 
     }
 
+
     .panel-header {
 
       display: flex;
@@ -706,6 +761,7 @@
 
     }
 
+
     .panel-title {
 
       font-size: 14px;
@@ -715,6 +771,7 @@
       color: #0f172a;
 
     }
+
 
     .panel-subtitle {
 
@@ -726,6 +783,7 @@
 
     }
 
+
     /* =====================================================
        TABELA
        ===================================================== */
@@ -736,6 +794,7 @@
 
     }
 
+
     table {
 
       width: 100%;
@@ -743,6 +802,7 @@
       border-collapse: collapse;
 
     }
+
 
     th {
 
@@ -764,6 +824,7 @@
 
     }
 
+
     td {
 
       padding:
@@ -778,11 +839,13 @@
 
     }
 
+
     tr:last-child td {
 
       border-bottom: none;
 
     }
+
 
     .status {
 
@@ -803,6 +866,7 @@
 
     }
 
+
     .status-entregue {
 
       background: #dcfce7;
@@ -810,6 +874,7 @@
       color: #166534;
 
     }
+
 
     .status-transito {
 
@@ -819,6 +884,7 @@
 
     }
 
+
     .status-atrasado {
 
       background: #fee2e2;
@@ -826,6 +892,7 @@
       color: #b91c1c;
 
     }
+
 
     .status-coletado {
 
@@ -835,6 +902,7 @@
 
     }
 
+
     .status-padrao {
 
       background: #f1f5f9;
@@ -842,6 +910,7 @@
       color: #475569;
 
     }
+
 
     /* =====================================================
        RESUMO
@@ -853,11 +922,13 @@
 
     }
 
+
     .resumo-item:last-child {
 
       margin-bottom: 0;
 
     }
+
 
     .resumo-top {
 
@@ -869,6 +940,7 @@
 
     }
 
+
     .resumo-label {
 
       font-size: 11px;
@@ -879,6 +951,7 @@
 
     }
 
+
     .resumo-value {
 
       font-size: 11px;
@@ -888,6 +961,7 @@
       color: #0f172a;
 
     }
+
 
     .barra {
 
@@ -902,6 +976,7 @@
       overflow: hidden;
 
     }
+
 
     .barra span {
 
@@ -922,6 +997,7 @@
         width 0.5s ease;
 
     }
+
 
     /* =====================================================
        MENSAGEM
@@ -945,6 +1021,7 @@
 
     }
 
+
     .mensagem-dashboard.erro {
 
       display: block;
@@ -957,6 +1034,7 @@
         1px solid #fecaca;
 
     }
+
 
     /* =====================================================
        LOADING
@@ -981,6 +1059,7 @@
 
     }
 
+
     .loading-box {
 
       text-align: center;
@@ -992,6 +1071,7 @@
       font-weight: 600;
 
     }
+
 
     .spinner {
 
@@ -1015,6 +1095,7 @@
 
     }
 
+
     @keyframes girar {
 
       to {
@@ -1026,8 +1107,9 @@
 
     }
 
+
     /* =====================================================
-       RESPONSIVO
+       RESPONSIVO - TABLET
        ===================================================== */
 
     @media (max-width: 1100px) {
@@ -1039,6 +1121,7 @@
 
       }
 
+
       .grid {
 
         grid-template-columns:
@@ -1048,6 +1131,11 @@
 
     }
 
+
+    /* =====================================================
+       RESPONSIVO - CELULAR
+       ===================================================== */
+
     @media (max-width: 700px) {
 
       .sidebar {
@@ -1055,6 +1143,7 @@
         width: 70px;
 
       }
+
 
       .logo-title,
       .logo-version,
@@ -1066,12 +1155,14 @@
 
       }
 
+
       .logo-area {
 
         padding:
           18px 8px;
 
       }
+
 
       .logo-icon {
 
@@ -1082,12 +1173,14 @@
 
       }
 
+
       .menu {
 
         padding:
           15px 8px;
 
       }
+
 
       .menu-item {
 
@@ -1098,11 +1191,13 @@
 
       }
 
+
       .user-area {
 
         padding: 10px 8px;
 
       }
+
 
       .logout {
 
@@ -1114,6 +1209,7 @@
 
       }
 
+
       .logout::before {
 
         content: "🚪";
@@ -1121,6 +1217,7 @@
         font-size: 17px;
 
       }
+
 
       .main {
 
@@ -1131,6 +1228,7 @@
 
       }
 
+
       .header {
 
         padding:
@@ -1138,11 +1236,13 @@
 
       }
 
+
       .header-title {
 
         font-size: 17px;
 
       }
+
 
       .status-online {
 
@@ -1152,6 +1252,7 @@
 
       }
 
+
       .status-dot {
 
         width: 8px;
@@ -1159,11 +1260,13 @@
 
       }
 
+
       .content {
 
         padding: 18px;
 
       }
+
 
       .cards {
 
@@ -1174,6 +1277,11 @@
 
     }
 
+
+    /* =====================================================
+       RESPONSIVO - CELULAR PEQUENO
+       ===================================================== */
+
     @media (max-width: 450px) {
 
       .header-subtitle {
@@ -1182,11 +1290,13 @@
 
       }
 
+
       .welcome-title {
 
         font-size: 15px;
 
       }
+
 
       .panel {
 
@@ -1196,6 +1306,11 @@
 
     }
 
+
+    /* =====================================================
+       TELAS MUITO BAIXAS
+       ===================================================== */
+
     @media (max-height: 600px) {
 
       .logo-area {
@@ -1204,6 +1319,7 @@
           12px 15px;
 
       }
+
 
       .logo-icon {
 
@@ -1216,12 +1332,14 @@
 
       }
 
+
       .menu {
 
         padding:
           10px 12px;
 
       }
+
 
       .menu-item {
 
@@ -1232,6 +1350,7 @@
 
       }
 
+
       .user-area {
 
         padding:
@@ -1239,12 +1358,14 @@
 
       }
 
+
       .user-card {
 
         padding:
           8px;
 
       }
+
 
       .logout {
 
@@ -1258,6 +1379,11 @@
       }
 
     }
+
+
+    /* =====================================================
+       GARANTIA DO BOTÃO SAIR
+       ===================================================== */
 
     #botaoSair {
 
@@ -1278,7 +1404,7 @@
 
 
   <!-- =====================================================
-       LOADING
+       TELA DE CARREGAMENTO
        ===================================================== -->
 
   <div
@@ -1300,7 +1426,7 @@
 
 
   <!-- =====================================================
-       APP
+       APLICAÇÃO
        ===================================================== -->
 
   <div
@@ -1316,6 +1442,8 @@
 
     <aside class="sidebar">
 
+
+      <!-- LOGO -->
 
       <div class="logo-area">
 
@@ -1334,6 +1462,8 @@
       </div>
 
 
+      <!-- MENU -->
+
       <nav class="menu">
 
         <div class="menu-title">
@@ -1346,7 +1476,7 @@
         <button
           type="button"
           class="menu-item active"
-          onclick="abrirPagina('dashboard.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1365,7 +1495,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="abrirPagina('envios.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1384,7 +1514,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="abrirPagina('pesquisar-nf.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1403,7 +1533,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="abrirPagina('clientes.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1422,7 +1552,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="abrirPagina('transportadoras.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1441,7 +1571,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="abrirPagina('relatorios.html', this)"
+          onclick="selecionarMenu(this)"
         >
 
           <span class="menu-icon">
@@ -1453,7 +1583,6 @@
           </span>
 
         </button>
-
 
       </nav>
 
@@ -1473,12 +1602,14 @@
             USUÁRIO
           </div>
 
+
           <div
             id="usuarioEmail"
             class="user-email"
           >
             -
           </div>
+
 
           <div
             id="usuarioPerfil"
@@ -1489,6 +1620,8 @@
 
         </div>
 
+
+        <!-- BOTÃO SAIR -->
 
         <button
           type="button"
@@ -1513,6 +1646,8 @@
 
     <main class="main">
 
+
+      <!-- HEADER -->
 
       <header class="header">
 
@@ -1540,14 +1675,22 @@
       </header>
 
 
+      <!-- =================================================
+           CONTEÚDO PRINCIPAL
+           ================================================= -->
+
       <section class="content">
 
+
+        <!-- MENSAGEM -->
 
         <div
           id="mensagemDashboard"
           class="mensagem-dashboard"
         ></div>
 
+
+        <!-- BOAS-VINDAS -->
 
         <div class="welcome">
 
@@ -1572,6 +1715,8 @@
         <div class="cards">
 
 
+          <!-- TOTAL -->
+
           <div class="card">
 
             <div class="card-top">
@@ -1586,6 +1731,7 @@
 
             </div>
 
+
             <div
               id="totalEnvios"
               class="card-value"
@@ -1593,12 +1739,15 @@
               0
             </div>
 
+
             <div class="card-info">
               Envios cadastrados
             </div>
 
           </div>
 
+
+          <!-- TRÂNSITO -->
 
           <div class="card">
 
@@ -1614,6 +1763,7 @@
 
             </div>
 
+
             <div
               id="emTransito"
               class="card-value"
@@ -1621,12 +1771,15 @@
               0
             </div>
 
+
             <div class="card-info">
               Envios em transporte
             </div>
 
           </div>
 
+
+          <!-- ENTREGUES -->
 
           <div class="card">
 
@@ -1642,6 +1795,7 @@
 
             </div>
 
+
             <div
               id="entregues"
               class="card-value"
@@ -1649,12 +1803,15 @@
               0
             </div>
 
+
             <div class="card-info">
               Entregas realizadas
             </div>
 
           </div>
 
+
+          <!-- ATRASADOS -->
 
           <div class="card">
 
@@ -1670,12 +1827,14 @@
 
             </div>
 
+
             <div
               id="atrasados"
               class="card-value"
             >
               0
             </div>
+
 
             <div class="card-info">
               Necessitam atenção
@@ -1723,20 +1882,30 @@
 
                   <tr>
 
-                    <th>NF</th>
+                    <th>
+                      NF
+                    </th>
 
-                    <th>CLIENTE</th>
+                    <th>
+                      CLIENTE
+                    </th>
 
-                    <th>TRANSPORTADORA</th>
+                    <th>
+                      TRANSPORTADORA
+                    </th>
 
-                    <th>STATUS</th>
+                    <th>
+                      STATUS
+                    </th>
 
                   </tr>
 
                 </thead>
 
 
-                <tbody id="tabelaEnvios">
+                <tbody
+                  id="tabelaEnvios"
+                >
 
                   <tr>
 
@@ -1747,9 +1916,7 @@
                         color:#94a3b8;
                       "
                     >
-
                       CARREGANDO...
-
                     </td>
 
                   </tr>
@@ -1784,6 +1951,8 @@
             </div>
 
 
+            <!-- ENTREGUES -->
+
             <div class="resumo-item">
 
               <div class="resumo-top">
@@ -1801,6 +1970,7 @@
 
               </div>
 
+
               <div class="barra">
 
                 <span
@@ -1812,6 +1982,8 @@
 
             </div>
 
+
+            <!-- TRÂNSITO -->
 
             <div class="resumo-item">
 
@@ -1830,6 +2002,7 @@
 
               </div>
 
+
               <div class="barra">
 
                 <span
@@ -1841,6 +2014,8 @@
 
             </div>
 
+
+            <!-- ATRASADOS -->
 
             <div class="resumo-item">
 
@@ -1859,6 +2034,7 @@
 
               </div>
 
+
               <div class="barra">
 
                 <span
@@ -1870,6 +2046,8 @@
 
             </div>
 
+
+            <!-- COLETADOS -->
 
             <div class="resumo-item">
 
@@ -1887,6 +2065,7 @@
                 </span>
 
               </div>
+
 
               <div class="barra">
 
@@ -1921,15 +2100,18 @@
 
   <script>
 
+
     /* =====================================================
-       SUPABASE
+       CONFIGURAÇÃO SUPABASE
        ===================================================== */
 
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
 
+
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
+
 
     const supabaseClient =
       window.supabase.createClient(
@@ -1960,12 +2142,11 @@
     async function iniciarDashboard() {
 
       if (iniciandoDashboard) {
-
         return;
-
       }
 
       iniciandoDashboard = true;
+
 
       try {
 
@@ -1974,9 +2155,7 @@
 
 
         if (resultado.error) {
-
           throw resultado.error;
-
         }
 
 
@@ -1984,6 +2163,10 @@
           resultado.data &&
           resultado.data.session;
 
+
+        /* ================================================
+           NÃO AUTENTICADO
+           ================================================ */
 
         if (!session) {
 
@@ -1997,6 +2180,10 @@
         const usuario =
           session.user;
 
+
+        /* ================================================
+           BUSCAR USUÁRIO
+           ================================================ */
 
         const consulta =
           await supabaseClient
@@ -2016,9 +2203,7 @@
 
 
         if (consulta.error) {
-
           throw consulta.error;
-
         }
 
 
@@ -2046,6 +2231,10 @@
         }
 
 
+        /* ================================================
+           USUÁRIO OK
+           ================================================ */
+
         usuarioAtual =
           consulta.data;
 
@@ -2058,6 +2247,7 @@
 
       }
 
+
       catch (erro) {
 
         console.error(
@@ -2065,22 +2255,24 @@
           erro
         );
 
+
         esconderLoading();
+
 
         mostrarErro(
           "NÃO FOI POSSÍVEL CARREGAR O DASHBOARD."
         );
 
+
         setTimeout(
           function() {
-
             redirecionarLogin();
-
           },
           1500
         );
 
       }
+
 
       finally {
 
@@ -2092,56 +2284,7 @@
 
 
     /* =====================================================
-       NAVEGAÇÃO
-       ===================================================== */
-
-    function abrirPagina(
-      pagina,
-      elemento
-    ) {
-
-      if (!pagina) {
-
-        return;
-
-      }
-
-
-      if (pagina === "dashboard.html") {
-
-        if (elemento) {
-
-          document
-            .querySelectorAll(".menu-item")
-            .forEach(
-              function(item) {
-
-                item.classList.remove(
-                  "active"
-                );
-
-              }
-            );
-
-          elemento.classList.add(
-            "active"
-          );
-
-        }
-
-        return;
-
-      }
-
-
-      window.location.href =
-        pagina;
-
-    }
-
-
-    /* =====================================================
-       LOGIN
+       REDIRECIONAR LOGIN
        ===================================================== */
 
     function redirecionarLogin() {
@@ -2154,7 +2297,7 @@
 
 
     /* =====================================================
-       LOADING
+       ESCONDER LOADING
        ===================================================== */
 
     function esconderLoading() {
@@ -2163,6 +2306,7 @@
         document.getElementById(
           "loadingScreen"
         );
+
 
       const app =
         document.getElementById(
@@ -2189,15 +2333,13 @@
 
 
     /* =====================================================
-       USUÁRIO
+       PREENCHER USUÁRIO
        ===================================================== */
 
     function preencherUsuario() {
 
       if (!usuarioAtual) {
-
         return;
-
       }
 
 
@@ -2277,7 +2419,7 @@
 
 
     /* =====================================================
-       DASHBOARD
+       CARREGAR DASHBOARD
        ===================================================== */
 
     async function carregarDashboard() {
@@ -2306,9 +2448,11 @@
             resultado.error
           );
 
+
           mostrarErro(
             "NÃO FOI POSSÍVEL CARREGAR OS ENVIOS."
           );
+
 
           atualizarCards([]);
 
@@ -2341,12 +2485,14 @@
 
       }
 
+
       catch (erro) {
 
         console.error(
           "Erro ao carregar Dashboard:",
           erro
         );
+
 
         atualizarCards([]);
 
@@ -2363,9 +2509,7 @@
        CARDS
        ===================================================== */
 
-    function atualizarCards(
-      envios
-    ) {
+    function atualizarCards(envios) {
 
       const total =
         envios.length;
@@ -2392,28 +2536,60 @@
         );
 
 
-      document.getElementById(
-        "totalEnvios"
-      ).textContent =
-        total;
+      const elementoTotal =
+        document.getElementById(
+          "totalEnvios"
+        );
 
 
-      document.getElementById(
-        "emTransito"
-      ).textContent =
-        transito;
+      const elementoTransito =
+        document.getElementById(
+          "emTransito"
+        );
 
 
-      document.getElementById(
-        "entregues"
-      ).textContent =
-        entregues;
+      const elementoEntregues =
+        document.getElementById(
+          "entregues"
+        );
 
 
-      document.getElementById(
-        "atrasados"
-      ).textContent =
-        atrasados;
+      const elementoAtrasados =
+        document.getElementById(
+          "atrasados"
+        );
+
+
+      if (elementoTotal) {
+
+        elementoTotal.textContent =
+          total;
+
+      }
+
+
+      if (elementoTransito) {
+
+        elementoTransito.textContent =
+          transito;
+
+      }
+
+
+      if (elementoEntregues) {
+
+        elementoEntregues.textContent =
+          entregues;
+
+      }
+
+
+      if (elementoAtrasados) {
+
+        elementoAtrasados.textContent =
+          atrasados;
+
+      }
 
     }
 
@@ -2473,9 +2649,7 @@
 
 
       if (!tabela) {
-
         return;
-
       }
 
 
@@ -2530,7 +2704,8 @@
 
 
               if (
-                status === "ENTREGUE"
+                status ===
+                "ENTREGUE"
               ) {
 
                 classe =
@@ -2539,7 +2714,8 @@
               }
 
               else if (
-                status === "EM TRANSITO"
+                status ===
+                "EM TRANSITO"
               ) {
 
                 classe =
@@ -2548,7 +2724,8 @@
               }
 
               else if (
-                status === "ATRASADO"
+                status ===
+                "ATRASADO"
               ) {
 
                 classe =
@@ -2557,7 +2734,8 @@
               }
 
               else if (
-                status === "COLETADO"
+                status ===
+                "COLETADO"
               ) {
 
                 classe =
@@ -2582,6 +2760,7 @@
 
                   </td>
 
+
                   <td>
 
                     ${escapeHTML(
@@ -2590,6 +2769,7 @@
 
                   </td>
 
+
                   <td>
 
                     ${escapeHTML(
@@ -2597,6 +2777,7 @@
                     )}
 
                   </td>
+
 
                   <td>
 
@@ -2643,33 +2824,62 @@
           0
         );
 
+
         definirPercentual(
           "Transito",
           0
         );
+
 
         definirPercentual(
           "Atrasados",
           0
         );
 
+
         definirPercentual(
           "Coletados",
           0
         );
+
 
         return;
 
       }
 
 
+      const entregues =
+        contarStatus(
+          envios,
+          "ENTREGUE"
+        );
+
+
+      const transito =
+        contarStatus(
+          envios,
+          "EM TRANSITO"
+        );
+
+
+      const atrasados =
+        contarStatus(
+          envios,
+          "ATRASADO"
+        );
+
+
+      const coletados =
+        contarStatus(
+          envios,
+          "COLETADO"
+        );
+
+
       definirPercentual(
         "Entregues",
         calcularPercentual(
-          contarStatus(
-            envios,
-            "ENTREGUE"
-          ),
+          entregues,
           total
         )
       );
@@ -2678,10 +2888,7 @@
       definirPercentual(
         "Transito",
         calcularPercentual(
-          contarStatus(
-            envios,
-            "EM TRANSITO"
-          ),
+          transito,
           total
         )
       );
@@ -2690,10 +2897,7 @@
       definirPercentual(
         "Atrasados",
         calcularPercentual(
-          contarStatus(
-            envios,
-            "ATRASADO"
-          ),
+          atrasados,
           total
         )
       );
@@ -2702,10 +2906,7 @@
       definirPercentual(
         "Coletados",
         calcularPercentual(
-          contarStatus(
-            envios,
-            "COLETADO"
-          ),
+          coletados,
           total
         )
       );
@@ -2719,9 +2920,7 @@
     ) {
 
       if (!total) {
-
         return 0;
-
       }
 
 
@@ -2757,7 +2956,8 @@
       if (texto) {
 
         texto.textContent =
-          percentual + "%";
+          percentual +
+          "%";
 
       }
 
@@ -2765,7 +2965,8 @@
       if (barra) {
 
         barra.style.width =
-          percentual + "%";
+          percentual +
+          "%";
 
       }
 
@@ -2773,7 +2974,159 @@
 
 
     /* =====================================================
-       SAIR
+       MENU - NAVEGAÇÃO V3
+       ===================================================== */
+
+    function selecionarMenu(
+      elemento
+    ) {
+
+      if (!elemento) {
+        return;
+      }
+
+
+      document
+        .querySelectorAll(
+          ".menu-item"
+        )
+        .forEach(
+          function(item) {
+
+            item.classList.remove(
+              "active"
+            );
+
+          }
+        );
+
+
+      elemento.classList.add(
+        "active"
+      );
+
+
+      const texto =
+        elemento.querySelector(
+          "span:not(.menu-icon)"
+        );
+
+
+      if (!texto) {
+        return;
+      }
+
+
+      const nome =
+        texto.textContent.trim();
+
+
+      /* ================================================
+         DASHBOARD
+         ================================================ */
+
+      if (
+        nome ===
+        "Dashboard"
+      ) {
+
+        window.location.href =
+          "dashboard.html";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         ENVIOS
+         ================================================ */
+
+      if (
+        nome ===
+        "Envios"
+      ) {
+
+        window.location.href =
+          "envios.html";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         PESQUISAR NF
+         ================================================ */
+
+      if (
+        nome ===
+        "Pesquisar NF"
+      ) {
+
+        window.location.href =
+          "pesquisar-nf.html";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         CLIENTES
+         ================================================ */
+
+      if (
+        nome ===
+        "Clientes"
+      ) {
+
+        window.location.href =
+          "clientes.html";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         TRANSPORTADORAS
+         ================================================ */
+
+      if (
+        nome ===
+        "Transportadoras"
+      ) {
+
+        window.location.href =
+          "transportadoras.html";
+
+        return;
+
+      }
+
+
+      /* ================================================
+         RELATÓRIOS
+         ================================================ */
+
+      if (
+        nome ===
+        "Relatórios"
+      ) {
+
+        window.location.href =
+          "relatorios.html";
+
+        return;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SAIR DO SISTEMA
        ===================================================== */
 
     async function sair() {
@@ -2791,9 +3144,7 @@
 
 
       if (!confirmar) {
-
         return;
-
       }
 
 
@@ -2810,9 +3161,21 @@
 
       try {
 
-        await supabaseClient.auth.signOut();
+        const resultado =
+          await supabaseClient.auth.signOut();
+
+
+        if (resultado.error) {
+
+          console.error(
+            "Erro ao sair:",
+            resultado.error
+          );
+
+        }
 
       }
+
 
       catch (erro) {
 
@@ -2823,6 +3186,10 @@
 
       }
 
+
+      /* ================================================
+         SEMPRE VOLTA PARA O LOGIN
+         ================================================ */
 
       window.location.replace(
         "index.html"
@@ -2846,9 +3213,7 @@
 
 
       if (!elemento) {
-
         return;
-
       }
 
 
@@ -2939,6 +3304,7 @@
 
       }
     );
+
 
   </script>
 
