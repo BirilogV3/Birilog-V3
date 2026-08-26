@@ -246,7 +246,10 @@
 
       text-align: left;
 
-      transition: 0.2s;
+      transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s;
 
     }
 
@@ -257,6 +260,14 @@
         rgba(255,255,255,0.08);
 
       color: white;
+
+    }
+
+
+    .menu-item:active {
+
+      transform:
+        scale(0.99);
 
     }
 
@@ -387,20 +398,26 @@
 
       opacity: 1;
 
+      position: relative;
+
+      z-index: 1000;
+
+      pointer-events: auto;
+
       margin-top: 10px;
 
       border:
         1px solid
-        rgba(255,255,255,0.15);
+        rgba(255,255,255,0.18);
 
       background:
-        rgba(255,255,255,0.06);
+        rgba(255,255,255,0.07);
 
       color: #e2e8f0;
 
       padding: 11px 10px;
 
-      min-height: 38px;
+      min-height: 40px;
 
       border-radius: 8px;
 
@@ -413,7 +430,8 @@
       transition:
         background 0.2s,
         border-color 0.2s,
-        color 0.2s;
+        color 0.2s,
+        transform 0.2s;
 
     }
 
@@ -431,14 +449,15 @@
 
     .logout:active {
 
-      transform: scale(0.98);
+      transform:
+        scale(0.98);
 
     }
 
 
     .logout:disabled {
 
-      opacity: 0.65;
+      opacity: 0.60;
 
       cursor: wait;
 
@@ -1382,21 +1401,6 @@
 
     }
 
-
-    /* =====================================================
-       GARANTIA DO BOTÃO SAIR
-       ===================================================== */
-
-    #botaoSair {
-
-      position: relative;
-
-      z-index: 999;
-
-      pointer-events: auto;
-
-    }
-
   </style>
 
 </head>
@@ -1406,7 +1410,7 @@
 
 
   <!-- =====================================================
-       TELA DE CARREGAMENTO
+       LOADING
        ===================================================== -->
 
   <div
@@ -1516,7 +1520,7 @@
         <button
           type="button"
           class="menu-item"
-          onclick="irParaPesquisarNF()"
+          onclick="irPara('pesquisar-nf.html')"
         >
 
           <span class="menu-icon">
@@ -1628,7 +1632,9 @@
       </nav>
 
 
-      <!-- USUÁRIO -->
+      <!-- =================================================
+           USUÁRIO
+           ================================================= -->
 
       <div class="user-area">
 
@@ -1680,7 +1686,7 @@
 
 
     <!-- ===================================================
-         CONTEÚDO
+         MAIN
          =================================================== -->
 
     <main class="main">
@@ -1715,7 +1721,7 @@
 
 
       <!-- =================================================
-           CONTEÚDO PRINCIPAL
+           CONTEÚDO
            ================================================= -->
 
       <section class="content">
@@ -2174,6 +2180,10 @@
       false;
 
 
+    let redirecionando =
+      false;
+
+
     /* =====================================================
        INICIALIZAÇÃO
        ===================================================== */
@@ -2186,9 +2196,7 @@
 
     async function iniciarDashboard() {
 
-      if (
-        iniciandoDashboard
-      ) {
+      if (iniciandoDashboard) {
 
         return;
 
@@ -2219,9 +2227,9 @@
           resultado.data.session;
 
 
-        /* =================================================
+        /* ================================================
            NÃO AUTENTICADO
-           ================================================= */
+           ================================================ */
 
         if (!session) {
 
@@ -2236,9 +2244,9 @@
           session.user;
 
 
-        /* =================================================
+        /* ================================================
            BUSCAR USUÁRIO
-           ================================================= */
+           ================================================ */
 
         const consulta =
           await supabaseClient
@@ -2292,9 +2300,9 @@
         }
 
 
-        /* =================================================
+        /* ================================================
            USUÁRIO OK
-           ================================================= */
+           ================================================ */
 
         usuarioAtual =
           consulta.data;
@@ -2326,16 +2334,6 @@
           "NÃO FOI POSSÍVEL CARREGAR O DASHBOARD."
         );
 
-
-        setTimeout(
-          function() {
-
-            redirecionarLogin();
-
-          },
-          1500
-        );
-
       }
 
 
@@ -2355,6 +2353,17 @@
 
     function redirecionarLogin() {
 
+      if (redirecionando) {
+
+        return;
+
+      }
+
+
+      redirecionando =
+        true;
+
+
       window.location.replace(
         "index.html"
       );
@@ -2363,7 +2372,7 @@
 
 
     /* =====================================================
-       NAVEGAÇÃO ENTRE MÓDULOS
+       NAVEGAÇÃO
        ===================================================== */
 
     function irPara(
@@ -2379,19 +2388,6 @@
 
       window.location.href =
         pagina;
-
-    }
-
-
-    /* =====================================================
-       PESQUISAR NF
-       ===================================================== */
-
-    function irParaPesquisarNF() {
-
-      window.location.href =
-        window.location.origin +
-        "/Birilog-V3/pesquisar-nf.html";
 
     }
 
@@ -3150,7 +3146,7 @@
 
 
     /* =====================================================
-       SEGURANÇA HTML
+       ESCAPAR HTML
        ===================================================== */
 
     function escapeHTML(
@@ -3250,9 +3246,7 @@
       }
 
 
-      window.location.replace(
-        "index.html"
-      );
+      redirecionarLogin();
 
     }
 
@@ -3272,9 +3266,7 @@
           "SIGNED_OUT"
         ) {
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -3287,9 +3279,7 @@
           !session
         ) {
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
         }
 
