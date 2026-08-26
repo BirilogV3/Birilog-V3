@@ -1146,97 +1146,6 @@
 
 
     /* =====================================================
-       MODAL
-       ===================================================== */
-
-    .modal {
-
-      display: none;
-
-      position: fixed;
-
-      inset: 0;
-
-      background:
-        rgba(15,23,42,0.55);
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 20px;
-
-      z-index: 500;
-
-    }
-
-
-    .modal.aberto {
-
-      display: flex;
-
-    }
-
-
-    .modal-box {
-
-      width: 100%;
-
-      max-width: 550px;
-
-      background: white;
-
-      border-radius: 16px;
-
-      padding: 25px;
-
-      box-shadow:
-        0 25px 60px
-        rgba(0,0,0,0.25);
-
-    }
-
-
-    .modal-header {
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    .modal-title {
-
-      font-size: 16px;
-
-      font-weight: 800;
-
-      color: #0f172a;
-
-    }
-
-
-    .fechar {
-
-      border: none;
-
-      background: transparent;
-
-      color: #64748b;
-
-      font-size: 24px;
-
-      cursor: pointer;
-
-    }
-
-
-    /* =====================================================
        LOADING
        ===================================================== */
 
@@ -1513,13 +1422,6 @@
 
       }
 
-
-      .modal-box {
-
-        padding: 18px;
-
-      }
-
     }
 
 
@@ -1573,6 +1475,8 @@
   <aside class="sidebar">
 
 
+    <!-- LOGO -->
+
     <div class="logo-area">
 
       <div class="logo-icon">
@@ -1589,6 +1493,8 @@
 
     </div>
 
+
+    <!-- MENU -->
 
     <nav class="menu">
 
@@ -1748,6 +1654,7 @@
 
       </button>
 
+
     </nav>
 
 
@@ -1784,6 +1691,8 @@
 
       </div>
 
+
+      <!-- BOTÃO SAIR -->
 
       <button
         type="button"
@@ -3152,6 +3061,29 @@
 
 
     /* =====================================================
+       NORMALIZAR TEXTO
+       ===================================================== */
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
        NORMALIZAR STATUS
        ===================================================== */
 
@@ -3418,6 +3350,76 @@
 
       }
     );
+
+
+    /* =====================================================
+       SAIR DO SISTEMA
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        const resultado =
+          await supabaseClient.auth.signOut();
+
+
+        if (
+          resultado.error
+        ) {
+
+          console.error(
+            "Erro ao sair:",
+            resultado.error
+          );
+
+        }
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      redirecionarLogin();
+
+    }
 
 
   </script>
