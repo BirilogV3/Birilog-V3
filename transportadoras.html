@@ -29,18 +29,10 @@
     }
 
     body {
-
       min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       background: #f1f5f9;
-
       color: #1e293b;
-
     }
 
     /* =====================================================
@@ -48,106 +40,54 @@
        ===================================================== */
 
     .sidebar {
-
       position: fixed;
-
       left: 0;
       top: 0;
       bottom: 0;
-
       width: 250px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #0f172a,
-          #172554
-        );
-
+      background: linear-gradient(180deg, #0f172a, #172554);
       color: white;
-
       display: flex;
-
       flex-direction: column;
-
       z-index: 100;
-
-      box-shadow:
-        5px 0 20px
-        rgba(0,0,0,0.10);
-
+      box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
-
     }
 
     .logo-area {
-
       padding: 28px 22px;
-
       text-align: center;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       flex-shrink: 0;
-
     }
 
     .logo-icon {
-
       width: 58px;
       height: 58px;
-
       margin: 0 auto 12px;
-
       border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #0d47a1
-        );
-
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 28px;
-
-      box-shadow:
-        0 8px 20px
-        rgba(25,118,210,0.30);
-
+      box-shadow: 0 8px 20px rgba(25,118,210,0.30);
     }
 
     .logo-title {
-
       font-size: 22px;
-
       font-weight: 800;
-
     }
 
     .logo-title span {
-
       color: #60a5fa;
-
     }
 
     .logo-version {
-
       margin-top: 5px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
       letter-spacing: 1px;
-
     }
 
     /* =====================================================
@@ -155,100 +95,53 @@
        ===================================================== */
 
     .menu {
-
       padding: 20px 12px;
-
       flex: 1;
-
       min-height: 0;
-
       overflow-y: auto;
-
     }
 
     .menu-title {
-
-      padding:
-        0 12px 10px;
-
+      padding: 0 12px 10px;
       font-size: 10px;
-
       font-weight: 700;
-
       color: #64748b;
-
       letter-spacing: 1px;
-
     }
 
     .menu-item {
-
       width: 100%;
-
       border: none;
-
       background: transparent;
-
       color: #cbd5e1;
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 13px 14px;
-
       margin-bottom: 4px;
-
       border-radius: 9px;
-
       cursor: pointer;
-
       font-size: 13px;
-
       text-align: left;
-
       transition: 0.2s;
-
     }
 
     .menu-item:hover {
-
-      background:
-        rgba(255,255,255,0.08);
-
+      background: rgba(255,255,255,0.08);
       color: white;
-
     }
 
     .menu-item.active {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
-
+      box-shadow: 0 5px 15px rgba(37,99,235,0.25);
     }
 
     .menu-icon {
-
       width: 22px;
-
       text-align: center;
-
       font-size: 17px;
-
       flex-shrink: 0;
-
     }
 
     /* =====================================================
@@ -256,75 +149,42 @@
        ===================================================== */
 
     .user-area {
-
       padding: 15px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      background:
-        rgba(0,0,0,0.08);
-
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.08);
       flex-shrink: 0;
-
     }
 
     .user-card {
-
-      background:
-        rgba(255,255,255,0.06);
-
+      background: rgba(255,255,255,0.06);
       border-radius: 10px;
-
       padding: 12px;
-
     }
 
     .user-name {
-
       font-size: 12px;
-
       font-weight: 700;
-
       color: white;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
 
     .user-email {
-
       margin-top: 3px;
-
       font-size: 9px;
-
       color: #94a3b8;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
 
     .user-profile {
-
       margin-top: 6px;
-
       font-size: 10px;
-
       color: #60a5fa;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
     }
 
     /* =====================================================
@@ -332,52 +192,29 @@
        ===================================================== */
 
     .logout {
-
       width: 100%;
-
       margin-top: 10px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-      background:
-        rgba(255,255,255,0.06);
-
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
       color: #e2e8f0;
-
       padding: 11px 10px;
-
       min-height: 38px;
-
       border-radius: 8px;
-
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 700;
-
       transition: 0.2s;
-
     }
 
     .logout:hover {
-
       background: #dc2626;
-
       border-color: #dc2626;
-
       color: white;
-
     }
 
     .logout:disabled {
-
       opacity: 0.6;
-
       cursor: wait;
-
     }
 
     /* =====================================================
@@ -385,98 +222,53 @@
        ===================================================== */
 
     .main {
-
       margin-left: 250px;
-
-      width:
-        calc(100% - 250px);
-
+      width: calc(100% - 250px);
       min-height: 100vh;
-
     }
 
-    /* =====================================================
-       HEADER
-       ===================================================== */
-
     .header {
-
       height: 75px;
-
       background: white;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      padding:
-        0 30px;
-
+      padding: 0 30px;
       position: sticky;
-
       top: 0;
-
       z-index: 50;
-
     }
 
     .header-title {
-
       font-size: 20px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
 
     .header-subtitle {
-
       margin-top: 3px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
 
     .status-online {
-
       display: flex;
-
       align-items: center;
-
       gap: 7px;
-
-      padding:
-        7px 12px;
-
+      padding: 7px 12px;
       border-radius: 20px;
-
       background: #f0fdf4;
-
       color: #15803d;
-
       font-size: 11px;
-
       font-weight: 700;
-
     }
 
     .status-dot {
-
       width: 7px;
       height: 7px;
-
       border-radius: 50%;
-
       background: #22c55e;
-
     }
 
     /* =====================================================
@@ -484,57 +276,31 @@
        ===================================================== */
 
     .content {
-
       padding: 30px;
-
     }
 
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
-
     .mensagem {
-
       display: none;
-
       margin-bottom: 20px;
-
       padding: 13px 16px;
-
       border-radius: 9px;
-
       font-size: 11px;
-
       font-weight: 700;
-
       text-align: center;
-
     }
 
     .mensagem.sucesso {
-
       display: block;
-
       background: #f0fdf4;
-
       color: #15803d;
-
-      border:
-        1px solid #bbf7d0;
-
+      border: 1px solid #bbf7d0;
     }
 
     .mensagem.erro {
-
       display: block;
-
       background: #fef2f2;
-
       color: #b91c1c;
-
-      border:
-        1px solid #fecaca;
-
+      border: 1px solid #fecaca;
     }
 
     /* =====================================================
@@ -542,57 +308,32 @@
        ===================================================== */
 
     .cards {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-
       margin-bottom: 22px;
-
     }
 
     .card {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 20px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
     }
 
     .card-label {
-
       font-size: 10px;
-
       color: #64748b;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
     }
 
     .card-value {
-
       margin-top: 8px;
-
       font-size: 28px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
 
     /* =====================================================
@@ -600,56 +341,32 @@
        ===================================================== */
 
     .panel {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 22px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
       margin-bottom: 20px;
-
     }
 
     .panel-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
-
       margin-bottom: 20px;
-
     }
 
     .panel-title {
-
       font-size: 15px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
 
     .panel-subtitle {
-
       margin-top: 4px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
     }
 
     /* =====================================================
@@ -657,201 +374,53 @@
        ===================================================== */
 
     .form-grid {
-
       display: grid;
-
-      grid-template-columns:
-        1fr 2fr 1.2fr;
-
+      grid-template-columns: 1fr 2fr 1fr;
       gap: 15px;
-
     }
 
     .campo {
-
       display: flex;
-
       flex-direction: column;
-
     }
 
     .campo label {
-
       margin-bottom: 7px;
-
       font-size: 10px;
-
       font-weight: 700;
-
       color: #475569;
-
       text-transform: uppercase;
-
     }
 
     .campo input,
     .campo select {
-
       width: 100%;
-
       min-height: 44px;
-
-      padding:
-        10px 12px;
-
-      border:
-        1px solid #cbd5e1;
-
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-
       background: #f8fafc;
-
       color: #0f172a;
-
       outline: none;
-
       font-size: 12px;
-
       text-transform: uppercase;
-
       transition: 0.2s;
-
     }
 
     .campo input:focus,
     .campo select:focus {
-
       background: white;
-
       border-color: #1976d2;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(25,118,210,0.10);
-
-    }
-
-    .form-grid-extra {
-
-      display: grid;
-
-      grid-template-columns:
-        1.2fr 2fr 1fr;
-
-      gap: 15px;
-
-      margin-top: 15px;
-
-    }
-
-    .switch-area {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      min-height: 44px;
-
-    }
-
-    .switch {
-
-      position: relative;
-
-      width: 46px;
-
-      height: 24px;
-
-    }
-
-    .switch input {
-
-      opacity: 0;
-
-      width: 0;
-      height: 0;
-
-    }
-
-    .slider {
-
-      position: absolute;
-
-      cursor: pointer;
-
-      inset: 0;
-
-      background: #cbd5e1;
-
-      border-radius: 30px;
-
-      transition: .2s;
-
-    }
-
-    .slider:before {
-
-      content: "";
-
-      position: absolute;
-
-      width: 18px;
-      height: 18px;
-
-      left: 3px;
-      top: 3px;
-
-      background: white;
-
-      border-radius: 50%;
-
-      transition: .2s;
-
-      box-shadow:
-        0 1px 3px rgba(0,0,0,.2);
-
-    }
-
-    .switch input:checked + .slider {
-
-      background: #22c55e;
-
-    }
-
-    .switch input:checked + .slider:before {
-
-      transform:
-        translateX(22px);
-
-    }
-
-    .ativo-texto {
-
-      font-size: 11px;
-
-      font-weight: 700;
-
-      color: #475569;
-
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
 
     .form-acoes {
-
       display: flex;
-
       justify-content: flex-end;
-
       gap: 10px;
-
       margin-top: 18px;
-
       padding-top: 18px;
-
-      border-top:
-        1px solid #f1f5f9;
-
+      border-top: 1px solid #f1f5f9;
     }
 
     /* =====================================================
@@ -859,67 +428,35 @@
        ===================================================== */
 
     .btn {
-
       border: none;
-
       border-radius: 8px;
-
-      padding:
-        11px 17px;
-
+      padding: 11px 17px;
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 800;
-
       transition: 0.2s;
-
     }
 
     .btn:hover {
-
-      transform:
-        translateY(-1px);
-
+      transform: translateY(-1px);
     }
 
     .btn:disabled {
-
       opacity: .6;
-
       cursor: wait;
-
       transform: none;
-
     }
 
     .btn-primary {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 14px
-        rgba(37,99,235,0.20);
-
+      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
     }
 
     .btn-secondary {
-
       background: #f1f5f9;
-
       color: #475569;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
     }
 
     /* =====================================================
@@ -927,54 +464,29 @@
        ===================================================== */
 
     .filtros {
-
       display: grid;
-
-      grid-template-columns:
-        2fr 1fr;
-
+      grid-template-columns: 2fr 1fr;
       gap: 10px;
-
       margin-bottom: 20px;
-
     }
 
     .filtro {
-
       width: 100%;
-
       height: 42px;
-
-      border:
-        1px solid #cbd5e1;
-
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-
-      padding:
-        0 12px;
-
+      padding: 0 12px;
       background: #f8fafc;
-
       color: #334155;
-
       outline: none;
-
       font-size: 11px;
-
       text-transform: uppercase;
-
     }
 
     .filtro:focus {
-
       background: white;
-
       border-color: #1976d2;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(25,118,210,0.10);
-
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
 
     /* =====================================================
@@ -982,143 +494,85 @@
        ===================================================== */
 
     .table-wrapper {
-
       width: 100%;
-
       overflow-x: auto;
-
     }
 
     table {
-
       width: 100%;
-
-      min-width: 900px;
-
+      min-width: 1050px;
       border-collapse: collapse;
-
     }
 
     th {
-
-      padding:
-        11px 8px;
-
+      padding: 11px 8px;
       text-align: left;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       color: #64748b;
-
       font-size: 9px;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
 
     td {
-
-      padding:
-        12px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
+      padding: 12px 8px;
+      border-bottom: 1px solid #f1f5f9;
       font-size: 10px;
-
       color: #334155;
-
       white-space: nowrap;
-
     }
 
     tbody tr:hover td {
-
       background: #f8fafc;
-
     }
 
     .transportadora-nome {
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
 
     .acoes {
-
       display: flex;
-
       gap: 5px;
-
     }
 
     .btn-mini {
-
       border: none;
-
-      padding:
-        6px 8px;
-
+      padding: 6px 8px;
       border-radius: 6px;
-
       cursor: pointer;
-
       font-size: 10px;
-
       font-weight: 700;
-
     }
 
     .btn-editar {
-
       background: #dbeafe;
-
       color: #1d4ed8;
-
     }
 
     .btn-excluir {
-
       background: #fee2e2;
-
       color: #b91c1c;
-
-    }
-
-    .status {
-
-      display: inline-block;
-
-      padding:
-        4px 8px;
-
-      border-radius: 20px;
-
-      font-size: 9px;
-
-      font-weight: 800;
-
     }
 
     .status-ativo {
-
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 20px;
       background: #dcfce7;
-
       color: #15803d;
-
+      font-size: 9px;
+      font-weight: 800;
     }
 
     .status-inativo {
-
+      display: inline-block;
+      padding: 5px 8px;
+      border-radius: 20px;
       background: #fee2e2;
-
       color: #b91c1c;
-
+      font-size: 9px;
+      font-weight: 800;
     }
 
     /* =====================================================
@@ -1126,96 +580,61 @@
        ===================================================== */
 
     .modal {
-
       display: none;
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(15,23,42,0.55);
-
+      background: rgba(15,23,42,0.55);
       align-items: center;
-
       justify-content: center;
-
       padding: 20px;
-
       z-index: 500;
-
     }
 
     .modal.aberto {
-
       display: flex;
-
     }
 
     .modal-box {
-
       width: 100%;
-
       max-width: 650px;
-
-      background: white;
-
-      border-radius: 16px;
-
-      padding: 25px;
-
-      box-shadow:
-        0 25px 60px
-        rgba(0,0,0,0.25);
-
       max-height: 90vh;
-
       overflow-y: auto;
-
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     }
 
     .modal-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       margin-bottom: 20px;
-
     }
 
     .modal-title {
-
       font-size: 16px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
 
     .fechar {
-
       border: none;
-
       background: transparent;
-
       color: #64748b;
-
       font-size: 24px;
-
       line-height: 1;
-
       cursor: pointer;
-
     }
 
     .fechar:hover {
-
       color: #0f172a;
+    }
 
+    .modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
     }
 
     /* =====================================================
@@ -1223,116 +642,66 @@
        ===================================================== */
 
     .loading {
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(248,250,252,0.88);
-
+      background: rgba(248,250,252,0.88);
       display: none;
-
       align-items: center;
-
       justify-content: center;
-
       z-index: 9999;
-
       backdrop-filter: blur(2px);
-
     }
 
     .loading-box {
-
       background: white;
-
       border-radius: 14px;
-
-      padding:
-        25px 30px;
-
+      padding: 25px 30px;
       text-align: center;
-
-      box-shadow:
-        0 20px 50px
-        rgba(15,23,42,0.18);
-
+      box-shadow: 0 20px 50px rgba(15,23,42,0.18);
     }
 
     .spinner {
-
       width: 35px;
-
       height: 35px;
-
-      margin:
-        0 auto 12px;
-
-      border:
-        3px solid #dbeafe;
-
-      border-top-color:
-        #1976d2;
-
+      margin: 0 auto 12px;
+      border: 3px solid #dbeafe;
+      border-top-color: #1976d2;
       border-radius: 50%;
-
-      animation:
-        girar .8s linear infinite;
-
+      animation: girar .8s linear infinite;
     }
 
     .loading-text {
-
       font-size: 11px;
-
       color: #64748b;
-
       font-weight: 700;
-
     }
 
     @keyframes girar {
-
       to {
-
-        transform:
-          rotate(360deg);
-
+        transform: rotate(360deg);
       }
-
     }
 
     /* =====================================================
        RESPONSIVO
        ===================================================== */
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
 
-      .form-grid,
-      .form-grid-extra {
-
-        grid-template-columns:
-          1fr 1fr;
-
-      }
-
-      .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
     }
 
     @media (max-width: 900px) {
 
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .filtros {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
 
     }
@@ -1340,9 +709,7 @@
     @media (max-width: 700px) {
 
       .sidebar {
-
         width: 70px;
-
       }
 
       .logo-title,
@@ -1350,144 +717,92 @@
       .menu-title,
       .menu-item span:not(.menu-icon),
       .user-card {
-
         display: none;
-
       }
 
       .logo-area {
-
-        padding:
-          18px 8px;
-
+        padding: 18px 8px;
       }
 
       .logo-icon {
-
         width: 42px;
         height: 42px;
-
         font-size: 20px;
-
       }
 
       .menu {
-
-        padding:
-          15px 8px;
-
+        padding: 15px 8px;
       }
 
       .menu-item {
-
         justify-content: center;
-
-        padding:
-          13px 5px;
-
+        padding: 13px 5px;
       }
 
       .user-area {
-
-        padding:
-          10px 8px;
-
+        padding: 10px 8px;
       }
 
       .logout {
-
         font-size: 0;
-
-        padding:
-          12px 5px;
-
+        padding: 12px 5px;
         min-height: 42px;
-
       }
 
       .logout::before {
-
         content: "🚪";
-
         font-size: 17px;
-
       }
 
       .main {
-
         margin-left: 70px;
-
-        width:
-          calc(100% - 70px);
-
+        width: calc(100% - 70px);
       }
 
       .header {
-
-        padding:
-          0 18px;
-
+        padding: 0 18px;
       }
 
       .header-title {
-
         font-size: 17px;
-
       }
 
       .status-online {
-
         font-size: 0;
-
         padding: 9px;
-
       }
 
       .status-dot {
-
         width: 8px;
         height: 8px;
-
       }
 
       .content {
-
         padding: 18px;
-
       }
 
       .cards {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
 
-      .form-grid,
-      .form-grid-extra {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
 
-        grid-template-columns:
-          1fr;
-
+      .modal-grid {
+        grid-template-columns: 1fr;
       }
 
       .form-acoes {
-
         flex-direction: column;
-
       }
 
       .form-acoes .btn {
-
         width: 100%;
-
       }
 
       .panel {
-
-        padding:
-          18px;
-
+        padding: 18px;
       }
 
     }
@@ -1495,9 +810,7 @@
     @media (max-width: 450px) {
 
       .header-subtitle {
-
         display: none;
-
       }
 
     }
@@ -1506,9 +819,7 @@
 
 </head>
 
-
 <body>
-
 
   <!-- =====================================================
        LOADING
@@ -1541,7 +852,6 @@
 
   <aside class="sidebar">
 
-
     <div class="logo-area">
 
       <div class="logo-icon">
@@ -1571,15 +881,8 @@
         class="menu-item"
         onclick="irPara('dashboard.html')"
       >
-
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
+        <span class="menu-icon">📊</span>
+        <span>Dashboard</span>
       </button>
 
 
@@ -1588,15 +891,8 @@
         class="menu-item"
         onclick="irPara('envios.html')"
       >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
+        <span class="menu-icon">📦</span>
+        <span>Envios</span>
       </button>
 
 
@@ -1605,15 +901,8 @@
         class="menu-item"
         onclick="irParaPesquisarNF()"
       >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
+        <span class="menu-icon">🔎</span>
+        <span>Pesquisar NF</span>
       </button>
 
 
@@ -1622,15 +911,8 @@
         class="menu-item"
         onclick="irPara('clientes.html')"
       >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
+        <span class="menu-icon">👥</span>
+        <span>Clientes</span>
       </button>
 
 
@@ -1638,15 +920,8 @@
         type="button"
         class="menu-item active"
       >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
+        <span class="menu-icon">🚛</span>
+        <span>Transportadoras</span>
       </button>
 
 
@@ -1655,15 +930,8 @@
         class="menu-item"
         onclick="irPara('relatorios.html')"
       >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
+        <span class="menu-icon">📄</span>
+        <span>Relatórios</span>
       </button>
 
 
@@ -1672,15 +940,8 @@
         class="menu-item"
         onclick="irPara('usuarios.html')"
       >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
+        <span class="menu-icon">🔐</span>
+        <span>Usuários</span>
       </button>
 
 
@@ -1689,17 +950,9 @@
         class="menu-item"
         onclick="irPara('configuracoes.html')"
       >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
+        <span class="menu-icon">⚙️</span>
+        <span>Configurações</span>
       </button>
-
 
     </nav>
 
@@ -1738,13 +991,10 @@
         id="botaoSair"
         onclick="sair()"
       >
-
         🚪 SAIR DO SISTEMA
-
       </button>
 
     </div>
-
 
   </aside>
 
@@ -1754,7 +1004,6 @@
        ===================================================== -->
 
   <main class="main">
-
 
     <header class="header">
 
@@ -1784,7 +1033,6 @@
 
     <section class="content">
 
-
       <div
         id="mensagem"
         class="mensagem"
@@ -1796,7 +1044,6 @@
            ================================================= -->
 
       <div class="cards">
-
 
         <div class="card">
 
@@ -1846,7 +1093,6 @@
 
         </div>
 
-
       </div>
 
 
@@ -1855,7 +1101,6 @@
            ================================================= -->
 
       <div class="panel">
-
 
         <div class="panel-header">
 
@@ -1879,9 +1124,7 @@
           onsubmit="salvarTransportadora(event)"
         >
 
-
           <div class="form-grid">
-
 
             <div class="campo">
 
@@ -1977,12 +1220,6 @@
             </div>
 
 
-          </div>
-
-
-          <div class="form-grid-extra">
-
-
             <div class="campo">
 
               <label for="telefone">
@@ -2017,50 +1254,35 @@
 
             <div class="campo">
 
-              <label>
-                Situação
+              <label for="ativo">
+                Ativo
               </label>
 
-              <div class="switch-area">
+              <select id="ativo">
 
-                <label class="switch">
+                <option value="true">
+                  ATIVO
+                </option>
 
-                  <input
-                    type="checkbox"
-                    id="ativo"
-                    checked
-                  >
+                <option value="false">
+                  INATIVO
+                </option>
 
-                  <span class="slider"></span>
-
-                </label>
-
-                <span
-                  id="ativoTexto"
-                  class="ativo-texto"
-                >
-                  ATIVA
-                </span>
-
-              </div>
+              </select>
 
             </div>
-
 
           </div>
 
 
           <div class="form-acoes">
 
-
             <button
               type="button"
               class="btn btn-secondary"
               onclick="limparFormulario()"
             >
-
               🧹 LIMPAR
-
             </button>
 
 
@@ -2069,17 +1291,12 @@
               class="btn btn-primary"
               id="btnSalvar"
             >
-
               💾 SALVAR TRANSPORTADORA
-
             </button>
-
 
           </div>
 
-
         </form>
-
 
       </div>
 
@@ -2089,7 +1306,6 @@
            ================================================= -->
 
       <div class="panel">
-
 
         <div class="panel-header">
 
@@ -2111,9 +1327,7 @@
             class="btn btn-secondary"
             onclick="carregarTransportadoras()"
           >
-
             🔄 ATUALIZAR
-
           </button>
 
         </div>
@@ -2130,14 +1344,13 @@
             oninput="filtrarTransportadoras()"
           >
 
+
           <button
             type="button"
             class="btn btn-secondary"
             onclick="limparFiltros()"
           >
-
             LIMPAR FILTROS
-
           </button>
 
         </div>
@@ -2147,13 +1360,12 @@
 
           <table>
 
-
             <thead>
 
               <tr>
 
                 <th>
-                  TRANSPORTADORA
+                  NOME
                 </th>
 
                 <th>
@@ -2173,7 +1385,11 @@
                 </th>
 
                 <th>
-                  STATUS
+                  ATIVO
+                </th>
+
+                <th>
+                  CRIADO EM
                 </th>
 
                 <th>
@@ -2192,33 +1408,27 @@
               <tr>
 
                 <td
-                  colspan="7"
+                  colspan="8"
                   style="
                     text-align:center;
                     padding:30px;
                     color:#94a3b8;
                   "
                 >
-
                   CARREGANDO TRANSPORTADORAS...
-
                 </td>
 
               </tr>
 
             </tbody>
 
-
           </table>
 
         </div>
 
-
       </div>
 
-
     </section>
-
 
   </main>
 
@@ -2232,9 +1442,7 @@
     class="modal"
   >
 
-
     <div class="modal-box">
-
 
       <div class="modal-header">
 
@@ -2242,15 +1450,12 @@
           ✏️ EDITAR TRANSPORTADORA
         </div>
 
-
         <button
           type="button"
           class="fechar"
           onclick="fecharModal()"
         >
-
           ×
-
         </button>
 
       </div>
@@ -2261,15 +1466,13 @@
         onsubmit="atualizarTransportadora(event)"
       >
 
-
         <input
           type="hidden"
           id="editarId"
         >
 
 
-        <div class="form-grid">
-
+        <div class="modal-grid">
 
           <div class="campo">
 
@@ -2363,12 +1566,6 @@
           </div>
 
 
-        </div>
-
-
-        <div class="form-grid-extra">
-
-
           <div class="campo">
 
             <label for="editarTelefone">
@@ -2401,49 +1598,35 @@
 
           <div class="campo">
 
-            <label>
-              Situação
+            <label for="editarAtivo">
+              Ativo
             </label>
 
-            <div class="switch-area">
+            <select id="editarAtivo">
 
-              <label class="switch">
+              <option value="true">
+                ATIVO
+              </option>
 
-                <input
-                  type="checkbox"
-                  id="editarAtivo"
-                >
+              <option value="false">
+                INATIVO
+              </option>
 
-                <span class="slider"></span>
-
-              </label>
-
-              <span
-                id="editarAtivoTexto"
-                class="ativo-texto"
-              >
-                ATIVA
-              </span>
-
-            </div>
+            </select>
 
           </div>
-
 
         </div>
 
 
         <div class="form-acoes">
 
-
           <button
             type="button"
             class="btn btn-secondary"
             onclick="fecharModal()"
           >
-
             CANCELAR
-
           </button>
 
 
@@ -2452,20 +1635,14 @@
             class="btn btn-primary"
             id="btnAtualizar"
           >
-
             💾 SALVAR ALTERAÇÕES
-
           </button>
-
 
         </div>
 
-
       </form>
 
-
     </div>
-
 
   </div>
 
@@ -2476,7 +1653,6 @@
 
   <script>
 
-
     /* =====================================================
        SUPABASE
        ===================================================== */
@@ -2484,10 +1660,8 @@
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
 
-
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -2500,12 +1674,9 @@
        VARIÁVEIS
        ===================================================== */
 
-    let usuarioAtual =
-      null;
+    let usuarioAtual = null;
 
-
-    let todasTransportadoras =
-      [];
+    let todasTransportadoras = [];
 
 
     /* =====================================================
@@ -2531,9 +1702,7 @@
           await supabaseClient.auth.getSession();
 
 
-        if (
-          resultadoSessao.error
-        ) {
+        if (resultadoSessao.error) {
 
           throw resultadoSessao.error;
 
@@ -2560,33 +1729,20 @@
 
         const consulta =
           await supabaseClient
-
             .from("usuarios")
-
-            .select(
-              "id,nome,email,perfil,ativo"
-            )
-
-            .eq(
-              "auth_id",
-              authUser.id
-            )
-
+            .select("id,nome,email,perfil,ativo")
+            .eq("auth_id", authUser.id)
             .maybeSingle();
 
 
-        if (
-          consulta.error
-        ) {
+        if (consulta.error) {
 
           throw consulta.error;
 
         }
 
 
-        if (
-          !consulta.data
-        ) {
+        if (!consulta.data) {
 
           await supabaseClient.auth.signOut();
 
@@ -2597,9 +1753,7 @@
         }
 
 
-        if (
-          consulta.data.ativo === false
-        ) {
+        if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
 
@@ -2616,9 +1770,7 @@
 
         preencherUsuario();
 
-
         esconderLoading();
-
 
         await carregarTransportadoras();
 
@@ -2631,9 +1783,7 @@
           erro
         );
 
-
         esconderLoading();
-
 
         mostrarMensagem(
           obterMensagemErro(erro),
@@ -2665,9 +1815,7 @@
     function preencherUsuario() {
 
       if (!usuarioAtual) {
-
         return;
-
       }
 
 
@@ -2714,13 +1862,10 @@
 
         const resultado =
           await supabaseClient
-
             .from("transportadoras")
-
             .select(
               "id,nome,cidade,uf,telefone,email,ativo,criado_em,atualizado_em"
             )
-
             .order(
               "nome",
               {
@@ -2729,9 +1874,7 @@
             );
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
           throw resultado.error;
 
@@ -2749,7 +1892,6 @@
 
         atualizarHora();
 
-
         filtrarTransportadoras();
 
       }
@@ -2762,12 +1904,9 @@
         );
 
 
-        todasTransportadoras =
-          [];
-
+        todasTransportadoras = [];
 
         atualizarCards([]);
-
 
         renderizarTabela([]);
 
@@ -2831,9 +1970,7 @@
 
 
       if (!elemento) {
-
         return;
-
       }
 
 
@@ -2906,7 +2043,7 @@
       const ativo =
         document.getElementById(
           "ativo"
-        ).checked;
+        ).value === "true";
 
 
       if (!nome) {
@@ -2936,22 +2073,13 @@
 
         const consultaNome =
           await supabaseClient
-
             .from("transportadoras")
-
             .select("id,nome")
-
-            .ilike(
-              "nome",
-              nome
-            )
-
+            .ilike("nome", nome)
             .limit(1);
 
 
-        if (
-          consultaNome.error
-        ) {
+        if (consultaNome.error) {
 
           throw consultaNome.error;
 
@@ -2974,24 +2102,19 @@
 
         const dados = {
 
-          nome:
-            nome,
+          nome: nome,
 
           cidade:
-            cidade ||
-            null,
+            cidade || null,
 
           uf:
-            uf ||
-            null,
+            uf || null,
 
           telefone:
-            telefone ||
-            null,
+            telefone || null,
 
           email:
-            email ||
-            null,
+            email || null,
 
           ativo:
             ativo
@@ -3001,17 +2124,11 @@
 
         const resultado =
           await supabaseClient
-
             .from("transportadoras")
-
-            .insert([
-              dados
-            ]);
+            .insert([dados]);
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
           throw resultado.error;
 
@@ -3102,48 +2219,39 @@
       document.getElementById(
         "editarNome"
       ).value =
-        transportadora.nome ||
-        "";
+        transportadora.nome || "";
 
 
       document.getElementById(
         "editarCidade"
       ).value =
-        transportadora.cidade ||
-        "";
+        transportadora.cidade || "";
 
 
       document.getElementById(
         "editarUf"
       ).value =
-        transportadora.uf ||
-        "";
+        transportadora.uf || "";
 
 
       document.getElementById(
         "editarTelefone"
       ).value =
-        transportadora.telefone ||
-        "";
+        transportadora.telefone || "";
 
 
       document.getElementById(
         "editarEmail"
       ).value =
-        transportadora.email ||
-        "";
+        transportadora.email || "";
 
 
       document.getElementById(
         "editarAtivo"
-      ).checked =
-        transportadora.ativo !== false;
-
-
-      atualizarTextoAtivo(
-        "editarAtivo",
-        "editarAtivoTexto"
-      );
+      ).value =
+        transportadora.ativo === false
+          ? "false"
+          : "true";
 
 
       document.getElementById(
@@ -3218,7 +2326,7 @@
       const ativo =
         document.getElementById(
           "editarAtivo"
-        ).checked;
+        ).value === "true";
 
 
       if (!id || !nome) {
@@ -3248,27 +2356,14 @@
 
         const consultaNome =
           await supabaseClient
-
             .from("transportadoras")
-
             .select("id,nome")
-
-            .ilike(
-              "nome",
-              nome
-            )
-
-            .neq(
-              "id",
-              id
-            )
-
+            .ilike("nome", nome)
+            .neq("id", id)
             .limit(1);
 
 
-        if (
-          consultaNome.error
-        ) {
+        if (consultaNome.error) {
 
           throw consultaNome.error;
 
@@ -3291,52 +2386,34 @@
 
         const dados = {
 
-          nome:
-            nome,
+          nome: nome,
 
           cidade:
-            cidade ||
-            null,
+            cidade || null,
 
           uf:
-            uf ||
-            null,
+            uf || null,
 
           telefone:
-            telefone ||
-            null,
+            telefone || null,
 
           email:
-            email ||
-            null,
+            email || null,
 
           ativo:
-            ativo,
-
-          atualizado_em:
-            new Date().toISOString()
+            ativo
 
         };
 
 
         const resultado =
           await supabaseClient
-
             .from("transportadoras")
-
-            .update(
-              dados
-            )
-
-            .eq(
-              "id",
-              id
-            );
+            .update(dados)
+            .eq("id", id);
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
           throw resultado.error;
 
@@ -3423,17 +2500,14 @@
           "DESEJA REALMENTE EXCLUIR A TRANSPORTADORA?\n\n" +
 
           String(
-            transportadora.nome ||
-            ""
+            transportadora.nome || ""
           ).toUpperCase()
 
         );
 
 
       if (!confirmar) {
-
         return;
-
       }
 
 
@@ -3446,20 +2520,12 @@
 
         const resultado =
           await supabaseClient
-
             .from("transportadoras")
-
             .delete()
-
-            .eq(
-              "id",
-              id
-            );
+            .eq("id", id);
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
           throw resultado.error;
 
@@ -3512,17 +2578,14 @@
         );
 
 
-      if (
-        !lista ||
-        lista.length === 0
-      ) {
+      if (!lista || lista.length === 0) {
 
         tabela.innerHTML = `
 
           <tr>
 
             <td
-              colspan="7"
+              colspan="8"
               style="
                 text-align:center;
                 padding:30px;
@@ -3552,6 +2615,12 @@
                 item.ativo !== false;
 
 
+              const criado =
+                formatarData(
+                  item.criado_em
+                );
+
+
               return `
 
                 <tr>
@@ -3559,59 +2628,44 @@
                   <td
                     class="transportadora-nome"
                   >
-
                     ${escapeHTML(
-                      item.nome ||
-                      "-"
+                      item.nome || "-"
                     )}
-
                   </td>
 
 
                   <td>
-
                     ${escapeHTML(
-                      item.cidade ||
-                      "-"
+                      item.cidade || "-"
                     )}
-
                   </td>
 
 
                   <td>
-
                     ${escapeHTML(
-                      item.uf ||
-                      "-"
+                      item.uf || "-"
                     )}
-
                   </td>
 
 
                   <td>
-
                     ${escapeHTML(
-                      item.telefone ||
-                      "-"
+                      item.telefone || "-"
                     )}
-
                   </td>
 
 
                   <td>
-
                     ${escapeHTML(
-                      item.email ||
-                      "-"
+                      item.email || "-"
                     )}
-
                   </td>
 
 
                   <td>
 
                     <span
-                      class="status ${
+                      class="${
                         ativo
                           ? "status-ativo"
                           : "status-inativo"
@@ -3620,12 +2674,19 @@
 
                       ${
                         ativo
-                          ? "ATIVA"
-                          : "INATIVA"
+                          ? "ATIVO"
+                          : "INATIVO"
                       }
 
                     </span>
 
+                  </td>
+
+
+                  <td>
+                    ${escapeHTML(
+                      criado
+                    )}
                   </td>
 
 
@@ -3641,9 +2702,7 @@
                           item.id
                         )}')"
                       >
-
                         ✏️
-
                       </button>
 
 
@@ -3655,9 +2714,7 @@
                           item.id
                         )}')"
                       >
-
                         🗑️
-
                       </button>
 
                     </div>
@@ -3701,28 +2758,31 @@
               normalizarTexto(
 
                 String(
-                  item.nome ||
-                  ""
+                  item.nome || ""
                 ) +
+
                 " " +
+
                 String(
-                  item.cidade ||
-                  ""
+                  item.cidade || ""
                 ) +
+
                 " " +
+
                 String(
-                  item.uf ||
-                  ""
+                  item.uf || ""
                 ) +
+
                 " " +
+
                 String(
-                  item.telefone ||
-                  ""
+                  item.telefone || ""
                 ) +
+
                 " " +
+
                 String(
-                  item.email ||
-                  ""
+                  item.email || ""
                 )
 
               );
@@ -3752,8 +2812,7 @@
 
       document.getElementById(
         "filtroTexto"
-      ).value =
-        "";
+      ).value = "";
 
 
       filtrarTransportadoras();
@@ -3767,21 +2826,17 @@
 
     function limparFormulario() {
 
-      document.getElementById(
-        "formTransportadora"
-      ).reset();
+      document
+        .getElementById(
+          "formTransportadora"
+        )
+        .reset();
 
 
       document.getElementById(
         "ativo"
-      ).checked =
-        true;
-
-
-      atualizarTextoAtivo(
-        "ativo",
-        "ativoTexto"
-      );
+      ).value =
+        "true";
 
     }
 
@@ -3802,81 +2857,13 @@
 
 
     /* =====================================================
-       TEXTO ATIVO
-       ===================================================== */
-
-    function atualizarTextoAtivo(
-      checkboxId,
-      textoId
-    ) {
-
-      const checkbox =
-        document.getElementById(
-          checkboxId
-        );
-
-
-      const texto =
-        document.getElementById(
-          textoId
-        );
-
-
-      if (!checkbox || !texto) {
-
-        return;
-
-      }
-
-
-      texto.textContent =
-        checkbox.checked
-          ? "ATIVA"
-          : "INATIVA";
-
-    }
-
-
-    document
-      .getElementById("ativo")
-      .addEventListener(
-        "change",
-        function() {
-
-          atualizarTextoAtivo(
-            "ativo",
-            "ativoTexto"
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById("editarAtivo")
-      .addEventListener(
-        "change",
-        function() {
-
-          atualizarTextoAtivo(
-            "editarAtivo",
-            "editarAtivoTexto"
-          );
-
-        }
-      );
-
-
-    /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
     function irPara(pagina) {
 
       if (!pagina) {
-
         return;
-
       }
 
 
@@ -3912,9 +2899,7 @@
 
 
       if (!confirmar) {
-
         return;
-
       }
 
 
@@ -3926,8 +2911,7 @@
 
       if (botao) {
 
-        botao.disabled =
-          true;
+        botao.disabled = true;
 
         botao.textContent =
           "SAINDO...";
@@ -4029,9 +3013,7 @@
 
 
       if (!elemento) {
-
         return;
-
       }
 
 
@@ -4074,8 +3056,7 @@
     function normalizarTexto(valor) {
 
       return String(
-        valor ||
-        ""
+        valor || ""
       )
         .normalize("NFD")
         .replace(
@@ -4084,6 +3065,44 @@
         )
         .trim()
         .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       DATA
+       ===================================================== */
+
+    function formatarData(valor) {
+
+      if (!valor) {
+        return "-";
+      }
+
+
+      const data =
+        new Date(valor);
+
+
+      if (Number.isNaN(
+        data.getTime()
+      )) {
+
+        return String(valor);
+
+      }
+
+
+      return data.toLocaleString(
+        "pt-BR",
+        {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      );
 
     }
 
@@ -4175,7 +3194,7 @@
             "permission denied"
           ) ||
           texto.includes(
-            "not authorized"
+            "violates row-level security"
           )
         ) {
 
@@ -4212,7 +3231,7 @@
         ) {
 
           return (
-            "UMA DAS COLUNAS DA TABELA TRANSPORTADORAS NÃO ESTÁ CONFIGURADA CORRETAMENTE."
+            "UMA DAS COLUNAS DA TABELA TRANSPORTADORAS NÃO FOI ENCONTRADA. VERIFIQUE A ESTRUTURA DA TABELA NO SUPABASE."
           );
 
         }
@@ -4327,9 +3346,7 @@
       }
     );
 
-
   </script>
-
 
 </body>
 
