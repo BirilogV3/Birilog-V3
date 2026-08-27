@@ -692,7 +692,8 @@
 
     }
 
-    .campo input {
+    .campo input,
+    .campo select {
 
       width: 100%;
 
@@ -721,7 +722,8 @@
 
     }
 
-    .campo input:focus {
+    .campo input:focus,
+    .campo select:focus {
 
       background: white;
 
@@ -730,6 +732,12 @@
       box-shadow:
         0 0 0 3px
         rgba(25,118,210,0.10);
+
+    }
+
+    .campo input[type="email"] {
+
+      text-transform: none;
 
     }
 
@@ -827,7 +835,7 @@
       display: grid;
 
       grid-template-columns:
-        2fr 1fr;
+        2fr 1fr 1fr;
 
       gap: 10px;
 
@@ -889,7 +897,7 @@
 
       width: 100%;
 
-      min-width: 700px;
+      min-width: 1000px;
 
       border-collapse: collapse;
 
@@ -945,14 +953,6 @@
 
     }
 
-    .codigo {
-
-      font-weight: 800;
-
-      color: #1976d2;
-
-    }
-
     .acoes {
 
       display: flex;
@@ -994,6 +994,44 @@
 
     }
 
+    .status-ativo {
+
+      display: inline-block;
+
+      padding:
+        5px 8px;
+
+      border-radius: 20px;
+
+      background: #dcfce7;
+
+      color: #15803d;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+    }
+
+    .status-inativo {
+
+      display: inline-block;
+
+      padding:
+        5px 8px;
+
+      border-radius: 20px;
+
+      background: #fee2e2;
+
+      color: #b91c1c;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+    }
+
     /* =====================================================
        MODAL
        ===================================================== */
@@ -1029,7 +1067,11 @@
 
       width: 100%;
 
-      max-width: 550px;
+      max-width: 700px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
 
       background: white;
 
@@ -1176,14 +1218,7 @@
        RESPONSIVO
        ===================================================== */
 
-    @media (max-width: 900px) {
-
-      .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
-      }
+    @media (max-width: 1100px) {
 
       .form-grid {
 
@@ -1195,7 +1230,18 @@
       .filtros {
 
         grid-template-columns:
-          1fr;
+          1fr 1fr;
+
+      }
+
+    }
+
+    @media (max-width: 900px) {
+
+      .cards {
+
+        grid-template-columns:
+          repeat(2, 1fr);
 
       }
 
@@ -1334,6 +1380,13 @@
 
       }
 
+      .filtros {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
       .form-acoes {
 
         flex-direction: column;
@@ -1429,8 +1482,6 @@
       </div>
 
 
-      <!-- DASHBOARD -->
-
       <button
         type="button"
         class="menu-item"
@@ -1447,8 +1498,6 @@
 
       </button>
 
-
-      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -1467,8 +1516,6 @@
       </button>
 
 
-      <!-- PESQUISAR NF -->
-
       <button
         type="button"
         class="menu-item"
@@ -1485,8 +1532,6 @@
 
       </button>
 
-
-      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -1505,8 +1550,6 @@
       </button>
 
 
-      <!-- TRANSPORTADORAS -->
-
       <button
         type="button"
         class="menu-item active"
@@ -1522,8 +1565,6 @@
 
       </button>
 
-
-      <!-- RELATÓRIOS -->
 
       <button
         type="button"
@@ -1542,8 +1583,6 @@
       </button>
 
 
-      <!-- USUÁRIOS -->
-
       <button
         type="button"
         class="menu-item"
@@ -1560,8 +1599,6 @@
 
       </button>
 
-
-      <!-- CONFIGURAÇÕES -->
 
       <button
         type="button"
@@ -1598,14 +1635,12 @@
           USUÁRIO
         </div>
 
-
         <div
           id="usuarioEmail"
           class="user-email"
         >
           -
         </div>
-
 
         <div
           id="usuarioPerfil"
@@ -1673,8 +1708,6 @@
 
     <section class="content">
 
-
-      <!-- MENSAGEM -->
 
       <div
         id="mensagem"
@@ -1774,24 +1807,6 @@
           <div class="form-grid">
 
 
-            <!-- CÓDIGO -->
-
-            <div class="campo">
-
-              <label for="codigo">
-                Código
-              </label>
-
-              <input
-                type="text"
-                id="codigo"
-                placeholder="CÓDIGO"
-                autocomplete="off"
-              >
-
-            </div>
-
-
             <!-- NOME -->
 
             <div class="campo">
@@ -1825,6 +1840,128 @@
                 placeholder="CIDADE"
                 autocomplete="off"
               >
+
+            </div>
+
+
+            <!-- UF -->
+
+            <div class="campo">
+
+              <label for="uf">
+                UF
+              </label>
+
+              <select id="uf">
+
+                <option value="">
+                  SELECIONE
+                </option>
+
+                <option value="TO">
+                  TOCANTINS - TO
+                </option>
+
+                <option value="PA">
+                  PARÁ - PA
+                </option>
+
+                <option value="MA">
+                  MARANHÃO - MA
+                </option>
+
+                <option value="GO">
+                  GOIÁS - GO
+                </option>
+
+                <option value="MT">
+                  MATO GROSSO - MT
+                </option>
+
+                <option value="BA">
+                  BAHIA - BA
+                </option>
+
+                <option value="PI">
+                  PIAUÍ - PI
+                </option>
+
+                <option value="MG">
+                  MINAS GERAIS - MG
+                </option>
+
+                <option value="SP">
+                  SÃO PAULO - SP
+                </option>
+
+                <option value="RJ">
+                  RIO DE JANEIRO - RJ
+                </option>
+
+                <option value="DF">
+                  DISTRITO FEDERAL - DF
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- TELEFONE -->
+
+            <div class="campo">
+
+              <label for="telefone">
+                Telefone
+              </label>
+
+              <input
+                type="text"
+                id="telefone"
+                placeholder="TELEFONE"
+                autocomplete="off"
+              >
+
+            </div>
+
+
+            <!-- E-MAIL -->
+
+            <div class="campo">
+
+              <label for="email">
+                E-mail
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="E-MAIL"
+                autocomplete="off"
+              >
+
+            </div>
+
+
+            <!-- ATIVO -->
+
+            <div class="campo">
+
+              <label for="ativo">
+                Situação
+              </label>
+
+              <select id="ativo">
+
+                <option value="true">
+                  ATIVA
+                </option>
+
+                <option value="false">
+                  INATIVA
+                </option>
+
+              </select>
 
             </div>
 
@@ -1898,11 +2035,10 @@
 
           </button>
 
-
         </div>
 
 
-        <!-- FILTRO -->
+        <!-- FILTROS -->
 
         <div class="filtros">
 
@@ -1910,10 +2046,67 @@
             type="text"
             id="filtroTexto"
             class="filtro"
-            placeholder="🔎 CÓDIGO, NOME OU CIDADE"
+            placeholder="🔎 NOME, CIDADE, UF, TELEFONE OU E-MAIL"
             autocomplete="off"
-            oninput="filtrarTransportadoras()"
           >
+
+
+          <select
+            id="filtroUF"
+            class="filtro"
+            onchange="filtrarTransportadoras()"
+          >
+
+            <option value="">
+              TODAS AS UFs
+            </option>
+
+            <option value="TO">
+              TO
+            </option>
+
+            <option value="PA">
+              PA
+            </option>
+
+            <option value="MA">
+              MA
+            </option>
+
+            <option value="GO">
+              GO
+            </option>
+
+            <option value="MT">
+              MT
+            </option>
+
+            <option value="BA">
+              BA
+            </option>
+
+            <option value="PI">
+              PI
+            </option>
+
+            <option value="MG">
+              MG
+            </option>
+
+            <option value="SP">
+              SP
+            </option>
+
+            <option value="RJ">
+              RJ
+            </option>
+
+            <option value="DF">
+              DF
+            </option>
+
+          </select>
+
 
           <button
             type="button"
@@ -1940,15 +2133,27 @@
               <tr>
 
                 <th>
-                  CÓDIGO
-                </th>
-
-                <th>
                   TRANSPORTADORA
                 </th>
 
                 <th>
                   CIDADE
+                </th>
+
+                <th>
+                  UF
+                </th>
+
+                <th>
+                  TELEFONE
+                </th>
+
+                <th>
+                  E-MAIL
+                </th>
+
+                <th>
+                  SITUAÇÃO
                 </th>
 
                 <th>
@@ -1967,7 +2172,7 @@
               <tr>
 
                 <td
-                  colspan="4"
+                  colspan="7"
                   style="
                     text-align:center;
                     padding:30px;
@@ -2043,54 +2248,163 @@
         >
 
 
-        <div class="campo">
-
-          <label for="editarCodigo">
-            Código
-          </label>
-
-          <input
-            type="text"
-            id="editarCodigo"
-            autocomplete="off"
-          >
-
-        </div>
+        <div class="form-grid">
 
 
-        <div
-          class="campo"
-          style="margin-top:15px;"
-        >
+          <!-- NOME -->
 
-          <label for="editarNome">
-            Transportadora *
-          </label>
+          <div class="campo">
 
-          <input
-            type="text"
-            id="editarNome"
-            autocomplete="off"
-            required
-          >
+            <label for="editarNome">
+              Transportadora *
+            </label>
 
-        </div>
+            <input
+              type="text"
+              id="editarNome"
+              autocomplete="off"
+              required
+            >
+
+          </div>
 
 
-        <div
-          class="campo"
-          style="margin-top:15px;"
-        >
+          <!-- CIDADE -->
 
-          <label for="editarCidade">
-            Cidade
-          </label>
+          <div class="campo">
 
-          <input
-            type="text"
-            id="editarCidade"
-            autocomplete="off"
-          >
+            <label for="editarCidade">
+              Cidade
+            </label>
+
+            <input
+              type="text"
+              id="editarCidade"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- UF -->
+
+          <div class="campo">
+
+            <label for="editarUF">
+              UF
+            </label>
+
+            <select id="editarUF">
+
+              <option value="">
+                SELECIONE
+              </option>
+
+              <option value="TO">
+                TOCANTINS - TO
+              </option>
+
+              <option value="PA">
+                PARÁ - PA
+              </option>
+
+              <option value="MA">
+                MARANHÃO - MA
+              </option>
+
+              <option value="GO">
+                GOIÁS - GO
+              </option>
+
+              <option value="MT">
+                MATO GROSSO - MT
+              </option>
+
+              <option value="BA">
+                BAHIA - BA
+              </option>
+
+              <option value="PI">
+                PIAUÍ - PI
+              </option>
+
+              <option value="MG">
+                MINAS GERAIS - MG
+              </option>
+
+              <option value="SP">
+                SÃO PAULO - SP
+              </option>
+
+              <option value="RJ">
+                RIO DE JANEIRO - RJ
+              </option>
+
+              <option value="DF">
+                DISTRITO FEDERAL - DF
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- TELEFONE -->
+
+          <div class="campo">
+
+            <label for="editarTelefone">
+              Telefone
+            </label>
+
+            <input
+              type="text"
+              id="editarTelefone"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- E-MAIL -->
+
+          <div class="campo">
+
+            <label for="editarEmail">
+              E-mail
+            </label>
+
+            <input
+              type="email"
+              id="editarEmail"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- ATIVO -->
+
+          <div class="campo">
+
+            <label for="editarAtivo">
+              Situação
+            </label>
+
+            <select id="editarAtivo">
+
+              <option value="true">
+                ATIVA
+              </option>
+
+              <option value="false">
+                INATIVA
+              </option>
+
+            </select>
+
+          </div>
+
 
         </div>
 
@@ -2302,11 +2616,26 @@
 
 
         mostrarMensagem(
-          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO DE TRANSPORTADORAS.",
+          obterMensagemErro(
+            erro
+          ),
           "erro"
         );
 
       }
+
+    }
+
+
+    /* =====================================================
+       REDIRECIONAR LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
@@ -2370,7 +2699,9 @@
 
             .from("transportadoras")
 
-            .select("*")
+            .select(
+              "id,nome,cidade,uf,\"e-mail\",ativo,criado_em,atualizado_em"
+            )
 
             .order(
               "nome",
@@ -2457,56 +2788,16 @@
         lista.length;
 
 
-      let ativas =
-        total;
+      const ativas =
+        lista.filter(
+          function(item) {
 
+            return (
+              item.ativo === true
+            );
 
-      if (
-        lista.length > 0 &&
-        (
-          Object.prototype.hasOwnProperty.call(
-            lista[0],
-            "ativo"
-          ) ||
-          Object.prototype.hasOwnProperty.call(
-            lista[0],
-            "status"
-          )
-        )
-      ) {
-
-        ativas =
-          lista.filter(
-            function(item) {
-
-              if (
-                item.ativo !== undefined &&
-                item.ativo !== null
-              ) {
-
-                return (
-                  item.ativo === true
-                );
-
-              }
-
-
-              const status =
-                normalizarTexto(
-                  item.status
-                );
-
-
-              return (
-                status === "" ||
-                status === "ATIVO" ||
-                status === "ATIVA"
-              );
-
-            }
-          ).length;
-
-      }
+          }
+        ).length;
 
 
       document.getElementById(
@@ -2573,13 +2864,6 @@
         );
 
 
-      const codigo =
-        document.getElementById(
-          "codigo"
-        ).value.trim()
-          .toUpperCase();
-
-
       const nome =
         document.getElementById(
           "nome"
@@ -2592,6 +2876,31 @@
           "cidade"
         ).value.trim()
           .toUpperCase();
+
+
+      const uf =
+        document.getElementById(
+          "uf"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const telefone =
+        document.getElementById(
+          "telefone"
+        ).value.trim();
+
+
+      const email =
+        document.getElementById(
+          "email"
+        ).value.trim();
+
+
+      const ativo =
+        document.getElementById(
+          "ativo"
+        ).value === "true";
 
 
       if (!nome) {
@@ -2620,6 +2929,10 @@
           "SALVANDO TRANSPORTADORA..."
         );
 
+
+        /* ==============================================
+           VERIFICAR NOME DUPLICADO
+           ============================================== */
 
         const consultaNome =
           await supabaseClient
@@ -2659,60 +2972,33 @@
         }
 
 
-        if (codigo) {
-
-          const consultaCodigo =
-            await supabaseClient
-
-              .from("transportadoras")
-
-              .select("id,codigo")
-
-              .eq(
-                "codigo",
-                codigo
-              )
-
-              .limit(1);
-
-
-          if (
-            consultaCodigo.error
-          ) {
-
-            throw consultaCodigo.error;
-
-          }
-
-
-          if (
-            consultaCodigo.data &&
-            consultaCodigo.data.length > 0
-          ) {
-
-            throw new Error(
-              "O CÓDIGO " +
-              codigo +
-              " JÁ ESTÁ CADASTRADO."
-            );
-
-          }
-
-        }
-
+        /* ==============================================
+           DADOS
+           ============================================== */
 
         const dados = {
-
-          codigo:
-            codigo ||
-            null,
 
           nome:
             nome,
 
           cidade:
             cidade ||
-            null
+            null,
+
+          uf:
+            uf ||
+            null,
+
+          telefone:
+            telefone ||
+            null,
+
+          "e-mail":
+            email ||
+            null,
+
+          ativo:
+            ativo
 
         };
 
@@ -2828,13 +3114,6 @@
 
 
       document.getElementById(
-        "editarCodigo"
-      ).value =
-        transportadora.codigo ||
-        "";
-
-
-      document.getElementById(
         "editarNome"
       ).value =
         transportadora.nome ||
@@ -2846,6 +3125,35 @@
       ).value =
         transportadora.cidade ||
         "";
+
+
+      document.getElementById(
+        "editarUF"
+      ).value =
+        transportadora.uf ||
+        "";
+
+
+      document.getElementById(
+        "editarTelefone"
+      ).value =
+        transportadora.telefone ||
+        "";
+
+
+      document.getElementById(
+        "editarEmail"
+      ).value =
+        transportadora["e-mail"] ||
+        "";
+
+
+      document.getElementById(
+        "editarAtivo"
+      ).value =
+        transportadora.ativo === false
+          ? "false"
+          : "true";
 
 
       document.getElementById(
@@ -2880,13 +3188,6 @@
         ).value;
 
 
-      const codigo =
-        document.getElementById(
-          "editarCodigo"
-        ).value.trim()
-          .toUpperCase();
-
-
       const nome =
         document.getElementById(
           "editarNome"
@@ -2899,6 +3200,31 @@
           "editarCidade"
         ).value.trim()
           .toUpperCase();
+
+
+      const uf =
+        document.getElementById(
+          "editarUF"
+        ).value.trim()
+          .toUpperCase();
+
+
+      const telefone =
+        document.getElementById(
+          "editarTelefone"
+        ).value.trim();
+
+
+      const email =
+        document.getElementById(
+          "editarEmail"
+        ).value.trim();
+
+
+      const ativo =
+        document.getElementById(
+          "editarAtivo"
+        ).value === "true";
 
 
       if (
@@ -2930,6 +3256,10 @@
           "ATUALIZANDO TRANSPORTADORA..."
         );
 
+
+        /* ==============================================
+           VERIFICAR NOME DUPLICADO
+           ============================================== */
 
         const consultaNome =
           await supabaseClient
@@ -2974,65 +3304,33 @@
         }
 
 
-        if (codigo) {
-
-          const consultaCodigo =
-            await supabaseClient
-
-              .from("transportadoras")
-
-              .select("id,codigo")
-
-              .eq(
-                "codigo",
-                codigo
-              )
-
-              .neq(
-                "id",
-                id
-              )
-
-              .limit(1);
-
-
-          if (
-            consultaCodigo.error
-          ) {
-
-            throw consultaCodigo.error;
-
-          }
-
-
-          if (
-            consultaCodigo.data &&
-            consultaCodigo.data.length > 0
-          ) {
-
-            throw new Error(
-              "O CÓDIGO " +
-              codigo +
-              " JÁ ESTÁ CADASTRADO EM OUTRA TRANSPORTADORA."
-            );
-
-          }
-
-        }
-
+        /* ==============================================
+           DADOS
+           ============================================== */
 
         const dados = {
-
-          codigo:
-            codigo ||
-            null,
 
           nome:
             nome,
 
           cidade:
             cidade ||
-            null
+            null,
+
+          uf:
+            uf ||
+            null,
+
+          telefone:
+            telefone ||
+            null,
+
+          "e-mail":
+            email ||
+            null,
+
+          ativo:
+            ativo
 
         };
 
@@ -3255,7 +3553,7 @@
           <tr>
 
             <td
-              colspan="4"
+              colspan="7"
               style="
                 text-align:center;
                 padding:30px;
@@ -3281,20 +3579,23 @@
           .map(
             function(item) {
 
+              const situacao =
+                item.ativo === true
+                  ? `
+                    <span class="status-ativo">
+                      ATIVA
+                    </span>
+                  `
+                  : `
+                    <span class="status-inativo">
+                      INATIVA
+                    </span>
+                  `;
+
+
               return `
 
                 <tr>
-
-                  <td
-                    class="codigo"
-                  >
-
-                    ${escapeHTML(
-                      item.codigo ||
-                      "-"
-                    )}
-
-                  </td>
 
                   <td
                     class="transportadora-nome"
@@ -3307,6 +3608,7 @@
 
                   </td>
 
+
                   <td>
 
                     ${escapeHTML(
@@ -3316,9 +3618,48 @@
 
                   </td>
 
+
+                  <td>
+
+                    ${escapeHTML(
+                      item.uf ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      item.telefone ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      item["e-mail"] ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${situacao}
+
+                  </td>
+
+
                   <td>
 
                     <div class="acoes">
+
 
                       <button
                         type="button"
@@ -3333,6 +3674,7 @@
 
                       </button>
 
+
                       <button
                         type="button"
                         class="btn-mini btn-excluir"
@@ -3345,6 +3687,7 @@
                         🗑️
 
                       </button>
+
 
                     </div>
 
@@ -3373,9 +3716,21 @@
         );
 
 
+      const filtroUF =
+        document.getElementById(
+          "filtroUF"
+        );
+
+
       const texto =
         normalizarTexto(
           campo.value
+        );
+
+
+      const ufSelecionada =
+        normalizarTexto(
+          filtroUF.value
         );
 
 
@@ -3387,11 +3742,6 @@
               normalizarTexto(
 
                 String(
-                  item.codigo ||
-                  ""
-                ) +
-                " " +
-                String(
                   item.nome ||
                   ""
                 ) +
@@ -3399,16 +3749,44 @@
                 String(
                   item.cidade ||
                   ""
+                ) +
+                " " +
+                String(
+                  item.uf ||
+                  ""
+                ) +
+                " " +
+                String(
+                  item.telefone ||
+                  ""
+                ) +
+                " " +
+                String(
+                  item["e-mail"] ||
+                  ""
                 )
 
               );
 
 
-            return (
+            const correspondeTexto =
               !texto ||
               linha.includes(
                 texto
-              )
+              );
+
+
+            const correspondeUF =
+              !ufSelecionada ||
+              normalizarTexto(
+                item.uf
+              ) ===
+              ufSelecionada;
+
+
+            return (
+              correspondeTexto &&
+              correspondeUF
             );
 
           }
@@ -3434,6 +3812,12 @@
         "";
 
 
+      document.getElementById(
+        "filtroUF"
+      ).value =
+        "";
+
+
       filtrarTransportadoras();
 
     }
@@ -3448,6 +3832,12 @@
       document.getElementById(
         "formTransportadora"
       ).reset();
+
+
+      document.getElementById(
+        "ativo"
+      ).value =
+        "true";
 
     }
 
@@ -3787,6 +4177,9 @@
           ) ||
           texto.includes(
             "permission denied"
+          ) ||
+          texto.includes(
+            "not allowed"
           )
         ) {
 
@@ -3808,6 +4201,19 @@
 
           return (
             "ESTE REGISTRO JÁ ESTÁ CADASTRADO."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "does not exist"
+          )
+        ) {
+
+          return (
+            "A ESTRUTURA DA TABELA DO SUPABASE NÃO CORRESPONDE AO SISTEMA."
           );
 
         }
@@ -3872,8 +4278,18 @@
 
 
     /* =====================================================
-       ENTER NA PESQUISA
+       PESQUISA
        ===================================================== */
+
+    document
+      .getElementById(
+        "filtroTexto"
+      )
+      .addEventListener(
+        "input",
+        filtrarTransportadoras
+      );
+
 
     document
       .getElementById(
