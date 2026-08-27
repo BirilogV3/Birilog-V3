@@ -1,1282 +1,607 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
-
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BiriLog V3 - Relatórios</title>
-
-
-  <!-- =====================================================
-       SUPABASE
-       ===================================================== -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-
     html,
     body {
       min-height: 100%;
     }
 
-
     body {
-
       min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       background: #f1f5f9;
-
       color: #1e293b;
-
     }
 
-
-    /* =====================================================
-       SIDEBAR
-       ===================================================== */
-
     .sidebar {
-
       position: fixed;
-
       left: 0;
       top: 0;
       bottom: 0;
-
       width: 250px;
-
-      background:
-        linear-gradient(
-          180deg,
-          #0f172a,
-          #172554
-        );
-
+      background: linear-gradient(180deg, #0f172a, #172554);
       color: white;
-
       display: flex;
-
       flex-direction: column;
-
       z-index: 100;
-
-      box-shadow:
-        5px 0 20px
-        rgba(0,0,0,0.10);
-
+      box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
-
     }
-
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
 
     .logo-area {
-
       padding: 28px 22px;
-
       text-align: center;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       flex-shrink: 0;
-
     }
-
 
     .logo-icon {
-
       width: 58px;
       height: 58px;
-
       margin: 0 auto 12px;
-
       border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #0d47a1
-        );
-
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 28px;
-
-      box-shadow:
-        0 8px 20px
-        rgba(25,118,210,0.30);
-
+      box-shadow: 0 8px 20px rgba(25,118,210,0.30);
     }
-
 
     .logo-title {
-
       font-size: 22px;
-
       font-weight: 800;
-
     }
-
 
     .logo-title span {
-
       color: #60a5fa;
-
     }
-
 
     .logo-version {
-
       margin-top: 5px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
       letter-spacing: 1px;
-
     }
-
-
-    /* =====================================================
-       MENU
-       ===================================================== */
 
     .menu {
-
       padding: 20px 12px;
-
       flex: 1;
-
       min-height: 0;
-
       overflow-y: auto;
-
     }
-
 
     .menu-title {
-
-      padding:
-        0 12px 10px;
-
+      padding: 0 12px 10px;
       font-size: 10px;
-
       font-weight: 700;
-
       color: #64748b;
-
       letter-spacing: 1px;
-
     }
-
 
     .menu-item {
-
       width: 100%;
-
       border: none;
-
       background: transparent;
-
       color: #cbd5e1;
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 13px 14px;
-
       margin-bottom: 4px;
-
       border-radius: 9px;
-
       cursor: pointer;
-
       font-size: 13px;
-
       text-align: left;
-
       transition: 0.2s;
-
     }
-
 
     .menu-item:hover {
-
-      background:
-        rgba(255,255,255,0.08);
-
+      background: rgba(255,255,255,0.08);
       color: white;
-
     }
-
 
     .menu-item.active {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
-
+      box-shadow: 0 5px 15px rgba(37,99,235,0.25);
     }
-
 
     .menu-icon {
-
       width: 22px;
-
       text-align: center;
-
       font-size: 17px;
-
       flex-shrink: 0;
-
     }
-
-
-    /* =====================================================
-       USUÁRIO
-       ===================================================== */
 
     .user-area {
-
       padding: 15px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      background:
-        rgba(0,0,0,0.08);
-
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.08);
       flex-shrink: 0;
-
     }
-
 
     .user-card {
-
-      background:
-        rgba(255,255,255,0.06);
-
+      background: rgba(255,255,255,0.06);
       border-radius: 10px;
-
       padding: 12px;
-
     }
-
 
     .user-name {
-
       font-size: 12px;
-
       font-weight: 700;
-
       color: white;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-email {
-
       margin-top: 3px;
-
       font-size: 9px;
-
       color: #94a3b8;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-profile {
-
       margin-top: 6px;
-
       font-size: 10px;
-
       color: #60a5fa;
-
       text-transform: uppercase;
-
       font-weight: 700;
-
     }
-
-
-    /* =====================================================
-       SAIR
-       ===================================================== */
 
     .logout {
-
       width: 100%;
-
       margin-top: 10px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-      background:
-        rgba(255,255,255,0.06);
-
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
       color: #e2e8f0;
-
       padding: 11px 10px;
-
       min-height: 38px;
-
       border-radius: 8px;
-
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 700;
-
-      transition:
-        0.2s;
-
+      transition: 0.2s;
     }
-
 
     .logout:hover {
-
       background: #dc2626;
-
       border-color: #dc2626;
-
       color: white;
-
     }
-
 
     .logout:disabled {
-
       opacity: .6;
-
       cursor: wait;
-
     }
-
-
-    /* =====================================================
-       MAIN
-       ===================================================== */
 
     .main {
-
       margin-left: 250px;
-
-      width:
-        calc(100% - 250px);
-
+      width: calc(100% - 250px);
       min-height: 100vh;
-
     }
-
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
 
     .header {
-
       height: 75px;
-
       background: white;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      padding:
-        0 30px;
-
+      padding: 0 30px;
       position: sticky;
-
       top: 0;
-
       z-index: 50;
-
     }
-
 
     .header-title {
-
       font-size: 20px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .header-subtitle {
-
       margin-top: 3px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
-
 
     .status-online {
-
       display: flex;
-
       align-items: center;
-
       gap: 7px;
-
-      padding:
-        7px 12px;
-
+      padding: 7px 12px;
       border-radius: 20px;
-
       background: #f0fdf4;
-
       color: #15803d;
-
       font-size: 11px;
-
       font-weight: 700;
-
     }
-
 
     .status-dot {
-
       width: 7px;
       height: 7px;
-
       border-radius: 50%;
-
       background: #22c55e;
-
     }
-
-
-    /* =====================================================
-       CONTENT
-       ===================================================== */
 
     .content {
-
       padding: 30px;
-
     }
-
-
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
 
     .mensagem {
-
       display: none;
-
       margin-bottom: 20px;
-
       padding: 13px 16px;
-
       border-radius: 9px;
-
       font-size: 11px;
-
       font-weight: 700;
-
       text-align: center;
-
     }
-
 
     .mensagem.sucesso {
-
       display: block;
-
       background: #f0fdf4;
-
       color: #15803d;
-
-      border:
-        1px solid #bbf7d0;
-
+      border: 1px solid #bbf7d0;
     }
-
 
     .mensagem.erro {
-
       display: block;
-
       background: #fef2f2;
-
       color: #b91c1c;
-
-      border:
-        1px solid #fecaca;
-
+      border: 1px solid #fecaca;
     }
-
 
     .mensagem.info {
-
       display: block;
-
       background: #eff6ff;
-
       color: #1d4ed8;
-
-      border:
-        1px solid #bfdbfe;
-
+      border: 1px solid #bfdbfe;
     }
-
-
-    /* =====================================================
-       TÍTULO DA PÁGINA
-       ===================================================== */
 
     .page-title {
-
       margin-bottom: 22px;
-
     }
-
 
     .page-title h1 {
-
       font-size: 18px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .page-title p {
-
       margin-top: 5px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
-
-
-    /* =====================================================
-       CARDS
-       ===================================================== */
 
     .cards {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-
       margin-bottom: 22px;
-
     }
-
 
     .card {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 18px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
     }
-
 
     .card-label {
-
       font-size: 10px;
-
       color: #64748b;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
     }
-
 
     .card-value {
-
       margin-top: 8px;
-
       font-size: 27px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
-
-    /* =====================================================
-       PAINEL
-       ===================================================== */
 
     .panel {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 22px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
       margin-bottom: 20px;
-
     }
-
 
     .panel-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
-
       margin-bottom: 20px;
-
     }
-
 
     .panel-title {
-
       font-size: 15px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .panel-subtitle {
-
       margin-top: 4px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
     }
-
-
-    /* =====================================================
-       FILTROS
-       ===================================================== */
 
     .filtros-grid {
-
       display: grid;
-
-      grid-template-columns:
-        1.2fr
-        1fr
-        1fr
-        1fr;
-
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
       gap: 12px;
-
     }
-
 
     .campo {
-
       display: flex;
-
       flex-direction: column;
-
     }
-
 
     .campo label {
-
       margin-bottom: 7px;
-
       font-size: 10px;
-
       font-weight: 700;
-
       color: #475569;
-
       text-transform: uppercase;
-
     }
-
 
     .campo input,
     .campo select {
-
       width: 100%;
-
       height: 43px;
-
-      padding:
-        0 11px;
-
-      border:
-        1px solid #cbd5e1;
-
+      padding: 0 11px;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-
       background: #f8fafc;
-
       color: #0f172a;
-
       outline: none;
-
       font-size: 11px;
-
       text-transform: uppercase;
-
     }
-
 
     .campo input:focus,
     .campo select:focus {
-
       background: white;
-
       border-color: #1976d2;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(25,118,210,0.10);
-
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
-
 
     .filtros-acoes {
-
       display: flex;
-
       justify-content: flex-end;
-
       gap: 10px;
-
       margin-top: 15px;
-
       padding-top: 15px;
-
-      border-top:
-        1px solid #f1f5f9;
-
+      border-top: 1px solid #f1f5f9;
     }
-
-
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
 
     .btn {
-
       border: none;
-
       border-radius: 8px;
-
-      padding:
-        11px 17px;
-
+      padding: 11px 17px;
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 800;
-
       transition: .2s;
-
     }
-
 
     .btn:hover {
-
-      transform:
-        translateY(-1px);
-
+      transform: translateY(-1px);
     }
-
 
     .btn:disabled {
-
       opacity: .6;
-
       cursor: wait;
-
       transform: none;
-
     }
-
 
     .btn-primary {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 14px
-        rgba(37,99,235,0.20);
-
+      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
     }
-
 
     .btn-secondary {
-
       background: #f1f5f9;
-
       color: #475569;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
     }
-
 
     .btn-print {
-
       background: #0f172a;
-
       color: white;
-
     }
-
-
-    /* =====================================================
-       RESUMO DO RELATÓRIO
-       ===================================================== */
 
     .resumo-relatorio {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(5, 1fr);
-
+      grid-template-columns: repeat(5, 1fr);
       gap: 12px;
-
       margin-bottom: 20px;
-
     }
-
 
     .resumo-box {
-
       padding: 14px;
-
       border-radius: 10px;
-
       background: #f8fafc;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
     }
-
 
     .resumo-box-label {
-
       font-size: 9px;
-
       color: #94a3b8;
-
       text-transform: uppercase;
-
       font-weight: 800;
-
     }
-
 
     .resumo-box-value {
-
       margin-top: 6px;
-
       font-size: 18px;
-
       color: #0f172a;
-
       font-weight: 800;
-
     }
-
-
-    /* =====================================================
-       TABELA
-       ===================================================== */
 
     .table-wrapper {
-
       width: 100%;
-
       overflow-x: auto;
-
     }
-
 
     table {
-
       width: 100%;
-
       min-width: 1250px;
-
       border-collapse: collapse;
-
     }
-
 
     th {
-
-      padding:
-        11px 8px;
-
+      padding: 11px 8px;
       text-align: left;
-
       background: #0f172a;
-
       color: white;
-
       font-size: 9px;
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
-
 
     td {
-
-      padding:
-        11px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
+      padding: 11px 8px;
+      border-bottom: 1px solid #f1f5f9;
       font-size: 10px;
-
       color: #334155;
-
       white-space: nowrap;
-
     }
-
 
     tbody tr:hover td {
-
       background: #f8fafc;
-
     }
-
 
     .nf {
-
       font-weight: 800;
-
       color: #1976d2;
-
     }
-
 
     .valor {
-
       font-weight: 700;
-
     }
-
-
-    /* =====================================================
-       STATUS
-       ===================================================== */
 
     .status {
-
       display: inline-block;
-
-      padding:
-        5px 8px;
-
+      padding: 5px 8px;
       border-radius: 20px;
-
       font-size: 8px;
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
-
 
     .status-entregue {
-
       background: #dcfce7;
-
       color: #166534;
-
     }
-
 
     .status-transito {
-
       background: #dbeafe;
-
       color: #1d4ed8;
-
     }
-
 
     .status-atrasado {
-
       background: #fee2e2;
-
       color: #b91c1c;
-
     }
-
 
     .status-coletado {
-
       background: #fef3c7;
-
       color: #92400e;
-
     }
-
 
     .status-padrao {
-
       background: #f1f5f9;
-
       color: #475569;
-
     }
-
-
-    /* =====================================================
-       VAZIO
-       ===================================================== */
 
     .vazio {
-
       text-align: center;
-
-      padding:
-        35px 20px;
-
+      padding: 35px 20px;
       color: #94a3b8;
-
       font-size: 11px;
-
       font-weight: 700;
-
     }
-
-
-    /* =====================================================
-       LOADING
-       ===================================================== */
 
     .loading {
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(248,250,252,0.88);
-
+      background: rgba(248,250,252,0.88);
       display: none;
-
       align-items: center;
-
       justify-content: center;
-
       z-index: 9999;
-
       backdrop-filter: blur(2px);
-
     }
-
 
     .loading-box {
-
       background: white;
-
       border-radius: 14px;
-
-      padding:
-        25px 30px;
-
+      padding: 25px 30px;
       text-align: center;
-
-      box-shadow:
-        0 20px 50px
-        rgba(15,23,42,0.18);
-
+      box-shadow: 0 20px 50px rgba(15,23,42,0.18);
     }
-
 
     .spinner {
-
       width: 35px;
-
       height: 35px;
-
-      margin:
-        0 auto 12px;
-
-      border:
-        3px solid #dbeafe;
-
-      border-top-color:
-        #1976d2;
-
+      margin: 0 auto 12px;
+      border: 3px solid #dbeafe;
+      border-top-color: #1976d2;
       border-radius: 50%;
-
-      animation:
-        girar .8s linear infinite;
-
+      animation: girar .8s linear infinite;
     }
-
 
     .loading-text {
-
       font-size: 11px;
-
       color: #64748b;
-
       font-weight: 700;
-
     }
-
 
     @keyframes girar {
-
       to {
-
-        transform:
-          rotate(360deg);
-
+        transform: rotate(360deg);
       }
-
     }
-
-
-    /* =====================================================
-       IMPRESSÃO
-       ===================================================== */
 
     .cabecalho-impressao {
-
       display: none;
-
     }
 
-
     @media print {
-
       body {
-
         background: white;
-
       }
-
 
       .sidebar,
       .header,
@@ -1285,1114 +610,669 @@
       #mensagem,
       .cards,
       .filtros-painel {
-
         display: none !important;
-
       }
-
 
       .main {
-
         margin-left: 0;
-
         width: 100%;
-
       }
-
 
       .content {
-
         padding: 10px;
-
       }
-
 
       .panel {
-
         border: none;
-
         box-shadow: none;
-
         padding: 0;
-
       }
-
 
       .cabecalho-impressao {
-
         display: block;
-
         text-align: center;
-
         margin-bottom: 18px;
-
       }
-
 
       .cabecalho-impressao h1 {
-
         font-size: 20px;
-
         color: #111827;
-
       }
-
 
       .cabecalho-impressao p {
-
         margin-top: 4px;
-
         font-size: 10px;
-
         color: #64748b;
-
       }
-
 
       .resumo-relatorio {
-
-        grid-template-columns:
-          repeat(5, 1fr);
-
+        grid-template-columns: repeat(5, 1fr);
         margin-bottom: 15px;
-
       }
-
 
       .resumo-box {
-
         padding: 8px;
-
       }
-
 
       .resumo-box-value {
-
         font-size: 14px;
-
       }
-
 
       table {
-
         min-width: 0;
-
       }
-
 
       th {
-
         background: #e5e7eb !important;
-
         color: #111827 !important;
-
         border: 1px solid #d1d5db;
-
       }
-
 
       td {
-
         border: 1px solid #d1d5db;
-
         font-size: 8px;
-
       }
-
 
       .status {
-
-        border:
-          1px solid #94a3b8;
-
+        border: 1px solid #94a3b8;
         background: white !important;
-
         color: #111827 !important;
-
       }
-
     }
-
-
-    /* =====================================================
-       RESPONSIVO
-       ===================================================== */
 
     @media (max-width: 1100px) {
-
       .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
       }
-
 
       .filtros-grid {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
       }
-
 
       .resumo-relatorio {
-
-        grid-template-columns:
-          repeat(3, 1fr);
-
+        grid-template-columns: repeat(3, 1fr);
       }
-
     }
 
-
     @media (max-width: 700px) {
-
       .sidebar {
-
         width: 70px;
-
       }
-
 
       .logo-title,
       .logo-version,
       .menu-title,
       .menu-item span:not(.menu-icon),
       .user-card {
-
         display: none;
-
       }
-
 
       .logo-area {
-
-        padding:
-          18px 8px;
-
+        padding: 18px 8px;
       }
-
 
       .logo-icon {
-
         width: 42px;
         height: 42px;
-
         font-size: 20px;
-
       }
-
 
       .menu {
-
-        padding:
-          15px 8px;
-
+        padding: 15px 8px;
       }
-
 
       .menu-item {
-
         justify-content: center;
-
-        padding:
-          13px 5px;
-
+        padding: 13px 5px;
       }
-
 
       .user-area {
-
-        padding:
-          10px 8px;
-
+        padding: 10px 8px;
       }
-
 
       .logout {
-
         font-size: 0;
-
-        padding:
-          12px 5px;
-
+        padding: 12px 5px;
         min-height: 42px;
-
       }
-
 
       .logout::before {
-
         content: "🚪";
-
         font-size: 17px;
-
       }
-
 
       .main {
-
         margin-left: 70px;
-
-        width:
-          calc(100% - 70px);
-
+        width: calc(100% - 70px);
       }
-
 
       .header {
-
-        padding:
-          0 18px;
-
+        padding: 0 18px;
       }
-
 
       .header-title {
-
         font-size: 17px;
-
       }
-
 
       .status-online {
-
         font-size: 0;
-
         padding: 9px;
-
       }
-
 
       .status-dot {
-
         width: 8px;
         height: 8px;
-
       }
-
 
       .content {
-
         padding: 18px;
-
       }
-
 
       .cards {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
 
       .filtros-grid {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
 
       .filtros-acoes {
-
         flex-direction: column;
-
       }
-
 
       .filtros-acoes .btn {
-
         width: 100%;
-
       }
-
 
       .resumo-relatorio {
-
-        grid-template-columns:
-          1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
       }
-
 
       .panel {
-
         padding: 18px;
-
       }
-
     }
-
 
     @media (max-width: 450px) {
-
       .header-subtitle {
-
         display: none;
-
       }
-
 
       .resumo-relatorio {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
     }
-
   </style>
 
 </head>
 
-
 <body>
 
-
-  <!-- =====================================================
-       LOADING
-       ===================================================== -->
-
-  <div
-    id="loading"
-    class="loading"
-  >
-
+  <div id="loading" class="loading">
     <div class="loading-box">
-
       <div class="spinner"></div>
+      <div id="loadingText" class="loading-text">
+        CARREGANDO...
+      </div>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+
+```
+<div class="logo-area">
+  <div class="logo-icon">🚚</div>
+
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
+
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
+</div>
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('dashboard.html')">
+    <span class="menu-icon">📊</span>
+    <span>Dashboard</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('envios.html')">
+    <span class="menu-icon">📦</span>
+    <span>Envios</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irParaPesquisarNF()">
+    <span class="menu-icon">🔎</span>
+    <span>Pesquisar NF</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('clientes.html')">
+    <span class="menu-icon">👥</span>
+    <span>Clientes</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('transportadoras.html')">
+    <span class="menu-icon">🚛</span>
+    <span>Transportadoras</span>
+  </button>
+
+  <button type="button" class="menu-item active">
+    <span class="menu-icon">📄</span>
+    <span>Relatórios</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('usuarios.html')">
+    <span class="menu-icon">🔐</span>
+    <span>Usuários</span>
+  </button>
+
+  <button type="button" class="menu-item"
+    onclick="irPara('configuracoes.html')">
+    <span class="menu-icon">⚙️</span>
+    <span>Configurações</span>
+  </button>
+
+</nav>
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div id="usuarioNome" class="user-name">
+      USUÁRIO
+    </div>
+
+    <div id="usuarioEmail" class="user-email">
+      -
+    </div>
+
+    <div id="usuarioPerfil" class="user-profile">
+      PERFIL
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+    🚪 SAIR DO SISTEMA
+  </button>
+
+</div>
+```
+
+  </aside>
+
+  <main class="main">
+
+```
+<header class="header">
+
+  <div>
+    <div class="header-title">
+      Relatórios
+    </div>
+
+    <div class="header-subtitle">
+      Análise e impressão dos envios cadastrados
+    </div>
+  </div>
+
+  <div class="status-online">
+    <span class="status-dot"></span>
+    SISTEMA ONLINE
+  </div>
+
+</header>
+
+<section class="content">
+
+  <div id="mensagem" class="mensagem"></div>
+
+  <div class="page-title">
+
+    <h1>
+      📄 RELATÓRIO DE ENVIOS
+    </h1>
+
+    <p>
+      Utilize os filtros para gerar um relatório personalizado.
+    </p>
+
+  </div>
+
+  <div class="panel filtros-painel nao-imprimir">
+
+    <div class="panel-header">
+
+      <div>
+
+        <div class="panel-title">
+          🔎 FILTROS DO RELATÓRIO
+        </div>
+
+        <div class="panel-subtitle">
+          Combine período, cliente, transportadora e status.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="filtros-grid">
+
+      <div class="campo">
+
+        <label for="dataInicial">
+          Data Inicial
+        </label>
+
+        <input
+          type="date"
+          id="dataInicial"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="dataFinal">
+          Data Final
+        </label>
+
+        <input
+          type="date"
+          id="dataFinal"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="filtroCliente">
+          Cliente
+        </label>
+
+        <select id="filtroCliente">
+          <option value="">
+            TODOS OS CLIENTES
+          </option>
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="filtroTransportadora">
+          Transportadora
+        </label>
+
+        <select id="filtroTransportadora">
+          <option value="">
+            TODAS AS TRANSPORTADORAS
+          </option>
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="filtroStatus">
+          Status
+        </label>
+
+        <select id="filtroStatus">
+
+          <option value="">
+            TODOS OS STATUS
+          </option>
+
+          <option value="COLETADO">
+            COLETADO
+          </option>
+
+          <option value="EM TRANSITO">
+            EM TRÂNSITO
+          </option>
+
+          <option value="ENTREGUE">
+            ENTREGUE
+          </option>
+
+          <option value="ATRASADO">
+            ATRASADO
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="filtroBusca">
+          Pesquisa
+        </label>
+
+        <input
+          type="text"
+          id="filtroBusca"
+          placeholder="NF, CIDADE OU OUTRO"
+          autocomplete="off"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="filtros-acoes">
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="limparFiltros()"
+      >
+        🧹 LIMPAR
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="btnGerar"
+        onclick="gerarRelatorio()"
+      >
+        📊 GERAR RELATÓRIO
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-print"
+        onclick="imprimirRelatorio()"
+      >
+        🖨️ IMPRIMIR
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="cabecalho-impressao">
+
+    <h1>
+      BIRILOG V3
+    </h1>
+
+    <p>
+      RELATÓRIO DE ENVIOS • BIRIVET
+    </p>
+
+    <p id="periodoImpressao">
+      TODOS OS REGISTROS
+    </p>
+
+  </div>
+
+  <div class="resumo-relatorio">
+
+    <div class="resumo-box">
+
+      <div class="resumo-box-label">
+        Total
+      </div>
 
       <div
-        id="loadingText"
-        class="loading-text"
+        id="resumoTotal"
+        class="resumo-box-value"
       >
-        CARREGANDO...
+        0
+      </div>
+
+    </div>
+
+    <div class="resumo-box">
+
+      <div class="resumo-box-label">
+        Coletados
+      </div>
+
+      <div
+        id="resumoColetados"
+        class="resumo-box-value"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="resumo-box">
+
+      <div class="resumo-box-label">
+        Em Trânsito
+      </div>
+
+      <div
+        id="resumoTransito"
+        class="resumo-box-value"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="resumo-box">
+
+      <div class="resumo-box-label">
+        Entregues
+      </div>
+
+      <div
+        id="resumoEntregues"
+        class="resumo-box-value"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="resumo-box">
+
+      <div class="resumo-box-label">
+        Atrasados
+      </div>
+
+      <div
+        id="resumoAtrasados"
+        class="resumo-box-value"
+      >
+        0
       </div>
 
     </div>
 
   </div>
 
+  <div class="panel">
 
-  <!-- =====================================================
-       SIDEBAR
-       ===================================================== -->
-
-  <aside class="sidebar">
-
-
-    <div class="logo-area">
-
-      <div class="logo-icon">
-        🚚
-      </div>
-
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
-
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
-
-    </div>
-
-
-    <!-- ===================================================
-         MENU PRINCIPAL
-         ORDEM PADRONIZADA
-         =================================================== -->
-
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-
-      <!-- 1 - DASHBOARD -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
-      </button>
-
-
-      <!-- 2 - ENVIOS -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
-      </button>
-
-
-      <!-- 3 - PESQUISAR NF -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irParaPesquisarNF()"
-      >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
-      </button>
-
-
-      <!-- 4 - CLIENTES -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
-      </button>
-
-
-      <!-- 5 - TRANSPORTADORAS -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
-      </button>
-
-
-      <!-- 6 - RELATÓRIOS -->
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
-
-      <!-- 7 - USUÁRIOS -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-
-      <!-- 8 - CONFIGURAÇÕES -->
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
-      </button>
-
-
-    </nav>
-
-
-    <!-- ===================================================
-         USUÁRIO LOGADO
-         =================================================== -->
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-
-      <!-- =================================================
-           SAIR DO SISTEMA
-           ================================================= -->
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-
-        🚪 SAIR DO SISTEMA
-
-      </button>
-
-    </div>
-
-
-  </aside>
-
-
-  <!-- =====================================================
-       MAIN
-       ===================================================== -->
-
-  <main class="main">
-
-
-    <header class="header">
+    <div class="panel-header nao-imprimir">
 
       <div>
 
-        <div class="header-title">
-          Relatórios
+        <div class="panel-title">
+          📋 RESULTADO DO RELATÓRIO
         </div>
 
-        <div class="header-subtitle">
-          Análise e impressão dos envios cadastrados
-        </div>
-
-      </div>
-
-
-      <div class="status-online">
-
-        <span class="status-dot"></span>
-
-        SISTEMA ONLINE
-
-      </div>
-
-    </header>
-
-
-    <section class="content">
-
-
-      <!-- =================================================
-           MENSAGEM
-           ================================================= -->
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-
-      <!-- =================================================
-           TÍTULO
-           ================================================= -->
-
-      <div class="page-title">
-
-        <h1>
-          📄 RELATÓRIO DE ENVIOS
-        </h1>
-
-        <p>
-          Utilize os filtros para gerar um relatório personalizado.
-        </p>
-
-      </div>
-
-
-      <!-- =================================================
-           FILTROS
-           ================================================= -->
-
-      <div
-        class="panel filtros-painel nao-imprimir"
-      >
-
-
-        <div class="panel-header">
-
-          <div>
-
-            <div class="panel-title">
-              🔎 FILTROS DO RELATÓRIO
-            </div>
-
-            <div class="panel-subtitle">
-              Combine período, cliente, transportadora e status.
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="filtros-grid">
-
-
-          <div class="campo">
-
-            <label for="dataInicial">
-              Data Inicial
-            </label>
-
-            <input
-              type="date"
-              id="dataInicial"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="dataFinal">
-              Data Final
-            </label>
-
-            <input
-              type="date"
-              id="dataFinal"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="filtroCliente">
-              Cliente
-            </label>
-
-            <select
-              id="filtroCliente"
-            >
-
-              <option value="">
-                TODOS OS CLIENTES
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="filtroTransportadora">
-              Transportadora
-            </label>
-
-            <select
-              id="filtroTransportadora"
-            >
-
-              <option value="">
-                TODAS AS TRANSPORTADORAS
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="filtroStatus">
-              Status
-            </label>
-
-            <select
-              id="filtroStatus"
-            >
-
-              <option value="">
-                TODOS OS STATUS
-              </option>
-
-              <option value="COLETADO">
-                COLETADO
-              </option>
-
-              <option value="EM TRANSITO">
-                EM TRÂNSITO
-              </option>
-
-              <option value="ENTREGUE">
-                ENTREGUE
-              </option>
-
-              <option value="ATRASADO">
-                ATRASADO
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="filtroBusca">
-              Pesquisa
-            </label>
-
-            <input
-              type="text"
-              id="filtroBusca"
-              placeholder="NF, CIDADE OU OUTRO"
-              autocomplete="off"
-            >
-
-          </div>
-
-
-        </div>
-
-
-        <div class="filtros-acoes">
-
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="limparFiltros()"
-          >
-
-            🧹 LIMPAR
-
-          </button>
-
-
-          <button
-            type="button"
-            class="btn btn-primary"
-            id="btnGerar"
-            onclick="gerarRelatorio()"
-          >
-
-            📊 GERAR RELATÓRIO
-
-          </button>
-
-
-          <button
-            type="button"
-            class="btn btn-print"
-            onclick="imprimirRelatorio()"
-          >
-
-            🖨️ IMPRIMIR
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =================================================
-           CABEÇALHO DE IMPRESSÃO
-           ================================================= -->
-
-      <div class="cabecalho-impressao">
-
-        <h1>
-          BIRILOG V3
-        </h1>
-
-        <p>
-          RELATÓRIO DE ENVIOS • BIRIVET
-        </p>
-
-        <p
-          id="periodoImpressao"
+        <div
+          id="quantidadeResultado"
+          class="panel-subtitle"
         >
-          TODOS OS REGISTROS
-        </p>
-
-      </div>
-
-
-      <!-- =================================================
-           RESUMO
-           ================================================= -->
-
-      <div class="resumo-relatorio">
-
-
-        <div class="resumo-box">
-
-          <div class="resumo-box-label">
-            Total
-          </div>
-
-          <div
-            id="resumoTotal"
-            class="resumo-box-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="resumo-box">
-
-          <div class="resumo-box-label">
-            Coletados
-          </div>
-
-          <div
-            id="resumoColetados"
-            class="resumo-box-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="resumo-box">
-
-          <div class="resumo-box-label">
-            Em Trânsito
-          </div>
-
-          <div
-            id="resumoTransito"
-            class="resumo-box-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="resumo-box">
-
-          <div class="resumo-box-label">
-            Entregues
-          </div>
-
-          <div
-            id="resumoEntregues"
-            class="resumo-box-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="resumo-box">
-
-          <div class="resumo-box-label">
-            Atrasados
-          </div>
-
-          <div
-            id="resumoAtrasados"
-            class="resumo-box-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =================================================
-           TABELA
-           ================================================= -->
-
-      <div class="panel">
-
-
-        <div class="panel-header nao-imprimir">
-
-          <div>
-
-            <div class="panel-title">
-              📋 RESULTADO DO RELATÓRIO
-            </div>
-
-            <div
-              id="quantidadeResultado"
-              class="panel-subtitle"
-            >
-              0 registros encontrados
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="table-wrapper">
-
-
-          <table>
-
-
-            <thead>
-
-              <tr>
-
-                <th>NF</th>
-
-                <th>CLIENTE</th>
-
-                <th>CIDADE</th>
-
-                <th>UF</th>
-
-                <th>TRANSPORTADORA</th>
-
-                <th>VALOR</th>
-
-                <th>VOLUMES</th>
-
-                <th>DATA ENVIO</th>
-
-                <th>PREVISÃO</th>
-
-                <th>ENTREGA</th>
-
-                <th>STATUS</th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody
-              id="tabelaRelatorio"
-            >
-
-              <tr>
-
-                <td
-                  colspan="11"
-                  class="vazio"
-                >
-
-                  🔎 USE OS FILTROS PARA GERAR O RELATÓRIO.
-
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
+          0 registros encontrados
         </div>
 
       </div>
 
+    </div>
 
-    </section>
+    <div class="table-wrapper">
 
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>NF</th>
+            <th>CLIENTE</th>
+            <th>CIDADE</th>
+            <th>UF</th>
+            <th>TRANSPORTADORA</th>
+            <th>VALOR</th>
+            <th>VOLUMES</th>
+            <th>DATA ENVIO</th>
+            <th>PREVISÃO</th>
+            <th>ENTREGA</th>
+            <th>STATUS</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="tabelaRelatorio">
+
+          <tr>
+
+            <td colspan="11" class="vazio">
+              🔎 USE OS FILTROS PARA GERAR O RELATÓRIO.
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+```
 
   </main>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
   <script>
-
 
     /* =====================================================
        SUPABASE
@@ -2401,10 +1281,8 @@
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
 
-
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -2417,16 +1295,9 @@
        VARIÁVEIS
        ===================================================== */
 
-    let usuarioAtual =
-      null;
-
-
-    let todosEnvios =
-      [];
-
-
-    let relatorioAtual =
-      [];
+    let usuarioAtual = null;
+    let todosEnvios = [];
+    let relatorioAtual = [];
 
 
     /* =====================================================
@@ -2447,24 +1318,16 @@
           "VERIFICANDO SESSÃO..."
         );
 
-
         const resultadoSessao =
           await supabaseClient.auth.getSession();
 
-
-        if (
-          resultadoSessao.error
-        ) {
-
+        if (resultadoSessao.error) {
           throw resultadoSessao.error;
-
         }
-
 
         const session =
           resultadoSessao.data &&
           resultadoSessao.data.session;
-
 
         if (!session) {
 
@@ -2474,10 +1337,8 @@
 
         }
 
-
         const authUser =
           session.user;
-
 
         const consulta =
           await supabaseClient
@@ -2491,19 +1352,11 @@
             )
             .maybeSingle();
 
-
-        if (
-          consulta.error
-        ) {
-
+        if (consulta.error) {
           throw consulta.error;
-
         }
 
-
-        if (
-          !consulta.data
-        ) {
+        if (!consulta.data) {
 
           await supabaseClient.auth.signOut();
 
@@ -2513,10 +1366,7 @@
 
         }
 
-
-        if (
-          consulta.data.ativo === false
-        ) {
+        if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
 
@@ -2525,20 +1375,13 @@
           return;
 
         }
-
 
         usuarioAtual =
           consulta.data;
 
-
         preencherUsuario();
 
-
         definirDatasPadrao();
-
-
-        esconderLoading();
-
 
         await carregarDados();
 
@@ -2551,14 +1394,10 @@
           erro
         );
 
-
         esconderLoading();
 
-
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2574,11 +1413,8 @@
     function preencherUsuario() {
 
       if (!usuarioAtual) {
-
         return;
-
       }
-
 
       document.getElementById(
         "usuarioNome"
@@ -2589,13 +1425,11 @@
           "USUÁRIO"
         ).toUpperCase();
 
-
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email ||
         "-";
-
 
       document.getElementById(
         "usuarioPerfil"
@@ -2618,7 +1452,6 @@
         "CARREGANDO DADOS..."
       );
 
-
       try {
 
         const resultado =
@@ -2632,31 +1465,23 @@
               }
             );
 
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
-
 
         todosEnvios =
           resultado.data || [];
-
 
         preencherFiltroClientes();
 
         preencherFiltroTransportadoras();
 
-        atualizarResumo(
-          todosEnvios
-        );
-
         relatorioAtual =
           todosEnvios.slice();
 
+        atualizarResumo(
+          relatorioAtual
+        );
 
         renderizarTabela(
           relatorioAtual
@@ -2673,29 +1498,15 @@
           erro
         );
 
+        todosEnvios = [];
+        relatorioAtual = [];
 
-        todosEnvios =
-          [];
+        atualizarResumo([]);
 
-
-        relatorioAtual =
-          [];
-
-
-        atualizarResumo(
-          []
-        );
-
-
-        renderizarTabela(
-          []
-        );
-
+        renderizarTabela([]);
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2711,7 +1522,7 @@
 
 
     /* =====================================================
-       PREENCHER CLIENTES
+       FILTROS
        ===================================================== */
 
     function preencherFiltroClientes() {
@@ -2721,69 +1532,44 @@
           "filtroCliente"
         );
 
-
       const clientes =
         Array.from(
           new Set(
             todosEnvios
               .map(
-                function(item) {
-
-                  return String(
-                    item.cliente ||
-                    ""
+                item =>
+                  String(
+                    item.cliente || ""
                   )
                     .trim()
-                    .toUpperCase();
-
-                }
+                    .toUpperCase()
               )
-              .filter(
-                function(nome) {
-
-                  return nome;
-
-                }
-              )
+              .filter(Boolean)
           )
         )
         .sort();
 
-
       select.innerHTML =
         '<option value="">TODOS OS CLIENTES</option>';
 
-
       clientes.forEach(
-        function(cliente) {
+        cliente => {
 
           const option =
             document.createElement(
               "option"
             );
 
+          option.value = cliente;
+          option.textContent = cliente;
 
-          option.value =
-            cliente;
-
-
-          option.textContent =
-            cliente;
-
-
-          select.appendChild(
-            option
-          );
+          select.appendChild(option);
 
         }
       );
 
     }
 
-
-    /* =====================================================
-       PREENCHER TRANSPORTADORAS
-       ===================================================== */
 
     function preencherFiltroTransportadoras() {
 
@@ -2792,59 +1578,38 @@
           "filtroTransportadora"
         );
 
-
       const transportadoras =
         Array.from(
           new Set(
             todosEnvios
               .map(
-                function(item) {
-
-                  return String(
-                    item.transportadora ||
-                    ""
+                item =>
+                  String(
+                    item.transportadora || ""
                   )
                     .trim()
-                    .toUpperCase();
-
-                }
+                    .toUpperCase()
               )
-              .filter(
-                function(nome) {
-
-                  return nome;
-
-                }
-              )
+              .filter(Boolean)
           )
         )
         .sort();
 
-
       select.innerHTML =
         '<option value="">TODAS AS TRANSPORTADORAS</option>';
 
-
       transportadoras.forEach(
-        function(nome) {
+        nome => {
 
           const option =
             document.createElement(
               "option"
             );
 
+          option.value = nome;
+          option.textContent = nome;
 
-          option.value =
-            nome;
-
-
-          option.textContent =
-            nome;
-
-
-          select.appendChild(
-            option
-          );
+          select.appendChild(option);
 
         }
       );
@@ -2863,12 +1628,10 @@
           "dataInicial"
         ).value;
 
-
       const dataFinal =
         document.getElementById(
           "dataFinal"
         ).value;
-
 
       const cliente =
         normalizarTexto(
@@ -2877,14 +1640,12 @@
           ).value
         );
 
-
       const transportadora =
         normalizarTexto(
           document.getElementById(
             "filtroTransportadora"
           ).value
         );
-
 
       const status =
         normalizarStatus(
@@ -2893,14 +1654,12 @@
           ).value
         );
 
-
       const busca =
         normalizarTexto(
           document.getElementById(
             "filtroBusca"
           ).value
         );
-
 
       if (
         dataInicial &&
@@ -2917,20 +1676,18 @@
 
       }
 
-
       mostrarLoading(
         "GERANDO RELATÓRIO..."
       );
 
-
       setTimeout(
-        function() {
+        () => {
 
           try {
 
             relatorioAtual =
               todosEnvios.filter(
-                function(envio) {
+                envio => {
 
                   const dataEnvio =
                     obterDataISO(
@@ -2938,116 +1695,74 @@
                       envio.created_at
                     );
 
-
-                  let periodoOK =
-                    true;
-
+                  let periodoOK = true;
 
                   if (
                     dataInicial &&
                     dataEnvio &&
                     dataEnvio < dataInicial
                   ) {
-
-                    periodoOK =
-                      false;
-
+                    periodoOK = false;
                   }
-
 
                   if (
                     dataFinal &&
                     dataEnvio &&
                     dataEnvio > dataFinal
                   ) {
-
-                    periodoOK =
-                      false;
-
+                    periodoOK = false;
                   }
-
 
                   const clienteAtual =
                     normalizarTexto(
                       envio.cliente
                     );
 
-
                   const clienteOK =
                     !cliente ||
-                    clienteAtual ===
-                    cliente;
-
+                    clienteAtual === cliente;
 
                   const transportadoraAtual =
                     normalizarTexto(
                       envio.transportadora
                     );
 
-
                   const transportadoraOK =
                     !transportadora ||
                     transportadoraAtual ===
                     transportadora;
-
 
                   const statusAtual =
                     normalizarStatus(
                       envio.status
                     );
 
-
                   const statusOK =
                     !status ||
-                    statusAtual ===
-                    status;
-
+                    statusAtual === status;
 
                   const textoBusca =
                     normalizarTexto(
-                      String(
-                        envio.nf ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.cliente ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.cidade ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.uf ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.transportadora ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.observacao ||
-                        ""
-                      ) +
-                      " " +
-                      String(
-                        envio.status ||
-                        ""
-                      )
+                      [
+                        envio.nf,
+                        envio.cliente,
+                        envio.cidade,
+                        envio.uf,
+                        envio.transportadora,
+                        envio.observacao,
+                        envio.status
+                      ]
+                        .filter(
+                          valor =>
+                            valor !== null &&
+                            valor !== undefined
+                        )
+                        .join(" ")
                     );
-
 
                   const buscaOK =
                     !busca ||
-                    textoBusca.includes(
-                      busca
-                    );
-
+                    textoBusca.includes(busca);
 
                   return (
                     periodoOK &&
@@ -3060,30 +1775,24 @@
                 }
               );
 
-
             atualizarResumo(
               relatorioAtual
             );
-
 
             renderizarTabela(
               relatorioAtual
             );
 
-
             atualizarPeriodoImpressao();
-
 
             const quantidade =
               relatorioAtual.length;
 
-
             mostrarMensagem(
               quantidade === 1
                 ? "1 REGISTRO ENCONTRADO."
-                :
-                quantidade +
-                " REGISTROS ENCONTRADOS.",
+                : quantidade +
+                  " REGISTROS ENCONTRADOS.",
               "info"
             );
 
@@ -3095,7 +1804,6 @@
               "Erro ao gerar relatório:",
               erro
             );
-
 
             mostrarMensagem(
               "NÃO FOI POSSÍVEL GERAR O RELATÓRIO.",
@@ -3118,24 +1826,20 @@
 
 
     /* =====================================================
-       RENDERIZAR
+       TABELA
        ===================================================== */
 
-    function renderizarTabela(
-      lista
-    ) {
+    function renderizarTabela(lista) {
 
       const tabela =
         document.getElementById(
           "tabelaRelatorio"
         );
 
-
       const quantidade =
         document.getElementById(
           "quantidadeResultado"
         );
-
 
       quantidade.textContent =
         lista.length +
@@ -3145,53 +1849,39 @@
             : " REGISTROS ENCONTRADOS"
         );
 
-
       if (
         !lista ||
         lista.length === 0
       ) {
 
         tabela.innerHTML = `
-
           <tr>
-
-            <td
-              colspan="11"
-              class="vazio"
-            >
-
+            <td colspan="11" class="vazio">
               📭 NENHUM REGISTRO ENCONTRADO PARA OS FILTROS INFORMADOS.
-
             </td>
-
           </tr>
-
         `;
 
         return;
 
       }
 
-
       tabela.innerHTML =
         lista
           .map(
-            function(envio) {
+            envio => {
 
               const status =
                 normalizarStatus(
                   envio.status
                 );
 
-
               const classe =
                 obterClasseStatus(
                   status
                 );
 
-
               return `
-
                 <tr>
 
                   <td class="nf">
@@ -3235,22 +1925,14 @@
                   </td>
 
                   <td>
-
-                    <span
-                      class="status ${classe}"
-                    >
-
+                    <span class="status ${classe}">
                       ${escapeHTML(
-                        status ||
-                        "SEM STATUS"
+                        status || "SEM STATUS"
                       )}
-
                     </span>
-
                   </td>
 
                 </tr>
-
               `;
 
             }
@@ -3264,88 +1946,55 @@
        RESUMO
        ===================================================== */
 
-    function atualizarResumo(
-      lista
-    ) {
+    function atualizarResumo(lista) {
 
-      const total =
+      document.getElementById(
+        "resumoTotal"
+      ).textContent =
         lista.length;
 
-
-      const coletados =
+      document.getElementById(
+        "resumoColetados"
+      ).textContent =
         contarStatus(
           lista,
           "COLETADO"
         );
 
-
-      const transito =
+      document.getElementById(
+        "resumoTransito"
+      ).textContent =
         contarStatus(
           lista,
           "EM TRANSITO"
         );
 
-
-      const entregues =
+      document.getElementById(
+        "resumoEntregues"
+      ).textContent =
         contarStatus(
           lista,
           "ENTREGUE"
         );
 
-
-      const atrasados =
+      document.getElementById(
+        "resumoAtrasados"
+      ).textContent =
         contarStatus(
           lista,
           "ATRASADO"
         );
 
-
-      document.getElementById(
-        "resumoTotal"
-      ).textContent =
-        total;
-
-
-      document.getElementById(
-        "resumoColetados"
-      ).textContent =
-        coletados;
-
-
-      document.getElementById(
-        "resumoTransito"
-      ).textContent =
-        transito;
-
-
-      document.getElementById(
-        "resumoEntregues"
-      ).textContent =
-        entregues;
-
-
-      document.getElementById(
-        "resumoAtrasados"
-      ).textContent =
-        atrasados;
-
     }
 
 
-    function contarStatus(
-      lista,
-      status
-    ) {
+    function contarStatus(lista, status) {
 
       return lista.filter(
-        function(item) {
-
-          return normalizarStatus(
+        item =>
+          normalizarStatus(
             item.status
-          ) ===
-          status;
-
-        }
+          ) === status
       ).length;
 
     }
@@ -3361,48 +2010,38 @@
         "dataInicial"
       ).value = "";
 
-
       document.getElementById(
         "dataFinal"
       ).value = "";
-
 
       document.getElementById(
         "filtroCliente"
       ).value = "";
 
-
       document.getElementById(
         "filtroTransportadora"
       ).value = "";
-
 
       document.getElementById(
         "filtroStatus"
       ).value = "";
 
-
       document.getElementById(
         "filtroBusca"
       ).value = "";
 
-
       relatorioAtual =
         todosEnvios.slice();
-
 
       atualizarResumo(
         relatorioAtual
       );
 
-
       renderizarTabela(
         relatorioAtual
       );
 
-
       atualizarPeriodoImpressao();
-
 
       mostrarMensagem(
         "FILTROS LIMPOS.",
@@ -3413,22 +2052,13 @@
 
 
     /* =====================================================
-       DATAS PADRÃO
+       DATAS
        ===================================================== */
 
     function definirDatasPadrao() {
-
-      /*
-      Não deixamos filtro de período
-      preenchido automaticamente.
-      */
-
+      // Nenhum período é preenchido automaticamente.
     }
 
-
-    /* =====================================================
-       PERÍODO DE IMPRESSÃO
-       ===================================================== */
 
     function atualizarPeriodoImpressao() {
 
@@ -3437,23 +2067,17 @@
           "dataInicial"
         ).value;
 
-
       const fim =
         document.getElementById(
           "dataFinal"
         ).value;
-
 
       const elemento =
         document.getElementById(
           "periodoImpressao"
         );
 
-
-      if (
-        inicio &&
-        fim
-      ) {
+      if (inicio && fim) {
 
         elemento.textContent =
           "PERÍODO: " +
@@ -3465,7 +2089,6 @@
 
       }
 
-
       if (inicio) {
 
         elemento.textContent =
@@ -3475,7 +2098,6 @@
         return;
 
       }
-
 
       if (fim) {
 
@@ -3487,7 +2109,6 @@
 
       }
 
-
       elemento.textContent =
         "TODOS OS REGISTROS";
 
@@ -3495,7 +2116,7 @@
 
 
     /* =====================================================
-       IMPRIMIR
+       IMPRESSÃO
        ===================================================== */
 
     function imprimirRelatorio() {
@@ -3514,9 +2135,7 @@
 
       }
 
-
       atualizarPeriodoImpressao();
-
 
       window.print();
 
@@ -3527,16 +2146,11 @@
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(
-      pagina
-    ) {
+    function irPara(pagina) {
 
       if (!pagina) {
-
         return;
-
       }
-
 
       window.location.href =
         pagina;
@@ -3544,21 +2158,16 @@
     }
 
 
-    /* =====================================================
-       PESQUISAR NF
-       ===================================================== */
-
     function irParaPesquisarNF() {
 
       window.location.href =
-        window.location.origin +
-        "/Birilog-V3/pesquisar-nf.html";
+        "pesquisar-nf.html";
 
     }
 
 
     /* =====================================================
-       SAIR DO SISTEMA
+       SAIR
        ===================================================== */
 
     async function sair() {
@@ -3568,32 +2177,21 @@
           "botaoSair"
         );
 
-
       try {
 
         if (botao) {
 
-          botao.disabled =
-            true;
-
-          botao.textContent =
-            "SAINDO...";
+          botao.disabled = true;
+          botao.textContent = "SAINDO...";
 
         }
-
 
         const resultado =
           await supabaseClient.auth.signOut();
 
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
-
 
         window.location.replace(
           "index.html"
@@ -3608,17 +2206,13 @@
           erro
         );
 
-
         if (botao) {
 
-          botao.disabled =
-            false;
-
+          botao.disabled = false;
           botao.textContent =
             "🚪 SAIR DO SISTEMA";
 
         }
-
 
         mostrarMensagem(
           "NÃO FOI POSSÍVEL ENCERRAR A SESSÃO.",
@@ -3644,98 +2238,62 @@
 
 
     /* =====================================================
+       NORMALIZAÇÃO
+       ===================================================== */
+
+    function normalizarStatus(valor) {
+
+      return String(
+        valor || ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    function normalizarTexto(valor) {
+
+      return String(
+        valor || ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
        STATUS
        ===================================================== */
 
-    function normalizarStatus(
-      valor
-    ) {
+    function obterClasseStatus(status) {
 
-      return String(
-        valor ||
-        ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-    }
-
-
-    /* =====================================================
-       TEXTO
-       ===================================================== */
-
-    function normalizarTexto(
-      valor
-    ) {
-
-      return String(
-        valor ||
-        ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-    }
-
-
-    /* =====================================================
-       CLASSE STATUS
-       ===================================================== */
-
-    function obterClasseStatus(
-      status
-    ) {
-
-      if (
-        status ===
-        "ENTREGUE"
-      ) {
-
+      if (status === "ENTREGUE") {
         return "status-entregue";
-
       }
 
-
-      if (
-        status ===
-        "EM TRANSITO"
-      ) {
-
+      if (status === "EM TRANSITO") {
         return "status-transito";
-
       }
 
-
-      if (
-        status ===
-        "ATRASADO"
-      ) {
-
+      if (status === "ATRASADO") {
         return "status-atrasado";
-
       }
 
-
-      if (
-        status ===
-        "COLETADO"
-      ) {
-
+      if (status === "COLETADO") {
         return "status-coletado";
-
       }
-
 
       return "status-padrao";
 
@@ -3743,109 +2301,69 @@
 
 
     /* =====================================================
-       DATA ISO
+       DATAS
        ===================================================== */
 
-    function obterDataISO(
-      valor
-    ) {
+    function obterDataISO(valor) {
 
       if (!valor) {
-
         return "";
-
       }
 
-
       const texto =
-        String(
-          valor
-        );
-
+        String(valor);
 
       if (
-        /^\d{4}-\d{2}-\d{2}$/.test(
-          texto
-        )
+        /^\d{4}-\d{2}-\d{2}$/.test(texto)
       ) {
 
         return texto;
 
       }
 
-
       const data =
-        new Date(
-          valor
-        );
-
+        new Date(valor);
 
       if (
-        isNaN(
-          data.getTime()
-        )
+        isNaN(data.getTime())
       ) {
 
         return "";
 
       }
 
-
-      return data.getFullYear() +
+      return (
+        data.getFullYear() +
         "-" +
         String(
           data.getMonth() + 1
-        ).padStart(
-          2,
-          "0"
-        ) +
+        ).padStart(2, "0") +
         "-" +
         String(
           data.getDate()
-        ).padStart(
-          2,
-          "0"
-        );
+        ).padStart(2, "0")
+      );
 
     }
 
 
-    /* =====================================================
-       FORMATAR DATA
-       ===================================================== */
-
-    function formatarData(
-      valor
-    ) {
+    function formatarData(valor) {
 
       if (!valor) {
-
         return "-";
-
       }
 
-
       const texto =
-        String(
-          valor
-        );
+        String(valor);
 
-
-      let data =
-        null;
-
+      let data = null;
 
       if (
-        /^\d{4}-\d{2}-\d{2}$/.test(
-          texto
-        )
+        /^\d{4}-\d{2}-\d{2}$/.test(texto)
       ) {
 
         const partes =
-          texto.split(
-            "-"
-          );
-
+          texto.split("-");
 
         data =
           new Date(
@@ -3859,66 +2377,49 @@
       else {
 
         data =
-          new Date(
-            valor
-          );
+          new Date(valor);
 
       }
 
-
       if (
-        isNaN(
-          data.getTime()
-        )
+        isNaN(data.getTime())
       ) {
 
         return "-";
 
       }
 
-
-      return String(
-        data.getDate()
-      ).padStart(
-        2,
-        "0"
-      ) +
-      "/" +
-      String(
-        data.getMonth() + 1
-      ).padStart(
-        2,
-        "0"
-      ) +
-      "/" +
-      data.getFullYear();
+      return (
+        String(
+          data.getDate()
+        ).padStart(2, "0") +
+        "/" +
+        String(
+          data.getMonth() + 1
+        ).padStart(2, "0") +
+        "/" +
+        data.getFullYear()
+      );
 
     }
 
 
     /* =====================================================
-       FORMATAR VALOR
+       VALOR
        ===================================================== */
 
-    function formatarValor(
-      valor
-    ) {
+    function formatarValor(valor) {
 
       const numero =
         Number(
-          valor ||
-          0
+          valor || 0
         );
-
 
       return numero.toLocaleString(
         "pt-BR",
         {
-          style:
-            "currency",
-
-          currency:
-            "BRL"
+          style: "currency",
+          currency: "BRL"
         }
       );
 
@@ -3926,37 +2427,19 @@
 
 
     /* =====================================================
-       SEGURANÇA HTML
+       SEGURANÇA
        ===================================================== */
 
-    function escapeHTML(
-      valor
-    ) {
+    function escapeHTML(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 
@@ -3975,35 +2458,27 @@
           "mensagem"
         );
 
-
       if (!elemento) {
-
         return;
-
       }
-
 
       elemento.textContent =
         texto;
-
 
       elemento.className =
         "mensagem " +
         tipo;
 
-
       elemento.style.display =
         "block";
-
 
       clearTimeout(
         window.timerMensagem
       );
 
-
       window.timerMensagem =
         setTimeout(
-          function() {
+          () => {
 
             elemento.style.display =
               "none";
@@ -4019,21 +2494,17 @@
        LOADING
        ===================================================== */
 
-    function mostrarLoading(
-      texto
-    ) {
+    function mostrarLoading(texto) {
 
       const elemento =
         document.getElementById(
           "loading"
         );
 
-
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
-
 
       if (textoElemento) {
 
@@ -4042,7 +2513,6 @@
           "CARREGANDO...";
 
       }
-
 
       if (elemento) {
 
@@ -4061,7 +2531,6 @@
           "loading"
         );
 
-
       if (elemento) {
 
         elemento.style.display =
@@ -4076,9 +2545,7 @@
        ERROS
        ===================================================== */
 
-    function obterMensagemErro(
-      erro
-    ) {
+    function obterMensagemErro(erro) {
 
       if (
         erro &&
@@ -4090,10 +2557,8 @@
             erro.message
           );
 
-
         const texto =
           mensagem.toLowerCase();
-
 
         if (
           texto.includes(
@@ -4110,11 +2575,9 @@
 
         }
 
-
         return mensagem.toUpperCase();
 
       }
-
 
       return (
         "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
@@ -4124,7 +2587,7 @@
 
 
     /* =====================================================
-       ENTER NA PESQUISA
+       EVENTOS
        ===================================================== */
 
     document
@@ -4136,8 +2599,7 @@
         function(evento) {
 
           if (
-            evento.key ===
-            "Enter"
+            evento.key === "Enter"
           ) {
 
             evento.preventDefault();
@@ -4149,10 +2611,6 @@
         }
       );
 
-
-    /* =====================================================
-       ENTER NO PERÍODO
-       ===================================================== */
 
     document
       .getElementById(
@@ -4163,8 +2621,7 @@
         function(evento) {
 
           if (
-            evento.key ===
-            "Enter"
+            evento.key === "Enter"
           ) {
 
             evento.preventDefault();
@@ -4176,10 +2633,6 @@
         }
       );
 
-
-    /* =====================================================
-       ATUALIZAR CABEÇALHO AO ALTERAR DATA
-       ===================================================== */
 
     document
       .getElementById(
@@ -4202,7 +2655,7 @@
 
 
     /* =====================================================
-       MONITORAR SESSÃO
+       MONITORAMENTO DA SESSÃO
        ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
@@ -4212,8 +2665,7 @@
       ) {
 
         if (
-          evento ===
-          "SIGNED_OUT"
+          evento === "SIGNED_OUT"
         ) {
 
           window.location.replace(
@@ -4225,9 +2677,7 @@
       }
     );
 
-
   </script>
-
 
 </body>
 
