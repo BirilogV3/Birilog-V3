@@ -1,15 +1,22 @@
+```html
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>BiriLog V3 - Relatórios</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,6 +34,10 @@
       background: #f1f5f9;
       color: #1e293b;
     }
+
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
 
     .sidebar {
       position: fixed;
@@ -194,6 +205,10 @@
       cursor: wait;
     }
 
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
     .main {
       margin-left: 250px;
       width: calc(100% - 250px);
@@ -295,6 +310,10 @@
       color: #64748b;
     }
 
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
     .cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -324,6 +343,10 @@
       color: #0f172a;
     }
 
+    /* =====================================================
+       PAINEL
+       ===================================================== */
+
     .panel {
       background: white;
       border: 1px solid #e2e8f0;
@@ -352,6 +375,10 @@
       font-size: 10px;
       color: #94a3b8;
     }
+
+    /* =====================================================
+       FILTROS
+       ===================================================== */
 
     .filtros-grid {
       display: grid;
@@ -402,6 +429,10 @@
       border-top: 1px solid #f1f5f9;
     }
 
+    /* =====================================================
+       BOTÕES
+       ===================================================== */
+
     .btn {
       border: none;
       border-radius: 8px;
@@ -439,6 +470,10 @@
       color: white;
     }
 
+    /* =====================================================
+       RESUMO
+       ===================================================== */
+
     .resumo-relatorio {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -466,6 +501,10 @@
       color: #0f172a;
       font-weight: 800;
     }
+
+    /* =====================================================
+       TABELA
+       ===================================================== */
 
     .table-wrapper {
       width: 100%;
@@ -510,6 +549,10 @@
       font-weight: 700;
     }
 
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
     .status {
       display: inline-block;
       padding: 5px 8px;
@@ -553,6 +596,10 @@
       font-weight: 700;
     }
 
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
     .loading {
       position: fixed;
       inset: 0;
@@ -594,11 +641,16 @@
       }
     }
 
+    /* =====================================================
+       IMPRESSÃO
+       ===================================================== */
+
     .cabecalho-impressao {
       display: none;
     }
 
     @media print {
+
       body {
         background: white;
       }
@@ -680,7 +732,12 @@
       }
     }
 
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
     @media (max-width: 1100px) {
+
       .cards {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -692,9 +749,11 @@
       .resumo-relatorio {
         grid-template-columns: repeat(3, 1fr);
       }
+
     }
 
     @media (max-width: 700px) {
+
       .sidebar {
         width: 70px;
       }
@@ -791,9 +850,11 @@
       .panel {
         padding: 18px;
       }
+
     }
 
     @media (max-width: 450px) {
+
       .header-subtitle {
         display: none;
       }
@@ -801,476 +862,565 @@
       .resumo-relatorio {
         grid-template-columns: 1fr;
       }
+
     }
+
   </style>
 
 </head>
 
 <body>
 
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
   <div id="loading" class="loading">
+
     <div class="loading-box">
+
       <div class="spinner"></div>
+
       <div id="loadingText" class="loading-text">
         CARREGANDO...
       </div>
+
     </div>
+
   </div>
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
-  <div class="logo-icon">🚚</div>
+    <div class="logo-area">
 
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
+      <div class="logo-icon">
+        🚚
+      </div>
 
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
-</div>
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
 
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('dashboard.html')">
-    <span class="menu-icon">📊</span>
-    <span>Dashboard</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('envios.html')">
-    <span class="menu-icon">📦</span>
-    <span>Envios</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irParaPesquisarNF()">
-    <span class="menu-icon">🔎</span>
-    <span>Pesquisar NF</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('clientes.html')">
-    <span class="menu-icon">👥</span>
-    <span>Clientes</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('transportadoras.html')">
-    <span class="menu-icon">🚛</span>
-    <span>Transportadoras</span>
-  </button>
-
-  <button type="button" class="menu-item active">
-    <span class="menu-icon">📄</span>
-    <span>Relatórios</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('usuarios.html')">
-    <span class="menu-icon">🔐</span>
-    <span>Usuários</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('configuracoes.html')">
-    <span class="menu-icon">⚙️</span>
-    <span>Configurações</span>
-  </button>
-
-</nav>
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div id="usuarioNome" class="user-name">
-      USUÁRIO
-    </div>
-
-    <div id="usuarioEmail" class="user-email">
-      -
-    </div>
-
-    <div id="usuarioPerfil" class="user-profile">
-      PERFIL
-    </div>
-
-  </div>
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-    🚪 SAIR DO SISTEMA
-  </button>
-
-</div>
-```
-
-  </aside>
-
-  <main class="main">
-
-```
-<header class="header">
-
-  <div>
-    <div class="header-title">
-      Relatórios
-    </div>
-
-    <div class="header-subtitle">
-      Análise e impressão dos envios cadastrados
-    </div>
-  </div>
-
-  <div class="status-online">
-    <span class="status-dot"></span>
-    SISTEMA ONLINE
-  </div>
-
-</header>
-
-<section class="content">
-
-  <div id="mensagem" class="mensagem"></div>
-
-  <div class="page-title">
-
-    <h1>
-      📄 RELATÓRIO DE ENVIOS
-    </h1>
-
-    <p>
-      Utilize os filtros para gerar um relatório personalizado.
-    </p>
-
-  </div>
-
-  <div class="panel filtros-painel nao-imprimir">
-
-    <div class="panel-header">
-
-      <div>
-
-        <div class="panel-title">
-          🔎 FILTROS DO RELATÓRIO
-        </div>
-
-        <div class="panel-subtitle">
-          Combine período, cliente, transportadora e status.
-        </div>
-
+      <div class="logo-version">
+        SISTEMA V3.0
       </div>
 
     </div>
 
-    <div class="filtros-grid">
+    <nav class="menu">
 
-      <div class="campo">
-
-        <label for="dataInicial">
-          Data Inicial
-        </label>
-
-        <input
-          type="date"
-          id="dataInicial"
-        >
-
+      <div class="menu-title">
+        MENU PRINCIPAL
       </div>
-
-      <div class="campo">
-
-        <label for="dataFinal">
-          Data Final
-        </label>
-
-        <input
-          type="date"
-          id="dataFinal"
-        >
-
-      </div>
-
-      <div class="campo">
-
-        <label for="filtroCliente">
-          Cliente
-        </label>
-
-        <select id="filtroCliente">
-          <option value="">
-            TODOS OS CLIENTES
-          </option>
-        </select>
-
-      </div>
-
-      <div class="campo">
-
-        <label for="filtroTransportadora">
-          Transportadora
-        </label>
-
-        <select id="filtroTransportadora">
-          <option value="">
-            TODAS AS TRANSPORTADORAS
-          </option>
-        </select>
-
-      </div>
-
-      <div class="campo">
-
-        <label for="filtroStatus">
-          Status
-        </label>
-
-        <select id="filtroStatus">
-
-          <option value="">
-            TODOS OS STATUS
-          </option>
-
-          <option value="COLETADO">
-            COLETADO
-          </option>
-
-          <option value="EM TRANSITO">
-            EM TRÂNSITO
-          </option>
-
-          <option value="ENTREGUE">
-            ENTREGUE
-          </option>
-
-          <option value="ATRASADO">
-            ATRASADO
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="campo">
-
-        <label for="filtroBusca">
-          Pesquisa
-        </label>
-
-        <input
-          type="text"
-          id="filtroBusca"
-          placeholder="NF, CIDADE OU OUTRO"
-          autocomplete="off"
-        >
-
-      </div>
-
-    </div>
-
-    <div class="filtros-acoes">
 
       <button
         type="button"
-        class="btn btn-secondary"
-        onclick="limparFiltros()"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
       >
-        🧹 LIMPAR
+        <span class="menu-icon">📊</span>
+        <span>Dashboard</span>
       </button>
 
       <button
         type="button"
-        class="btn btn-primary"
-        id="btnGerar"
-        onclick="gerarRelatorio()"
+        class="menu-item"
+        onclick="irPara('envios.html')"
       >
-        📊 GERAR RELATÓRIO
+        <span class="menu-icon">📦</span>
+        <span>Envios</span>
       </button>
 
       <button
         type="button"
-        class="btn btn-print"
-        onclick="imprimirRelatorio()"
+        class="menu-item"
+        onclick="irParaPesquisarNF()"
       >
-        🖨️ IMPRIMIR
+        <span class="menu-icon">🔎</span>
+        <span>Pesquisar NF</span>
       </button>
 
-    </div>
-
-  </div>
-
-  <div class="cabecalho-impressao">
-
-    <h1>
-      BIRILOG V3
-    </h1>
-
-    <p>
-      RELATÓRIO DE ENVIOS • BIRIVET
-    </p>
-
-    <p id="periodoImpressao">
-      TODOS OS REGISTROS
-    </p>
-
-  </div>
-
-  <div class="resumo-relatorio">
-
-    <div class="resumo-box">
-
-      <div class="resumo-box-label">
-        Total
-      </div>
-
-      <div
-        id="resumoTotal"
-        class="resumo-box-value"
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
       >
-        0
-      </div>
+        <span class="menu-icon">👥</span>
+        <span>Clientes</span>
+      </button>
 
-    </div>
-
-    <div class="resumo-box">
-
-      <div class="resumo-box-label">
-        Coletados
-      </div>
-
-      <div
-        id="resumoColetados"
-        class="resumo-box-value"
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
       >
-        0
-      </div>
+        <span class="menu-icon">🚛</span>
+        <span>Transportadoras</span>
+      </button>
 
-    </div>
-
-    <div class="resumo-box">
-
-      <div class="resumo-box-label">
-        Em Trânsito
-      </div>
-
-      <div
-        id="resumoTransito"
-        class="resumo-box-value"
+      <button
+        type="button"
+        class="menu-item active"
       >
-        0
-      </div>
+        <span class="menu-icon">📄</span>
+        <span>Relatórios</span>
+      </button>
 
-    </div>
-
-    <div class="resumo-box">
-
-      <div class="resumo-box-label">
-        Entregues
-      </div>
-
-      <div
-        id="resumoEntregues"
-        class="resumo-box-value"
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
       >
-        0
-      </div>
+        <span class="menu-icon">🔐</span>
+        <span>Usuários</span>
+      </button>
 
-    </div>
-
-    <div class="resumo-box">
-
-      <div class="resumo-box-label">
-        Atrasados
-      </div>
-
-      <div
-        id="resumoAtrasados"
-        class="resumo-box-value"
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
       >
-        0
-      </div>
+        <span class="menu-icon">⚙️</span>
+        <span>Configurações</span>
+      </button>
 
-    </div>
+    </nav>
 
-  </div>
+    <div class="user-area">
 
-  <div class="panel">
+      <div class="user-card">
 
-    <div class="panel-header nao-imprimir">
-
-      <div>
-
-        <div class="panel-title">
-          📋 RESULTADO DO RELATÓRIO
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
         </div>
 
         <div
-          id="quantidadeResultado"
-          class="panel-subtitle"
+          id="usuarioEmail"
+          class="user-email"
         >
-          0 registros encontrados
+          -
+        </div>
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
         </div>
 
       </div>
 
-    </div>
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-
-          <tr>
-            <th>NF</th>
-            <th>CLIENTE</th>
-            <th>CIDADE</th>
-            <th>UF</th>
-            <th>TRANSPORTADORA</th>
-            <th>VALOR</th>
-            <th>VOLUMES</th>
-            <th>DATA ENVIO</th>
-            <th>PREVISÃO</th>
-            <th>ENTREGA</th>
-            <th>STATUS</th>
-          </tr>
-
-        </thead>
-
-        <tbody id="tabelaRelatorio">
-
-          <tr>
-
-            <td colspan="11" class="vazio">
-              🔎 USE OS FILTROS PARA GERAR O RELATÓRIO.
-            </td>
-
-          </tr>
-
-        </tbody>
-
-      </table>
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+        🚪 SAIR DO SISTEMA
+      </button>
 
     </div>
 
-  </div>
+  </aside>
 
-</section>
-```
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+    <header class="header">
+
+      <div>
+
+        <div class="header-title">
+          Relatórios
+        </div>
+
+        <div class="header-subtitle">
+          Análise e impressão dos envios cadastrados
+        </div>
+
+      </div>
+
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <div
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+      <div class="page-title">
+
+        <h1>
+          📄 RELATÓRIO DE ENVIOS
+        </h1>
+
+        <p>
+          Utilize os filtros para gerar um relatório personalizado.
+        </p>
+
+      </div>
+
+      <!-- =================================================
+           FILTROS
+           ================================================= -->
+
+      <div class="panel filtros-painel nao-imprimir">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              🔎 FILTROS DO RELATÓRIO
+            </div>
+
+            <div class="panel-subtitle">
+              Combine período, cliente, transportadora e status.
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="filtros-grid">
+
+          <div class="campo">
+
+            <label for="dataInicial">
+              Data Inicial
+            </label>
+
+            <input
+              type="date"
+              id="dataInicial"
+            >
+
+          </div>
+
+          <div class="campo">
+
+            <label for="dataFinal">
+              Data Final
+            </label>
+
+            <input
+              type="date"
+              id="dataFinal"
+            >
+
+          </div>
+
+          <div class="campo">
+
+            <label for="filtroCliente">
+              Cliente
+            </label>
+
+            <select id="filtroCliente">
+
+              <option value="">
+                TODOS OS CLIENTES
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="campo">
+
+            <label for="filtroTransportadora">
+              Transportadora
+            </label>
+
+            <select id="filtroTransportadora">
+
+              <option value="">
+                TODAS AS TRANSPORTADORAS
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="campo">
+
+            <label for="filtroStatus">
+              Status
+            </label>
+
+            <select id="filtroStatus">
+
+              <option value="">
+                TODOS OS STATUS
+              </option>
+
+              <option value="COLETADO">
+                COLETADO
+              </option>
+
+              <option value="EM TRANSITO">
+                EM TRÂNSITO
+              </option>
+
+              <option value="ENTREGUE">
+                ENTREGUE
+              </option>
+
+              <option value="ATRASADO">
+                ATRASADO
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="campo">
+
+            <label for="filtroBusca">
+              Pesquisa
+            </label>
+
+            <input
+              type="text"
+              id="filtroBusca"
+              placeholder="NF, CIDADE OU OUTRO"
+              autocomplete="off"
+            >
+
+          </div>
+
+        </div>
+
+        <div class="filtros-acoes">
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="limparFiltros()"
+          >
+            🧹 LIMPAR
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="btnGerar"
+            onclick="gerarRelatorio()"
+          >
+            📊 GERAR RELATÓRIO
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-print"
+            onclick="imprimirRelatorio()"
+          >
+            🖨️ IMPRIMIR
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- =================================================
+           CABEÇALHO DE IMPRESSÃO
+           ================================================= -->
+
+      <div class="cabecalho-impressao">
+
+        <h1>
+          BIRILOG V3
+        </h1>
+
+        <p>
+          RELATÓRIO DE ENVIOS • BIRIVET
+        </p>
+
+        <p id="periodoImpressao">
+          TODOS OS REGISTROS
+        </p>
+
+      </div>
+
+      <!-- =================================================
+           RESUMO
+           ================================================= -->
+
+      <div class="resumo-relatorio">
+
+        <div class="resumo-box">
+
+          <div class="resumo-box-label">
+            Total
+          </div>
+
+          <div
+            id="resumoTotal"
+            class="resumo-box-value"
+          >
+            0
+          </div>
+
+        </div>
+
+        <div class="resumo-box">
+
+          <div class="resumo-box-label">
+            Coletados
+          </div>
+
+          <div
+            id="resumoColetados"
+            class="resumo-box-value"
+          >
+            0
+          </div>
+
+        </div>
+
+        <div class="resumo-box">
+
+          <div class="resumo-box-label">
+            Em Trânsito
+          </div>
+
+          <div
+            id="resumoTransito"
+            class="resumo-box-value"
+          >
+            0
+          </div>
+
+        </div>
+
+        <div class="resumo-box">
+
+          <div class="resumo-box-label">
+            Entregues
+          </div>
+
+          <div
+            id="resumoEntregues"
+            class="resumo-box-value"
+          >
+            0
+          </div>
+
+        </div>
+
+        <div class="resumo-box">
+
+          <div class="resumo-box-label">
+            Atrasados
+          </div>
+
+          <div
+            id="resumoAtrasados"
+            class="resumo-box-value"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- =================================================
+           TABELA
+           ================================================= -->
+
+      <div class="panel">
+
+        <div class="panel-header nao-imprimir">
+
+          <div>
+
+            <div class="panel-title">
+              📋 RESULTADO DO RELATÓRIO
+            </div>
+
+            <div
+              id="quantidadeResultado"
+              class="panel-subtitle"
+            >
+              0 registros encontrados
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>NF</th>
+                <th>CLIENTE</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>TRANSPORTADORA</th>
+                <th>VALOR</th>
+                <th>VOLUMES</th>
+                <th>DATA ENVIO</th>
+                <th>PREVISÃO</th>
+                <th>ENTREGA</th>
+                <th>STATUS</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tabelaRelatorio">
+
+              <tr>
+
+                <td
+                  colspan="11"
+                  class="vazio"
+                >
+                  🔎 USE OS FILTROS PARA GERAR O RELATÓRIO.
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script>
 
@@ -1290,15 +1440,15 @@
         SUPABASE_KEY
       );
 
-
     /* =====================================================
        VARIÁVEIS
        ===================================================== */
 
     let usuarioAtual = null;
-    let todosEnvios = [];
-    let relatorioAtual = [];
 
+    let todosEnvios = [];
+
+    let relatorioAtual = [];
 
     /* =====================================================
        INICIALIZAÇÃO
@@ -1308,7 +1458,6 @@
       "DOMContentLoaded",
       iniciar
     );
-
 
     async function iniciar() {
 
@@ -1383,6 +1532,8 @@
 
         definirDatasPadrao();
 
+        esconderLoading();
+
         await carregarDados();
 
       }
@@ -1404,7 +1555,6 @@
       }
 
     }
-
 
     /* =====================================================
        USUÁRIO
@@ -1441,9 +1591,11 @@
 
     }
 
-
     /* =====================================================
        CARREGAR DADOS
+       
+       CORREÇÃO:
+       NÃO UTILIZA created_at.
        ===================================================== */
 
     async function carregarDados() {
@@ -1457,13 +1609,7 @@
         const resultado =
           await supabaseClient
             .from("envios")
-            .select("*")
-            .order(
-              "created_at",
-              {
-                ascending: false
-              }
-            );
+            .select("*");
 
         if (resultado.error) {
           throw resultado.error;
@@ -1472,16 +1618,52 @@
         todosEnvios =
           resultado.data || [];
 
+        /*
+        Ordenação local.
+        Primeiro tenta usar a data de envio.
+        Se não houver data, mantém a posição.
+        */
+
+        todosEnvios.sort(
+          function(a, b) {
+
+            const dataA =
+              obterDataISO(
+                a.data_envio
+              );
+
+            const dataB =
+              obterDataISO(
+                b.data_envio
+              );
+
+            if (dataA && dataB) {
+              return dataB.localeCompare(dataA);
+            }
+
+            if (dataA && !dataB) {
+              return -1;
+            }
+
+            if (!dataA && dataB) {
+              return 1;
+            }
+
+            return 0;
+
+          }
+        );
+
         preencherFiltroClientes();
 
         preencherFiltroTransportadoras();
 
+        atualizarResumo(
+          todosEnvios
+        );
+
         relatorioAtual =
           todosEnvios.slice();
-
-        atualizarResumo(
-          relatorioAtual
-        );
 
         renderizarTabela(
           relatorioAtual
@@ -1499,6 +1681,7 @@
         );
 
         todosEnvios = [];
+
         relatorioAtual = [];
 
         atualizarResumo([]);
@@ -1520,9 +1703,8 @@
 
     }
 
-
     /* =====================================================
-       FILTROS
+       CLIENTES
        ===================================================== */
 
     function preencherFiltroClientes() {
@@ -1537,14 +1719,21 @@
           new Set(
             todosEnvios
               .map(
-                item =>
-                  String(
+                function(item) {
+
+                  return String(
                     item.cliente || ""
                   )
                     .trim()
-                    .toUpperCase()
+                    .toUpperCase();
+
+                }
               )
-              .filter(Boolean)
+              .filter(
+                function(nome) {
+                  return nome;
+                }
+              )
           )
         )
         .sort();
@@ -1553,7 +1742,7 @@
         '<option value="">TODOS OS CLIENTES</option>';
 
       clientes.forEach(
-        cliente => {
+        function(cliente) {
 
           const option =
             document.createElement(
@@ -1561,6 +1750,7 @@
             );
 
           option.value = cliente;
+
           option.textContent = cliente;
 
           select.appendChild(option);
@@ -1570,6 +1760,9 @@
 
     }
 
+    /* =====================================================
+       TRANSPORTADORAS
+       ===================================================== */
 
     function preencherFiltroTransportadoras() {
 
@@ -1583,14 +1776,21 @@
           new Set(
             todosEnvios
               .map(
-                item =>
-                  String(
+                function(item) {
+
+                  return String(
                     item.transportadora || ""
                   )
                     .trim()
-                    .toUpperCase()
+                    .toUpperCase();
+
+                }
               )
-              .filter(Boolean)
+              .filter(
+                function(nome) {
+                  return nome;
+                }
+              )
           )
         )
         .sort();
@@ -1599,7 +1799,7 @@
         '<option value="">TODAS AS TRANSPORTADORAS</option>';
 
       transportadoras.forEach(
-        nome => {
+        function(nome) {
 
           const option =
             document.createElement(
@@ -1607,6 +1807,7 @@
             );
 
           option.value = nome;
+
           option.textContent = nome;
 
           select.appendChild(option);
@@ -1615,7 +1816,6 @@
       );
 
     }
-
 
     /* =====================================================
        GERAR RELATÓRIO
@@ -1681,18 +1881,17 @@
       );
 
       setTimeout(
-        () => {
+        function() {
 
           try {
 
             relatorioAtual =
               todosEnvios.filter(
-                envio => {
+                function(envio) {
 
                   const dataEnvio =
                     obterDataISO(
-                      envio.data_envio ||
-                      envio.created_at
+                      envio.data_envio
                     );
 
                   let periodoOK = true;
@@ -1743,21 +1942,19 @@
 
                   const textoBusca =
                     normalizarTexto(
-                      [
-                        envio.nf,
-                        envio.cliente,
-                        envio.cidade,
-                        envio.uf,
-                        envio.transportadora,
-                        envio.observacao,
-                        envio.status
-                      ]
-                        .filter(
-                          valor =>
-                            valor !== null &&
-                            valor !== undefined
-                        )
-                        .join(" ")
+                      String(envio.nf || "") +
+                      " " +
+                      String(envio.cliente || "") +
+                      " " +
+                      String(envio.cidade || "") +
+                      " " +
+                      String(envio.uf || "") +
+                      " " +
+                      String(envio.transportadora || "") +
+                      " " +
+                      String(envio.observacao || "") +
+                      " " +
+                      String(envio.status || "")
                     );
 
                   const buscaOK =
@@ -1791,8 +1988,9 @@
             mostrarMensagem(
               quantidade === 1
                 ? "1 REGISTRO ENCONTRADO."
-                : quantidade +
-                  " REGISTROS ENCONTRADOS.",
+                :
+                quantidade +
+                " REGISTROS ENCONTRADOS.",
               "info"
             );
 
@@ -1824,9 +2022,8 @@
 
     }
 
-
     /* =====================================================
-       TABELA
+       RENDERIZAR TABELA
        ===================================================== */
 
     function renderizarTabela(lista) {
@@ -1855,11 +2052,20 @@
       ) {
 
         tabela.innerHTML = `
+
           <tr>
-            <td colspan="11" class="vazio">
+
+            <td
+              colspan="11"
+              class="vazio"
+            >
+
               📭 NENHUM REGISTRO ENCONTRADO PARA OS FILTROS INFORMADOS.
+
             </td>
+
           </tr>
+
         `;
 
         return;
@@ -1869,7 +2075,7 @@
       tabela.innerHTML =
         lista
           .map(
-            envio => {
+            function(envio) {
 
               const status =
                 normalizarStatus(
@@ -1882,6 +2088,7 @@
                 );
 
               return `
+
                 <tr>
 
                   <td class="nf">
@@ -1925,14 +2132,22 @@
                   </td>
 
                   <td>
-                    <span class="status ${classe}">
+
+                    <span
+                      class="status ${classe}"
+                    >
+
                       ${escapeHTML(
-                        status || "SEM STATUS"
+                        status ||
+                        "SEM STATUS"
                       )}
+
                     </span>
+
                   </td>
 
                 </tr>
+
               `;
 
             }
@@ -1941,64 +2156,74 @@
 
     }
 
-
     /* =====================================================
        RESUMO
        ===================================================== */
 
     function atualizarResumo(lista) {
 
-      document.getElementById(
-        "resumoTotal"
-      ).textContent =
+      const total =
         lista.length;
 
-      document.getElementById(
-        "resumoColetados"
-      ).textContent =
+      const coletados =
         contarStatus(
           lista,
           "COLETADO"
         );
 
-      document.getElementById(
-        "resumoTransito"
-      ).textContent =
+      const transito =
         contarStatus(
           lista,
           "EM TRANSITO"
         );
 
-      document.getElementById(
-        "resumoEntregues"
-      ).textContent =
+      const entregues =
         contarStatus(
           lista,
           "ENTREGUE"
         );
 
-      document.getElementById(
-        "resumoAtrasados"
-      ).textContent =
+      const atrasados =
         contarStatus(
           lista,
           "ATRASADO"
         );
 
-    }
+      document.getElementById(
+        "resumoTotal"
+      ).textContent = total;
 
+      document.getElementById(
+        "resumoColetados"
+      ).textContent = coletados;
+
+      document.getElementById(
+        "resumoTransito"
+      ).textContent = transito;
+
+      document.getElementById(
+        "resumoEntregues"
+      ).textContent = entregues;
+
+      document.getElementById(
+        "resumoAtrasados"
+      ).textContent = atrasados;
+
+    }
 
     function contarStatus(lista, status) {
 
       return lista.filter(
-        item =>
-          normalizarStatus(
+        function(item) {
+
+          return normalizarStatus(
             item.status
-          ) === status
+          ) === status;
+
+        }
       ).length;
 
     }
-
 
     /* =====================================================
        LIMPAR FILTROS
@@ -2050,15 +2275,21 @@
 
     }
 
-
     /* =====================================================
-       DATAS
+       DATAS PADRÃO
        ===================================================== */
 
     function definirDatasPadrao() {
-      // Nenhum período é preenchido automaticamente.
+
+      /*
+      Os filtros de período começam vazios.
+      */
+
     }
 
+    /* =====================================================
+       PERÍODO DE IMPRESSÃO
+       ===================================================== */
 
     function atualizarPeriodoImpressao() {
 
@@ -2077,7 +2308,10 @@
           "periodoImpressao"
         );
 
-      if (inicio && fim) {
+      if (
+        inicio &&
+        fim
+      ) {
 
         elemento.textContent =
           "PERÍODO: " +
@@ -2114,9 +2348,8 @@
 
     }
 
-
     /* =====================================================
-       IMPRESSÃO
+       IMPRIMIR
        ===================================================== */
 
     function imprimirRelatorio() {
@@ -2141,7 +2374,6 @@
 
     }
 
-
     /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
@@ -2157,14 +2389,13 @@
 
     }
 
-
     function irParaPesquisarNF() {
 
       window.location.href =
-        "pesquisar-nf.html";
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
 
     }
-
 
     /* =====================================================
        SAIR
@@ -2182,7 +2413,9 @@
         if (botao) {
 
           botao.disabled = true;
-          botao.textContent = "SAINDO...";
+
+          botao.textContent =
+            "SAINDO...";
 
         }
 
@@ -2209,6 +2442,7 @@
         if (botao) {
 
           botao.disabled = false;
+
           botao.textContent =
             "🚪 SAIR DO SISTEMA";
 
@@ -2223,7 +2457,6 @@
 
     }
 
-
     /* =====================================================
        LOGIN
        ===================================================== */
@@ -2236,9 +2469,8 @@
 
     }
 
-
     /* =====================================================
-       NORMALIZAÇÃO
+       STATUS
        ===================================================== */
 
     function normalizarStatus(valor) {
@@ -2256,6 +2488,9 @@
 
     }
 
+    /* =====================================================
+       TEXTO
+       ===================================================== */
 
     function normalizarTexto(valor) {
 
@@ -2272,9 +2507,8 @@
 
     }
 
-
     /* =====================================================
-       STATUS
+       CLASSE STATUS
        ===================================================== */
 
     function obterClasseStatus(status) {
@@ -2299,9 +2533,8 @@
 
     }
 
-
     /* =====================================================
-       DATAS
+       DATA ISO
        ===================================================== */
 
     function obterDataISO(valor) {
@@ -2314,7 +2547,9 @@
         String(valor);
 
       if (
-        /^\d{4}-\d{2}-\d{2}$/.test(texto)
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
       ) {
 
         return texto;
@@ -2325,15 +2560,16 @@
         new Date(valor);
 
       if (
-        isNaN(data.getTime())
+        isNaN(
+          data.getTime()
+        )
       ) {
 
         return "";
 
       }
 
-      return (
-        data.getFullYear() +
+      return data.getFullYear() +
         "-" +
         String(
           data.getMonth() + 1
@@ -2341,11 +2577,13 @@
         "-" +
         String(
           data.getDate()
-        ).padStart(2, "0")
-      );
+        ).padStart(2, "0");
 
     }
 
+    /* =====================================================
+       FORMATAR DATA
+       ===================================================== */
 
     function formatarData(valor) {
 
@@ -2359,7 +2597,9 @@
       let data = null;
 
       if (
-        /^\d{4}-\d{2}-\d{2}$/.test(texto)
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
       ) {
 
         const partes =
@@ -2382,30 +2622,29 @@
       }
 
       if (
-        isNaN(data.getTime())
+        isNaN(
+          data.getTime()
+        )
       ) {
 
         return "-";
 
       }
 
-      return (
-        String(
-          data.getDate()
-        ).padStart(2, "0") +
-        "/" +
-        String(
-          data.getMonth() + 1
-        ).padStart(2, "0") +
-        "/" +
-        data.getFullYear()
-      );
+      return String(
+        data.getDate()
+      ).padStart(2, "0") +
+      "/" +
+      String(
+        data.getMonth() + 1
+      ).padStart(2, "0") +
+      "/" +
+      data.getFullYear();
 
     }
 
-
     /* =====================================================
-       VALOR
+       FORMATAR VALOR
        ===================================================== */
 
     function formatarValor(valor) {
@@ -2425,9 +2664,8 @@
 
     }
 
-
     /* =====================================================
-       SEGURANÇA
+       SEGURANÇA HTML
        ===================================================== */
 
     function escapeHTML(valor) {
@@ -2435,14 +2673,28 @@
       return String(
         valor ?? ""
       )
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
-
 
     /* =====================================================
        MENSAGEM
@@ -2478,7 +2730,7 @@
 
       window.timerMensagem =
         setTimeout(
-          () => {
+          function() {
 
             elemento.style.display =
               "none";
@@ -2488,7 +2740,6 @@
         );
 
     }
-
 
     /* =====================================================
        LOADING
@@ -2523,7 +2774,6 @@
 
     }
 
-
     function esconderLoading() {
 
       const elemento =
@@ -2539,7 +2789,6 @@
       }
 
     }
-
 
     /* =====================================================
        ERROS
@@ -2585,7 +2834,6 @@
 
     }
 
-
     /* =====================================================
        EVENTOS
        ===================================================== */
@@ -2611,7 +2859,6 @@
         }
       );
 
-
     document
       .getElementById(
         "dataFinal"
@@ -2633,7 +2880,6 @@
         }
       );
 
-
     document
       .getElementById(
         "dataInicial"
@@ -2642,7 +2888,6 @@
         "change",
         atualizarPeriodoImpressao
       );
-
 
     document
       .getElementById(
@@ -2653,9 +2898,8 @@
         atualizarPeriodoImpressao
       );
 
-
     /* =====================================================
-       MONITORAMENTO DA SESSÃO
+       MONITORAR SESSÃO
        ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
@@ -2682,3 +2926,4 @@
 </body>
 
 </html>
+```
