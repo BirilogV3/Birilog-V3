@@ -917,6 +917,27 @@
         </button>
 
 
+        <!-- =================================================
+             NOVO MENU - PÓS ENTREGA
+             ================================================= -->
+
+        <button
+          type="button"
+          class="menu-item"
+          onclick="irPara('pos-entrega.html')"
+        >
+
+          <span class="menu-icon">
+            📱
+          </span>
+
+          <span>
+            Pós Entrega
+          </span>
+
+        </button>
+
+
         <button
           type="button"
           class="menu-item"
@@ -1745,22 +1766,6 @@
     async function carregarDashboard() {
 
       try {
-
-        /*
-         * CORREÇÃO PRINCIPAL:
-         *
-         * A tabela envios utiliza:
-         *
-         * criado_em
-         * cliente_nome
-         * transportadora_nome
-         *
-         * e não:
-         *
-         * created_at
-         * cliente
-         * transportadora
-         */
 
         const resultado =
           await supabaseClient
