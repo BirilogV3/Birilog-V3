@@ -595,7 +595,7 @@
 
 
     /* =====================================================
-       TÍTULO DA PÁGINA
+       TÍTULO
        ===================================================== */
 
     .page-title {
@@ -936,7 +936,7 @@
 
 
     /* =====================================================
-       RESUMO DO RELATÓRIO
+       RESUMO
        ===================================================== */
 
     .resumo-relatorio {
@@ -1804,7 +1804,51 @@
       </button>
 
 
-      <!-- RELATÓRIOS -->
+      <!-- =================================================
+           USUÁRIOS
+           ================================================= -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          👤
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
+      <!-- =================================================
+           CONFIGURAÇÕES
+           ================================================= -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+
+      <!-- =================================================
+           RELATÓRIOS
+           ================================================= -->
 
       <button
         type="button"
@@ -1824,7 +1868,9 @@
     </nav>
 
 
-    <!-- USUÁRIO -->
+    <!-- =====================================================
+         USUÁRIO LOGADO
+         ===================================================== -->
 
     <div class="user-area">
 
@@ -1855,6 +1901,10 @@
 
       </div>
 
+
+      <!-- =================================================
+           BOTÃO SAIR
+           ================================================= -->
 
       <button
         type="button"
@@ -1944,7 +1994,6 @@
         class="panel filtros-painel nao-imprimir"
       >
 
-
         <div class="panel-header">
 
           <div>
@@ -1965,8 +2014,6 @@
         <div class="filtros-grid">
 
 
-          <!-- DATA INICIAL -->
-
           <div class="campo">
 
             <label for="dataInicial">
@@ -1981,8 +2028,6 @@
           </div>
 
 
-          <!-- DATA FINAL -->
-
           <div class="campo">
 
             <label for="dataFinal">
@@ -1996,8 +2041,6 @@
 
           </div>
 
-
-          <!-- CLIENTE -->
 
           <div class="campo">
 
@@ -2018,8 +2061,6 @@
           </div>
 
 
-          <!-- TRANSPORTADORA -->
-
           <div class="campo">
 
             <label for="filtroTransportadora">
@@ -2038,8 +2079,6 @@
 
           </div>
 
-
-          <!-- STATUS -->
 
           <div class="campo">
 
@@ -2075,8 +2114,6 @@
 
           </div>
 
-
-          <!-- BUSCA -->
 
           <div class="campo">
 
@@ -2290,49 +2327,27 @@
 
               <tr>
 
-                <th>
-                  NF
-                </th>
+                <th>NF</th>
 
-                <th>
-                  CLIENTE
-                </th>
+                <th>CLIENTE</th>
 
-                <th>
-                  CIDADE
-                </th>
+                <th>CIDADE</th>
 
-                <th>
-                  UF
-                </th>
+                <th>UF</th>
 
-                <th>
-                  TRANSPORTADORA
-                </th>
+                <th>TRANSPORTADORA</th>
 
-                <th>
-                  VALOR
-                </th>
+                <th>VALOR</th>
 
-                <th>
-                  VOLUMES
-                </th>
+                <th>VOLUMES</th>
 
-                <th>
-                  DATA ENVIO
-                </th>
+                <th>DATA ENVIO</th>
 
-                <th>
-                  PREVISÃO
-                </th>
+                <th>PREVISÃO</th>
 
-                <th>
-                  ENTREGA
-                </th>
+                <th>ENTREGA</th>
 
-                <th>
-                  STATUS
-                </th>
+                <th>STATUS</th>
 
               </tr>
 
@@ -2934,10 +2949,6 @@
               todosEnvios.filter(
                 function(envio) {
 
-                  /* ======================================
-                     DATA
-                     ====================================== */
-
                   const dataEnvio =
                     obterDataISO(
                       envio.data_envio ||
@@ -2973,10 +2984,6 @@
                   }
 
 
-                  /* ======================================
-                     CLIENTE
-                     ====================================== */
-
                   const clienteAtual =
                     normalizarTexto(
                       envio.cliente
@@ -2988,10 +2995,6 @@
                     clienteAtual ===
                     cliente;
 
-
-                  /* ======================================
-                     TRANSPORTADORA
-                     ====================================== */
 
                   const transportadoraAtual =
                     normalizarTexto(
@@ -3005,10 +3008,6 @@
                     transportadora;
 
 
-                  /* ======================================
-                     STATUS
-                     ====================================== */
-
                   const statusAtual =
                     normalizarStatus(
                       envio.status
@@ -3020,10 +3019,6 @@
                     statusAtual ===
                     status;
 
-
-                  /* ======================================
-                     PESQUISA LIVRE
-                     ====================================== */
 
                   const textoBusca =
                     normalizarTexto(
@@ -3148,7 +3143,7 @@
 
 
     /* =====================================================
-       RENDERIZAR
+       RENDERIZAR TABELA
        ===================================================== */
 
     function renderizarTabela(
@@ -3651,8 +3646,93 @@
     function irParaPesquisarNF() {
 
       window.location.href =
-        window.location.origin +
-        "/Birilog-V3/pesquisar-nf.html";
+        "pesquisar-nf.html";
+
+    }
+
+
+    /* =====================================================
+       SAIR DO SISTEMA
+       ===================================================== */
+
+    async function sair() {
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      try {
+
+        if (botao) {
+
+          botao.disabled =
+            true;
+
+          botao.textContent =
+            "SAINDO...";
+
+        }
+
+
+        const resultado =
+          await supabaseClient.auth.signOut();
+
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+
+        window.location.replace(
+          "index.html"
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+
+        if (botao) {
+
+          botao.disabled =
+            false;
+
+          botao.textContent =
+            "🚪 SAIR DO SISTEMA";
+
+        }
+
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL ENCERRAR A SESSÃO.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       REDIRECIONAR LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
@@ -4144,7 +4224,7 @@
 
 
     /* =====================================================
-       ENTER NA PESQUISA
+       EVENTOS
        ===================================================== */
 
     document
@@ -4170,10 +4250,6 @@
       );
 
 
-    /* =====================================================
-       ENTER NO PERÍODO
-       ===================================================== */
-
     document
       .getElementById(
         "dataFinal"
@@ -4196,10 +4272,6 @@
         }
       );
 
-
-    /* =====================================================
-       ATUALIZAR CABEÇALHO AO ALTERAR DATA
-       ===================================================== */
 
     document
       .getElementById(
