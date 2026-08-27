@@ -965,6 +965,70 @@
     }
 
     /* =====================================================
+       BOTÕES
+       ===================================================== */
+
+    .btn {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding:
+        10px 15px;
+
+      cursor: pointer;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      transition: 0.2s;
+
+    }
+
+    .btn-primary {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+    }
+
+    .btn-primary:hover {
+
+      transform:
+        translateY(-1px);
+
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+
+    }
+
+    .btn-secondary {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+      border:
+        1px solid #e2e8f0;
+
+    }
+
+    .btn-secondary:hover {
+
+      background: #e2e8f0;
+
+    }
+
+    /* =====================================================
        MODAL
        ===================================================== */
 
@@ -1472,6 +1536,8 @@
       </div>
 
 
+      <!-- DASHBOARD -->
+
       <button
         type="button"
         class="menu-item"
@@ -1488,6 +1554,8 @@
 
       </button>
 
+
+      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -1506,6 +1574,8 @@
       </button>
 
 
+      <!-- PESQUISAR NF -->
+
       <button
         type="button"
         class="menu-item"
@@ -1522,6 +1592,8 @@
 
       </button>
 
+
+      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -1540,6 +1612,8 @@
       </button>
 
 
+      <!-- TRANSPORTADORAS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1557,6 +1631,8 @@
       </button>
 
 
+      <!-- RELATÓRIOS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1573,6 +1649,30 @@
 
       </button>
 
+
+      <!-- =================================================
+           CONFIGURAÇÕES
+           ADICIONADO
+           ================================================= -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+
+      <!-- USUÁRIOS -->
 
       <button
         type="button"
@@ -1593,7 +1693,9 @@
     </nav>
 
 
-    <!-- USUÁRIO LOGADO -->
+    <!-- ===================================================
+         USUÁRIO LOGADO
+         =================================================== -->
 
     <div class="user-area">
 
@@ -2230,13 +2332,9 @@
         preencherUsuario();
 
 
-        /*
-        ---------------------------------------------------
-        A PÁGINA DE USUÁRIOS É ADMINISTRATIVA.
-
-        Somente ADMINISTRADOR deve acessar.
-        ---------------------------------------------------
-        */
+        /* ==============================================
+           SOMENTE ADMINISTRADOR
+           ============================================== */
 
         if (
           normalizarPerfil(
@@ -2679,10 +2777,7 @@
 
                 <tr>
 
-
-                  <td
-                    class="nome"
-                  >
+                  <td class="nome">
 
                     ${escapeHTML(
                       usuario.nome ||
@@ -2692,9 +2787,7 @@
                   </td>
 
 
-                  <td
-                    class="email"
-                  >
+                  <td class="email">
 
                     ${escapeHTML(
                       usuario.email ||
@@ -2737,7 +2830,6 @@
 
                     <div class="acoes">
 
-
                       <button
                         type="button"
                         class="btn-mini btn-editar"
@@ -2759,6 +2851,7 @@
                         String(
                           usuarioAtual.id
                         )
+
                         ?
 
                         `
@@ -2789,18 +2882,18 @@
                               padding:6px 3px;
                             "
                           >
+
                             USUÁRIO ATUAL
+
                           </span>
 
                         `
 
                       }
 
-
                     </div>
 
                   </td>
-
 
                 </tr>
 
@@ -2974,20 +3067,12 @@
       }
 
 
-      /*
-      -----------------------------------------------------
-      PROTEÇÃO DO USUÁRIO LOGADO
-      -----------------------------------------------------
-      */
-
       if (
         String(id) ===
         String(usuarioAtual.id)
       ) {
 
-        if (
-          !ativo
-        ) {
+        if (!ativo) {
 
           mostrarMensagem(
             "VOCÊ NÃO PODE DESATIVAR O PRÓPRIO USUÁRIO.",
@@ -3083,13 +3168,6 @@
           "sucesso"
         );
 
-
-        /*
-        ---------------------------------------------------
-        Se o próprio usuário foi alterado,
-        atualizamos a identificação exibida.
-        ---------------------------------------------------
-        */
 
         if (
           String(id) ===
