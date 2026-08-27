@@ -595,7 +595,7 @@
 
 
     /* =====================================================
-       TÍTULO
+       TÍTULO DA PÁGINA
        ===================================================== */
 
     .page-title {
@@ -936,7 +936,7 @@
 
 
     /* =====================================================
-       RESUMO
+       RESUMO DO RELATÓRIO
        ===================================================== */
 
     .resumo-relatorio {
@@ -1702,6 +1702,11 @@
     </div>
 
 
+    <!-- ===================================================
+         MENU PRINCIPAL
+         ORDEM PADRONIZADA
+         =================================================== -->
+
     <nav class="menu">
 
       <div class="menu-title">
@@ -1709,7 +1714,7 @@
       </div>
 
 
-      <!-- DASHBOARD -->
+      <!-- 1 - DASHBOARD -->
 
       <button
         type="button"
@@ -1728,7 +1733,7 @@
       </button>
 
 
-      <!-- ENVIOS -->
+      <!-- 2 - ENVIOS -->
 
       <button
         type="button"
@@ -1747,7 +1752,7 @@
       </button>
 
 
-      <!-- PESQUISAR NF -->
+      <!-- 3 - PESQUISAR NF -->
 
       <button
         type="button"
@@ -1766,7 +1771,7 @@
       </button>
 
 
-      <!-- CLIENTES -->
+      <!-- 4 - CLIENTES -->
 
       <button
         type="button"
@@ -1785,7 +1790,7 @@
       </button>
 
 
-      <!-- TRANSPORTADORAS -->
+      <!-- 5 - TRANSPORTADORAS -->
 
       <button
         type="button"
@@ -1804,9 +1809,25 @@
       </button>
 
 
-      <!-- =================================================
-           USUÁRIOS
-           ================================================= -->
+      <!-- 6 - RELATÓRIOS -->
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+
+      <!-- 7 - USUÁRIOS -->
 
       <button
         type="button"
@@ -1825,9 +1846,7 @@
       </button>
 
 
-      <!-- =================================================
-           CONFIGURAÇÕES
-           ================================================= -->
+      <!-- 8 - CONFIGURAÇÕES -->
 
       <button
         type="button"
@@ -1846,31 +1865,12 @@
       </button>
 
 
-      <!-- =================================================
-           RELATÓRIOS
-           ================================================= -->
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
     </nav>
 
 
-    <!-- =====================================================
+    <!-- ===================================================
          USUÁRIO LOGADO
-         ===================================================== -->
+         =================================================== -->
 
     <div class="user-area">
 
@@ -1903,7 +1903,7 @@
 
 
       <!-- =================================================
-           BOTÃO SAIR
+           SAIR DO SISTEMA
            ================================================= -->
 
       <button
@@ -1993,6 +1993,7 @@
       <div
         class="panel filtros-painel nao-imprimir"
       >
+
 
         <div class="panel-header">
 
@@ -2373,12 +2374,9 @@
 
             </tbody>
 
-
           </table>
 
-
         </div>
-
 
       </div>
 
@@ -2483,18 +2481,14 @@
 
         const consulta =
           await supabaseClient
-
             .from("usuarios")
-
             .select(
               "id,nome,email,perfil,ativo"
             )
-
             .eq(
               "auth_id",
               authUser.id
             )
-
             .maybeSingle();
 
 
@@ -2629,11 +2623,8 @@
 
         const resultado =
           await supabaseClient
-
             .from("envios")
-
             .select("*")
-
             .order(
               "created_at",
               {
@@ -2734,9 +2725,7 @@
       const clientes =
         Array.from(
           new Set(
-
             todosEnvios
-
               .map(
                 function(item) {
 
@@ -2749,7 +2738,6 @@
 
                 }
               )
-
               .filter(
                 function(nome) {
 
@@ -2757,7 +2745,6 @@
 
                 }
               )
-
           )
         )
         .sort();
@@ -2809,9 +2796,7 @@
       const transportadoras =
         Array.from(
           new Set(
-
             todosEnvios
-
               .map(
                 function(item) {
 
@@ -2824,7 +2809,6 @@
 
                 }
               )
-
               .filter(
                 function(nome) {
 
@@ -2832,7 +2816,6 @@
 
                 }
               )
-
           )
         )
         .sort();
@@ -3022,7 +3005,6 @@
 
                   const textoBusca =
                     normalizarTexto(
-
                       String(
                         envio.nf ||
                         ""
@@ -3057,7 +3039,6 @@
                         envio.status ||
                         ""
                       )
-
                     );
 
 
@@ -3098,18 +3079,12 @@
 
 
             mostrarMensagem(
-
               quantidade === 1
-
                 ? "1 REGISTRO ENCONTRADO."
-
                 :
-
                 quantidade +
                 " REGISTROS ENCONTRADOS.",
-
               "info"
-
             );
 
           }
@@ -3143,7 +3118,7 @@
 
 
     /* =====================================================
-       RENDERIZAR TABELA
+       RENDERIZAR
        ===================================================== */
 
     function renderizarTabela(
@@ -3220,100 +3195,44 @@
                 <tr>
 
                   <td class="nf">
-
-                    ${escapeHTML(
-                      envio.nf ||
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.nf || "-")}
                   </td>
-
 
                   <td>
-
-                    ${escapeHTML(
-                      envio.cliente ||
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.cliente || "-")}
                   </td>
-
 
                   <td>
-
-                    ${escapeHTML(
-                      envio.cidade ||
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.cidade || "-")}
                   </td>
-
 
                   <td>
-
-                    ${escapeHTML(
-                      envio.uf ||
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.uf || "-")}
                   </td>
-
 
                   <td>
-
-                    ${escapeHTML(
-                      envio.transportadora ||
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.transportadora || "-")}
                   </td>
-
 
                   <td class="valor">
-
-                    ${formatarValor(
-                      envio.valor
-                    )}
-
+                    ${formatarValor(envio.valor)}
                   </td>
-
 
                   <td>
-
-                    ${escapeHTML(
-                      envio.volumes ??
-                      "-"
-                    )}
-
+                    ${escapeHTML(envio.volumes ?? "-")}
                   </td>
-
 
                   <td>
-
-                    ${formatarData(
-                      envio.data_envio
-                    )}
-
+                    ${formatarData(envio.data_envio)}
                   </td>
-
 
                   <td>
-
-                    ${formatarData(
-                      envio.previsao
-                    )}
-
+                    ${formatarData(envio.previsao)}
                   </td>
-
 
                   <td>
-
-                    ${formatarData(
-                      envio.data_entrega
-                    )}
-
+                    ${formatarData(envio.data_entrega)}
                   </td>
-
 
                   <td>
 
@@ -3440,38 +3359,32 @@
 
       document.getElementById(
         "dataInicial"
-      ).value =
-        "";
+      ).value = "";
 
 
       document.getElementById(
         "dataFinal"
-      ).value =
-        "";
+      ).value = "";
 
 
       document.getElementById(
         "filtroCliente"
-      ).value =
-        "";
+      ).value = "";
 
 
       document.getElementById(
         "filtroTransportadora"
-      ).value =
-        "";
+      ).value = "";
 
 
       document.getElementById(
         "filtroStatus"
-      ).value =
-        "";
+      ).value = "";
 
 
       document.getElementById(
         "filtroBusca"
-      ).value =
-        "";
+      ).value = "";
 
 
       relatorioAtual =
@@ -3544,13 +3457,9 @@
 
         elemento.textContent =
           "PERÍODO: " +
-          formatarData(
-            inicio
-          ) +
+          formatarData(inicio) +
           " ATÉ " +
-          formatarData(
-            fim
-          );
+          formatarData(fim);
 
         return;
 
@@ -3561,9 +3470,7 @@
 
         elemento.textContent =
           "A PARTIR DE " +
-          formatarData(
-            inicio
-          );
+          formatarData(inicio);
 
         return;
 
@@ -3574,9 +3481,7 @@
 
         elemento.textContent =
           "ATÉ " +
-          formatarData(
-            fim
-          );
+          formatarData(fim);
 
         return;
 
@@ -3646,7 +3551,8 @@
     function irParaPesquisarNF() {
 
       window.location.href =
-        "pesquisar-nf.html";
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
 
     }
 
@@ -3725,7 +3631,7 @@
 
 
     /* =====================================================
-       REDIRECIONAR LOGIN
+       LOGIN
        ===================================================== */
 
     function redirecionarLogin() {
@@ -3943,15 +3849,9 @@
 
         data =
           new Date(
-            Number(
-              partes[0]
-            ),
-            Number(
-              partes[1]
-            ) - 1,
-            Number(
-              partes[2]
-            )
+            Number(partes[0]),
+            Number(partes[1]) - 1,
+            Number(partes[2])
           );
 
       }
@@ -4224,7 +4124,7 @@
 
 
     /* =====================================================
-       EVENTOS
+       ENTER NA PESQUISA
        ===================================================== */
 
     document
@@ -4250,6 +4150,10 @@
       );
 
 
+    /* =====================================================
+       ENTER NO PERÍODO
+       ===================================================== */
+
     document
       .getElementById(
         "dataFinal"
@@ -4272,6 +4176,10 @@
         }
       );
 
+
+    /* =====================================================
+       ATUALIZAR CABEÇALHO AO ALTERAR DATA
+       ===================================================== */
 
     document
       .getElementById(
