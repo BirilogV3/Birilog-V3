@@ -699,6 +699,57 @@
     }
 
     /* =====================================================
+       BOTÕES
+       ===================================================== */
+
+    .btn {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding:
+        10px 14px;
+
+      cursor: pointer;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      transition: 0.2s;
+
+    }
+
+    .btn-primary {
+
+      background: #1976d2;
+
+      color: white;
+
+    }
+
+    .btn-primary:hover {
+
+      background: #1565c0;
+
+    }
+
+    .btn-secondary {
+
+      background: #e2e8f0;
+
+      color: #334155;
+
+    }
+
+    .btn-secondary:hover {
+
+      background: #cbd5e1;
+
+    }
+
+    /* =====================================================
        FILTRO
        ===================================================== */
 
@@ -961,70 +1012,6 @@
       background: #fef3c7;
 
       color: #92400e;
-
-    }
-
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
-
-    .btn {
-
-      border: none;
-
-      border-radius: 8px;
-
-      padding:
-        10px 15px;
-
-      cursor: pointer;
-
-      font-size: 10px;
-
-      font-weight: 800;
-
-      transition: 0.2s;
-
-    }
-
-    .btn-primary {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
-      color: white;
-
-    }
-
-    .btn-primary:hover {
-
-      transform:
-        translateY(-1px);
-
-      box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
-
-    }
-
-    .btn-secondary {
-
-      background: #f1f5f9;
-
-      color: #475569;
-
-      border:
-        1px solid #e2e8f0;
-
-    }
-
-    .btn-secondary:hover {
-
-      background: #e2e8f0;
 
     }
 
@@ -1536,8 +1523,6 @@
       </div>
 
 
-      <!-- DASHBOARD -->
-
       <button
         type="button"
         class="menu-item"
@@ -1554,8 +1539,6 @@
 
       </button>
 
-
-      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -1574,8 +1557,6 @@
       </button>
 
 
-      <!-- PESQUISAR NF -->
-
       <button
         type="button"
         class="menu-item"
@@ -1592,8 +1573,6 @@
 
       </button>
 
-
-      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -1612,8 +1591,6 @@
       </button>
 
 
-      <!-- TRANSPORTADORAS -->
-
       <button
         type="button"
         class="menu-item"
@@ -1630,8 +1607,6 @@
 
       </button>
 
-
-      <!-- RELATÓRIOS -->
 
       <button
         type="button"
@@ -1650,9 +1625,24 @@
       </button>
 
 
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
       <!-- =================================================
            CONFIGURAÇÕES
-           ADICIONADO
            ================================================= -->
 
       <button
@@ -1672,30 +1662,10 @@
       </button>
 
 
-      <!-- USUÁRIOS -->
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-
     </nav>
 
 
-    <!-- ===================================================
-         USUÁRIO LOGADO
-         =================================================== -->
+    <!-- USUÁRIO LOGADO -->
 
     <div class="user-area">
 
@@ -2333,7 +2303,7 @@
 
 
         /* ==============================================
-           SOMENTE ADMINISTRADOR
+           PROTEÇÃO ADMINISTRATIVA
            ============================================== */
 
         if (
@@ -2777,7 +2747,10 @@
 
                 <tr>
 
-                  <td class="nome">
+
+                  <td
+                    class="nome"
+                  >
 
                     ${escapeHTML(
                       usuario.nome ||
@@ -2787,7 +2760,9 @@
                   </td>
 
 
-                  <td class="email">
+                  <td
+                    class="email"
+                  >
 
                     ${escapeHTML(
                       usuario.email ||
@@ -2830,6 +2805,7 @@
 
                     <div class="acoes">
 
+
                       <button
                         type="button"
                         class="btn-mini btn-editar"
@@ -2851,7 +2827,6 @@
                         String(
                           usuarioAtual.id
                         )
-
                         ?
 
                         `
@@ -2882,18 +2857,18 @@
                               padding:6px 3px;
                             "
                           >
-
                             USUÁRIO ATUAL
-
                           </span>
 
                         `
 
                       }
 
+
                     </div>
 
                   </td>
+
 
                 </tr>
 
@@ -3067,12 +3042,18 @@
       }
 
 
+      /* =================================================
+         PROTEÇÃO DO USUÁRIO LOGADO
+         ================================================= */
+
       if (
         String(id) ===
         String(usuarioAtual.id)
       ) {
 
-        if (!ativo) {
+        if (
+          !ativo
+        ) {
 
           mostrarMensagem(
             "VOCÊ NÃO PODE DESATIVAR O PRÓPRIO USUÁRIO.",
@@ -3486,6 +3467,29 @@
 
 
     /* =====================================================
+       NORMALIZAR TEXTO
+       ===================================================== */
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toLowerCase();
+
+    }
+
+
+    /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
@@ -3515,6 +3519,19 @@
       window.location.href =
         window.location.origin +
         "/Birilog-V3/pesquisar-nf.html";
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
