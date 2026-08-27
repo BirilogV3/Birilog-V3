@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -78,10 +79,6 @@
       overflow: hidden;
 
     }
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
 
     .logo-area {
 
@@ -664,7 +661,7 @@
       display: grid;
 
       grid-template-columns:
-        1fr 2fr 1fr;
+        1fr 2fr 1.2fr;
 
       gap: 15px;
 
@@ -717,8 +714,7 @@
 
       text-transform: uppercase;
 
-      transition:
-        0.2s;
+      transition: 0.2s;
 
     }
 
@@ -735,9 +731,109 @@
 
     }
 
-    .campo input[type="email"] {
+    .form-grid-extra {
 
-      text-transform: none;
+      display: grid;
+
+      grid-template-columns:
+        1.2fr 2fr 1fr;
+
+      gap: 15px;
+
+      margin-top: 15px;
+
+    }
+
+    .switch-area {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      min-height: 44px;
+
+    }
+
+    .switch {
+
+      position: relative;
+
+      width: 46px;
+
+      height: 24px;
+
+    }
+
+    .switch input {
+
+      opacity: 0;
+
+      width: 0;
+      height: 0;
+
+    }
+
+    .slider {
+
+      position: absolute;
+
+      cursor: pointer;
+
+      inset: 0;
+
+      background: #cbd5e1;
+
+      border-radius: 30px;
+
+      transition: .2s;
+
+    }
+
+    .slider:before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 18px;
+      height: 18px;
+
+      left: 3px;
+      top: 3px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      transition: .2s;
+
+      box-shadow:
+        0 1px 3px rgba(0,0,0,.2);
+
+    }
+
+    .switch input:checked + .slider {
+
+      background: #22c55e;
+
+    }
+
+    .switch input:checked + .slider:before {
+
+      transform:
+        translateX(22px);
+
+    }
+
+    .ativo-texto {
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      color: #475569;
 
     }
 
@@ -835,7 +931,7 @@
       display: grid;
 
       grid-template-columns:
-        2fr 1fr 1fr;
+        2fr 1fr;
 
       gap: 10px;
 
@@ -897,7 +993,7 @@
 
       width: 100%;
 
-      min-width: 1000px;
+      min-width: 900px;
 
       border-collapse: collapse;
 
@@ -994,18 +1090,14 @@
 
     }
 
-    .status-ativo {
+    .status {
 
       display: inline-block;
 
       padding:
-        5px 8px;
+        4px 8px;
 
       border-radius: 20px;
-
-      background: #dcfce7;
-
-      color: #15803d;
 
       font-size: 9px;
 
@@ -1013,22 +1105,19 @@
 
     }
 
+    .status-ativo {
+
+      background: #dcfce7;
+
+      color: #15803d;
+
+    }
+
     .status-inativo {
-
-      display: inline-block;
-
-      padding:
-        5px 8px;
-
-      border-radius: 20px;
 
       background: #fee2e2;
 
       color: #b91c1c;
-
-      font-size: 9px;
-
-      font-weight: 800;
 
     }
 
@@ -1067,11 +1156,7 @@
 
       width: 100%;
 
-      max-width: 700px;
-
-      max-height: 90vh;
-
-      overflow-y: auto;
+      max-width: 650px;
 
       background: white;
 
@@ -1082,6 +1167,10 @@
       box-shadow:
         0 25px 60px
         rgba(0,0,0,0.25);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
 
     }
 
@@ -1218,19 +1307,20 @@
        RESPONSIVO
        ===================================================== */
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1000px) {
 
-      .form-grid {
+      .form-grid,
+      .form-grid-extra {
 
         grid-template-columns:
           1fr 1fr;
 
       }
 
-      .filtros {
+      .cards {
 
         grid-template-columns:
-          1fr 1fr;
+          repeat(2, 1fr);
 
       }
 
@@ -1238,10 +1328,10 @@
 
     @media (max-width: 900px) {
 
-      .cards {
+      .filtros {
 
         grid-template-columns:
-          repeat(2, 1fr);
+          1fr;
 
       }
 
@@ -1373,14 +1463,8 @@
 
       }
 
-      .form-grid {
-
-        grid-template-columns:
-          1fr;
-
-      }
-
-      .filtros {
+      .form-grid,
+      .form-grid-extra {
 
         grid-template-columns:
           1fr;
@@ -1620,10 +1704,6 @@
     </nav>
 
 
-    <!-- =================================================
-         USUÁRIO
-         ================================================= -->
-
     <div class="user-area">
 
       <div class="user-card">
@@ -1701,10 +1781,6 @@
 
     </header>
 
-
-    <!-- =================================================
-         CONTEÚDO
-         ================================================= -->
 
     <section class="content">
 
@@ -1807,8 +1883,6 @@
           <div class="form-grid">
 
 
-            <!-- NOME -->
-
             <div class="campo">
 
               <label for="nome">
@@ -1826,8 +1900,6 @@
             </div>
 
 
-            <!-- CIDADE -->
-
             <div class="campo">
 
               <label for="cidade">
@@ -1843,8 +1915,6 @@
 
             </div>
 
-
-            <!-- UF -->
 
             <div class="campo">
 
@@ -1907,7 +1977,11 @@
             </div>
 
 
-            <!-- TELEFONE -->
+          </div>
+
+
+          <div class="form-grid-extra">
+
 
             <div class="campo">
 
@@ -1925,8 +1999,6 @@
             </div>
 
 
-            <!-- E-MAIL -->
-
             <div class="campo">
 
               <label for="email">
@@ -1943,25 +2015,34 @@
             </div>
 
 
-            <!-- ATIVO -->
-
             <div class="campo">
 
-              <label for="ativo">
+              <label>
                 Situação
               </label>
 
-              <select id="ativo">
+              <div class="switch-area">
 
-                <option value="true">
+                <label class="switch">
+
+                  <input
+                    type="checkbox"
+                    id="ativo"
+                    checked
+                  >
+
+                  <span class="slider"></span>
+
+                </label>
+
+                <span
+                  id="ativoTexto"
+                  class="ativo-texto"
+                >
                   ATIVA
-                </option>
+                </span>
 
-                <option value="false">
-                  INATIVA
-                </option>
-
-              </select>
+              </div>
 
             </div>
 
@@ -2038,8 +2119,6 @@
         </div>
 
 
-        <!-- FILTROS -->
-
         <div class="filtros">
 
           <input
@@ -2048,65 +2127,8 @@
             class="filtro"
             placeholder="🔎 NOME, CIDADE, UF, TELEFONE OU E-MAIL"
             autocomplete="off"
+            oninput="filtrarTransportadoras()"
           >
-
-
-          <select
-            id="filtroUF"
-            class="filtro"
-            onchange="filtrarTransportadoras()"
-          >
-
-            <option value="">
-              TODAS AS UFs
-            </option>
-
-            <option value="TO">
-              TO
-            </option>
-
-            <option value="PA">
-              PA
-            </option>
-
-            <option value="MA">
-              MA
-            </option>
-
-            <option value="GO">
-              GO
-            </option>
-
-            <option value="MT">
-              MT
-            </option>
-
-            <option value="BA">
-              BA
-            </option>
-
-            <option value="PI">
-              PI
-            </option>
-
-            <option value="MG">
-              MG
-            </option>
-
-            <option value="SP">
-              SP
-            </option>
-
-            <option value="RJ">
-              RJ
-            </option>
-
-            <option value="DF">
-              DF
-            </option>
-
-          </select>
-
 
           <button
             type="button"
@@ -2120,8 +2142,6 @@
 
         </div>
 
-
-        <!-- TABELA -->
 
         <div class="table-wrapper">
 
@@ -2153,7 +2173,7 @@
                 </th>
 
                 <th>
-                  SITUAÇÃO
+                  STATUS
                 </th>
 
                 <th>
@@ -2251,8 +2271,6 @@
         <div class="form-grid">
 
 
-          <!-- NOME -->
-
           <div class="campo">
 
             <label for="editarNome">
@@ -2269,8 +2287,6 @@
           </div>
 
 
-          <!-- CIDADE -->
-
           <div class="campo">
 
             <label for="editarCidade">
@@ -2286,15 +2302,13 @@
           </div>
 
 
-          <!-- UF -->
-
           <div class="campo">
 
-            <label for="editarUF">
+            <label for="editarUf">
               UF
             </label>
 
-            <select id="editarUF">
+            <select id="editarUf">
 
               <option value="">
                 SELECIONE
@@ -2349,7 +2363,11 @@
           </div>
 
 
-          <!-- TELEFONE -->
+        </div>
+
+
+        <div class="form-grid-extra">
+
 
           <div class="campo">
 
@@ -2366,8 +2384,6 @@
           </div>
 
 
-          <!-- E-MAIL -->
-
           <div class="campo">
 
             <label for="editarEmail">
@@ -2383,25 +2399,33 @@
           </div>
 
 
-          <!-- ATIVO -->
-
           <div class="campo">
 
-            <label for="editarAtivo">
+            <label>
               Situação
             </label>
 
-            <select id="editarAtivo">
+            <div class="switch-area">
 
-              <option value="true">
+              <label class="switch">
+
+                <input
+                  type="checkbox"
+                  id="editarAtivo"
+                >
+
+                <span class="slider"></span>
+
+              </label>
+
+              <span
+                id="editarAtivoTexto"
+                class="ativo-texto"
+              >
                 ATIVA
-              </option>
+              </span>
 
-              <option value="false">
-                INATIVA
-              </option>
-
-            </select>
+            </div>
 
           </div>
 
@@ -2534,10 +2558,6 @@
           session.user;
 
 
-        /* ==============================================
-           USUÁRIO BIRILOG
-           ============================================== */
-
         const consulta =
           await supabaseClient
 
@@ -2616,9 +2636,7 @@
 
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2700,7 +2718,7 @@
             .from("transportadoras")
 
             .select(
-              "id,nome,cidade,uf,\"e-mail\",ativo,criado_em,atualizado_em"
+              "id,nome,cidade,uf,telefone,email,ativo,criado_em,atualizado_em"
             )
 
             .order(
@@ -2748,20 +2766,14 @@
           [];
 
 
-        atualizarCards(
-          []
-        );
+        atualizarCards([]);
 
 
-        renderizarTabela(
-          []
-        );
+        renderizarTabela([]);
 
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2780,9 +2792,7 @@
        CARDS
        ===================================================== */
 
-    function atualizarCards(
-      lista
-    ) {
+    function atualizarCards(lista) {
 
       const total =
         lista.length;
@@ -2792,9 +2802,7 @@
         lista.filter(
           function(item) {
 
-            return (
-              item.ativo === true
-            );
+            return item.ativo !== false;
 
           }
         ).length;
@@ -2829,18 +2837,12 @@
       }
 
 
-      const agora =
-        new Date();
-
-
       elemento.textContent =
-        agora.toLocaleTimeString(
+        new Date().toLocaleTimeString(
           "pt-BR",
           {
-            hour:
-              "2-digit",
-            minute:
-              "2-digit"
+            hour: "2-digit",
+            minute: "2-digit"
           }
         );
 
@@ -2851,9 +2853,7 @@
        SALVAR
        ===================================================== */
 
-    async function salvarTransportadora(
-      evento
-    ) {
+    async function salvarTransportadora(evento) {
 
       evento.preventDefault();
 
@@ -2867,40 +2867,46 @@
       const nome =
         document.getElementById(
           "nome"
-        ).value.trim()
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const cidade =
         document.getElementById(
           "cidade"
-        ).value.trim()
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const uf =
         document.getElementById(
           "uf"
-        ).value.trim()
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const telefone =
         document.getElementById(
           "telefone"
-        ).value.trim();
+        ).value
+          .trim();
 
 
       const email =
         document.getElementById(
           "email"
-        ).value.trim();
+        ).value
+          .trim()
+          .toLowerCase();
 
 
       const ativo =
         document.getElementById(
           "ativo"
-        ).value === "true";
+        ).checked;
 
 
       if (!nome) {
@@ -2917,9 +2923,7 @@
 
       try {
 
-        botao.disabled =
-          true;
-
+        botao.disabled = true;
 
         botao.textContent =
           "💾 SALVANDO...";
@@ -2929,10 +2933,6 @@
           "SALVANDO TRANSPORTADORA..."
         );
 
-
-        /* ==============================================
-           VERIFICAR NOME DUPLICADO
-           ============================================== */
 
         const consultaNome =
           await supabaseClient
@@ -2972,10 +2972,6 @@
         }
 
 
-        /* ==============================================
-           DADOS
-           ============================================== */
-
         const dados = {
 
           nome:
@@ -2993,7 +2989,7 @@
             telefone ||
             null,
 
-          "e-mail":
+          email:
             email ||
             null,
 
@@ -3050,9 +3046,7 @@
 
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -3060,9 +3054,7 @@
 
       finally {
 
-        botao.disabled =
-          false;
-
+        botao.disabled = false;
 
         botao.textContent =
           "💾 SALVAR TRANSPORTADORA";
@@ -3076,20 +3068,14 @@
        EDITAR
        ===================================================== */
 
-    function abrirEditar(
-      id
-    ) {
+    function abrirEditar(id) {
 
       const transportadora =
         todasTransportadoras.find(
           function(item) {
 
-            return String(
-              item.id
-            ) ===
-            String(
-              id
-            );
+            return String(item.id) ===
+              String(id);
 
           }
         );
@@ -3128,7 +3114,7 @@
 
 
       document.getElementById(
-        "editarUF"
+        "editarUf"
       ).value =
         transportadora.uf ||
         "";
@@ -3144,16 +3130,20 @@
       document.getElementById(
         "editarEmail"
       ).value =
-        transportadora["e-mail"] ||
+        transportadora.email ||
         "";
 
 
       document.getElementById(
         "editarAtivo"
-      ).value =
-        transportadora.ativo === false
-          ? "false"
-          : "true";
+      ).checked =
+        transportadora.ativo !== false;
+
+
+      atualizarTextoAtivo(
+        "editarAtivo",
+        "editarAtivoTexto"
+      );
 
 
       document.getElementById(
@@ -3169,9 +3159,7 @@
        ATUALIZAR
        ===================================================== */
 
-    async function atualizarTransportadora(
-      evento
-    ) {
+    async function atualizarTransportadora(evento) {
 
       evento.preventDefault();
 
@@ -3191,46 +3179,49 @@
       const nome =
         document.getElementById(
           "editarNome"
-        ).value.trim()
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const cidade =
         document.getElementById(
           "editarCidade"
-        ).value.trim()
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const uf =
         document.getElementById(
-          "editarUF"
-        ).value.trim()
+          "editarUf"
+        ).value
+          .trim()
           .toUpperCase();
 
 
       const telefone =
         document.getElementById(
           "editarTelefone"
-        ).value.trim();
+        ).value
+          .trim();
 
 
       const email =
         document.getElementById(
           "editarEmail"
-        ).value.trim();
+        ).value
+          .trim()
+          .toLowerCase();
 
 
       const ativo =
         document.getElementById(
           "editarAtivo"
-        ).value === "true";
+        ).checked;
 
 
-      if (
-        !id ||
-        !nome
-      ) {
+      if (!id || !nome) {
 
         mostrarMensagem(
           "INFORME O NOME DA TRANSPORTADORA.",
@@ -3244,9 +3235,7 @@
 
       try {
 
-        botao.disabled =
-          true;
-
+        botao.disabled = true;
 
         botao.textContent =
           "🔄 ATUALIZANDO...";
@@ -3256,10 +3245,6 @@
           "ATUALIZANDO TRANSPORTADORA..."
         );
 
-
-        /* ==============================================
-           VERIFICAR NOME DUPLICADO
-           ============================================== */
 
         const consultaNome =
           await supabaseClient
@@ -3304,10 +3289,6 @@
         }
 
 
-        /* ==============================================
-           DADOS
-           ============================================== */
-
         const dados = {
 
           nome:
@@ -3325,12 +3306,15 @@
             telefone ||
             null,
 
-          "e-mail":
+          email:
             email ||
             null,
 
           ativo:
-            ativo
+            ativo,
+
+          atualizado_em:
+            new Date().toISOString()
 
         };
 
@@ -3361,7 +3345,6 @@
 
         esconderLoading();
 
-
         fecharModal();
 
 
@@ -3387,9 +3370,7 @@
 
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -3397,9 +3378,7 @@
 
       finally {
 
-        botao.disabled =
-          false;
-
+        botao.disabled = false;
 
         botao.textContent =
           "💾 SALVAR ALTERAÇÕES";
@@ -3413,20 +3392,14 @@
        EXCLUIR
        ===================================================== */
 
-    async function excluirTransportadora(
-      id
-    ) {
+    async function excluirTransportadora(id) {
 
       const transportadora =
         todasTransportadoras.find(
           function(item) {
 
-            return String(
-              item.id
-            ) ===
-            String(
-              id
-            );
+            return String(item.id) ===
+              String(id);
 
           }
         );
@@ -3518,9 +3491,7 @@
 
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -3533,9 +3504,7 @@
        TABELA
        ===================================================== */
 
-    function renderizarTabela(
-      lista
-    ) {
+    function renderizarTabela(lista) {
 
       const tabela =
         document.getElementById(
@@ -3579,18 +3548,8 @@
           .map(
             function(item) {
 
-              const situacao =
-                item.ativo === true
-                  ? `
-                    <span class="status-ativo">
-                      ATIVA
-                    </span>
-                  `
-                  : `
-                    <span class="status-inativo">
-                      INATIVA
-                    </span>
-                  `;
+              const ativo =
+                item.ativo !== false;
 
 
               return `
@@ -3642,7 +3601,7 @@
                   <td>
 
                     ${escapeHTML(
-                      item["e-mail"] ||
+                      item.email ||
                       "-"
                     )}
 
@@ -3651,7 +3610,21 @@
 
                   <td>
 
-                    ${situacao}
+                    <span
+                      class="status ${
+                        ativo
+                          ? "status-ativo"
+                          : "status-inativo"
+                      }"
+                    >
+
+                      ${
+                        ativo
+                          ? "ATIVA"
+                          : "INATIVA"
+                      }
+
+                    </span>
 
                   </td>
 
@@ -3659,7 +3632,6 @@
                   <td>
 
                     <div class="acoes">
-
 
                       <button
                         type="button"
@@ -3688,7 +3660,6 @@
 
                       </button>
 
-
                     </div>
 
                   </td>
@@ -3716,21 +3687,9 @@
         );
 
 
-      const filtroUF =
-        document.getElementById(
-          "filtroUF"
-        );
-
-
       const texto =
         normalizarTexto(
           campo.value
-        );
-
-
-      const ufSelecionada =
-        normalizarTexto(
-          filtroUF.value
         );
 
 
@@ -3762,31 +3721,16 @@
                 ) +
                 " " +
                 String(
-                  item["e-mail"] ||
+                  item.email ||
                   ""
                 )
 
               );
 
 
-            const correspondeTexto =
-              !texto ||
-              linha.includes(
-                texto
-              );
-
-
-            const correspondeUF =
-              !ufSelecionada ||
-              normalizarTexto(
-                item.uf
-              ) ===
-              ufSelecionada;
-
-
             return (
-              correspondeTexto &&
-              correspondeUF
+              !texto ||
+              linha.includes(texto)
             );
 
           }
@@ -3812,12 +3756,6 @@
         "";
 
 
-      document.getElementById(
-        "filtroUF"
-      ).value =
-        "";
-
-
       filtrarTransportadoras();
 
     }
@@ -3836,8 +3774,14 @@
 
       document.getElementById(
         "ativo"
-      ).value =
-        "true";
+      ).checked =
+        true;
+
+
+      atualizarTextoAtivo(
+        "ativo",
+        "ativoTexto"
+      );
 
     }
 
@@ -3858,12 +3802,76 @@
 
 
     /* =====================================================
+       TEXTO ATIVO
+       ===================================================== */
+
+    function atualizarTextoAtivo(
+      checkboxId,
+      textoId
+    ) {
+
+      const checkbox =
+        document.getElementById(
+          checkboxId
+        );
+
+
+      const texto =
+        document.getElementById(
+          textoId
+        );
+
+
+      if (!checkbox || !texto) {
+
+        return;
+
+      }
+
+
+      texto.textContent =
+        checkbox.checked
+          ? "ATIVA"
+          : "INATIVA";
+
+    }
+
+
+    document
+      .getElementById("ativo")
+      .addEventListener(
+        "change",
+        function() {
+
+          atualizarTextoAtivo(
+            "ativo",
+            "ativoTexto"
+          );
+
+        }
+      );
+
+
+    document
+      .getElementById("editarAtivo")
+      .addEventListener(
+        "change",
+        function() {
+
+          atualizarTextoAtivo(
+            "editarAtivo",
+            "editarAtivoTexto"
+          );
+
+        }
+      );
+
+
+    /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(
-      pagina
-    ) {
+    function irPara(pagina) {
 
       if (!pagina) {
 
@@ -3954,9 +3962,7 @@
        LOADING
        ===================================================== */
 
-    function mostrarLoading(
-      texto
-    ) {
+    function mostrarLoading(texto) {
 
       const elemento =
         document.getElementById(
@@ -4065,9 +4071,7 @@
        NORMALIZAR TEXTO
        ===================================================== */
 
-    function normalizarTexto(
-      valor
-    ) {
+    function normalizarTexto(valor) {
 
       return String(
         valor ||
@@ -4088,13 +4092,10 @@
        SEGURANÇA
        ===================================================== */
 
-    function escapeHTML(
-      valor
-    ) {
+    function escapeHTML(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
         .replace(
           /&/g,
@@ -4120,13 +4121,10 @@
     }
 
 
-    function escapeJS(
-      valor
-    ) {
+    function escapeJS(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
         .replace(
           /\\/g,
@@ -4152,9 +4150,7 @@
        ERROS
        ===================================================== */
 
-    function obterMensagemErro(
-      erro
-    ) {
+    function obterMensagemErro(erro) {
 
       if (
         erro &&
@@ -4179,7 +4175,7 @@
             "permission denied"
           ) ||
           texto.includes(
-            "not allowed"
+            "not authorized"
           )
         ) {
 
@@ -4208,12 +4204,15 @@
 
         if (
           texto.includes(
+            "column"
+          ) &&
+          texto.includes(
             "does not exist"
           )
         ) {
 
           return (
-            "A ESTRUTURA DA TABELA DO SUPABASE NÃO CORRESPONDE AO SISTEMA."
+            "UMA DAS COLUNAS DA TABELA TRANSPORTADORAS NÃO ESTÁ CONFIGURADA CORRETAMENTE."
           );
 
         }
@@ -4278,18 +4277,8 @@
 
 
     /* =====================================================
-       PESQUISA
+       ENTER NA PESQUISA
        ===================================================== */
-
-    document
-      .getElementById(
-        "filtroTexto"
-      )
-      .addEventListener(
-        "input",
-        filtrarTransportadoras
-      );
-
 
     document
       .getElementById(
@@ -4345,3 +4334,4 @@
 </body>
 
 </html>
+```
