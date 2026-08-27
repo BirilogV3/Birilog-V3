@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -12,13 +13,7 @@
 
   <title>BiriLog V3 - Dashboard</title>
 
-
-  <!-- =====================================================
-       SUPABASE
-       ===================================================== -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
   <style>
 
@@ -28,1375 +23,722 @@
       padding: 0;
     }
 
-
     html,
     body {
       min-height: 100%;
     }
 
-
     body {
-
       min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       background: #f1f5f9;
-
       color: #1e293b;
-
     }
-
-
-    /* =====================================================
-       APP
-       ===================================================== */
 
     .app {
-
       display: flex;
-
       min-height: 100vh;
-
       width: 100%;
-
     }
-
 
     /* =====================================================
        SIDEBAR
        ===================================================== */
 
     .sidebar {
-
       width: 250px;
-
       height: 100vh;
-
-      background:
-        linear-gradient(
-          180deg,
-          #0f172a,
-          #172554
-        );
-
+      background: linear-gradient(180deg, #0f172a, #172554);
       color: white;
-
       position: fixed;
-
       left: 0;
       top: 0;
       bottom: 0;
-
       display: flex;
-
       flex-direction: column;
-
       z-index: 100;
-
-      box-shadow:
-        5px 0 20px
-        rgba(0,0,0,0.10);
-
+      box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
-
     }
-
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
 
     .logo-area {
-
       padding: 28px 22px;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       text-align: center;
-
       flex-shrink: 0;
-
     }
-
 
     .logo-icon {
-
       width: 58px;
       height: 58px;
-
       margin: 0 auto 12px;
-
       border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #0d47a1
-        );
-
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 28px;
-
-      box-shadow:
-        0 8px 20px
-        rgba(25,118,210,0.30);
-
+      box-shadow: 0 8px 20px rgba(25,118,210,0.30);
     }
-
 
     .logo-title {
-
       font-size: 22px;
-
       font-weight: 800;
-
     }
-
 
     .logo-title span {
-
       color: #60a5fa;
-
     }
-
 
     .logo-version {
-
       margin-top: 5px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
       letter-spacing: 1px;
-
     }
-
 
     /* =====================================================
        MENU
        ===================================================== */
 
     .menu {
-
       padding: 20px 12px;
-
       flex: 1;
-
       min-height: 0;
-
       overflow-y: auto;
-
     }
-
 
     .menu-title {
-
-      padding:
-        0 12px 10px;
-
+      padding: 0 12px 10px;
       font-size: 10px;
-
       font-weight: 700;
-
       color: #64748b;
-
       letter-spacing: 1px;
-
     }
 
-
     .menu-item {
-
       width: 100%;
-
       border: none;
-
       background: transparent;
-
       color: #cbd5e1;
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 13px 14px;
-
       margin-bottom: 4px;
-
       border-radius: 9px;
-
       cursor: pointer;
-
       font-size: 13px;
-
       text-align: left;
-
       transition:
         background 0.2s,
         color 0.2s,
         transform 0.2s;
-
     }
-
 
     .menu-item:hover {
-
-      background:
-        rgba(255,255,255,0.08);
-
+      background: rgba(255,255,255,0.08);
       color: white;
-
     }
-
 
     .menu-item:active {
-
-      transform:
-        scale(0.99);
-
+      transform: scale(0.99);
     }
-
 
     .menu-item.active {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
-
+      box-shadow: 0 5px 15px rgba(37,99,235,0.25);
     }
-
 
     .menu-icon {
-
       width: 22px;
-
       text-align: center;
-
       font-size: 17px;
-
       flex-shrink: 0;
-
     }
-
 
     /* =====================================================
        USUÁRIO
        ===================================================== */
 
     .user-area {
-
       padding: 15px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      background:
-        rgba(0,0,0,0.08);
-
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.08);
       flex-shrink: 0;
-
     }
-
 
     .user-card {
-
-      background:
-        rgba(255,255,255,0.06);
-
+      background: rgba(255,255,255,0.06);
       border-radius: 10px;
-
       padding: 12px;
-
     }
-
 
     .user-name {
-
       font-size: 12px;
-
       font-weight: 700;
-
       color: white;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-email {
-
       margin-top: 3px;
-
       font-size: 9px;
-
       color: #94a3b8;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-profile {
-
       margin-top: 6px;
-
       font-size: 10px;
-
       color: #60a5fa;
-
       text-transform: uppercase;
-
       font-weight: 700;
-
     }
-
 
     /* =====================================================
        BOTÃO SAIR
        ===================================================== */
 
     .logout {
-
       width: 100%;
-
       display: block;
-
       visibility: visible;
-
       opacity: 1;
-
       position: relative;
-
       z-index: 1000;
-
       pointer-events: auto;
-
       margin-top: 10px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.18);
-
-      background:
-        rgba(255,255,255,0.07);
-
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
       color: #e2e8f0;
-
       padding: 11px 10px;
-
       min-height: 40px;
-
       border-radius: 8px;
-
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 700;
-
       transition:
         background 0.2s,
         border-color 0.2s,
         color 0.2s,
         transform 0.2s;
-
     }
-
 
     .logout:hover {
-
       background: #dc2626;
-
       border-color: #dc2626;
-
       color: white;
-
     }
-
 
     .logout:active {
-
-      transform:
-        scale(0.98);
-
+      transform: scale(0.98);
     }
-
 
     .logout:disabled {
-
       opacity: 0.60;
-
       cursor: wait;
-
     }
-
 
     /* =====================================================
        CONTEÚDO
        ===================================================== */
 
     .main {
-
       margin-left: 250px;
-
-      width:
-        calc(100% - 250px);
-
+      width: calc(100% - 250px);
       min-height: 100vh;
-
     }
-
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
 
     .header {
-
       height: 75px;
-
       background: white;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      padding:
-        0 30px;
-
+      padding: 0 30px;
       position: sticky;
-
       top: 0;
-
       z-index: 50;
-
     }
-
 
     .header-title {
-
       font-size: 20px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .header-subtitle {
-
       margin-top: 3px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
-
 
     .status-online {
-
       display: flex;
-
       align-items: center;
-
       gap: 7px;
-
-      padding:
-        7px 12px;
-
+      padding: 7px 12px;
       border-radius: 20px;
-
       background: #f0fdf4;
-
       color: #15803d;
-
       font-size: 11px;
-
       font-weight: 700;
-
     }
-
 
     .status-dot {
-
       width: 7px;
-
       height: 7px;
-
       border-radius: 50%;
-
       background: #22c55e;
-
     }
-
-
-    /* =====================================================
-       CONTEÚDO PRINCIPAL
-       ===================================================== */
 
     .content {
-
       padding: 30px;
-
     }
-
-
-    /* =====================================================
-       BOAS-VINDAS
-       ===================================================== */
 
     .welcome {
-
       margin-bottom: 22px;
-
     }
-
 
     .welcome-title {
-
       font-size: 17px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .welcome-subtitle {
-
       margin-top: 4px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
-
 
     /* =====================================================
        CARDS
        ===================================================== */
 
     .cards {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-
       margin-bottom: 25px;
-
     }
-
 
     .card {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 20px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
       transition: 0.2s;
-
     }
-
 
     .card:hover {
-
-      transform:
-        translateY(-2px);
-
-      box-shadow:
-        0 8px 22px
-        rgba(15,23,42,0.08);
-
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(15,23,42,0.08);
     }
-
 
     .card-top {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
     }
-
 
     .card-label {
-
       font-size: 11px;
-
       color: #64748b;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
       letter-spacing: .3px;
-
     }
-
 
     .card-icon {
-
       width: 40px;
       height: 40px;
-
       border-radius: 10px;
-
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 19px;
-
       background: #eff6ff;
-
     }
-
 
     .card-value {
-
       margin-top: 12px;
-
       font-size: 29px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .card-info {
-
       margin-top: 5px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
     }
-
 
     /* =====================================================
        PAINÉIS
        ===================================================== */
 
     .grid {
-
       display: grid;
-
-      grid-template-columns:
-        2fr 1fr;
-
+      grid-template-columns: 2fr 1fr;
       gap: 20px;
-
     }
-
 
     .panel {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 22px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
     }
-
 
     .panel-header {
-
       display: flex;
-
       justify-content: space-between;
-
       align-items: center;
-
       margin-bottom: 18px;
-
     }
-
 
     .panel-title {
-
       font-size: 14px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .panel-subtitle {
-
       margin-top: 3px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
     }
-
 
     /* =====================================================
        TABELA
        ===================================================== */
 
     .table-wrapper {
-
       overflow-x: auto;
-
     }
-
 
     table {
-
       width: 100%;
-
       border-collapse: collapse;
-
     }
-
 
     th {
-
       text-align: left;
-
-      padding:
-        10px 8px;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      padding: 10px 8px;
+      border-bottom: 1px solid #e2e8f0;
       font-size: 10px;
-
       color: #64748b;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
-
 
     td {
-
-      padding:
-        12px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
+      padding: 12px 8px;
+      border-bottom: 1px solid #f1f5f9;
       font-size: 11px;
-
       color: #334155;
-
     }
-
 
     tr:last-child td {
-
       border-bottom: none;
-
     }
-
 
     .status {
-
       display: inline-block;
-
-      padding:
-        5px 8px;
-
+      padding: 5px 8px;
       border-radius: 20px;
-
       font-size: 9px;
-
       font-weight: 800;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
-
 
     .status-entregue {
-
       background: #dcfce7;
-
       color: #166534;
-
     }
-
 
     .status-transito {
-
       background: #dbeafe;
-
       color: #1d4ed8;
-
     }
-
 
     .status-atrasado {
-
       background: #fee2e2;
-
       color: #b91c1c;
-
     }
-
 
     .status-coletado {
-
       background: #fef3c7;
-
       color: #92400e;
-
     }
-
 
     .status-padrao {
-
       background: #f1f5f9;
-
       color: #475569;
-
     }
-
 
     /* =====================================================
        RESUMO
        ===================================================== */
 
     .resumo-item {
-
       margin-bottom: 20px;
-
     }
-
 
     .resumo-item:last-child {
-
       margin-bottom: 0;
-
     }
-
 
     .resumo-top {
-
       display: flex;
-
       justify-content: space-between;
-
       margin-bottom: 7px;
-
     }
-
 
     .resumo-label {
-
       font-size: 11px;
-
       color: #475569;
-
       font-weight: 600;
-
     }
-
 
     .resumo-value {
-
       font-size: 11px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .barra {
-
       width: 100%;
-
       height: 7px;
-
       background: #f1f5f9;
-
       border-radius: 10px;
-
       overflow: hidden;
-
     }
-
 
     .barra span {
-
       display: block;
-
       height: 100%;
-
       border-radius: 10px;
-
-      background:
-        linear-gradient(
-          90deg,
-          #1976d2,
-          #2563eb
-        );
-
-      transition:
-        width 0.5s ease;
-
+      background: linear-gradient(90deg, #1976d2, #2563eb);
+      transition: width 0.5s ease;
     }
-
 
     /* =====================================================
        MENSAGEM
        ===================================================== */
 
     .mensagem-dashboard {
-
       display: none;
-
       margin-bottom: 20px;
-
       padding: 12px 15px;
-
       border-radius: 9px;
-
       font-size: 11px;
-
       font-weight: 700;
-
       text-align: center;
-
     }
-
 
     .mensagem-dashboard.erro {
-
       display: block;
-
       background: #fef2f2;
-
       color: #b91c1c;
-
-      border:
-        1px solid #fecaca;
-
+      border: 1px solid #fecaca;
     }
-
 
     /* =====================================================
        LOADING
        ===================================================== */
 
     .loading-screen {
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        #f8fafc;
-
+      background: #f8fafc;
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       z-index: 9999;
-
     }
-
 
     .loading-box {
-
       text-align: center;
-
       color: #64748b;
-
       font-size: 12px;
-
       font-weight: 600;
-
     }
-
 
     .spinner {
-
       width: 35px;
-
       height: 35px;
-
-      margin:
-        0 auto 14px;
-
-      border:
-        3px solid #dbeafe;
-
-      border-top-color:
-        #1976d2;
-
+      margin: 0 auto 14px;
+      border: 3px solid #dbeafe;
+      border-top-color: #1976d2;
       border-radius: 50%;
-
-      animation:
-        girar .8s linear infinite;
-
+      animation: girar .8s linear infinite;
     }
-
 
     @keyframes girar {
-
       to {
-
-        transform:
-          rotate(360deg);
-
+        transform: rotate(360deg);
       }
-
     }
 
-
     /* =====================================================
-       RESPONSIVO - TABLET
+       RESPONSIVO
        ===================================================== */
 
     @media (max-width: 1100px) {
 
       .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
       }
 
-
       .grid {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
 
     }
 
-
-    /* =====================================================
-       RESPONSIVO - CELULAR
-       ===================================================== */
-
     @media (max-width: 700px) {
 
       .sidebar {
-
         width: 70px;
-
       }
-
 
       .logo-title,
       .logo-version,
       .menu-title,
       .menu-item span:not(.menu-icon),
       .user-card {
-
         display: none;
-
       }
-
 
       .logo-area {
-
-        padding:
-          18px 8px;
-
+        padding: 18px 8px;
       }
-
 
       .logo-icon {
-
         width: 42px;
         height: 42px;
-
         font-size: 20px;
-
       }
-
 
       .menu {
-
-        padding:
-          15px 8px;
-
+        padding: 15px 8px;
       }
-
 
       .menu-item {
-
         justify-content: center;
-
-        padding:
-          13px 5px;
-
+        padding: 13px 5px;
       }
-
 
       .user-area {
-
-        padding:
-          10px 8px;
-
+        padding: 10px 8px;
       }
-
 
       .logout {
-
         font-size: 0;
-
-        padding:
-          12px 5px;
-
+        padding: 12px 5px;
         min-height: 42px;
-
       }
-
 
       .logout::before {
-
         content: "🚪";
-
         font-size: 17px;
-
       }
-
 
       .main {
-
         margin-left: 70px;
-
-        width:
-          calc(100% - 70px);
-
+        width: calc(100% - 70px);
       }
-
 
       .header {
-
-        padding:
-          0 18px;
-
+        padding: 0 18px;
       }
-
 
       .header-title {
-
         font-size: 17px;
-
       }
-
 
       .status-online {
-
         font-size: 0;
-
         padding: 9px;
-
       }
-
 
       .status-dot {
-
         width: 8px;
         height: 8px;
-
       }
-
 
       .content {
-
         padding: 18px;
-
       }
 
-
       .cards {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
 
     }
-
-
-    /* =====================================================
-       RESPONSIVO - CELULAR PEQUENO
-       ===================================================== */
 
     @media (max-width: 450px) {
 
       .header-subtitle {
-
         display: none;
-
       }
-
 
       .welcome-title {
-
         font-size: 15px;
-
       }
 
-
       .panel {
-
         padding: 16px;
-
       }
 
     }
 
-
-    /* =====================================================
-       TELAS MUITO BAIXAS
-       ===================================================== */
-
     @media (max-height: 600px) {
 
       .logo-area {
-
-        padding:
-          12px 15px;
-
+        padding: 12px 15px;
       }
-
 
       .logo-icon {
-
         width: 42px;
         height: 42px;
-
         margin-bottom: 5px;
-
         font-size: 21px;
-
       }
-
 
       .menu {
-
-        padding:
-          10px 12px;
-
+        padding: 10px 12px;
       }
-
 
       .menu-item {
-
-        padding:
-          9px 12px;
-
+        padding: 9px 12px;
         margin-bottom: 2px;
-
       }
-
 
       .user-area {
-
-        padding:
-          8px 12px;
-
+        padding: 8px 12px;
       }
-
 
       .user-card {
-
-        padding:
-          8px;
-
+        padding: 8px;
       }
 
-
       .logout {
-
         margin-top: 7px;
-
-        padding:
-          8px;
-
+        padding: 8px;
         min-height: 34px;
-
       }
 
     }
@@ -1449,8 +791,6 @@
     <aside class="sidebar">
 
 
-      <!-- LOGO -->
-
       <div class="logo-area">
 
         <div class="logo-icon">
@@ -1468,16 +808,12 @@
       </div>
 
 
-      <!-- MENU -->
-
       <nav class="menu">
 
         <div class="menu-title">
           MENU PRINCIPAL
         </div>
 
-
-        <!-- DASHBOARD -->
 
         <button
           type="button"
@@ -1496,8 +832,6 @@
         </button>
 
 
-        <!-- ENVIOS -->
-
         <button
           type="button"
           class="menu-item"
@@ -1514,8 +848,6 @@
 
         </button>
 
-
-        <!-- PESQUISAR NF -->
 
         <button
           type="button"
@@ -1534,8 +866,6 @@
         </button>
 
 
-        <!-- CLIENTES -->
-
         <button
           type="button"
           class="menu-item"
@@ -1552,8 +882,6 @@
 
         </button>
 
-
-        <!-- TRANSPORTADORAS -->
 
         <button
           type="button"
@@ -1572,8 +900,6 @@
         </button>
 
 
-        <!-- RELATÓRIOS -->
-
         <button
           type="button"
           class="menu-item"
@@ -1591,8 +917,6 @@
         </button>
 
 
-        <!-- USUÁRIOS -->
-
         <button
           type="button"
           class="menu-item"
@@ -1609,8 +933,6 @@
 
         </button>
 
-
-        <!-- CONFIGURAÇÕES -->
 
         <button
           type="button"
@@ -1632,10 +954,6 @@
       </nav>
 
 
-      <!-- =================================================
-           USUÁRIO
-           ================================================= -->
-
       <div class="user-area">
 
         <div class="user-card">
@@ -1647,14 +965,12 @@
             USUÁRIO
           </div>
 
-
           <div
             id="usuarioEmail"
             class="user-email"
           >
             -
           </div>
-
 
           <div
             id="usuarioPerfil"
@@ -1665,8 +981,6 @@
 
         </div>
 
-
-        <!-- BOTÃO SAIR -->
 
         <button
           type="button"
@@ -1691,8 +1005,6 @@
 
     <main class="main">
 
-
-      <!-- HEADER -->
 
       <header class="header">
 
@@ -1720,22 +1032,14 @@
       </header>
 
 
-      <!-- =================================================
-           CONTEÚDO
-           ================================================= -->
-
       <section class="content">
 
-
-        <!-- MENSAGEM -->
 
         <div
           id="mensagemDashboard"
           class="mensagem-dashboard"
         ></div>
 
-
-        <!-- BOAS-VINDAS -->
 
         <div class="welcome">
 
@@ -1760,8 +1064,6 @@
         <div class="cards">
 
 
-          <!-- TOTAL -->
-
           <div class="card">
 
             <div class="card-top">
@@ -1776,7 +1078,6 @@
 
             </div>
 
-
             <div
               id="totalEnvios"
               class="card-value"
@@ -1784,15 +1085,12 @@
               0
             </div>
 
-
             <div class="card-info">
               Envios cadastrados
             </div>
 
           </div>
 
-
-          <!-- TRÂNSITO -->
 
           <div class="card">
 
@@ -1808,7 +1106,6 @@
 
             </div>
 
-
             <div
               id="emTransito"
               class="card-value"
@@ -1816,15 +1113,12 @@
               0
             </div>
 
-
             <div class="card-info">
               Envios em transporte
             </div>
 
           </div>
 
-
-          <!-- ENTREGUES -->
 
           <div class="card">
 
@@ -1840,7 +1134,6 @@
 
             </div>
 
-
             <div
               id="entregues"
               class="card-value"
@@ -1848,15 +1141,12 @@
               0
             </div>
 
-
             <div class="card-info">
               Entregas realizadas
             </div>
 
           </div>
 
-
-          <!-- ATRASADOS -->
 
           <div class="card">
 
@@ -1872,14 +1162,12 @@
 
             </div>
 
-
             <div
               id="atrasados"
               class="card-value"
             >
               0
             </div>
-
 
             <div class="card-info">
               Necessitam atenção
@@ -1897,8 +1185,6 @@
 
         <div class="grid">
 
-
-          <!-- ÚLTIMOS ENVIOS -->
 
           <div class="panel">
 
@@ -1948,9 +1234,7 @@
                 </thead>
 
 
-                <tbody
-                  id="tabelaEnvios"
-                >
+                <tbody id="tabelaEnvios">
 
                   <tr>
 
@@ -1978,8 +1262,6 @@
           </div>
 
 
-          <!-- RESUMO -->
-
           <div class="panel">
 
             <div class="panel-header">
@@ -1999,8 +1281,6 @@
             </div>
 
 
-            <!-- ENTREGUES -->
-
             <div class="resumo-item">
 
               <div class="resumo-top">
@@ -2018,7 +1298,6 @@
 
               </div>
 
-
               <div class="barra">
 
                 <span
@@ -2030,8 +1309,6 @@
 
             </div>
 
-
-            <!-- TRÂNSITO -->
 
             <div class="resumo-item">
 
@@ -2050,7 +1327,6 @@
 
               </div>
 
-
               <div class="barra">
 
                 <span
@@ -2062,8 +1338,6 @@
 
             </div>
 
-
-            <!-- ATRASADOS -->
 
             <div class="resumo-item">
 
@@ -2082,7 +1356,6 @@
 
               </div>
 
-
               <div class="barra">
 
                 <span
@@ -2094,8 +1367,6 @@
 
             </div>
 
-
-            <!-- COLETADOS -->
 
             <div class="resumo-item">
 
@@ -2113,7 +1384,6 @@
                 </span>
 
               </div>
-
 
               <div class="barra">
 
@@ -2168,20 +1438,11 @@
       );
 
 
-    /* =====================================================
-       VARIÁVEIS
-       ===================================================== */
+    let usuarioAtual = null;
 
-    let usuarioAtual =
-      null;
+    let iniciandoDashboard = false;
 
-
-    let iniciandoDashboard =
-      false;
-
-
-    let redirecionando =
-      false;
+    let redirecionando = false;
 
 
     /* =====================================================
@@ -2197,14 +1458,11 @@
     async function iniciarDashboard() {
 
       if (iniciandoDashboard) {
-
         return;
-
       }
 
 
-      iniciandoDashboard =
-        true;
+      iniciandoDashboard = true;
 
 
       try {
@@ -2213,12 +1471,8 @@
           await supabaseClient.auth.getSession();
 
 
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
 
 
@@ -2226,10 +1480,6 @@
           resultado.data &&
           resultado.data.session;
 
-
-        /* ================================================
-           NÃO AUTENTICADO
-           ================================================ */
 
         if (!session) {
 
@@ -2244,39 +1494,29 @@
           session.user;
 
 
-        /* ================================================
+        /* =================================================
            BUSCAR USUÁRIO
-           ================================================ */
+           ================================================= */
 
         const consulta =
           await supabaseClient
-
             .from("usuarios")
-
             .select(
               "id, nome, email, perfil, ativo"
             )
-
             .eq(
               "auth_id",
               usuario.id
             )
-
             .maybeSingle();
 
 
-        if (
-          consulta.error
-        ) {
-
+        if (consulta.error) {
           throw consulta.error;
-
         }
 
 
-        if (
-          !consulta.data
-        ) {
+        if (!consulta.data) {
 
           await supabaseClient.auth.signOut();
 
@@ -2287,9 +1527,7 @@
         }
 
 
-        if (
-          consulta.data.ativo === false
-        ) {
+        if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
 
@@ -2299,10 +1537,6 @@
 
         }
 
-
-        /* ================================================
-           USUÁRIO OK
-           ================================================ */
 
         usuarioAtual =
           consulta.data;
@@ -2310,9 +1544,7 @@
 
         preencherUsuario();
 
-
         esconderLoading();
-
 
         await carregarDashboard();
 
@@ -2339,8 +1571,7 @@
 
       finally {
 
-        iniciandoDashboard =
-          false;
+        iniciandoDashboard = false;
 
       }
 
@@ -2348,20 +1579,17 @@
 
 
     /* =====================================================
-       REDIRECIONAR LOGIN
+       LOGIN
        ===================================================== */
 
     function redirecionarLogin() {
 
       if (redirecionando) {
-
         return;
-
       }
 
 
-      redirecionando =
-        true;
+      redirecionando = true;
 
 
       window.location.replace(
@@ -2375,14 +1603,10 @@
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(
-      pagina
-    ) {
+    function irPara(pagina) {
 
       if (!pagina) {
-
         return;
-
       }
 
 
@@ -2393,7 +1617,7 @@
 
 
     /* =====================================================
-       ESCONDER LOADING
+       LOADING
        ===================================================== */
 
     function esconderLoading() {
@@ -2429,15 +1653,13 @@
 
 
     /* =====================================================
-       PREENCHER USUÁRIO
+       USUÁRIO
        ===================================================== */
 
     function preencherUsuario() {
 
       if (!usuarioAtual) {
-
         return;
-
       }
 
 
@@ -2484,9 +1706,7 @@
       if (elementoNome) {
 
         elementoNome.textContent =
-          String(
-            nome
-          ).toUpperCase();
+          String(nome).toUpperCase();
 
       }
 
@@ -2502,9 +1722,7 @@
       if (elementoPerfil) {
 
         elementoPerfil.textContent =
-          String(
-            perfil
-          ).toUpperCase();
+          String(perfil).toUpperCase();
 
       }
 
@@ -2513,9 +1731,7 @@
 
         elementoBoasVindas.textContent =
           "BEM-VINDO, " +
-          String(
-            nome
-          ).toUpperCase();
+          String(nome).toUpperCase();
 
       }
 
@@ -2523,34 +1739,50 @@
 
 
     /* =====================================================
-       CARREGAR DASHBOARD
+       CARREGAR ENVIOS
        ===================================================== */
 
     async function carregarDashboard() {
 
       try {
 
+        /*
+         * CORREÇÃO PRINCIPAL:
+         *
+         * A tabela envios utiliza:
+         *
+         * criado_em
+         * cliente_nome
+         * transportadora_nome
+         *
+         * e não:
+         *
+         * created_at
+         * cliente
+         * transportadora
+         */
+
         const resultado =
           await supabaseClient
 
             .from("envios")
 
-            .select("*")
+            .select(
+              "id, nf, cliente_nome, transportadora_nome, status, criado_em"
+            )
 
             .order(
-              "created_at",
+              "criado_em",
               {
                 ascending: false
               }
             );
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
-          console.warn(
-            "Não foi possível carregar envios:",
+          console.error(
+            "Erro Supabase ao carregar envios:",
             resultado.error
           );
 
@@ -2560,19 +1792,11 @@
           );
 
 
-          atualizarCards(
-            []
-          );
+          atualizarCards([]);
 
+          atualizarTabela([]);
 
-          atualizarTabela(
-            []
-          );
-
-
-          atualizarResumo(
-            []
-          );
+          atualizarResumo([]);
 
 
           return;
@@ -2582,6 +1806,12 @@
 
         const envios =
           resultado.data || [];
+
+
+        console.log(
+          "Envios carregados:",
+          envios
+        );
 
 
         atualizarCards(
@@ -2609,19 +1839,16 @@
         );
 
 
-        atualizarCards(
-          []
+        mostrarErro(
+          "NÃO FOI POSSÍVEL CARREGAR OS ENVIOS."
         );
 
 
-        atualizarTabela(
-          []
-        );
+        atualizarCards([]);
 
+        atualizarTabela([]);
 
-        atualizarResumo(
-          []
-        );
+        atualizarResumo([]);
 
       }
 
@@ -2632,9 +1859,7 @@
        CARDS
        ===================================================== */
 
-    function atualizarCards(
-      envios
-    ) {
+    function atualizarCards(envios) {
 
       const total =
         envios.length;
@@ -2733,8 +1958,7 @@
 
           return normalizarStatus(
             envio.status
-          ) ===
-          status;
+          ) === status;
 
         }
       ).length;
@@ -2742,13 +1966,10 @@
     }
 
 
-    function normalizarStatus(
-      status
-    ) {
+    function normalizarStatus(status) {
 
       return String(
-        status ||
-        ""
+        status || ""
       )
         .normalize("NFD")
         .replace(
@@ -2765,9 +1986,7 @@
        TABELA
        ===================================================== */
 
-    function atualizarTabela(
-      envios
-    ) {
+    function atualizarTabela(envios) {
 
       const tabela =
         document.getElementById(
@@ -2776,9 +1995,7 @@
 
 
       if (!tabela) {
-
         return;
-
       }
 
 
@@ -2811,10 +2028,7 @@
 
 
       const recentes =
-        envios.slice(
-          0,
-          8
-        );
+        envios.slice(0, 8);
 
 
       tabela.innerHTML =
@@ -2833,8 +2047,7 @@
 
 
               if (
-                status ===
-                "ENTREGUE"
+                status === "ENTREGUE"
               ) {
 
                 classe =
@@ -2842,10 +2055,8 @@
 
               }
 
-
               else if (
-                status ===
-                "EM TRANSITO"
+                status === "EM TRANSITO"
               ) {
 
                 classe =
@@ -2853,10 +2064,8 @@
 
               }
 
-
               else if (
-                status ===
-                "ATRASADO"
+                status === "ATRASADO"
               ) {
 
                 classe =
@@ -2864,10 +2073,8 @@
 
               }
 
-
               else if (
-                status ===
-                "COLETADO"
+                status === "COLETADO"
               ) {
 
                 classe =
@@ -2883,12 +2090,9 @@
                   <td>
 
                     <strong>
-
                       ${escapeHTML(
-                        envio.nf ||
-                        "-"
+                        envio.nf || "-"
                       )}
-
                     </strong>
 
                   </td>
@@ -2897,8 +2101,7 @@
                   <td>
 
                     ${escapeHTML(
-                      envio.cliente ||
-                      "-"
+                      envio.cliente_nome || "-"
                     )}
 
                   </td>
@@ -2907,8 +2110,7 @@
                   <td>
 
                     ${escapeHTML(
-                      envio.transportadora ||
-                      "-"
+                      envio.transportadora_nome || "-"
                     )}
 
                   </td>
@@ -2921,8 +2123,7 @@
                     >
 
                       ${escapeHTML(
-                        status ||
-                        "SEM STATUS"
+                        status || "SEM STATUS"
                       )}
 
                     </span>
@@ -2944,9 +2145,7 @@
        RESUMO
        ===================================================== */
 
-    function atualizarResumo(
-      envios
-    ) {
+    function atualizarResumo(envios) {
 
       const total =
         envios.length;
@@ -2959,24 +2158,20 @@
           0
         );
 
-
         definirPercentual(
           "Transito",
           0
         );
-
 
         definirPercentual(
           "Atrasados",
           0
         );
 
-
         definirPercentual(
           "Coletados",
           0
         );
-
 
         return;
 
@@ -3055,9 +2250,7 @@
     ) {
 
       if (!total) {
-
         return 0;
-
       }
 
 
@@ -3078,23 +2271,20 @@
 
       const texto =
         document.getElementById(
-          "percent" +
-          nome
+          "percent" + nome
         );
 
 
       const barra =
         document.getElementById(
-          "barra" +
-          nome
+          "barra" + nome
         );
 
 
       if (texto) {
 
         texto.textContent =
-          percentual +
-          "%";
+          percentual + "%";
 
       }
 
@@ -3102,8 +2292,7 @@
       if (barra) {
 
         barra.style.width =
-          percentual +
-          "%";
+          percentual + "%";
 
       }
 
@@ -3114,9 +2303,7 @@
        MENSAGEM
        ===================================================== */
 
-    function mostrarErro(
-      texto
-    ) {
+    function mostrarErro(texto) {
 
       const elemento =
         document.getElementById(
@@ -3125,9 +2312,7 @@
 
 
       if (!elemento) {
-
         return;
-
       }
 
 
@@ -3149,13 +2334,10 @@
        ESCAPAR HTML
        ===================================================== */
 
-    function escapeHTML(
-      valor
-    ) {
+    function escapeHTML(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
         .replace(
           /&/g,
@@ -3182,7 +2364,7 @@
 
 
     /* =====================================================
-       SAIR DO SISTEMA
+       SAIR
        ===================================================== */
 
     async function sair() {
@@ -3194,9 +2376,7 @@
 
 
       if (!confirmar) {
-
         return;
-
       }
 
 
@@ -3223,9 +2403,7 @@
           await supabaseClient.auth.signOut();
 
 
-        if (
-          resultado.error
-        ) {
+        if (resultado.error) {
 
           console.error(
             "Erro ao sair:",
@@ -3262,8 +2440,7 @@
       ) {
 
         if (
-          evento ===
-          "SIGNED_OUT"
+          evento === "SIGNED_OUT"
         ) {
 
           redirecionarLogin();
@@ -3274,8 +2451,7 @@
 
 
         if (
-          evento ===
-          "TOKEN_REFRESHED" &&
+          evento === "TOKEN_REFRESHED" &&
           !session
         ) {
 
@@ -3293,3 +2469,4 @@
 </body>
 
 </html>
+```
