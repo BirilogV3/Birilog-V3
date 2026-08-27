@@ -1,0 +1,3884 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+  <title>BiriLog V3 - Pós Entrega</title>
+
+  <!-- =====================================================
+       SUPABASE
+       ===================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #f1f5f9;
+
+      color: #1e293b;
+
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
+
+    .sidebar {
+
+      width: 250px;
+
+      height: 100vh;
+
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #0f172a,
+          #172554
+        );
+
+      color: white;
+
+      display: flex;
+
+      flex-direction: column;
+
+      z-index: 100;
+
+      box-shadow:
+        5px 0 20px
+        rgba(0,0,0,0.10);
+
+      overflow: hidden;
+
+    }
+
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
+
+    .logo-area {
+
+      padding: 28px 22px;
+
+      text-align: center;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+
+    .logo-icon {
+
+      width: 58px;
+      height: 58px;
+
+      margin: 0 auto 12px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #0d47a1
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 28px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(25,118,210,0.30);
+
+    }
+
+
+    .logo-title {
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+    }
+
+
+    .logo-title span {
+
+      color: #60a5fa;
+
+    }
+
+
+    .logo-version {
+
+      margin-top: 5px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    /* =====================================================
+       MENU
+       ===================================================== */
+
+    .menu {
+
+      padding: 20px 12px;
+
+      flex: 1;
+
+      min-height: 0;
+
+      overflow-y: auto;
+
+    }
+
+
+    .menu-title {
+
+      padding:
+        0 12px 10px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .menu-item {
+
+      width: 100%;
+
+      border: none;
+
+      background: transparent;
+
+      color: #cbd5e1;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px 14px;
+
+      margin-bottom: 4px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      text-align: left;
+
+      transition: 0.2s;
+
+    }
+
+
+    .menu-item:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+
+    }
+
+
+    .menu-item.active {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+
+    }
+
+
+    .menu-icon {
+
+      width: 22px;
+
+      text-align: center;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    .user-area {
+
+      padding: 15px;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      background:
+        rgba(0,0,0,0.08);
+
+      flex-shrink: 0;
+
+    }
+
+
+    .user-card {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border-radius: 10px;
+
+      padding: 12px;
+
+    }
+
+
+    .user-name {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: white;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+
+    .user-email {
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      color: #94a3b8;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+    }
+
+
+    .user-profile {
+
+      margin-top: 6px;
+
+      font-size: 10px;
+
+      color: #60a5fa;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    .logout {
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: #e2e8f0;
+
+      padding: 11px 10px;
+
+      min-height: 38px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+
+    }
+
+
+    .logout:hover {
+
+      background: #dc2626;
+
+      border-color: #dc2626;
+
+      color: white;
+
+    }
+
+
+    .logout:disabled {
+
+      opacity: 0.6;
+
+      cursor: wait;
+
+    }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .main {
+
+      margin-left: 250px;
+
+      width:
+        calc(100% - 250px);
+
+      min-height: 100vh;
+
+    }
+
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+
+    .header {
+
+      height: 75px;
+
+      background: white;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding:
+        0 30px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+
+    }
+
+
+    .header-title {
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .header-subtitle {
+
+      margin-top: 3px;
+
+      font-size: 11px;
+
+      color: #64748b;
+
+    }
+
+
+    .status-online {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding:
+        7px 12px;
+
+      border-radius: 20px;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+    }
+
+
+    .status-dot {
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+
+    }
+
+
+    /* =====================================================
+       CONTEÚDO
+       ===================================================== */
+
+    .content {
+
+      padding: 30px;
+
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    .mensagem {
+
+      display: none;
+
+      margin-bottom: 20px;
+
+      padding: 13px 16px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      text-align: center;
+
+    }
+
+
+    .mensagem.sucesso {
+
+      display: block;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+
+    .mensagem.erro {
+
+      display: block;
+
+      background: #fef2f2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+
+    }
+
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 22px;
+
+    }
+
+
+    .card {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+    }
+
+
+    .card-label {
+
+      font-size: 10px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .card-value {
+
+      margin-top: 8px;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .card-success .card-value {
+
+      color: #15803d;
+
+    }
+
+
+    .card-warning .card-value {
+
+      color: #b45309;
+
+    }
+
+
+    .card-danger .card-value {
+
+      color: #b91c1c;
+
+    }
+
+
+    /* =====================================================
+       PAINEL
+       ===================================================== */
+
+    .panel {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .panel-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .panel-title {
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .panel-subtitle {
+
+      margin-top: 4px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+    }
+
+
+    /* =====================================================
+       INFORMAÇÃO WHATSAPP
+       ===================================================== */
+
+    .whatsapp-info {
+
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 12px;
+
+      padding: 15px;
+
+      margin-bottom: 20px;
+
+      border-radius: 10px;
+
+      background: #f0fdf4;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+
+    .whatsapp-info-icon {
+
+      font-size: 24px;
+
+      flex-shrink: 0;
+
+    }
+
+
+    .whatsapp-info-text {
+
+      font-size: 11px;
+
+      line-height: 1.6;
+
+      color: #166534;
+
+    }
+
+
+    .whatsapp-info-text strong {
+
+      font-weight: 800;
+
+    }
+
+
+    /* =====================================================
+       FILTROS
+       ===================================================== */
+
+    .filtros {
+
+      display: grid;
+
+      grid-template-columns:
+        2fr 1fr 1fr 1fr;
+
+      gap: 10px;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .filtro {
+
+      width: 100%;
+
+      height: 42px;
+
+      border:
+        1px solid #cbd5e1;
+
+      border-radius: 8px;
+
+      padding:
+        0 12px;
+
+      background: #f8fafc;
+
+      color: #334155;
+
+      outline: none;
+
+      font-size: 11px;
+
+    }
+
+
+    .filtro:focus {
+
+      background: white;
+
+      border-color: #1976d2;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,0.10);
+
+    }
+
+
+    /* =====================================================
+       TABELA
+       ===================================================== */
+
+    .table-wrapper {
+
+      width: 100%;
+
+      overflow-x: auto;
+
+    }
+
+
+    table {
+
+      width: 100%;
+
+      min-width: 1050px;
+
+      border-collapse: collapse;
+
+    }
+
+
+    th {
+
+      padding:
+        11px 8px;
+
+      text-align: left;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+
+    }
+
+
+    td {
+
+      padding:
+        12px 8px;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+      font-size: 10px;
+
+      color: #334155;
+
+      white-space: nowrap;
+
+    }
+
+
+    tbody tr:hover td {
+
+      background: #f8fafc;
+
+    }
+
+
+    .nf {
+
+      font-weight: 800;
+
+      color: #1976d2;
+
+    }
+
+
+    .cliente {
+
+      font-weight: 700;
+
+      color: #0f172a;
+
+    }
+
+
+    .status {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      padding:
+        5px 8px;
+
+      border-radius: 20px;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+    }
+
+
+    .status-entregue {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+    }
+
+
+    .status-transito {
+
+      background: #dbeafe;
+
+      color: #1d4ed8;
+
+    }
+
+
+    .status-atrasado {
+
+      background: #fee2e2;
+
+      color: #b91c1c;
+
+    }
+
+
+    .status-coletado {
+
+      background: #fef3c7;
+
+      color: #92400e;
+
+    }
+
+
+    .status-outro {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+    }
+
+
+    .acoes {
+
+      display: flex;
+
+      gap: 5px;
+
+    }
+
+
+    .btn-mini {
+
+      border: none;
+
+      padding:
+        7px 10px;
+
+      border-radius: 6px;
+
+      cursor: pointer;
+
+      font-size: 9px;
+
+      font-weight: 800;
+
+      transition: 0.2s;
+
+    }
+
+
+    .btn-mini:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .btn-whatsapp {
+
+      background: #dcfce7;
+
+      color: #166534;
+
+      border:
+        1px solid #bbf7d0;
+
+    }
+
+
+    .btn-whatsapp:hover {
+
+      background: #22c55e;
+
+      color: white;
+
+    }
+
+
+    .btn-preview {
+
+      background: #dbeafe;
+
+      color: #1d4ed8;
+
+    }
+
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    .modal {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(15,23,42,0.55);
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 20px;
+
+      z-index: 500;
+
+    }
+
+
+    .modal.aberto {
+
+      display: flex;
+
+    }
+
+
+    .modal-box {
+
+      width: 100%;
+
+      max-width: 650px;
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: white;
+
+      border-radius: 16px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 25px 60px
+        rgba(0,0,0,0.25);
+
+    }
+
+
+    .modal-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+
+    }
+
+
+    .modal-title {
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+    }
+
+
+    .fechar {
+
+      border: none;
+
+      background: transparent;
+
+      color: #64748b;
+
+      font-size: 24px;
+
+      cursor: pointer;
+
+    }
+
+
+    .mensagem-preview {
+
+      white-space: pre-wrap;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 10px;
+
+      padding: 18px;
+
+      font-size: 11px;
+
+      line-height: 1.7;
+
+      color: #334155;
+
+      max-height: 420px;
+
+      overflow-y: auto;
+
+    }
+
+
+    .modal-acoes {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      gap: 10px;
+
+      margin-top: 18px;
+
+      padding-top: 18px;
+
+      border-top:
+        1px solid #f1f5f9;
+
+    }
+
+
+    /* =====================================================
+       BOTÕES
+       ===================================================== */
+
+    .btn {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding:
+        11px 17px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      transition: 0.2s;
+
+    }
+
+
+    .btn:hover {
+
+      transform:
+        translateY(-1px);
+
+    }
+
+
+    .btn:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+      transform: none;
+
+    }
+
+
+    .btn-primary {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 14px
+        rgba(37,99,235,0.20);
+
+    }
+
+
+    .btn-whatsapp-large {
+
+      background:
+        #22c55e;
+
+      color: white;
+
+      box-shadow:
+        0 5px 14px
+        rgba(34,197,94,0.20);
+
+    }
+
+
+    .btn-secondary {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+      border:
+        1px solid #e2e8f0;
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(248,250,252,0.88);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      backdrop-filter: blur(2px);
+
+    }
+
+
+    .loading-box {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding:
+        25px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 50px
+        rgba(15,23,42,0.18);
+
+    }
+
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      margin:
+        0 auto 12px;
+
+      border:
+        3px solid #dbeafe;
+
+      border-top-color:
+        #1976d2;
+
+      border-radius: 50%;
+
+      animation:
+        girar .8s linear infinite;
+
+    }
+
+
+    .loading-text {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+    }
+
+
+    @keyframes girar {
+
+      to {
+
+        transform:
+          rotate(360deg);
+
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
+    @media (max-width: 1100px) {
+
+      .cards {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+
+      .filtros {
+
+        grid-template-columns:
+          1fr 1fr;
+
+      }
+
+    }
+
+
+    @media (max-width: 900px) {
+
+      .cards {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+
+        width: 70px;
+
+      }
+
+
+      .logo-title,
+      .logo-version,
+      .menu-title,
+      .menu-item span:not(.menu-icon),
+      .user-card {
+
+        display: none;
+
+      }
+
+
+      .logo-area {
+
+        padding:
+          18px 8px;
+
+      }
+
+
+      .logo-icon {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+
+      }
+
+
+      .menu {
+
+        padding:
+          15px 8px;
+
+      }
+
+
+      .menu-item {
+
+        justify-content: center;
+
+        padding:
+          13px 5px;
+
+      }
+
+
+      .user-area {
+
+        padding:
+          10px 8px;
+
+      }
+
+
+      .logout {
+
+        font-size: 0;
+
+        padding:
+          12px 5px;
+
+        min-height: 42px;
+
+      }
+
+
+      .logout::before {
+
+        content: "🚪";
+
+        font-size: 17px;
+
+      }
+
+
+      .main {
+
+        margin-left: 70px;
+
+        width:
+          calc(100% - 70px);
+
+      }
+
+
+      .header {
+
+        padding:
+          0 18px;
+
+      }
+
+
+      .header-title {
+
+        font-size: 17px;
+
+      }
+
+
+      .status-online {
+
+        font-size: 0;
+
+        padding: 9px;
+
+      }
+
+
+      .status-dot {
+
+        width: 8px;
+        height: 8px;
+
+      }
+
+
+      .content {
+
+        padding: 18px;
+
+      }
+
+
+      .cards {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .filtros {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+
+      .panel {
+
+        padding: 18px;
+
+      }
+
+
+      .modal-box {
+
+        padding: 18px;
+
+      }
+
+
+      .modal-acoes {
+
+        flex-direction: column;
+
+      }
+
+
+      .modal-acoes .btn {
+
+        width: 100%;
+
+      }
+
+    }
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
+  <div
+    id="loadingTela"
+    class="loading"
+  >
+
+```
+<div class="loading-box">
+
+  <div class="spinner"></div>
+
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+```
+<div class="logo-area">
+
+  <div class="logo-icon">
+    🚚
+  </div>
+
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
+
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
+
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+
+    <span class="menu-icon">
+      📊
+    </span>
+
+    <span>
+      Dashboard
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Envios
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irParaPesquisarNF()"
+  >
+
+    <span class="menu-icon">
+      🔎
+    </span>
+
+    <span>
+      Pesquisar NF
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+
+    <span class="menu-icon">
+      👥
+    </span>
+
+    <span>
+      Clientes
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+
+    <span class="menu-icon">
+      🚛
+    </span>
+
+    <span>
+      Transportadoras
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+
+    <span class="menu-icon">
+      📄
+    </span>
+
+    <span>
+      Relatórios
+    </span>
+
+  </button>
+
+
+  <!-- =================================================
+       PÓS ENTREGA
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+
+    <span class="menu-icon">
+      📱
+    </span>
+
+    <span>
+      Pós Entrega
+    </span>
+
+  </button>
+
+
+  <!-- =================================================
+       USUÁRIOS
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+
+    <span class="menu-icon">
+      🔐
+    </span>
+
+    <span>
+      Usuários
+    </span>
+
+  </button>
+
+
+  <!-- =================================================
+       CONFIGURAÇÕES
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+
+    <span class="menu-icon">
+      ⚙️
+    </span>
+
+    <span>
+      Configurações
+    </span>
+
+  </button>
+
+
+</nav>
+
+
+<!-- USUÁRIO -->
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
+    </div>
+
+
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
+    </div>
+
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+
+    🚪 SAIR DO SISTEMA
+
+  </button>
+
+</div>
+```
+
+  </aside>
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+```
+<header class="header">
+
+  <div>
+
+    <div class="header-title">
+      Pós Entrega
+    </div>
+
+    <div class="header-subtitle">
+      Acompanhamento e confirmação das entregas
+    </div>
+
+  </div>
+
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+
+<section class="content">
+
+
+  <!-- MENSAGEM -->
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+
+  <!-- =================================================
+       CARDS
+       ================================================= -->
+
+  <div class="cards">
+
+
+    <div class="card">
+
+      <div class="card-label">
+        Total de Envios
+      </div>
+
+      <div
+        id="cardTotal"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-success">
+
+      <div class="card-label">
+        Entregues
+      </div>
+
+      <div
+        id="cardEntregues"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-warning">
+
+      <div class="card-label">
+        Em Trânsito
+      </div>
+
+      <div
+        id="cardTransito"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-danger">
+
+      <div class="card-label">
+        Atrasados
+      </div>
+
+      <div
+        id="cardAtrasados"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <!-- =================================================
+       PAINEL PRINCIPAL
+       ================================================= -->
+
+  <div class="panel">
+
+
+    <div class="panel-header">
+
+      <div>
+
+        <div class="panel-title">
+          📱 CONFIRMAÇÃO DE ENTREGA
+        </div>
+
+        <div class="panel-subtitle">
+          Envie a mensagem de confirmação ao cliente pelo WhatsApp.
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="carregarEnvios()"
+      >
+
+        🔄 ATUALIZAR
+
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+         AVISO
+         ================================================= -->
+
+    <div class="whatsapp-info">
+
+      <div class="whatsapp-info-icon">
+        📱
+      </div>
+
+      <div class="whatsapp-info-text">
+
+        <strong>
+          CONFIRMAÇÃO DE ENTREGA
+        </strong>
+
+        <br>
+
+        Selecione o envio desejado e clique em
+        <strong>
+          ENVIAR WHATSAPP
+        </strong>
+        para abrir o WhatsApp com a mensagem da BIRIVET já preenchida.
+
+        <br><br>
+
+        A mensagem será personalizada automaticamente com o número da Nota Fiscal.
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         FILTROS
+         ================================================= -->
+
+    <div class="filtros">
+
+
+      <input
+        type="text"
+        id="filtroTexto"
+        class="filtro"
+        placeholder="🔎 NF, CLIENTE OU CIDADE"
+        autocomplete="off"
+        oninput="filtrarEnvios()"
+      >
+
+
+      <select
+        id="filtroStatus"
+        class="filtro"
+        onchange="filtrarEnvios()"
+      >
+
+        <option value="">
+          TODOS OS STATUS
+        </option>
+
+        <option value="COLETADO">
+          📦 COLETADO
+        </option>
+
+        <option value="EM TRANSITO">
+          🚚 EM TRÂNSITO
+        </option>
+
+        <option value="ENTREGUE">
+          ✅ ENTREGUE
+        </option>
+
+        <option value="ATRASADO">
+          ⚠️ ATRASADO
+        </option>
+
+      </select>
+
+
+      <select
+        id="filtroUF"
+        class="filtro"
+        onchange="filtrarEnvios()"
+      >
+
+        <option value="">
+          TODAS AS UFs
+        </option>
+
+        <option value="TO">
+          TO
+        </option>
+
+        <option value="PA">
+          PA
+        </option>
+
+        <option value="MA">
+          MA
+        </option>
+
+        <option value="GO">
+          GO
+        </option>
+
+        <option value="MT">
+          MT
+        </option>
+
+        <option value="BA">
+          BA
+        </option>
+
+        <option value="PI">
+          PI
+        </option>
+
+        <option value="MG">
+          MG
+        </option>
+
+        <option value="SP">
+          SP
+        </option>
+
+        <option value="RJ">
+          RJ
+        </option>
+
+        <option value="DF">
+          DF
+        </option>
+
+      </select>
+
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="limparFiltros()"
+      >
+
+        LIMPAR FILTROS
+
+      </button>
+
+
+    </div>
+
+
+    <!-- =================================================
+         TABELA
+         ================================================= -->
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              NF
+            </th>
+
+            <th>
+              CLIENTE
+            </th>
+
+            <th>
+              CIDADE
+            </th>
+
+            <th>
+              UF
+            </th>
+
+            <th>
+              TRANSPORTADORA
+            </th>
+
+            <th>
+              PREVISÃO
+            </th>
+
+            <th>
+              STATUS
+            </th>
+
+            <th>
+              AÇÕES
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody
+          id="tabelaEnvios"
+        >
+
+          <tr>
+
+            <td
+              colspan="8"
+              style="
+                text-align:center;
+                padding:30px;
+                color:#94a3b8;
+              "
+            >
+
+              CARREGANDO ENVIOS...
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+```
+
+  </main>
+
+  <!-- =====================================================
+       MODAL MENSAGEM WHATSAPP
+       ===================================================== -->
+
+  <div
+    id="modalWhatsapp"
+    class="modal"
+  >
+
+```
+<div class="modal-box">
+
+
+  <div class="modal-header">
+
+    <div class="modal-title">
+      📱 CONFIRMAÇÃO DE ENTREGA
+    </div>
+
+
+    <button
+      type="button"
+      class="fechar"
+      onclick="fecharModal()"
+    >
+
+      ×
+
+    </button>
+
+  </div>
+
+
+  <div
+    id="mensagemPreview"
+    class="mensagem-preview"
+  ></div>
+
+
+  <div class="modal-acoes">
+
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      onclick="fecharModal()"
+    >
+
+      CANCELAR
+
+    </button>
+
+
+    <button
+      type="button"
+      class="btn btn-whatsapp-large"
+      onclick="abrirWhatsApp()"
+    >
+
+      📱 ENVIAR WHATSAPP
+
+    </button>
+
+
+  </div>
+
+
+</div>
+```
+
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script>
+
+
+    /* =====================================================
+       SUPABASE
+       ===================================================== */
+
+    const SUPABASE_URL =
+      "https://sjfwjwwkomrcalahqanw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================================
+       VARIÁVEIS
+       ===================================================== */
+
+    let usuarioAtual =
+      null;
+
+
+    let todosEnvios =
+      [];
+
+
+    let envioSelecionado =
+      null;
+
+
+    /* =====================================================
+       MENSAGEM OFICIAL
+       ===================================================== */
+
+    function montarMensagemWhatsapp(
+      numeroNF
+    ) {
+
+      const nf =
+        String(
+          numeroNF ||
+          ""
+        ).trim();
+
+
+      return (
+
+        "CONFIRMAÇÃO DE ENTREGA – BIRIVET\n\n" +
+
+        "Olá, tudo bem?\n\n" +
+
+        "A BIRIVET está realizando o acompanhamento das entregas de seus pedidos e gostaríamos de confirmar se a mercadoria relacionada à Nota Fiscal nº " +
+
+        nf +
+
+        " já foi recebida.\n\n" +
+
+        "Para mantermos nosso sistema de acompanhamento devidamente atualizado, pedimos a gentileza de nos informar a situação da entrega:\n\n" +
+
+        "📦 ENTREGUE – A mercadoria foi recebida normalmente.\n\n" +
+
+        "🚚 NÃO ENTREGUE – A mercadoria ainda não foi recebida.\n\n" +
+
+        "⚠️ COM DIVERGÊNCIA – A mercadoria foi recebida, porém houve alguma ocorrência ou divergência no momento da entrega.\n\n" +
+
+        "Caso a mercadoria já tenha sido recebida, agradecemos se puder nos confirmar o recebimento.\n\n" +
+
+        "Se ainda não tiver sido entregue ou se houver qualquer problema relacionado ao pedido, pedimos que nos informe para que possamos verificar a situação junto à transportadora responsável e tomar as providências necessárias.\n\n" +
+
+        "Agradecemos pela atenção e colaboração.\n\n" +
+
+        "Atenciosamente,\n" +
+
+        "BIRIVET\n" +
+
+        "Controle e acompanhamento de entregas"
+
+      );
+
+    }
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+
+    async function iniciar() {
+
+      try {
+
+        mostrarLoading(
+          "VERIFICANDO SESSÃO..."
+        );
+
+
+        const resultadoSessao =
+          await supabaseClient.auth.getSession();
+
+
+        if (
+          resultadoSessao.error
+        ) {
+
+          throw resultadoSessao.error;
+
+        }
+
+
+        const session =
+          resultadoSessao.data &&
+          resultadoSessao.data.session;
+
+
+        if (!session) {
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        const authUser =
+          session.user;
+
+
+        const consulta =
+          await supabaseClient
+
+            .from("usuarios")
+
+            .select(
+              "id,nome,email,perfil,ativo"
+            )
+
+            .eq(
+              "auth_id",
+              authUser.id
+            )
+
+            .maybeSingle();
+
+
+        if (
+          consulta.error
+        ) {
+
+          throw consulta.error;
+
+        }
+
+
+        if (
+          !consulta.data
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        if (
+          consulta.data.ativo === false
+        ) {
+
+          await supabaseClient.auth.signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        usuarioAtual =
+          consulta.data;
+
+
+        preencherUsuario();
+
+
+        esconderLoading();
+
+
+        await carregarEnvios();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao iniciar Pós Entrega:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO PÓS ENTREGA.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    function preencherUsuario() {
+
+      if (!usuarioAtual) {
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "usuarioNome"
+      ).textContent =
+        String(
+          usuarioAtual.nome ||
+          usuarioAtual.email ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "usuarioEmail"
+      ).textContent =
+        usuarioAtual.email ||
+        "-";
+
+
+      document.getElementById(
+        "usuarioPerfil"
+      ).textContent =
+        String(
+          usuarioAtual.perfil ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       CARREGAR ENVIOS
+       ===================================================== */
+
+    async function carregarEnvios() {
+
+      mostrarLoading(
+        "CARREGANDO ENVIOS..."
+      );
+
+
+      try {
+
+        const resultado =
+          await supabaseClient
+
+            .from("envios")
+
+            .select("*")
+
+            .order(
+              "nf",
+              {
+                ascending: true
+              }
+            );
+
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+
+        todosEnvios =
+          resultado.data || [];
+
+
+        atualizarCards(
+          todosEnvios
+        );
+
+
+        filtrarEnvios();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao carregar envios:",
+          erro
+        );
+
+
+        todosEnvios =
+          [];
+
+
+        atualizarCards(
+          []
+        );
+
+
+        renderizarTabela(
+          []
+        );
+
+
+        mostrarMensagem(
+          obterMensagemErro(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+      finally {
+
+        esconderLoading();
+
+      }
+
+    }
+
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
+    function atualizarCards(
+      lista
+    ) {
+
+      const total =
+        lista.length;
+
+
+      let entregues =
+        0;
+
+
+      let transito =
+        0;
+
+
+      let atrasados =
+        0;
+
+
+      lista.forEach(
+        function(envio) {
+
+          const status =
+            normalizarTexto(
+              envio.status
+            );
+
+
+          if (
+            status ===
+            "ENTREGUE"
+          ) {
+
+            entregues++;
+
+          }
+
+
+          else if (
+            status ===
+            "EM TRANSITO"
+          ) {
+
+            transito++;
+
+          }
+
+
+          else if (
+            status ===
+            "ATRASADO"
+          ) {
+
+            atrasados++;
+
+          }
+
+        }
+      );
+
+
+      document.getElementById(
+        "cardTotal"
+      ).textContent =
+        total;
+
+
+      document.getElementById(
+        "cardEntregues"
+      ).textContent =
+        entregues;
+
+
+      document.getElementById(
+        "cardTransito"
+      ).textContent =
+        transito;
+
+
+      document.getElementById(
+        "cardAtrasados"
+      ).textContent =
+        atrasados;
+
+    }
+
+
+    /* =====================================================
+       FILTRAR
+       ===================================================== */
+
+    function filtrarEnvios() {
+
+      const texto =
+        normalizarTexto(
+          document.getElementById(
+            "filtroTexto"
+          ).value
+        );
+
+
+      const status =
+        normalizarTexto(
+          document.getElementById(
+            "filtroStatus"
+          ).value
+        );
+
+
+      const uf =
+        normalizarTexto(
+          document.getElementById(
+            "filtroUF"
+          ).value
+        );
+
+
+      const filtrados =
+        todosEnvios.filter(
+          function(envio) {
+
+            const textoEnvio =
+              normalizarTexto(
+
+                String(
+                  envio.nf ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.cliente ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.cidade ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.transportadora ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.uf ||
+                  ""
+                )
+
+              );
+
+
+            const textoOK =
+              !texto ||
+              textoEnvio.includes(
+                texto
+              );
+
+
+            const statusOK =
+              !status ||
+              normalizarTexto(
+                envio.status
+              ) ===
+              status;
+
+
+            const ufOK =
+              !uf ||
+              normalizarTexto(
+                envio.uf
+              ) ===
+              uf;
+
+
+            return (
+              textoOK &&
+              statusOK &&
+              ufOK
+            );
+
+          }
+        );
+
+
+      renderizarTabela(
+        filtrados
+      );
+
+    }
+
+
+    /* =====================================================
+       TABELA
+       ===================================================== */
+
+    function renderizarTabela(
+      lista
+    ) {
+
+      const tabela =
+        document.getElementById(
+          "tabelaEnvios"
+        );
+
+
+      if (
+        !lista ||
+        lista.length === 0
+      ) {
+
+        tabela.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="8"
+              style="
+                text-align:center;
+                padding:30px;
+                color:#94a3b8;
+              "
+            >
+
+              📦 NENHUM ENVIO ENCONTRADO
+
+            </td>
+
+          </tr>
+
+        `;
+
+        return;
+
+      }
+
+
+      tabela.innerHTML =
+        lista
+          .map(
+            function(envio) {
+
+              const status =
+                normalizarTexto(
+                  envio.status
+                );
+
+
+              const classeStatus =
+                obterClasseStatus(
+                  status
+                );
+
+
+              const textoStatus =
+                obterTextoStatus(
+                  status
+                );
+
+
+              return `
+
+                <tr>
+
+                  <td
+                    class="nf"
+                  >
+
+                    ${escapeHTML(
+                      envio.nf ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td
+                    class="cliente"
+                  >
+
+                    ${escapeHTML(
+                      envio.cliente ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.cidade ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.uf ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.transportadora ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${formatarData(
+                      envio.previsao
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    <span
+                      class="status ${classeStatus}"
+                    >
+
+                      ${textoStatus}
+
+                    </span>
+
+                  </td>
+
+
+                  <td>
+
+                    <div class="acoes">
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-preview"
+                        onclick="visualizarMensagem('${escapeJS(
+                          envio.id
+                        )}')"
+                        title="Visualizar mensagem"
+                      >
+
+                        👁️ VER
+
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-whatsapp"
+                        onclick="prepararWhatsApp('${escapeJS(
+                          envio.id
+                        )}')"
+                        title="Enviar confirmação pelo WhatsApp"
+                      >
+
+                        📱 ENVIAR WHATSAPP
+
+                      </button>
+
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       PREPARAR WHATSAPP
+       ===================================================== */
+
+    function prepararWhatsApp(
+      id
+    ) {
+
+      const envio =
+        encontrarEnvio(
+          id
+        );
+
+
+      if (!envio) {
+
+        mostrarMensagem(
+          "ENVIO NÃO ENCONTRADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      envioSelecionado =
+        envio;
+
+
+      const mensagem =
+        montarMensagemWhatsapp(
+          envio.nf
+        );
+
+
+      document.getElementById(
+        "mensagemPreview"
+      ).textContent =
+        mensagem;
+
+
+      document.getElementById(
+        "modalWhatsapp"
+      ).classList.add(
+        "aberto"
+      );
+
+    }
+
+
+    /* =====================================================
+       VISUALIZAR MENSAGEM
+       ===================================================== */
+
+    function visualizarMensagem(
+      id
+    ) {
+
+      prepararWhatsApp(
+        id
+      );
+
+    }
+
+
+    /* =====================================================
+       ABRIR WHATSAPP
+       ===================================================== */
+
+    function abrirWhatsApp() {
+
+      if (!envioSelecionado) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO FOI SELECIONADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const mensagem =
+        montarMensagemWhatsapp(
+          envioSelecionado.nf
+        );
+
+
+      const url =
+        "https://wa.me/?text=" +
+        encodeURIComponent(
+          mensagem
+        );
+
+
+      window.open(
+        url,
+        "_blank"
+      );
+
+
+      fecharModal();
+
+
+      mostrarMensagem(
+        "WHATSAPP ABERTO COM A MENSAGEM DA NF " +
+        String(
+          envioSelecionado.nf ||
+          ""
+        ) +
+        ".",
+        "sucesso"
+      );
+
+    }
+
+
+    /* =====================================================
+       ENCONTRAR ENVIO
+       ===================================================== */
+
+    function encontrarEnvio(
+      id
+    ) {
+
+      return todosEnvios.find(
+        function(envio) {
+
+          return String(
+            envio.id
+          ) ===
+          String(
+            id
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
+       MODAL
+       ===================================================== */
+
+    function fecharModal() {
+
+      document.getElementById(
+        "modalWhatsapp"
+      ).classList.remove(
+        "aberto"
+      );
+
+
+      envioSelecionado =
+        null;
+
+    }
+
+
+    /* =====================================================
+       LIMPAR FILTROS
+       ===================================================== */
+
+    function limparFiltros() {
+
+      document.getElementById(
+        "filtroTexto"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "filtroStatus"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "filtroUF"
+      ).value =
+        "";
+
+
+      filtrarEnvios();
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      if (!pagina) {
+
+        return;
+
+      }
+
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
+
+    function irParaPesquisarNF() {
+
+      window.location.href =
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        await supabaseClient.auth.signOut();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       REDIRECIONAR LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    function mostrarLoading(
+      texto
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      const textoElemento =
+        document.getElementById(
+          "loadingText"
+        );
+
+
+      if (textoElemento) {
+
+        textoElemento.textContent =
+          texto ||
+          "CARREGANDO...";
+
+      }
+
+
+      if (elemento) {
+
+        elemento.style.display =
+          "flex";
+
+      }
+
+    }
+
+
+    function esconderLoading() {
+
+      const elemento =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      if (elemento) {
+
+        elemento.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
+
+      if (!elemento) {
+
+        return;
+
+      }
+
+
+      elemento.textContent =
+        texto;
+
+
+      elemento.className =
+        "mensagem " +
+        tipo;
+
+
+      elemento.style.display =
+        "block";
+
+
+      clearTimeout(
+        window.timerMensagem
+      );
+
+
+      window.timerMensagem =
+        setTimeout(
+          function() {
+
+            elemento.style.display =
+              "none";
+
+          },
+          5000
+        );
+
+    }
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
+
+    function obterClasseStatus(
+      status
+    ) {
+
+      if (
+        status ===
+        "ENTREGUE"
+      ) {
+
+        return "status-entregue";
+
+      }
+
+
+      if (
+        status ===
+        "EM TRANSITO"
+      ) {
+
+        return "status-transito";
+
+      }
+
+
+      if (
+        status ===
+        "ATRASADO"
+      ) {
+
+        return "status-atrasado";
+
+      }
+
+
+      if (
+        status ===
+        "COLETADO"
+      ) {
+
+        return "status-coletado";
+
+      }
+
+
+      return "status-outro";
+
+    }
+
+
+    function obterTextoStatus(
+      status
+    ) {
+
+      if (
+        status ===
+        "ENTREGUE"
+      ) {
+
+        return "✅ ENTREGUE";
+
+      }
+
+
+      if (
+        status ===
+        "EM TRANSITO"
+      ) {
+
+        return "🚚 EM TRÂNSITO";
+
+      }
+
+
+      if (
+        status ===
+        "ATRASADO"
+      ) {
+
+        return "⚠️ ATRASADO";
+
+      }
+
+
+      if (
+        status ===
+        "COLETADO"
+      ) {
+
+        return "📦 COLETADO";
+
+      }
+
+
+      return (
+        status ||
+        "SEM STATUS"
+      );
+
+    }
+
+
+    /* =====================================================
+       DATA
+       ===================================================== */
+
+    function formatarData(
+      valor
+    ) {
+
+      if (!valor) {
+
+        return "-";
+
+      }
+
+
+      const data =
+        new Date(
+          valor
+        );
+
+
+      if (
+        Number.isNaN(
+          data.getTime()
+        )
+      ) {
+
+        return escapeHTML(
+          valor
+        );
+
+      }
+
+
+      return data.toLocaleDateString(
+        "pt-BR"
+      );
+
+    }
+
+
+    /* =====================================================
+       TEXTO
+       ===================================================== */
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       SEGURANÇA
+       ===================================================== */
+
+    function escapeHTML(
+      valor
+    ) {
+
+      return String(
+        valor ??
+        ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function escapeJS(
+      valor
+    ) {
+
+      return String(
+        valor ??
+        ""
+      )
+        .replace(
+          /\\/g,
+          "\\\\"
+        )
+        .replace(
+          /'/g,
+          "\\'"
+        )
+        .replace(
+          /"/g,
+          '\\"'
+        )
+        .replace(
+          /\r?\n/g,
+          "\\n"
+        );
+
+    }
+
+
+    /* =====================================================
+       ERROS
+       ===================================================== */
+
+    function obterMensagemErro(
+      erro
+    ) {
+
+      if (
+        erro &&
+        erro.message
+      ) {
+
+        const mensagem =
+          String(
+            erro.message
+          );
+
+
+        const texto =
+          mensagem.toLowerCase();
+
+
+        if (
+          texto.includes(
+            "row-level security"
+          ) ||
+          texto.includes(
+            "permission denied"
+          )
+        ) {
+
+          return (
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
+          );
+
+        }
+
+
+        return mensagem.toUpperCase();
+
+      }
+
+
+      return (
+        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+      );
+
+    }
+
+
+    /* =====================================================
+       CLIQUE FORA DO MODAL
+       ===================================================== */
+
+    document
+      .getElementById(
+        "modalWhatsapp"
+      )
+      .addEventListener(
+        "click",
+        function(evento) {
+
+          if (
+            evento.target ===
+            this
+          ) {
+
+            fecharModal();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       ESC FECHA MODAL
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(evento) {
+
+        if (
+          evento.key ===
+          "Escape"
+        ) {
+
+          fecharModal();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       ENTER NA PESQUISA
+       ===================================================== */
+
+    document
+      .getElementById(
+        "filtroTexto"
+      )
+      .addEventListener(
+        "keydown",
+        function(evento) {
+
+          if (
+            evento.key ===
+            "Enter"
+          ) {
+
+            evento.preventDefault();
+
+            filtrarEnvios();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       MONITORAR SESSÃO
+       ===================================================== */
+
+    supabaseClient.auth.onAuthStateChange(
+      function(
+        evento,
+        session
+      ) {
+
+        if (
+          evento ===
+          "SIGNED_OUT"
+        ) {
+
+          window.location.replace(
+            "index.html"
+          );
+
+        }
+
+      }
+    );
+
+
+  </script>
+
+</body>
+
+</html>
