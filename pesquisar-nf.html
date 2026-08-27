@@ -184,6 +184,8 @@
 
       overflow-y: auto;
 
+      scrollbar-width: thin;
+
     }
 
 
@@ -231,7 +233,10 @@
 
       text-align: left;
 
-      transition: 0.2s;
+      transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s;
 
     }
 
@@ -242,6 +247,14 @@
         rgba(255,255,255,0.08);
 
       color: white;
+
+    }
+
+
+    .menu-item:active {
+
+      transform:
+        scale(0.99);
 
     }
 
@@ -366,20 +379,32 @@
 
       width: 100%;
 
+      display: block;
+
+      visibility: visible;
+
+      opacity: 1;
+
+      position: relative;
+
+      z-index: 999;
+
+      pointer-events: auto;
+
       margin-top: 10px;
 
       border:
         1px solid
-        rgba(255,255,255,0.15);
+        rgba(255,255,255,0.18);
 
       background:
-        rgba(255,255,255,0.06);
+        rgba(255,255,255,0.07);
 
       color: #e2e8f0;
 
       padding: 11px 10px;
 
-      min-height: 38px;
+      min-height: 40px;
 
       border-radius: 8px;
 
@@ -389,27 +414,44 @@
 
       font-weight: 700;
 
-      transition: 0.2s;
+      transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
 
     }
 
 
     .logout:hover {
 
-      background: #dc2626;
+      background:
+        #dc2626;
 
-      border-color: #dc2626;
+      border-color:
+        #dc2626;
 
-      color: white;
+      color:
+        white;
+
+    }
+
+
+    .logout:active {
+
+      transform:
+        scale(0.98);
 
     }
 
 
     .logout:disabled {
 
-      opacity: .6;
+      opacity:
+        0.6;
 
-      cursor: wait;
+      cursor:
+        wait;
 
     }
 
@@ -784,6 +826,9 @@
         0 5px 14px
         rgba(37,99,235,0.20);
 
+      transition:
+        0.2s;
+
     }
 
 
@@ -795,20 +840,36 @@
     }
 
 
+    .btn-pesquisar:disabled {
+
+      opacity:
+        0.6;
+
+      cursor:
+        wait;
+
+      transform:
+        none;
+
+    }
+
+
     /* =====================================================
-       RESULTADO PRINCIPAL
+       RESULTADO
        ===================================================== */
 
     .resultado {
 
-      display: none;
+      display:
+        none;
 
     }
 
 
     .resultado.aberto {
 
-      display: block;
+      display:
+        block;
 
     }
 
@@ -856,7 +917,7 @@
 
 
     /* =====================================================
-       STATUS GRANDE
+       STATUS
        ===================================================== */
 
     .status {
@@ -1040,33 +1101,42 @@
 
     .alerta-entrega {
 
-      display: none;
+      display:
+        none;
 
-      margin-top: 15px;
+      margin-top:
+        15px;
 
-      padding: 12px 14px;
+      padding:
+        12px 14px;
 
-      border-radius: 9px;
+      border-radius:
+        9px;
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
     }
 
 
     .alerta-entrega.aberto {
 
-      display: block;
+      display:
+        block;
 
     }
 
 
     .alerta-verde {
 
-      background: #f0fdf4;
+      background:
+        #f0fdf4;
 
-      color: #166534;
+      color:
+        #166534;
 
       border:
         1px solid #bbf7d0;
@@ -1076,9 +1146,11 @@
 
     .alerta-amarelo {
 
-      background: #fefce8;
+      background:
+        #fefce8;
 
-      color: #854d0e;
+      color:
+        #854d0e;
 
       border:
         1px solid #fde68a;
@@ -1088,9 +1160,11 @@
 
     .alerta-vermelho {
 
-      background: #fef2f2;
+      background:
+        #fef2f2;
 
-      color: #991b1b;
+      color:
+        #991b1b;
 
       border:
         1px solid #fecaca;
@@ -1100,9 +1174,11 @@
 
     .alerta-azul {
 
-      background: #eff6ff;
+      background:
+        #eff6ff;
 
-      color: #1d4ed8;
+      color:
+        #1d4ed8;
 
       border:
         1px solid #bfdbfe;
@@ -1112,88 +1188,14 @@
 
     .alerta-neutro {
 
-      background: #f8fafc;
+      background:
+        #f8fafc;
 
-      color: #475569;
+      color:
+        #475569;
 
       border:
         1px solid #e2e8f0;
-
-    }
-
-
-    /* =====================================================
-       HISTÓRICO
-       ===================================================== */
-
-    .historico {
-
-      margin-top: 20px;
-
-    }
-
-
-    .historico-titulo {
-
-      margin-bottom: 12px;
-
-      font-size: 13px;
-
-      font-weight: 800;
-
-      color: #0f172a;
-
-    }
-
-
-    .historico-box {
-
-      overflow-x: auto;
-
-    }
-
-
-    table {
-
-      width: 100%;
-
-      border-collapse: collapse;
-
-    }
-
-
-    th {
-
-      padding:
-        10px 8px;
-
-      text-align: left;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
-      color: #64748b;
-
-      font-size: 9px;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-
-    }
-
-
-    td {
-
-      padding:
-        11px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
-      color: #334155;
-
-      font-size: 10px;
 
     }
 
@@ -1207,40 +1209,50 @@
       padding:
         35px 20px;
 
-      text-align: center;
+      text-align:
+        center;
 
-      color: #94a3b8;
+      color:
+        #94a3b8;
 
     }
 
 
     .sem-resultado-icon {
 
-      font-size: 35px;
+      font-size:
+        35px;
 
-      margin-bottom: 10px;
+      margin-bottom:
+        10px;
 
     }
 
 
     .sem-resultado-titulo {
 
-      font-size: 13px;
+      font-size:
+        13px;
 
-      font-weight: 800;
+      font-weight:
+        800;
 
-      color: #475569;
+      color:
+        #475569;
 
     }
 
 
     .sem-resultado-texto {
 
-      margin-top: 5px;
+      margin-top:
+        5px;
 
-      font-size: 10px;
+      font-size:
+        10px;
 
-      color: #94a3b8;
+      color:
+        #94a3b8;
 
     }
 
@@ -1251,36 +1263,46 @@
 
     .loading {
 
-      position: fixed;
+      position:
+        fixed;
 
-      inset: 0;
+      inset:
+        0;
 
       background:
         rgba(248,250,252,0.88);
 
-      display: none;
+      display:
+        none;
 
-      align-items: center;
+      align-items:
+        center;
 
-      justify-content: center;
+      justify-content:
+        center;
 
-      z-index: 9999;
+      z-index:
+        9999;
 
-      backdrop-filter: blur(2px);
+      backdrop-filter:
+        blur(2px);
 
     }
 
 
     .loading-box {
 
-      background: white;
+      background:
+        white;
 
-      border-radius: 14px;
+      border-radius:
+        14px;
 
       padding:
         25px 30px;
 
-      text-align: center;
+      text-align:
+        center;
 
       box-shadow:
         0 20px 50px
@@ -1291,9 +1313,11 @@
 
     .spinner {
 
-      width: 35px;
+      width:
+        35px;
 
-      height: 35px;
+      height:
+        35px;
 
       margin:
         0 auto 12px;
@@ -1304,7 +1328,8 @@
       border-top-color:
         #1976d2;
 
-      border-radius: 50%;
+      border-radius:
+        50%;
 
       animation:
         girar .8s linear infinite;
@@ -1314,11 +1339,14 @@
 
     .loading-text {
 
-      font-size: 11px;
+      font-size:
+        11px;
 
-      font-weight: 700;
+      font-weight:
+        700;
 
-      color: #64748b;
+      color:
+        #64748b;
 
     }
 
@@ -1355,7 +1383,8 @@
 
       .sidebar {
 
-        width: 70px;
+        width:
+          70px;
 
       }
 
@@ -1366,7 +1395,8 @@
       .menu-item span:not(.menu-icon),
       .user-card {
 
-        display: none;
+        display:
+          none;
 
       }
 
@@ -1381,10 +1411,14 @@
 
       .logo-icon {
 
-        width: 42px;
-        height: 42px;
+        width:
+          42px;
 
-        font-size: 20px;
+        height:
+          42px;
+
+        font-size:
+          20px;
 
       }
 
@@ -1399,7 +1433,8 @@
 
       .menu-item {
 
-        justify-content: center;
+        justify-content:
+          center;
 
         padding:
           13px 5px;
@@ -1417,28 +1452,33 @@
 
       .logout {
 
-        font-size: 0;
+        font-size:
+          0;
 
         padding:
           12px 5px;
 
-        min-height: 42px;
+        min-height:
+          42px;
 
       }
 
 
       .logout::before {
 
-        content: "🚪";
+        content:
+          "🚪";
 
-        font-size: 17px;
+        font-size:
+          17px;
 
       }
 
 
       .main {
 
-        margin-left: 70px;
+        margin-left:
+          70px;
 
         width:
           calc(100% - 70px);
@@ -1456,31 +1496,38 @@
 
       .header-title {
 
-        font-size: 17px;
+        font-size:
+          17px;
 
       }
 
 
       .status-online {
 
-        font-size: 0;
+        font-size:
+          0;
 
-        padding: 9px;
+        padding:
+          9px;
 
       }
 
 
       .status-dot {
 
-        width: 8px;
-        height: 8px;
+        width:
+          8px;
+
+        height:
+          8px;
 
       }
 
 
       .content {
 
-        padding: 18px;
+        padding:
+          18px;
 
       }
 
@@ -1495,16 +1542,19 @@
 
       .btn-pesquisar {
 
-        width: 100%;
+        width:
+          100%;
 
       }
 
 
       .resultado-header {
 
-        align-items: flex-start;
+        align-items:
+          flex-start;
 
-        flex-direction: column;
+        flex-direction:
+          column;
 
       }
 
@@ -1523,26 +1573,28 @@
 
       .header-subtitle {
 
-        display: none;
+        display:
+          none;
 
       }
 
 
       .panel {
 
-        padding: 16px;
+        padding:
+          16px;
 
       }
 
 
       .page-title h1 {
 
-        font-size: 16px;
+        font-size:
+          16px;
 
       }
 
     }
-
 
   </style>
 
@@ -1608,6 +1660,8 @@
       </div>
 
 
+      <!-- DASHBOARD -->
+
       <button
         type="button"
         class="menu-item"
@@ -1624,6 +1678,8 @@
 
       </button>
 
+
+      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -1642,6 +1698,8 @@
       </button>
 
 
+      <!-- PESQUISAR NF -->
+
       <button
         type="button"
         class="menu-item active"
@@ -1657,6 +1715,8 @@
 
       </button>
 
+
+      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -1675,6 +1735,8 @@
       </button>
 
 
+      <!-- TRANSPORTADORAS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1692,6 +1754,8 @@
       </button>
 
 
+      <!-- RELATÓRIOS -->
+
       <button
         type="button"
         class="menu-item"
@@ -1708,11 +1772,50 @@
 
       </button>
 
+
+      <!-- USUÁRIOS -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
+      <!-- CONFIGURAÇÕES -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+
     </nav>
 
 
     <!-- =================================================
-         USUÁRIO
+         USUÁRIO LOGADO
          ================================================= -->
 
     <div class="user-area">
@@ -1769,8 +1872,6 @@
   <main class="main">
 
 
-    <!-- HEADER -->
-
     <header class="header">
 
       <div>
@@ -1797,14 +1898,12 @@
     </header>
 
 
-    <!-- =================================================
-         CONTEÚDO
-         ================================================= -->
-
     <section class="content">
 
 
-      <!-- MENSAGEM -->
+      <!-- =================================================
+           MENSAGEM
+           ================================================= -->
 
       <div
         id="mensagem"
@@ -1812,7 +1911,9 @@
       ></div>
 
 
-      <!-- TÍTULO -->
+      <!-- =================================================
+           TÍTULO
+           ================================================= -->
 
       <div class="page-title">
 
@@ -1885,7 +1986,6 @@
         id="resultado"
         class="resultado"
       >
-
 
         <div class="panel">
 
@@ -2149,7 +2249,6 @@
 
         </div>
 
-
       </div>
 
 
@@ -2195,7 +2294,7 @@
 
 
     /* =====================================================
-       CONFIGURAÇÃO SUPABASE
+       SUPABASE
        ===================================================== */
 
     const SUPABASE_URL =
@@ -2214,10 +2313,11 @@
 
 
     /* =====================================================
-       VARIÁVEIS
+       USUÁRIO
        ===================================================== */
 
-    let usuarioAtual = null;
+    let usuarioAtual =
+      null;
 
 
     /* =====================================================
@@ -2259,9 +2359,7 @@
 
         if (!session) {
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -2273,7 +2371,7 @@
 
 
         /* ==============================================
-           VERIFICAR USUÁRIO BIRILOG
+           VERIFICAR USUÁRIO
            ============================================== */
 
         const consulta =
@@ -2308,9 +2406,7 @@
 
           await supabaseClient.auth.signOut();
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -2323,9 +2419,7 @@
 
           await supabaseClient.auth.signOut();
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
           return;
 
@@ -2340,7 +2434,6 @@
 
 
         esconderLoading();
-
 
       }
 
@@ -2367,7 +2460,7 @@
 
 
     /* =====================================================
-       USUÁRIO
+       PREENCHER USUÁRIO
        ===================================================== */
 
     function preencherUsuario() {
@@ -2379,13 +2472,17 @@
       }
 
 
+      const nome =
+        usuarioAtual.nome ||
+        usuarioAtual.email ||
+        "USUÁRIO";
+
+
       document.getElementById(
         "usuarioNome"
       ).textContent =
         String(
-          usuarioAtual.nome ||
-          usuarioAtual.email ||
-          "USUÁRIO"
+          nome
         ).toUpperCase();
 
 
@@ -2427,12 +2524,12 @@
 
       const nf =
         String(
-          campo.value || ""
+          campo.value ||
+          ""
         ).trim();
 
 
       esconderResultado();
-
 
       limparMensagem();
 
@@ -2470,10 +2567,10 @@
 
 
         /* ==============================================
-           PESQUISA EXATA
+           PESQUISA DIRETA
            ============================================== */
 
-        let consulta =
+        const consulta =
           await supabaseClient
 
             .from("envios")
@@ -2484,8 +2581,10 @@
               "nf",
               nf
             )
-            
-            .limit(1);
+
+            .limit(
+              1
+            );
 
 
         if (
@@ -2499,14 +2598,13 @@
 
         let envio =
           consulta.data &&
-          consulta.data.length
+          consulta.data.length > 0
             ? consulta.data[0]
             : null;
 
 
         /* ==============================================
            SEGUNDA TENTATIVA
-           Caso a NF tenha sido salva como texto diferente.
            ============================================== */
 
         if (!envio) {
@@ -2516,14 +2614,7 @@
 
               .from("envios")
 
-              .select("*")
-              
-              .order(
-                "created_at",
-                {
-                  ascending: false
-                }
-              );
+              .select("*");
 
 
           if (
@@ -2544,7 +2635,8 @@
               function(item) {
 
                 return String(
-                  item.nf || ""
+                  item.nf ||
+                  ""
                 )
                 .trim()
                 .toUpperCase() ===
@@ -2567,10 +2659,6 @@
           "🔎 PESQUISAR NF";
 
 
-        /* ==============================================
-           NÃO ENCONTRADO
-           ============================================== */
-
         if (!envio) {
 
           mostrarMensagem(
@@ -2587,10 +2675,6 @@
 
         }
 
-
-        /* ==============================================
-           MOSTRAR
-           ============================================== */
 
         mostrarResultado(
           envio
@@ -2651,12 +2735,6 @@
         "semResultado"
       ).style.display =
         "none";
-
-
-      document.getElementById(
-        "resultadoTitulo"
-      ).textContent =
-        "ENVIO ENCONTRADO";
 
 
       document.getElementById(
@@ -2791,9 +2869,11 @@
 
       window.scrollTo({
 
-        top: 0,
+        top:
+          0,
 
-        behavior: "smooth"
+        behavior:
+          "smooth"
 
       });
 
@@ -2897,26 +2977,8 @@
     }
 
 
-    function normalizarStatus(
-      valor
-    ) {
-
-      return String(
-        valor || ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-    }
-
-
     /* =====================================================
-       ALERTA DE ENTREGA
+       ALERTA
        ===================================================== */
 
     function atualizarAlerta(
@@ -2951,12 +3013,9 @@
         envio.previsao;
 
 
-      /* ================================================
-         ENTREGUE
-         ================================================ */
-
       if (
-        status === "ENTREGUE" ||
+        status ===
+        "ENTREGUE" ||
         dataEntrega
       ) {
 
@@ -2973,10 +3032,6 @@
 
       }
 
-
-      /* ================================================
-         SEM PREVISÃO
-         ================================================ */
 
       if (!previsao) {
 
@@ -3027,10 +3082,6 @@
       );
 
 
-      /* ================================================
-         HOJE
-         ================================================ */
-
       if (
         data.getTime() ===
         hoje.getTime()
@@ -3050,10 +3101,6 @@
       }
 
 
-      /* ================================================
-         ATRASADO
-         ================================================ */
-
       if (
         data.getTime() <
         hoje.getTime()
@@ -3072,10 +3119,6 @@
 
       }
 
-
-      /* ================================================
-         NO PRAZO
-         ================================================ */
 
       elemento.classList.add(
         "aberto",
@@ -3155,9 +3198,15 @@
 
 
         return new Date(
-          Number(partes[0]),
-          Number(partes[1]) - 1,
-          Number(partes[2])
+          Number(
+            partes[0]
+          ),
+          Number(
+            partes[1]
+          ) - 1,
+          Number(
+            partes[2]
+          )
         );
 
       }
@@ -3281,15 +3330,19 @@
 
       const numero =
         Number(
-          valor || 0
+          valor ||
+          0
         );
 
 
       return numero.toLocaleString(
         "pt-BR",
         {
-          style: "currency",
-          currency: "BRL"
+          style:
+            "currency",
+
+          currency:
+            "BRL"
         }
       );
 
@@ -3385,7 +3438,9 @@
         );
 
 
-      if (textoElemento) {
+      if (
+        textoElemento
+      ) {
 
         textoElemento.textContent =
           texto ||
@@ -3394,8 +3449,14 @@
       }
 
 
-      elemento.style.display =
-        "flex";
+      if (
+        elemento
+      ) {
+
+        elemento.style.display =
+          "flex";
+
+      }
 
     }
 
@@ -3408,8 +3469,14 @@
         );
 
 
-      elemento.style.display =
-        "none";
+      if (
+        elemento
+      ) {
+
+        elemento.style.display =
+          "none";
+
+      }
 
     }
 
@@ -3422,8 +3489,43 @@
       pagina
     ) {
 
+      if (!pagina) {
+
+        return;
+
+      }
+
+
+      /*
+      -----------------------------------------------------
+      EVITA CACHE ENTRE OS MÓDULOS
+      -----------------------------------------------------
+      */
+
+      const separador =
+        pagina.includes("?")
+          ? "&"
+          : "?";
+
+
       window.location.href =
-        pagina;
+        pagina +
+        separador +
+        "_v=" +
+        Date.now();
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
@@ -3453,7 +3555,9 @@
         );
 
 
-      if (botao) {
+      if (
+        botao
+      ) {
 
         botao.disabled =
           true;
@@ -3480,15 +3584,13 @@
       }
 
 
-      window.location.replace(
-        "index.html"
-      );
+      redirecionarLogin();
 
     }
 
 
     /* =====================================================
-       ENTER NA PESQUISA
+       ENTER
        ===================================================== */
 
     document
@@ -3515,7 +3617,7 @@
 
 
     /* =====================================================
-       LIMPAR PESQUISA AO DIGITAR
+       LIMPAR AO DIGITAR
        ===================================================== */
 
     document
@@ -3549,9 +3651,7 @@
           "SIGNED_OUT"
         ) {
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
         }
 
