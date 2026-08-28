@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BiriLog V3 - Pós Entrega</title>
 
@@ -482,6 +480,10 @@ content="width=device-width, initial-scale=1.0"
       color: #475569;
     }
 
+    .telefone.informado {
+      color: #15803d;
+    }
+
     .status {
       display: inline-flex;
       align-items: center;
@@ -896,19 +898,18 @@ content="width=device-width, initial-scale=1.0"
 
   <div id="loadingTela" class="loading">
 
-```
-<div class="loading-box">
+    <div class="loading-box">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div id="loadingText" class="loading-text">
-    CARREGANDO...
-  </div>
+      <div id="loadingText" class="loading-text">
+        CARREGANDO...
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        SIDEBAR
@@ -916,117 +917,152 @@ content="width=device-width, initial-scale=1.0"
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
+    <div class="logo-area">
 
-  <div class="logo-icon">
-    🚚
-  </div>
+      <div class="logo-icon">
+        🚚
+      </div>
 
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
 
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
 
-</div>
-
-
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('dashboard.html')">
-    <span class="menu-icon">📊</span>
-    <span>Dashboard</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('envios.html')">
-    <span class="menu-icon">📦</span>
-    <span>Envios</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irParaPesquisarNF()">
-    <span class="menu-icon">🔎</span>
-    <span>Pesquisar NF</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('clientes.html')">
-    <span class="menu-icon">👥</span>
-    <span>Clientes</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('transportadoras.html')">
-    <span class="menu-icon">🚛</span>
-    <span>Transportadoras</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('relatorios.html')">
-    <span class="menu-icon">📄</span>
-    <span>Relatórios</span>
-  </button>
-
-  <button type="button" class="menu-item active">
-    <span class="menu-icon">📱</span>
-    <span>Pós Entrega</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('usuarios.html')">
-    <span class="menu-icon">🔐</span>
-    <span>Usuários</span>
-  </button>
-
-  <button type="button" class="menu-item"
-    onclick="irPara('configuracoes.html')">
-    <span class="menu-icon">⚙️</span>
-    <span>Configurações</span>
-  </button>
-
-</nav>
-
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div id="usuarioNome" class="user-name">
-      USUÁRIO
     </div>
 
-    <div id="usuarioEmail" class="user-email">
-      -
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+        <span class="menu-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+        <span class="menu-icon">📦</span>
+        <span>Envios</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irParaPesquisarNF()"
+      >
+        <span class="menu-icon">🔎</span>
+        <span>Pesquisar NF</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+        <span class="menu-icon">👥</span>
+        <span>Clientes</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+        <span class="menu-icon">🚛</span>
+        <span>Transportadoras</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+        <span class="menu-icon">📄</span>
+        <span>Relatórios</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+        <span class="menu-icon">📱</span>
+        <span>Pós Entrega</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+        <span class="menu-icon">🔐</span>
+        <span>Usuários</span>
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+        <span class="menu-icon">⚙️</span>
+        <span>Configurações</span>
+      </button>
+
+    </nav>
+
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div id="usuarioNome" class="user-name">
+          USUÁRIO
+        </div>
+
+        <div id="usuarioEmail" class="user-email">
+          -
+        </div>
+
+        <div id="usuarioPerfil" class="user-profile">
+          PERFIL
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+        🚪 SAIR DO SISTEMA
+      </button>
+
     </div>
-
-    <div id="usuarioPerfil" class="user-profile">
-      PERFIL
-    </div>
-
-  </div>
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-    🚪 SAIR DO SISTEMA
-  </button>
-
-</div>
-```
 
   </aside>
+
 
   <!-- =====================================================
        MAIN
@@ -1034,429 +1070,539 @@ content="width=device-width, initial-scale=1.0"
 
   <main class="main">
 
-```
-<header class="header">
-
-  <div>
-
-    <div class="header-title">
-      Pós Entrega
-    </div>
-
-    <div class="header-subtitle">
-      Acompanhamento e confirmação das entregas
-    </div>
-
-  </div>
-
-  <div class="status-online">
-    <span class="status-dot"></span>
-    SISTEMA ONLINE
-  </div>
-
-</header>
-
-
-<section class="content">
-
-  <div id="mensagem" class="mensagem"></div>
-
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="card-label">Total de Envios</div>
-      <div id="cardTotal" class="card-value">0</div>
-    </div>
-
-    <div class="card card-success">
-      <div class="card-label">Entregues</div>
-      <div id="cardEntregues" class="card-value">0</div>
-    </div>
-
-    <div class="card card-warning">
-      <div class="card-label">Em Trânsito</div>
-      <div id="cardTransito" class="card-value">0</div>
-    </div>
-
-    <div class="card card-danger">
-      <div class="card-label">Atrasados</div>
-      <div id="cardAtrasados" class="card-value">0</div>
-    </div>
-
-  </div>
-
-
-  <div class="panel">
-
-    <div class="panel-header">
+    <header class="header">
 
       <div>
-        <div class="panel-title">
-          📱 CONFIRMAÇÃO DE ENTREGA
+
+        <div class="header-title">
+          Pós Entrega
         </div>
 
-        <div class="panel-subtitle">
-          Envie a confirmação ao cliente pelo WhatsApp.
+        <div class="header-subtitle">
+          Acompanhamento e confirmação das entregas
         </div>
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="carregarEnvios()"
-      >
-        🔄 ATUALIZAR
-      </button>
-
-    </div>
-
-
-    <div class="whatsapp-info">
-
-      <div class="whatsapp-info-icon">
-        📱
-      </div>
-
-      <div class="whatsapp-info-text">
-
-        <strong>CONFIRMAÇÃO DE ENTREGA</strong>
-
-        <br>
-
-        Antes de enviar, você pode clicar em
-        <strong>EDITAR</strong>
-        para corrigir o telefone do cliente.
-
-        <br><br>
-
-        O botão
-        <strong>ENVIAR WHATSAPP</strong>
-        tenta abrir diretamente o aplicativo WhatsApp instalado no dispositivo.
-
-        <br><br>
-
-        Se o aplicativo não estiver instalado, utilize a opção
-        <strong>WHATSAPP WEB</strong>.
 
       </div>
 
-    </div>
+      <div class="status-online">
+        <span class="status-dot"></span>
+        SISTEMA ONLINE
+      </div>
+
+    </header>
 
 
-    <div class="filtros">
+    <section class="content">
 
-      <input
-        type="text"
-        id="filtroTexto"
-        class="filtro"
-        placeholder="🔎 NF, CLIENTE, CIDADE OU TELEFONE"
-        autocomplete="off"
-      >
-
-      <select id="filtroStatus" class="filtro">
-
-        <option value="">TODOS OS STATUS</option>
-        <option value="COLETADO">📦 COLETADO</option>
-        <option value="EM TRANSITO">🚚 EM TRÂNSITO</option>
-        <option value="ENTREGUE">✅ ENTREGUE</option>
-        <option value="ATRASADO">⚠️ ATRASADO</option>
-
-      </select>
+      <div id="mensagem" class="mensagem"></div>
 
 
-      <select id="filtroUF" class="filtro">
+      <div class="cards">
 
-        <option value="">TODAS AS UFs</option>
+        <div class="card">
 
-        <option value="TO">TO</option>
-        <option value="PA">PA</option>
-        <option value="MA">MA</option>
-        <option value="GO">GO</option>
-        <option value="MT">MT</option>
-        <option value="BA">BA</option>
-        <option value="PI">PI</option>
-        <option value="MG">MG</option>
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="DF">DF</option>
+          <div class="card-label">
+            Total de Envios
+          </div>
 
-      </select>
+          <div
+            id="cardTotal"
+            class="card-value"
+          >
+            0
+          </div>
 
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="limparFiltros()"
-      >
-        LIMPAR FILTROS
-      </button>
-
-    </div>
+        </div>
 
 
-    <div class="table-wrapper">
+        <div class="card card-success">
 
-      <table>
+          <div class="card-label">
+            Entregues
+          </div>
 
-        <thead>
+          <div
+            id="cardEntregues"
+            class="card-value"
+          >
+            0
+          </div>
 
-          <tr>
+        </div>
 
-            <th>NF</th>
-            <th>CLIENTE</th>
-            <th>TELEFONE</th>
-            <th>CIDADE</th>
-            <th>UF</th>
-            <th>TRANSPORTADORA</th>
-            <th>PREVISÃO</th>
-            <th>STATUS</th>
-            <th>AÇÕES</th>
 
-          </tr>
+        <div class="card card-warning">
 
-        </thead>
+          <div class="card-label">
+            Em Trânsito
+          </div>
 
-        <tbody id="tabelaEnvios">
+          <div
+            id="cardTransito"
+            class="card-value"
+          >
+            0
+          </div>
 
-          <tr>
+        </div>
 
-            <td
-              colspan="9"
-              style="text-align:center;padding:30px;color:#94a3b8;"
-            >
-              CARREGANDO ENVIOS...
-            </td>
 
-          </tr>
+        <div class="card card-danger">
 
-        </tbody>
+          <div class="card-label">
+            Atrasados
+          </div>
 
-      </table>
+          <div
+            id="cardAtrasados"
+            class="card-value"
+          >
+            0
+          </div>
 
-    </div>
+        </div>
 
-  </div>
+      </div>
 
-</section>
-```
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              📱 CONFIRMAÇÃO DE ENTREGA
+            </div>
+
+            <div class="panel-subtitle">
+              Envie a confirmação ao cliente pelo WhatsApp.
+            </div>
+
+          </div>
+
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="carregarEnvios()"
+          >
+            🔄 ATUALIZAR
+          </button>
+
+        </div>
+
+
+        <div class="whatsapp-info">
+
+          <div class="whatsapp-info-icon">
+            📱
+          </div>
+
+          <div class="whatsapp-info-text">
+
+            <strong>CONFIRMAÇÃO DE ENTREGA</strong>
+
+            <br>
+
+            O sistema busca automaticamente o telefone cadastrado
+            no envio ou no cadastro do cliente.
+
+            <br><br>
+
+            Antes de enviar, você pode clicar em
+            <strong>EDITAR</strong>
+            para corrigir o telefone.
+
+            <br><br>
+
+            O botão
+            <strong>ENVIAR WHATSAPP</strong>
+            tenta abrir diretamente o WhatsApp.
+
+            <br><br>
+
+            Se o aplicativo não estiver instalado,
+            utilize a opção
+            <strong>WHATSAPP WEB</strong>.
+
+          </div>
+
+        </div>
+
+
+        <div class="filtros">
+
+          <input
+            type="text"
+            id="filtroTexto"
+            class="filtro"
+            placeholder="🔎 NF, CLIENTE, CIDADE OU TELEFONE"
+            autocomplete="off"
+          >
+
+
+          <select
+            id="filtroStatus"
+            class="filtro"
+          >
+
+            <option value="">
+              TODOS OS STATUS
+            </option>
+
+            <option value="COLETADO">
+              📦 COLETADO
+            </option>
+
+            <option value="EM TRANSITO">
+              🚚 EM TRÂNSITO
+            </option>
+
+            <option value="ENTREGUE">
+              ✅ ENTREGUE
+            </option>
+
+            <option value="ATRASADO">
+              ⚠️ ATRASADO
+            </option>
+
+          </select>
+
+
+          <select
+            id="filtroUF"
+            class="filtro"
+          >
+
+            <option value="">
+              TODAS AS UFs
+            </option>
+
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="MA">MA</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="BA">BA</option>
+            <option value="PI">PI</option>
+            <option value="MG">MG</option>
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="DF">DF</option>
+
+          </select>
+
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="limparFiltros()"
+          >
+            LIMPAR FILTROS
+          </button>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>NF</th>
+                <th>CLIENTE</th>
+                <th>TELEFONE</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>TRANSPORTADORA</th>
+                <th>PREVISÃO</th>
+                <th>STATUS</th>
+                <th>AÇÕES</th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="tabelaEnvios">
+
+              <tr>
+
+                <td
+                  colspan="9"
+                  style="
+                    text-align:center;
+                    padding:30px;
+                    color:#94a3b8;
+                  "
+                >
+                  CARREGANDO ENVIOS...
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
+
 
   <!-- =====================================================
        MODAL WHATSAPP
        ===================================================== -->
 
-  <div id="modalWhatsapp" class="modal">
+  <div
+    id="modalWhatsapp"
+    class="modal"
+  >
 
-```
-<div class="modal-box">
+    <div class="modal-box">
 
-  <div class="modal-header">
+      <div class="modal-header">
 
-    <div class="modal-title">
-      📱 CONFIRMAÇÃO DE ENTREGA
+        <div class="modal-title">
+          📱 CONFIRMAÇÃO DE ENTREGA
+        </div>
+
+        <button
+          type="button"
+          class="fechar"
+          onclick="fecharModal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div
+        id="dadosWhatsapp"
+        style="
+          background:#f8fafc;
+          border:1px solid #e2e8f0;
+          border-radius:10px;
+          padding:12px;
+          margin-bottom:15px;
+          font-size:10px;
+          line-height:1.7;
+        "
+      ></div>
+
+
+      <div
+        id="mensagemPreview"
+        class="mensagem-preview"
+      ></div>
+
+
+      <div class="modal-acoes">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="fecharModal()"
+        >
+          CANCELAR
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-whatsapp-web"
+          onclick="abrirWhatsAppWeb()"
+        >
+          🌐 WHATSAPP WEB
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-whatsapp-large"
+          onclick="abrirWhatsAppApp()"
+        >
+          📱 ABRIR WHATSAPP
+        </button>
+
+      </div>
+
     </div>
 
-    <button
-      type="button"
-      class="fechar"
-      onclick="fecharModal()"
-    >
-      ×
-    </button>
-
   </div>
 
-
-  <div
-    id="dadosWhatsapp"
-    style="
-      background:#f8fafc;
-      border:1px solid #e2e8f0;
-      border-radius:10px;
-      padding:12px;
-      margin-bottom:15px;
-      font-size:10px;
-      line-height:1.7;
-    "
-  ></div>
-
-
-  <div
-    id="mensagemPreview"
-    class="mensagem-preview"
-  ></div>
-
-
-  <div class="modal-acoes">
-
-    <button
-      type="button"
-      class="btn btn-secondary"
-      onclick="fecharModal()"
-    >
-      CANCELAR
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-whatsapp-web"
-      onclick="abrirWhatsAppWeb()"
-    >
-      🌐 WHATSAPP WEB
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-whatsapp-large"
-      onclick="abrirWhatsAppApp()"
-    >
-      📱 ABRIR WHATSAPP
-    </button>
-
-  </div>
-
-</div>
-```
-
-  </div>
 
   <!-- =====================================================
        MODAL EDITAR
        ===================================================== -->
 
-  <div id="modalEditar" class="modal">
+  <div
+    id="modalEditar"
+    class="modal"
+  >
 
-```
-<div class="modal-box">
+    <div class="modal-box">
 
-  <div class="modal-header">
+      <div class="modal-header">
 
-    <div class="modal-title">
-      ✏️ ALTERAR ENVIO
+        <div class="modal-title">
+          ✏️ ALTERAR ENVIO
+        </div>
+
+        <button
+          type="button"
+          class="fechar"
+          onclick="fecharEditar()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Nota Fiscal
+        </label>
+
+        <input
+          type="text"
+          id="editarNF"
+          readonly
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Cliente
+        </label>
+
+        <input
+          type="text"
+          id="editarCliente"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Telefone / WhatsApp
+        </label>
+
+        <input
+          type="tel"
+          id="editarTelefone"
+          placeholder="Ex.: (63) 99999-9999"
+          autocomplete="off"
+        >
+
+        <div class="ajuda-telefone">
+          Informe o número com DDD.
+          O sistema acrescentará o código do Brasil automaticamente.
+        </div>
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Cidade
+        </label>
+
+        <input
+          type="text"
+          id="editarCidade"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          UF
+        </label>
+
+        <input
+          type="text"
+          id="editarUF"
+          maxlength="2"
+        >
+
+      </div>
+
+
+      <div class="campo">
+
+        <label>
+          Status
+        </label>
+
+        <select id="editarStatus">
+
+          <option value="COLETADO">
+            📦 COLETADO
+          </option>
+
+          <option value="EM TRANSITO">
+            🚚 EM TRÂNSITO
+          </option>
+
+          <option value="ENTREGUE">
+            ✅ ENTREGUE
+          </option>
+
+          <option value="ATRASADO">
+            ⚠️ ATRASADO
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="modal-acoes">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="fecharEditar()"
+        >
+          CANCELAR
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          id="botaoSalvarEdicao"
+          onclick="salvarEdicao()"
+        >
+          💾 SALVAR ALTERAÇÕES
+        </button>
+
+      </div>
+
     </div>
 
-    <button
-      type="button"
-      class="fechar"
-      onclick="fecharEditar()"
-    >
-      ×
-    </button>
-
   </div>
 
-
-  <div class="campo">
-
-    <label>Nota Fiscal</label>
-
-    <input
-      type="text"
-      id="editarNF"
-      readonly
-    >
-
-  </div>
-
-
-  <div class="campo">
-
-    <label>Cliente</label>
-
-    <input
-      type="text"
-      id="editarCliente"
-    >
-
-  </div>
-
-
-  <div class="campo">
-
-    <label>Telefone / WhatsApp</label>
-
-    <input
-      type="tel"
-      id="editarTelefone"
-      placeholder="Ex.: (63) 99999-9999"
-      autocomplete="off"
-    >
-
-    <div class="ajuda-telefone">
-      Informe o número com DDD. O sistema acrescentará o código do Brasil automaticamente.
-    </div>
-
-  </div>
-
-
-  <div class="campo">
-
-    <label>Cidade</label>
-
-    <input
-      type="text"
-      id="editarCidade"
-    >
-
-  </div>
-
-
-  <div class="campo">
-
-    <label>UF</label>
-
-    <input
-      type="text"
-      id="editarUF"
-      maxlength="2"
-    >
-
-  </div>
-
-
-  <div class="campo">
-
-    <label>Status</label>
-
-    <select id="editarStatus">
-
-      <option value="COLETADO">📦 COLETADO</option>
-      <option value="EM TRANSITO">🚚 EM TRÂNSITO</option>
-      <option value="ENTREGUE">✅ ENTREGUE</option>
-      <option value="ATRASADO">⚠️ ATRASADO</option>
-
-    </select>
-
-  </div>
-
-
-  <div class="modal-acoes">
-
-    <button
-      type="button"
-      class="btn btn-secondary"
-      onclick="fecharEditar()"
-    >
-      CANCELAR
-    </button>
-
-    <button
-      type="button"
-      class="btn btn-primary"
-      id="botaoSalvarEdicao"
-      onclick="salvarEdicao()"
-    >
-      💾 SALVAR ALTERAÇÕES
-    </button>
-
-  </div>
-
-</div>
-```
-
-  </div>
 
   <!-- =====================================================
        JAVASCRIPT
@@ -1486,8 +1632,13 @@ content="width=device-width, initial-scale=1.0"
        ===================================================== */
 
     let usuarioAtual = null;
+
     let todosEnvios = [];
+
+    let todosClientes = [];
+
     let envioSelecionado = null;
+
     let envioEditando = null;
 
 
@@ -1511,6 +1662,13 @@ content="width=device-width, initial-scale=1.0"
         "cliente_nome",
         "razao_social",
         "nome"
+      ],
+
+      clienteId: [
+        "cliente_id",
+        "id_cliente",
+        "codigo_cliente",
+        "cliente_codigo"
       ],
 
       telefone: [
@@ -1555,6 +1713,56 @@ content="width=device-width, initial-scale=1.0"
         "status",
         "situacao",
         "situação"
+      ]
+
+    };
+
+
+    /* =====================================================
+       CAMPOS DOS CLIENTES
+       ===================================================== */
+
+    const CAMPOS_CLIENTE = {
+
+      id: [
+        "id"
+      ],
+
+      codigo: [
+        "codigo",
+        "codigo_cliente",
+        "cod_cliente",
+        "codigoCliente"
+      ],
+
+      nome: [
+        "nome",
+        "nome_cliente",
+        "cliente",
+        "razao_social",
+        "cliente_nome"
+      ],
+
+      telefone: [
+        "telefone",
+        "celular",
+        "whatsapp",
+        "fone",
+        "telefone_cliente",
+        "celular_cliente",
+        "telefone_whatsapp",
+        "numero_telefone",
+        "contato"
+      ],
+
+      cidade: [
+        "cidade",
+        "municipio"
+      ],
+
+      uf: [
+        "uf",
+        "estado"
       ]
 
     };
@@ -1630,12 +1838,69 @@ content="width=device-width, initial-scale=1.0"
     }
 
 
-    function obterTelefone(envio) {
+    function obterClienteId(envio) {
+
+      return obterValorCampo(
+        envio,
+        CAMPOS.clienteId
+      );
+
+    }
+
+
+    function obterTelefoneDireto(envio) {
 
       return obterValorCampo(
         envio,
         CAMPOS.telefone
       );
+
+    }
+
+
+    /*
+     * NOVO:
+     * Primeiro procura o telefone no próprio envio.
+     * Se não encontrar, procura no cadastro de clientes.
+     */
+
+    function obterTelefone(envio) {
+
+      const telefoneDireto =
+        obterTelefoneDireto(envio);
+
+      if (
+        telefoneDireto &&
+        String(telefoneDireto).trim() !== ""
+      ) {
+
+        return telefoneDireto;
+
+      }
+
+      const cliente =
+        encontrarClienteDoEnvio(envio);
+
+      if (cliente) {
+
+        const telefoneCliente =
+          obterValorCampo(
+            cliente,
+            CAMPOS_CLIENTE.telefone
+          );
+
+        if (
+          telefoneCliente &&
+          String(telefoneCliente).trim() !== ""
+        ) {
+
+          return telefoneCliente;
+
+        }
+
+      }
+
+      return "";
 
     }
 
@@ -1691,15 +1956,156 @@ content="width=device-width, initial-scale=1.0"
 
 
     /* =====================================================
+       NORMALIZAR NOME PARA COMPARAÇÃO
+       ===================================================== */
+
+    function normalizarNomeComparacao(
+      valor
+    ) {
+
+      return String(
+        valor || ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .replace(
+          /\s+/g,
+          " "
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       ENCONTRAR CLIENTE DO ENVIO
+       ===================================================== */
+
+    function encontrarClienteDoEnvio(
+      envio
+    ) {
+
+      if (
+        !envio ||
+        !todosClientes ||
+        todosClientes.length === 0
+      ) {
+
+        return null;
+
+      }
+
+
+      /*
+       * 1. Tenta pelo ID/código do cliente
+       */
+
+      const clienteId =
+        obterClienteId(envio);
+
+      if (clienteId) {
+
+        const clientePorId =
+          todosClientes.find(
+            function(cliente) {
+
+              const idCliente =
+                obterValorCampo(
+                  cliente,
+                  CAMPOS_CLIENTE.id
+                );
+
+              const codigoCliente =
+                obterValorCampo(
+                  cliente,
+                  CAMPOS_CLIENTE.codigo
+                );
+
+              return (
+                String(idCliente) ===
+                  String(clienteId) ||
+                String(codigoCliente) ===
+                  String(clienteId)
+              );
+
+            }
+          );
+
+        if (clientePorId) {
+
+          return clientePorId;
+
+        }
+
+      }
+
+
+      /*
+       * 2. Tenta pelo nome do cliente
+       */
+
+      const nomeEnvio =
+        normalizarNomeComparacao(
+          obterCliente(envio)
+        );
+
+      if (!nomeEnvio) {
+
+        return null;
+
+      }
+
+
+      const clientePorNome =
+        todosClientes.find(
+          function(cliente) {
+
+            const nomeCliente =
+              normalizarNomeComparacao(
+                obterValorCampo(
+                  cliente,
+                  CAMPOS_CLIENTE.nome
+                )
+              );
+
+            return (
+              nomeCliente ===
+              nomeEnvio
+            );
+
+          }
+        );
+
+
+      if (clientePorNome) {
+
+        return clientePorNome;
+
+      }
+
+
+      return null;
+
+    }
+
+
+    /* =====================================================
        MENSAGEM WHATSAPP
        ===================================================== */
 
-    function montarMensagemWhatsapp(envio) {
+    function montarMensagemWhatsapp(
+      envio
+    ) {
 
       const numeroNF =
         String(
           obterNF(envio)
         ).trim();
+
 
       const emojiPacote =
         "\u{1F4E6}";
@@ -1709,6 +2115,7 @@ content="width=device-width, initial-scale=1.0"
 
       const emojiAlerta =
         "\u{26A0}\u{FE0F}";
+
 
       return (
 
@@ -1768,16 +2175,22 @@ content="width=device-width, initial-scale=1.0"
           "VERIFICANDO SESSÃO..."
         );
 
+
         const resultadoSessao =
           await supabaseClient.auth.getSession();
 
+
         if (resultadoSessao.error) {
+
           throw resultadoSessao.error;
+
         }
+
 
         const session =
           resultadoSessao.data &&
           resultadoSessao.data.session;
+
 
         if (!session) {
 
@@ -1787,8 +2200,10 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
+
         const authUser =
           session.user;
+
 
         const consulta =
           await supabaseClient
@@ -1802,9 +2217,13 @@ content="width=device-width, initial-scale=1.0"
             )
             .maybeSingle();
 
+
         if (consulta.error) {
+
           throw consulta.error;
+
         }
+
 
         if (!consulta.data) {
 
@@ -1816,6 +2235,7 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
+
         if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
@@ -1826,10 +2246,13 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
+
         usuarioAtual =
           consulta.data;
 
+
         preencherUsuario();
+
 
         await carregarEnvios();
 
@@ -1864,6 +2287,7 @@ content="width=device-width, initial-scale=1.0"
         return;
       }
 
+
       document.getElementById(
         "usuarioNome"
       ).textContent =
@@ -1873,11 +2297,13 @@ content="width=device-width, initial-scale=1.0"
           "USUÁRIO"
         ).toUpperCase();
 
+
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email ||
         "-";
+
 
       document.getElementById(
         "usuarioPerfil"
@@ -1891,25 +2317,93 @@ content="width=device-width, initial-scale=1.0"
 
 
     /* =====================================================
+       CARREGAR CLIENTES
+       ===================================================== */
+
+    async function carregarClientes() {
+
+      try {
+
+        const resultado =
+          await supabaseClient
+            .from("clientes")
+            .select("*");
+
+
+        if (resultado.error) {
+
+          console.warn(
+            "Não foi possível carregar clientes:",
+            resultado.error
+          );
+
+          todosClientes = [];
+
+          return;
+
+        }
+
+
+        todosClientes =
+          resultado.data || [];
+
+
+        console.log(
+          "CLIENTES CARREGADOS:",
+          todosClientes.length
+        );
+
+
+      }
+
+      catch (erro) {
+
+        console.warn(
+          "Erro ao carregar clientes:",
+          erro
+        );
+
+        todosClientes = [];
+
+      }
+
+    }
+
+
+    /* =====================================================
        CARREGAR ENVIOS
        ===================================================== */
 
     async function carregarEnvios() {
 
       mostrarLoading(
-        "CARREGANDO ENVIOS..."
+        "CARREGANDO CLIENTES E ENVIOS..."
       );
 
+
       try {
+
+        /*
+         * Carrega os clientes primeiro.
+         * Isso permite encontrar o telefone
+         * quando ele não está gravado em envios.
+         */
+
+        await carregarClientes();
+
 
         const resultado =
           await supabaseClient
             .from("envios")
             .select("*");
 
+
         if (resultado.error) {
+
           throw resultado.error;
+
         }
+
 
         todosEnvios =
           resultado.data || [];
@@ -1928,15 +2422,18 @@ content="width=device-width, initial-scale=1.0"
                 obterNF(b) || ""
               );
 
+
             const numA =
               parseFloat(
                 nfA.replace(/\D/g, "")
               );
 
+
             const numB =
               parseFloat(
                 nfB.replace(/\D/g, "")
               );
+
 
             if (
               !Number.isNaN(numA) &&
@@ -1946,6 +2443,7 @@ content="width=device-width, initial-scale=1.0"
               return numA - numB;
 
             }
+
 
             return nfA.localeCompare(
               nfB,
@@ -1962,21 +2460,30 @@ content="width=device-width, initial-scale=1.0"
         );
 
 
-        if (
-          todosEnvios.length > 0
-        ) {
+        /*
+         * TESTE DE TELEFONE
+         */
 
-          console.log(
-            "PRIMEIRO ENVIO:",
-            todosEnvios[0]
-          );
+        todosEnvios.forEach(
+          function(envio) {
 
-        }
+            console.log(
+              "NF:",
+              obterNF(envio),
+              "| CLIENTE:",
+              obterCliente(envio),
+              "| TELEFONE:",
+              obterTelefone(envio)
+            );
+
+          }
+        );
 
 
         atualizarCards(
           todosEnvios
         );
+
 
         filtrarEnvios();
 
@@ -1989,11 +2496,15 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
+
         todosEnvios = [];
+
 
         atualizarCards([]);
 
+
         renderizarTabela([]);
+
 
         mostrarMensagem(
           obterMensagemErro(
@@ -2017,14 +2528,20 @@ content="width=device-width, initial-scale=1.0"
        CARDS
        ===================================================== */
 
-    function atualizarCards(lista) {
+    function atualizarCards(
+      lista
+    ) {
 
       const total =
         lista.length;
 
+
       let entregues = 0;
+
       let transito = 0;
+
       let atrasados = 0;
+
 
       lista.forEach(
         function(envio) {
@@ -2034,6 +2551,7 @@ content="width=device-width, initial-scale=1.0"
               obterStatus(envio)
             );
 
+
           if (
             status === "ENTREGUE"
           ) {
@@ -2041,6 +2559,7 @@ content="width=device-width, initial-scale=1.0"
             entregues++;
 
           }
+
           else if (
             status === "EM TRANSITO"
           ) {
@@ -2048,6 +2567,7 @@ content="width=device-width, initial-scale=1.0"
             transito++;
 
           }
+
           else if (
             status === "ATRASADO"
           ) {
@@ -2059,21 +2579,29 @@ content="width=device-width, initial-scale=1.0"
         }
       );
 
+
       document.getElementById(
         "cardTotal"
-      ).textContent = total;
+      ).textContent =
+        total;
+
 
       document.getElementById(
         "cardEntregues"
-      ).textContent = entregues;
+      ).textContent =
+        entregues;
+
 
       document.getElementById(
         "cardTransito"
-      ).textContent = transito;
+      ).textContent =
+        transito;
+
 
       document.getElementById(
         "cardAtrasados"
-      ).textContent = atrasados;
+      ).textContent =
+        atrasados;
 
     }
 
@@ -2091,12 +2619,14 @@ content="width=device-width, initial-scale=1.0"
           ).value
         );
 
+
       const status =
         normalizarTexto(
           document.getElementById(
             "filtroStatus"
           ).value
         );
+
 
       const uf =
         normalizarTexto(
@@ -2192,7 +2722,9 @@ content="width=device-width, initial-scale=1.0"
        TABELA
        ===================================================== */
 
-    function renderizarTabela(lista) {
+    function renderizarTabela(
+      lista
+    ) {
 
       const tabela =
         document.getElementById(
@@ -2239,31 +2771,51 @@ content="width=device-width, initial-scale=1.0"
               const id =
                 envio.id;
 
+
               const nf =
                 obterNF(envio);
+
 
               const cliente =
                 obterCliente(envio);
 
+
               const telefone =
                 obterTelefone(envio);
+
 
               const cidade =
                 obterCidade(envio);
 
+
               const uf =
                 obterUF(envio);
+
 
               const transportadora =
                 obterTransportadora(envio);
 
+
               const previsao =
                 obterPrevisao(envio);
+
 
               const status =
                 normalizarTexto(
                   obterStatus(envio)
                 );
+
+
+              const telefoneFormatado =
+                formatarTelefone(
+                  telefone
+                );
+
+
+              const telefoneClasse =
+                telefoneFormatado
+                  ? "telefone informado"
+                  : "telefone";
 
 
               return `
@@ -2276,20 +2828,21 @@ content="width=device-width, initial-scale=1.0"
                     )}
                   </td>
 
+
                   <td class="cliente">
                     ${escapeHTML(
                       cliente || "-"
                     )}
                   </td>
 
-                  <td class="telefone">
+
+                  <td class="${telefoneClasse}">
                     ${escapeHTML(
-                      formatarTelefone(
-                        telefone
-                      ) ||
+                      telefoneFormatado ||
                       "NÃO INFORMADO"
                     )}
                   </td>
+
 
                   <td>
                     ${escapeHTML(
@@ -2297,11 +2850,13 @@ content="width=device-width, initial-scale=1.0"
                     )}
                   </td>
 
+
                   <td>
                     ${escapeHTML(
                       uf || "-"
                     )}
                   </td>
+
 
                   <td>
                     ${escapeHTML(
@@ -2309,11 +2864,13 @@ content="width=device-width, initial-scale=1.0"
                     )}
                   </td>
 
+
                   <td>
                     ${formatarData(
                       previsao
                     )}
                   </td>
+
 
                   <td>
 
@@ -2327,6 +2884,7 @@ content="width=device-width, initial-scale=1.0"
 
                   </td>
 
+
                   <td>
 
                     <div class="acoes">
@@ -2339,6 +2897,7 @@ content="width=device-width, initial-scale=1.0"
                         ✏️ EDITAR
                       </button>
 
+
                       <button
                         type="button"
                         class="btn-mini btn-preview"
@@ -2346,6 +2905,7 @@ content="width=device-width, initial-scale=1.0"
                       >
                         👁️ VER
                       </button>
+
 
                       <button
                         type="button"
@@ -2374,10 +2934,13 @@ content="width=device-width, initial-scale=1.0"
        PREPARAR WHATSAPP
        ===================================================== */
 
-    function prepararWhatsApp(id) {
+    function prepararWhatsApp(
+      id
+    ) {
 
       const envio =
         encontrarEnvio(id);
+
 
       if (!envio) {
 
@@ -2400,7 +2963,9 @@ content="width=device-width, initial-scale=1.0"
 
 
       const mensagem =
-        montarMensagemWhatsapp(envio);
+        montarMensagemWhatsapp(
+          envio
+        );
 
 
       document.getElementById(
@@ -2447,7 +3012,9 @@ content="width=device-width, initial-scale=1.0"
     }
 
 
-    function visualizarMensagem(id) {
+    function visualizarMensagem(
+      id
+    ) {
 
       prepararWhatsApp(id);
 
@@ -2484,10 +3051,12 @@ content="width=device-width, initial-scale=1.0"
 
         fecharModal();
 
+
         mostrarMensagem(
           "ESTE ENVIO NÃO POSSUI UM TELEFONE VÁLIDO. CLIQUE EM EDITAR E INFORME O NÚMERO.",
           "erro"
         );
+
 
         return;
 
@@ -2548,10 +3117,12 @@ content="width=device-width, initial-scale=1.0"
 
         fecharModal();
 
+
         mostrarMensagem(
           "ESTE ENVIO NÃO POSSUI UM TELEFONE VÁLIDO. CLIQUE EM EDITAR E INFORME O NÚMERO.",
           "erro"
         );
+
 
         return;
 
@@ -2583,7 +3154,9 @@ content="width=device-width, initial-scale=1.0"
        EDITAR
        ===================================================== */
 
-    function editarEnvio(id) {
+    function editarEnvio(
+      id
+    ) {
 
       const envio =
         encontrarEnvio(id);
@@ -2616,6 +3189,12 @@ content="width=device-width, initial-scale=1.0"
       ).value =
         obterCliente(envio) || "";
 
+
+      /*
+       * IMPORTANTE:
+       * Aqui também mostra o telefone encontrado
+       * no cadastro de clientes.
+       */
 
       document.getElementById(
         "editarTelefone"
@@ -2747,6 +3326,11 @@ content="width=device-width, initial-scale=1.0"
       }
 
 
+      /*
+       * Se o envio já possui campo de telefone,
+       * atualiza normalmente.
+       */
+
       if (campoTelefone) {
 
         dadosAtualizacao[campoTelefone] =
@@ -2785,10 +3369,49 @@ content="width=device-width, initial-scale=1.0"
       }
 
 
+      /*
+       * Se o envio não possui campo de telefone,
+       * tenta atualizar o cadastro do cliente.
+       */
+
+      let atualizarCliente = false;
+
+      let clienteParaAtualizar = null;
+
+
+      if (!campoTelefone) {
+
+        clienteParaAtualizar =
+          encontrarClienteDoEnvio(
+            envioEditando
+          );
+
+
+        if (clienteParaAtualizar) {
+
+          const campoTelefoneCliente =
+            encontrarCampoExistente(
+              clienteParaAtualizar,
+              CAMPOS_CLIENTE.telefone
+            );
+
+
+          if (campoTelefoneCliente) {
+
+            atualizarCliente = true;
+
+          }
+
+        }
+
+      }
+
+
       if (
         Object.keys(
           dadosAtualizacao
-        ).length === 0
+        ).length === 0 &&
+        !atualizarCliente
       ) {
 
         mostrarMensagem(
@@ -2804,8 +3427,10 @@ content="width=device-width, initial-scale=1.0"
       botao.disabled =
         true;
 
+
       botao.textContent =
         "SALVANDO...";
+
 
       mostrarLoading(
         "SALVANDO ALTERAÇÕES..."
@@ -2814,30 +3439,115 @@ content="width=device-width, initial-scale=1.0"
 
       try {
 
-        const resultado =
-          await supabaseClient
-            .from("envios")
-            .update(
-              dadosAtualizacao
-            )
-            .eq(
-              "id",
-              envioEditando.id
-            );
+        /*
+         * Atualiza o envio quando existem
+         * campos próprios para isso.
+         */
+
+        if (
+          Object.keys(
+            dadosAtualizacao
+          ).length > 0
+        ) {
+
+          const resultado =
+            await supabaseClient
+              .from("envios")
+              .update(
+                dadosAtualizacao
+              )
+              .eq(
+                "id",
+                envioEditando.id
+              );
 
 
-        if (resultado.error) {
+          if (resultado.error) {
 
-          throw resultado.error;
+            throw resultado.error;
+
+          }
+
+
+          Object.assign(
+            envioEditando,
+            dadosAtualizacao
+          );
 
         }
 
 
-        Object.assign(
-          envioEditando,
-          dadosAtualizacao
-        );
+        /*
+         * Atualiza o telefone do cadastro do cliente
+         * quando o telefone não existe em envios.
+         */
 
+        if (
+          atualizarCliente &&
+          clienteParaAtualizar
+        ) {
+
+          const campoTelefoneCliente =
+            encontrarCampoExistente(
+              clienteParaAtualizar,
+              CAMPOS_CLIENTE.telefone
+            );
+
+
+          const dadosCliente = {};
+
+
+          dadosCliente[
+            campoTelefoneCliente
+          ] = telefone;
+
+
+          const idCliente =
+            obterValorCampo(
+              clienteParaAtualizar,
+              CAMPOS_CLIENTE.id
+            );
+
+
+          if (!idCliente) {
+
+            throw new Error(
+              "CLIENTE ENCONTRADO, MAS NÃO FOI POSSÍVEL IDENTIFICAR O ID DO CLIENTE."
+            );
+
+          }
+
+
+          const resultadoCliente =
+            await supabaseClient
+              .from("clientes")
+              .update(
+                dadosCliente
+              )
+              .eq(
+                "id",
+                idCliente
+              );
+
+
+          if (resultadoCliente.error) {
+
+            throw resultadoCliente.error;
+
+          }
+
+
+          Object.assign(
+            clienteParaAtualizar,
+            dadosCliente
+          );
+
+        }
+
+
+        /*
+         * Atualiza o cache local.
+         */
 
         mostrarMensagem(
           "ENVIO ATUALIZADO COM SUCESSO.",
@@ -2847,9 +3557,11 @@ content="width=device-width, initial-scale=1.0"
 
         fecharEditar();
 
+
         atualizarCards(
           todosEnvios
         );
+
 
         filtrarEnvios();
 
@@ -2861,6 +3573,7 @@ content="width=device-width, initial-scale=1.0"
           "Erro ao salvar edição:",
           erro
         );
+
 
         mostrarMensagem(
           obterMensagemErro(
@@ -2875,8 +3588,10 @@ content="width=device-width, initial-scale=1.0"
 
         esconderLoading();
 
+
         botao.disabled =
           false;
+
 
         botao.textContent =
           "💾 SALVAR ALTERAÇÕES";
@@ -2896,8 +3611,11 @@ content="width=device-width, initial-scale=1.0"
     ) {
 
       if (!objeto) {
+
         return null;
+
       }
+
 
       for (
         const campo of possibilidades
@@ -2916,6 +3634,7 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
+
       return null;
 
     }
@@ -2925,7 +3644,9 @@ content="width=device-width, initial-scale=1.0"
        ENCONTRAR ENVIO
        ===================================================== */
 
-    function encontrarEnvio(id) {
+    function encontrarEnvio(
+      id
+    ) {
 
       return todosEnvios.find(
         function(envio) {
@@ -2953,6 +3674,7 @@ content="width=device-width, initial-scale=1.0"
         "aberto"
       );
 
+
       envioSelecionado =
         null;
 
@@ -2966,6 +3688,7 @@ content="width=device-width, initial-scale=1.0"
       ).classList.remove(
         "aberto"
       );
+
 
       envioEditando =
         null;
@@ -2983,13 +3706,16 @@ content="width=device-width, initial-scale=1.0"
         "filtroTexto"
       ).value = "";
 
+
       document.getElementById(
         "filtroStatus"
       ).value = "";
 
+
       document.getElementById(
         "filtroUF"
       ).value = "";
+
 
       filtrarEnvios();
 
@@ -3014,7 +3740,9 @@ content="width=device-width, initial-scale=1.0"
 
 
       if (!numero) {
+
         return "";
+
       }
 
 
@@ -3046,7 +3774,9 @@ content="width=device-width, initial-scale=1.0"
 
 
       if (!numero) {
+
         return "";
+
       }
 
 
@@ -3106,11 +3836,16 @@ content="width=device-width, initial-scale=1.0"
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(pagina) {
+    function irPara(
+      pagina
+    ) {
 
       if (!pagina) {
+
         return;
+
       }
+
 
       window.location.href =
         pagina;
@@ -3140,7 +3875,9 @@ content="width=device-width, initial-scale=1.0"
 
 
       if (!confirmar) {
+
         return;
+
       }
 
 
@@ -3154,6 +3891,7 @@ content="width=device-width, initial-scale=1.0"
 
         botao.disabled =
           true;
+
 
         botao.textContent =
           "SAINDO...";
@@ -3201,12 +3939,15 @@ content="width=device-width, initial-scale=1.0"
        LOADING
        ===================================================== */
 
-    function mostrarLoading(texto) {
+    function mostrarLoading(
+      texto
+    ) {
 
       const elemento =
         document.getElementById(
           "loadingTela"
         );
+
 
       const textoElemento =
         document.getElementById(
@@ -3267,7 +4008,9 @@ content="width=device-width, initial-scale=1.0"
 
 
       if (!elemento) {
+
         return;
+
       }
 
 
@@ -3409,7 +4152,9 @@ content="width=device-width, initial-scale=1.0"
     ) {
 
       if (!valor) {
+
         return "-";
+
       }
 
 
@@ -3538,6 +4283,7 @@ content="width=device-width, initial-scale=1.0"
           String(
             erro.message
           );
+
 
         const texto =
           mensagem.toLowerCase();
