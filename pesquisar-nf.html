@@ -129,10 +129,7 @@
       cursor: pointer;
       font-size: 13px;
       text-align: left;
-      transition:
-        background 0.2s,
-        color 0.2s,
-        transform 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
     .menu-item:hover {
@@ -222,11 +219,7 @@
       cursor: pointer;
       font-size: 11px;
       font-weight: 700;
-      transition:
-        background 0.2s,
-        border-color 0.2s,
-        color 0.2s,
-        transform 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
     }
 
     .logout:hover {
@@ -625,10 +618,6 @@
       border: 1px solid #e2e8f0;
     }
 
-    /* =====================================================
-       SEM RESULTADO
-       ===================================================== */
-
     .sem-resultado {
       padding: 35px 20px;
       text-align: center;
@@ -849,6 +838,7 @@
 
   </div>
 
+
   <!-- =====================================================
        SIDEBAR
        ===================================================== -->
@@ -871,13 +861,13 @@
 
     </div>
 
+
     <nav class="menu">
 
       <div class="menu-title">
         MENU PRINCIPAL
       </div>
 
-      <!-- DASHBOARD -->
 
       <button
         type="button"
@@ -895,7 +885,6 @@
 
       </button>
 
-      <!-- ENVIOS -->
 
       <button
         type="button"
@@ -913,7 +902,6 @@
 
       </button>
 
-      <!-- PESQUISAR NF -->
 
       <button
         type="button"
@@ -930,7 +918,6 @@
 
       </button>
 
-      <!-- CLIENTES -->
 
       <button
         type="button"
@@ -948,7 +935,6 @@
 
       </button>
 
-      <!-- TRANSPORTADORAS -->
 
       <button
         type="button"
@@ -966,7 +952,6 @@
 
       </button>
 
-      <!-- RELATÓRIOS -->
 
       <button
         type="button"
@@ -984,14 +969,16 @@
 
       </button>
 
+
       <!-- =================================================
            PÓS-ENTREGA
+           CORRIGIDO: NOME EXATO DO ARQUIVO
            ================================================= -->
 
       <button
         type="button"
         class="menu-item"
-        onclick="irPara('posentrega.html')"
+        onclick="irPara('pos-entrega.html')"
       >
 
         <span class="menu-icon">
@@ -1004,7 +991,6 @@
 
       </button>
 
-      <!-- USUÁRIOS -->
 
       <button
         type="button"
@@ -1022,7 +1008,6 @@
 
       </button>
 
-      <!-- CONFIGURAÇÕES -->
 
       <button
         type="button"
@@ -1041,6 +1026,7 @@
       </button>
 
     </nav>
+
 
     <!-- =================================================
          USUÁRIO LOGADO
@@ -1073,6 +1059,7 @@
 
       </div>
 
+
       <button
         type="button"
         class="logout"
@@ -1087,6 +1074,7 @@
     </div>
 
   </aside>
+
 
   <!-- =====================================================
        MAIN
@@ -1108,6 +1096,7 @@
 
       </div>
 
+
       <div class="status-online">
 
         <span class="status-dot"></span>
@@ -1118,12 +1107,14 @@
 
     </header>
 
+
     <section class="content">
 
       <div
         id="mensagem"
         class="mensagem"
       ></div>
+
 
       <div class="page-title">
 
@@ -1137,6 +1128,7 @@
 
       </div>
 
+
       <div class="panel">
 
         <div class="panel-title">
@@ -1146,6 +1138,7 @@
         <div class="panel-subtitle">
           A pesquisa é feita diretamente no banco de dados do BiriLog.
         </div>
+
 
         <div class="pesquisa-area">
 
@@ -1165,6 +1158,7 @@
 
           </div>
 
+
           <button
             type="button"
             class="btn-pesquisar"
@@ -1179,6 +1173,7 @@
         </div>
 
       </div>
+
 
       <div
         id="resultado"
@@ -1207,6 +1202,7 @@
 
             </div>
 
+
             <div
               id="resultadoStatus"
               class="status status-padrao"
@@ -1215,6 +1211,7 @@
             </div>
 
           </div>
+
 
           <div class="info-grid">
 
@@ -1280,10 +1277,12 @@
 
           </div>
 
+
           <div
             id="alertaEntrega"
             class="alerta-entrega"
           ></div>
+
 
           <div class="observacao-box">
 
@@ -1303,6 +1302,7 @@
         </div>
 
       </div>
+
 
       <div
         id="semResultado"
@@ -1331,11 +1331,16 @@
 
   </main>
 
+
   <!-- =====================================================
        JAVASCRIPT
        ===================================================== -->
 
   <script>
+
+    /* =====================================================
+       SUPABASE
+       ===================================================== */
 
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
@@ -1349,12 +1354,15 @@
         SUPABASE_KEY
       );
 
+
     let usuarioAtual = null;
+
 
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
     );
+
 
     async function iniciar() {
 
@@ -1376,28 +1384,29 @@
           resultado.data.session;
 
         if (!session) {
+
           redirecionarLogin();
+
           return;
+
         }
 
         const authUser =
           session.user;
 
+
         const consulta =
           await supabaseClient
             .from("usuarios")
-            .select(
-              "id, nome, email, perfil, ativo"
-            )
-            .eq(
-              "auth_id",
-              authUser.id
-            )
+            .select("id, nome, email, perfil, ativo")
+            .eq("auth_id", authUser.id)
             .maybeSingle();
+
 
         if (consulta.error) {
           throw consulta.error;
         }
+
 
         if (!consulta.data) {
 
@@ -1409,6 +1418,7 @@
 
         }
 
+
         if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
@@ -1419,8 +1429,10 @@
 
         }
 
+
         usuarioAtual =
           consulta.data;
+
 
         preencherUsuario();
 
@@ -1446,26 +1458,31 @@
 
     }
 
+
     function preencherUsuario() {
 
       if (!usuarioAtual) {
         return;
       }
 
+
       const nome =
         usuarioAtual.nome ||
         usuarioAtual.email ||
         "USUÁRIO";
+
 
       document.getElementById(
         "usuarioNome"
       ).textContent =
         String(nome).toUpperCase();
 
+
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email || "-";
+
 
       document.getElementById(
         "usuarioPerfil"
@@ -1476,6 +1493,11 @@
         ).toUpperCase();
 
     }
+
+
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
 
     async function pesquisarNF() {
 
@@ -1494,9 +1516,11 @@
           campo.value || ""
         ).trim();
 
+
       esconderResultado();
 
       limparMensagem();
+
 
       if (!nf) {
 
@@ -1511,6 +1535,7 @@
 
       }
 
+
       try {
 
         botao.disabled = true;
@@ -1518,31 +1543,33 @@
         botao.textContent =
           "🔄 PESQUISANDO...";
 
+
         mostrarLoading(
           "PESQUISANDO NF " +
           nf +
           "..."
         );
 
+
         const consulta =
           await supabaseClient
             .from("envios")
             .select("*")
-            .eq(
-              "nf",
-              nf
-            )
+            .eq("nf", nf)
             .limit(1);
+
 
         if (consulta.error) {
           throw consulta.error;
         }
+
 
         let envio =
           consulta.data &&
           consulta.data.length > 0
             ? consulta.data[0]
             : null;
+
 
         if (!envio) {
 
@@ -1551,12 +1578,15 @@
               .from("envios")
               .select("*");
 
+
           if (todos.error) {
             throw todos.error;
           }
 
+
           const lista =
             todos.data || [];
+
 
           envio =
             lista.find(
@@ -1574,12 +1604,14 @@
 
         }
 
+
         esconderLoading();
 
         botao.disabled = false;
 
         botao.textContent =
           "🔎 PESQUISAR NF";
+
 
         if (!envio) {
 
@@ -1595,6 +1627,7 @@
           return;
 
         }
+
 
         mostrarResultado(
           envio
@@ -1616,6 +1649,7 @@
         botao.textContent =
           "🔎 PESQUISAR NF";
 
+
         mostrarMensagem(
           obterMensagemErro(erro),
           "erro"
@@ -1625,15 +1659,18 @@
 
     }
 
+
     function mostrarResultado(envio) {
 
       document
         .getElementById("resultado")
         .classList.add("aberto");
 
+
       document.getElementById(
         "semResultado"
       ).style.display = "none";
+
 
       document.getElementById(
         "resultadoNF"
@@ -1643,37 +1680,42 @@
           envio.nf || "-"
         ).toUpperCase();
 
+
       document.getElementById(
         "infoCliente"
       ).textContent =
         envio.cliente || "-";
+
 
       document.getElementById(
         "infoCidade"
       ).textContent =
         envio.cidade || "-";
 
+
       document.getElementById(
         "infoUF"
       ).textContent =
         envio.uf || "-";
+
 
       document.getElementById(
         "infoTransportadora"
       ).textContent =
         envio.transportadora || "-";
 
+
       document.getElementById(
         "infoValor"
       ).textContent =
-        formatarValor(
-          envio.valor
-        );
+        formatarValor(envio.valor);
+
 
       document.getElementById(
         "infoVolumes"
       ).textContent =
         envio.volumes ?? "-";
+
 
       document.getElementById(
         "infoPeso"
@@ -1692,26 +1734,24 @@
             ) + " KG"
           : "-";
 
+
       document.getElementById(
         "infoDataEnvio"
       ).textContent =
-        formatarData(
-          envio.data_envio
-        );
+        formatarData(envio.data_envio);
+
 
       document.getElementById(
         "infoPrevisao"
       ).textContent =
-        formatarData(
-          envio.previsao
-        );
+        formatarData(envio.previsao);
+
 
       document.getElementById(
         "infoDataEntrega"
       ).textContent =
-        formatarData(
-          envio.data_entrega
-        );
+        formatarData(envio.data_entrega);
+
 
       document.getElementById(
         "infoAtualizacao"
@@ -1722,10 +1762,12 @@
           envio.created_at
         );
 
+
       document.getElementById(
         "infoID"
       ).textContent =
         envio.id || "-";
+
 
       document.getElementById(
         "infoObservacao"
@@ -1733,13 +1775,16 @@
         envio.observacao ||
         "SEM OBSERVAÇÃO.";
 
+
       atualizarStatus(
         envio.status
       );
 
+
       atualizarAlerta(
         envio
       );
+
 
       window.scrollTo({
         top: 0,
@@ -1747,6 +1792,7 @@
       });
 
     }
+
 
     function normalizarStatus(status) {
 
@@ -1756,12 +1802,10 @@
       .trim()
       .toUpperCase()
       .normalize("NFD")
-      .replace(
-        /[\u0300-\u036f]/g,
-        ""
-      );
+      .replace(/[\u0300-\u036f]/g, "");
 
     }
+
 
     function atualizarStatus(status) {
 
@@ -1770,14 +1814,17 @@
           "resultadoStatus"
         );
 
+
       const texto =
         normalizarStatus(status);
+
 
       let classe =
         "status-padrao";
 
       let icone =
         "📌";
+
 
       if (texto === "COLETADO") {
 
@@ -1819,9 +1866,11 @@
 
       }
 
+
       elemento.className =
         "status " +
         classe;
+
 
       elemento.textContent =
         icone +
@@ -1833,6 +1882,7 @@
 
     }
 
+
     function atualizarAlerta(envio) {
 
       const elemento =
@@ -1840,22 +1890,28 @@
           "alertaEntrega"
         );
 
+
       elemento.className =
         "alerta-entrega";
 
+
       elemento.textContent =
         "";
+
 
       const status =
         normalizarStatus(
           envio.status
         );
 
+
       const dataEntrega =
         envio.data_entrega;
 
+
       const previsao =
         envio.previsao;
+
 
       if (
         status === "ENTREGUE" ||
@@ -1874,6 +1930,7 @@
 
       }
 
+
       if (!previsao) {
 
         elemento.classList.add(
@@ -1888,31 +1945,29 @@
 
       }
 
+
       const data =
-        criarData(
-          previsao
-        );
+        criarData(previsao);
+
 
       if (!data) {
         return;
       }
 
+
       const hoje =
         new Date();
 
+
       hoje.setHours(
-        0,
-        0,
-        0,
-        0
+        0, 0, 0, 0
       );
 
+
       data.setHours(
-        0,
-        0,
-        0,
-        0
+        0, 0, 0, 0
       );
+
 
       if (
         data.getTime() ===
@@ -1931,6 +1986,7 @@
 
       }
 
+
       if (
         data.getTime() <
         hoje.getTime()
@@ -1948,6 +2004,7 @@
 
       }
 
+
       elemento.classList.add(
         "aberto",
         "alerta-azul"
@@ -1958,6 +2015,7 @@
 
     }
 
+
     function mostrarSemResultado() {
 
       document.getElementById(
@@ -1966,12 +2024,14 @@
         "aberto"
       );
 
+
       document.getElementById(
         "semResultado"
       ).style.display =
         "block";
 
     }
+
 
     function esconderResultado() {
 
@@ -1983,14 +2043,21 @@
 
     }
 
+
+    /* =====================================================
+       DATAS
+       ===================================================== */
+
     function criarData(valor) {
 
       if (!valor) {
         return null;
       }
 
+
       const texto =
         String(valor);
+
 
       if (
         /^\d{4}-\d{2}-\d{2}$/.test(
@@ -2001,6 +2068,7 @@
         const partes =
           texto.split("-");
 
+
         return new Date(
           Number(partes[0]),
           Number(partes[1]) - 1,
@@ -2009,31 +2077,35 @@
 
       }
 
+
       const data =
         new Date(valor);
 
+
       if (
-        isNaN(
-          data.getTime()
-        )
+        isNaN(data.getTime())
       ) {
 
         return null;
 
       }
 
+
       return data;
 
     }
+
 
     function formatarData(valor) {
 
       const data =
         criarData(valor);
 
+
       if (!data) {
         return "-";
       }
+
 
       return String(
         data.getDate()
@@ -2047,14 +2119,17 @@
 
     }
 
+
     function formatarDataHora(valor) {
 
       const data =
         criarData(valor);
 
+
       if (!data) {
         return "-";
       }
+
 
       return String(
         data.getDate()
@@ -2076,12 +2151,18 @@
 
     }
 
+
+    /* =====================================================
+       VALOR
+       ===================================================== */
+
     function formatarValor(valor) {
 
       const numero =
         Number(
           valor || 0
         );
+
 
       return numero.toLocaleString(
         "pt-BR",
@@ -2093,26 +2174,39 @@
 
     }
 
-    function mostrarMensagem(texto, tipo) {
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
 
       const elemento =
         document.getElementById(
           "mensagem"
         );
 
+
       elemento.textContent =
         texto;
+
 
       elemento.className =
         "mensagem " +
         tipo;
 
+
       elemento.style.display =
         "block";
+
 
       clearTimeout(
         window.timerMensagem
       );
+
 
       window.timerMensagem =
         setTimeout(
@@ -2127,6 +2221,7 @@
 
     }
 
+
     function limparMensagem() {
 
       const elemento =
@@ -2134,16 +2229,52 @@
           "mensagem"
         );
 
+
       elemento.textContent =
         "";
 
+
       elemento.className =
         "mensagem";
+
 
       elemento.style.display =
         "none";
 
     }
+
+
+    /* =====================================================
+       ERROS
+       ===================================================== */
+
+    function obterMensagemErro(erro) {
+
+      if (!erro) {
+
+        return "OCORREU UM ERRO AO PESQUISAR A NF.";
+
+      }
+
+
+      if (erro.message) {
+
+        return (
+          "ERRO AO PESQUISAR A NF: " +
+          erro.message
+        ).toUpperCase();
+
+      }
+
+
+      return "OCORREU UM ERRO AO PESQUISAR A NF.";
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
 
     function mostrarLoading(texto) {
 
@@ -2152,10 +2283,12 @@
           "loading"
         );
 
+
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
+
 
       if (textoElemento) {
 
@@ -2164,6 +2297,7 @@
           "CARREGANDO...";
 
       }
+
 
       if (elemento) {
 
@@ -2174,12 +2308,14 @@
 
     }
 
+
     function esconderLoading() {
 
       const elemento =
         document.getElementById(
           "loading"
         );
+
 
       if (elemento) {
 
@@ -2190,20 +2326,6 @@
 
     }
 
-    function obterMensagemErro(erro) {
-
-      if (!erro) {
-
-        return "ERRO AO PESQUISAR A NOTA FISCAL.";
-
-      }
-
-      return (
-        erro.message ||
-        "ERRO AO PESQUISAR A NOTA FISCAL."
-      );
-
-    }
 
     /* =====================================================
        NAVEGAÇÃO
@@ -2215,10 +2337,12 @@
         return;
       }
 
+
       const separador =
         pagina.includes("?")
           ? "&"
           : "?";
+
 
       window.location.href =
         pagina +
@@ -2227,6 +2351,7 @@
         Date.now();
 
     }
+
 
     /* =====================================================
        LOGIN
@@ -2240,6 +2365,7 @@
 
     }
 
+
     /* =====================================================
        SAIR
        ===================================================== */
@@ -2251,14 +2377,17 @@
           "DESEJA REALMENTE SAIR DO BIRILOG?"
         );
 
+
       if (!confirmar) {
         return;
       }
+
 
       const botao =
         document.getElementById(
           "botaoSair"
         );
+
 
       if (botao) {
 
@@ -2269,6 +2398,7 @@
           "SAINDO...";
 
       }
+
 
       try {
 
@@ -2285,9 +2415,11 @@
 
       }
 
+
       redirecionarLogin();
 
     }
+
 
     /* =====================================================
        ENTER
@@ -2313,6 +2445,7 @@
         }
       );
 
+
     /* =====================================================
        LIMPAR AO DIGITAR
        ===================================================== */
@@ -2329,6 +2462,7 @@
 
         }
       );
+
 
     /* =====================================================
        MONITORAR SESSÃO
