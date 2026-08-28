@@ -1,15 +1,16 @@
-```html
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Transportadoras</title>
 
@@ -40,11 +41,12 @@
        ===================================================== */
 
     .sidebar {
+      width: 250px;
+      height: 100vh;
       position: fixed;
       left: 0;
       top: 0;
       bottom: 0;
-      width: 250px;
       background: linear-gradient(180deg, #0f172a, #172554);
       color: white;
       display: flex;
@@ -53,6 +55,10 @@
       box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
     }
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
 
     .logo-area {
       padding: 28px 22px;
@@ -99,6 +105,7 @@
       flex: 1;
       min-height: 0;
       overflow-y: auto;
+      scrollbar-width: thin;
     }
 
     .menu-title {
@@ -123,12 +130,16 @@
       cursor: pointer;
       font-size: 13px;
       text-align: left;
-      transition: 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
     .menu-item:hover {
       background: rgba(255,255,255,0.08);
       color: white;
+    }
+
+    .menu-item:active {
+      transform: scale(0.99);
     }
 
     .menu-item.active {
@@ -193,23 +204,33 @@
 
     .logout {
       width: 100%;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      position: relative;
+      z-index: 999;
+      pointer-events: auto;
       margin-top: 10px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
       color: #e2e8f0;
       padding: 11px 10px;
-      min-height: 38px;
+      min-height: 40px;
       border-radius: 8px;
       cursor: pointer;
       font-size: 11px;
       font-weight: 700;
-      transition: 0.2s;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
     }
 
     .logout:hover {
       background: #dc2626;
       border-color: #dc2626;
       color: white;
+    }
+
+    .logout:active {
+      transform: scale(0.98);
     }
 
     .logout:disabled {
@@ -226,6 +247,10 @@
       width: calc(100% - 250px);
       min-height: 100vh;
     }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
 
     .header {
       height: 75px;
@@ -272,68 +297,27 @@
     }
 
     /* =====================================================
-       CONTEÚDO
+       CONTENT
        ===================================================== */
 
     .content {
       padding: 30px;
     }
 
-    .mensagem {
-      display: none;
-      margin-bottom: 20px;
-      padding: 13px 16px;
-      border-radius: 9px;
-      font-size: 11px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .mensagem.sucesso {
-      display: block;
-      background: #f0fdf4;
-      color: #15803d;
-      border: 1px solid #bbf7d0;
-    }
-
-    .mensagem.erro {
-      display: block;
-      background: #fef2f2;
-      color: #b91c1c;
-      border: 1px solid #fecaca;
-    }
-
-    /* =====================================================
-       CARDS
-       ===================================================== */
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+    .page-title {
       margin-bottom: 22px;
     }
 
-    .card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
-    }
-
-    .card-label {
-      font-size: 10px;
-      color: #64748b;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .card-value {
-      margin-top: 8px;
-      font-size: 28px;
+    .page-title h1 {
+      font-size: 18px;
       font-weight: 800;
       color: #0f172a;
+    }
+
+    .page-title p {
+      margin-top: 5px;
+      font-size: 11px;
+      color: #64748b;
     }
 
     /* =====================================================
@@ -349,16 +333,8 @@
       margin-bottom: 20px;
     }
 
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
     .panel-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: #0f172a;
     }
@@ -370,271 +346,72 @@
     }
 
     /* =====================================================
-       FORMULÁRIO
-       ===================================================== */
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      gap: 15px;
-    }
-
-    .campo {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .campo label {
-      margin-bottom: 7px;
-      font-size: 10px;
-      font-weight: 700;
-      color: #475569;
-      text-transform: uppercase;
-    }
-
-    .campo input,
-    .campo select {
-      width: 100%;
-      min-height: 44px;
-      padding: 10px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      background: #f8fafc;
-      color: #0f172a;
-      outline: none;
-      font-size: 12px;
-      text-transform: uppercase;
-      transition: 0.2s;
-    }
-
-    .campo input:focus,
-    .campo select:focus {
-      background: white;
-      border-color: #1976d2;
-      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
-    }
-
-    .form-acoes {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid #f1f5f9;
-    }
-
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
-
-    .btn {
-      border: none;
-      border-radius: 8px;
-      padding: 11px 17px;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn:disabled {
-      opacity: .6;
-      cursor: wait;
-      transform: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #1976d2, #2563eb);
-      color: white;
-      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
-    }
-
-    .btn-secondary {
-      background: #f1f5f9;
-      color: #475569;
-      border: 1px solid #e2e8f0;
-    }
-
-    /* =====================================================
-       FILTROS
-       ===================================================== */
-
-    .filtros {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .filtro {
-      width: 100%;
-      height: 42px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      padding: 0 12px;
-      background: #f8fafc;
-      color: #334155;
-      outline: none;
-      font-size: 11px;
-      text-transform: uppercase;
-    }
-
-    .filtro:focus {
-      background: white;
-      border-color: #1976d2;
-      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
-    }
-
-    /* =====================================================
        TABELA
        ===================================================== */
 
-    .table-wrapper {
-      width: 100%;
+    .tabela-container {
+      margin-top: 18px;
       overflow-x: auto;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
     }
 
     table {
       width: 100%;
-      min-width: 1050px;
       border-collapse: collapse;
+      min-width: 650px;
+    }
+
+    thead {
+      background: #f8fafc;
     }
 
     th {
-      padding: 11px 8px;
+      padding: 13px 12px;
       text-align: left;
-      border-bottom: 1px solid #e2e8f0;
-      color: #64748b;
       font-size: 9px;
+      font-weight: 800;
+      color: #64748b;
       text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
       white-space: nowrap;
     }
 
     td {
-      padding: 12px 8px;
-      border-bottom: 1px solid #f1f5f9;
-      font-size: 10px;
+      padding: 13px 12px;
+      font-size: 11px;
       color: #334155;
-      white-space: nowrap;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    tbody tr:hover td {
+    tbody tr:hover {
       background: #f8fafc;
     }
 
-    .transportadora-nome {
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .sem-dados {
+      text-align: center;
+      padding: 35px 20px;
+      color: #94a3b8;
+    }
+
+    .sem-dados-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .sem-dados-titulo {
+      font-size: 13px;
       font-weight: 800;
-      color: #0f172a;
+      color: #475569;
     }
 
-    .acoes {
-      display: flex;
-      gap: 5px;
-    }
-
-    .btn-mini {
-      border: none;
-      padding: 6px 8px;
-      border-radius: 6px;
-      cursor: pointer;
+    .sem-dados-texto {
+      margin-top: 5px;
       font-size: 10px;
-      font-weight: 700;
-    }
-
-    .btn-editar {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .btn-excluir {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-
-    .status-ativo {
-      display: inline-block;
-      padding: 5px 8px;
-      border-radius: 20px;
-      background: #dcfce7;
-      color: #15803d;
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    .status-inativo {
-      display: inline-block;
-      padding: 5px 8px;
-      border-radius: 20px;
-      background: #fee2e2;
-      color: #b91c1c;
-      font-size: 9px;
-      font-weight: 800;
-    }
-
-    /* =====================================================
-       MODAL
-       ===================================================== */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(15,23,42,0.55);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 500;
-    }
-
-    .modal.aberto {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 650px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: white;
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .modal-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-
-    .fechar {
-      border: none;
-      background: transparent;
-      color: #64748b;
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .fechar:hover {
-      color: #0f172a;
-    }
-
-    .modal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
     }
 
     /* =====================================================
@@ -672,8 +449,8 @@
 
     .loading-text {
       font-size: 11px;
-      color: #64748b;
       font-weight: 700;
+      color: #64748b;
     }
 
     @keyframes girar {
@@ -683,28 +460,36 @@
     }
 
     /* =====================================================
-       RESPONSIVO
+       MENSAGEM
        ===================================================== */
 
-    @media (max-width: 1100px) {
-
-      .form-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
+    .mensagem {
+      display: none;
+      margin-bottom: 20px;
+      padding: 13px 16px;
+      border-radius: 9px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
     }
 
-    @media (max-width: 900px) {
-
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .filtros {
-        grid-template-columns: 1fr;
-      }
-
+    .mensagem.erro {
+      display: block;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
     }
+
+    .mensagem.sucesso {
+      display: block;
+      background: #f0fdf4;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
 
     @media (max-width: 700px) {
 
@@ -781,36 +566,8 @@
         padding: 18px;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-acoes {
-        flex-direction: column;
-      }
-
-      .form-acoes .btn {
-        width: 100%;
-      }
-
       .panel {
-        padding: 18px;
-      }
-
-    }
-
-    @media (max-width: 450px) {
-
-      .header-subtitle {
-        display: none;
+        padding: 16px;
       }
 
     }
@@ -826,25 +583,26 @@
        ===================================================== -->
 
   <div
-    id="loadingTela"
+    id="loading"
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
-      </div>
-
-    </div>
-
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        SIDEBAR
@@ -852,152 +610,172 @@
 
   <aside class="sidebar">
 
-    <div class="logo-area">
+```
+<div class="logo-area">
 
-      <div class="logo-icon">
-        🚚
-      </div>
+  <div class="logo-icon">
+    🚚
+  </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
 
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+    <span class="menu-icon">📊</span>
+    <span>Dashboard</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+    <span class="menu-icon">📦</span>
+    <span>Envios</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pesquisanf.html')"
+  >
+    <span class="menu-icon">🔎</span>
+    <span>Pesquisar NF</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+    <span class="menu-icon">👥</span>
+    <span>Clientes</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+    <span class="menu-icon">🚛</span>
+    <span>Transportadoras</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+    <span class="menu-icon">📄</span>
+    <span>Relatórios</span>
+  </button>
+
+
+  <!-- =================================================
+       PÓS-ENTREGA
+       LINK CORRETO
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+    <span class="menu-icon">📱</span>
+    <span>Pós-Entrega</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+    <span class="menu-icon">🔐</span>
+    <span>Usuários</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+    <span class="menu-icon">⚙️</span>
+    <span>Configurações</span>
+  </button>
+
+</nav>
+
+
+<!-- =================================================
+     USUÁRIO LOGADO
+     ================================================= -->
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
     </div>
 
-
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-        <span class="menu-icon">📊</span>
-        <span>Dashboard</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-        <span class="menu-icon">📦</span>
-        <span>Envios</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irParaPesquisarNF()"
-      >
-        <span class="menu-icon">🔎</span>
-        <span>Pesquisar NF</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-        <span class="menu-icon">👥</span>
-        <span>Clientes</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-        <span class="menu-icon">🚛</span>
-        <span>Transportadoras</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-        <span class="menu-icon">📄</span>
-        <span>Relatórios</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-        <span class="menu-icon">🔐</span>
-        <span>Usuários</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-        <span class="menu-icon">⚙️</span>
-        <span>Configurações</span>
-      </button>
-
-    </nav>
-
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-        🚪 SAIR DO SISTEMA
-      </button>
-
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
     </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+    🚪 SAIR DO SISTEMA
+  </button>
+
+</div>
+```
 
   </aside>
-
 
   <!-- =====================================================
        MAIN
@@ -1005,647 +783,131 @@
 
   <main class="main">
 
-    <header class="header">
+```
+<header class="header">
 
-      <div>
+  <div>
 
-        <div class="header-title">
-          Transportadoras
-        </div>
+    <div class="header-title">
+      Transportadoras
+    </div>
 
-        <div class="header-subtitle">
-          Cadastro e gerenciamento das transportadoras
-        </div>
+    <div class="header-subtitle">
+      Cadastro e consulta das transportadoras do BiriLog
+    </div>
 
-      </div>
+  </div>
 
 
-      <div class="status-online">
+  <div class="status-online">
 
-        <span class="status-dot"></span>
+    <span class="status-dot"></span>
 
-        SISTEMA ONLINE
+    SISTEMA ONLINE
 
-      </div>
+  </div>
 
-    </header>
+</header>
 
 
-    <section class="content">
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-
-      <!-- =================================================
-           CARDS
-           ================================================= -->
-
-      <div class="cards">
-
-        <div class="card">
-
-          <div class="card-label">
-            Total de Transportadoras
-          </div>
-
-          <div
-            id="cardTotal"
-            class="card-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="card-label">
-            Ativas
-          </div>
-
-          <div
-            id="cardAtivas"
-            class="card-value"
-          >
-            0
-          </div>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="card-label">
-            Atualização
-          </div>
-
-          <div
-            id="cardAtualizacao"
-            class="card-value"
-            style="font-size:17px;"
-          >
-            -
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- =================================================
-           NOVA TRANSPORTADORA
-           ================================================= -->
-
-      <div class="panel">
-
-        <div class="panel-header">
-
-          <div>
-
-            <div class="panel-title">
-              🚛 NOVA TRANSPORTADORA
-            </div>
-
-            <div class="panel-subtitle">
-              Cadastre uma nova transportadora no BiriLog.
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <form
-          id="formTransportadora"
-          onsubmit="salvarTransportadora(event)"
-        >
-
-          <div class="form-grid">
-
-            <div class="campo">
-
-              <label for="nome">
-                Transportadora *
-              </label>
-
-              <input
-                type="text"
-                id="nome"
-                placeholder="NOME DA TRANSPORTADORA"
-                autocomplete="off"
-                required
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="cidade">
-                Cidade
-              </label>
-
-              <input
-                type="text"
-                id="cidade"
-                placeholder="CIDADE"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="uf">
-                UF
-              </label>
-
-              <select id="uf">
-
-                <option value="">
-                  SELECIONE
-                </option>
-
-                <option value="TO">
-                  TOCANTINS - TO
-                </option>
-
-                <option value="PA">
-                  PARÁ - PA
-                </option>
-
-                <option value="MA">
-                  MARANHÃO - MA
-                </option>
-
-                <option value="GO">
-                  GOIÁS - GO
-                </option>
-
-                <option value="MT">
-                  MATO GROSSO - MT
-                </option>
-
-                <option value="BA">
-                  BAHIA - BA
-                </option>
-
-                <option value="PI">
-                  PIAUÍ - PI
-                </option>
-
-                <option value="MG">
-                  MINAS GERAIS - MG
-                </option>
-
-                <option value="SP">
-                  SÃO PAULO - SP
-                </option>
-
-                <option value="RJ">
-                  RIO DE JANEIRO - RJ
-                </option>
-
-                <option value="DF">
-                  DISTRITO FEDERAL - DF
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="telefone">
-                Telefone
-              </label>
-
-              <input
-                type="text"
-                id="telefone"
-                placeholder="TELEFONE"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="email">
-                E-mail
-              </label>
-
-              <input
-                type="email"
-                id="email"
-                placeholder="E-MAIL"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="ativo">
-                Ativo
-              </label>
-
-              <select id="ativo">
-
-                <option value="true">
-                  ATIVO
-                </option>
-
-                <option value="false">
-                  INATIVO
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <div class="form-acoes">
-
-            <button
-              type="button"
-              class="btn btn-secondary"
-              onclick="limparFormulario()"
-            >
-              🧹 LIMPAR
-            </button>
-
-
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="btnSalvar"
-            >
-              💾 SALVAR TRANSPORTADORA
-            </button>
-
-          </div>
-
-        </form>
-
-      </div>
-
-
-      <!-- =================================================
-           LISTA
-           ================================================= -->
-
-      <div class="panel">
-
-        <div class="panel-header">
-
-          <div>
-
-            <div class="panel-title">
-              📋 TRANSPORTADORAS CADASTRADAS
-            </div>
-
-            <div class="panel-subtitle">
-              Consulte, edite e exclua transportadoras.
-            </div>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="carregarTransportadoras()"
-          >
-            🔄 ATUALIZAR
-          </button>
-
-        </div>
-
-
-        <div class="filtros">
-
-          <input
-            type="text"
-            id="filtroTexto"
-            class="filtro"
-            placeholder="🔎 NOME, CIDADE, UF, TELEFONE OU E-MAIL"
-            autocomplete="off"
-            oninput="filtrarTransportadoras()"
-          >
-
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="limparFiltros()"
-          >
-            LIMPAR FILTROS
-          </button>
-
-        </div>
-
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  NOME
-                </th>
-
-                <th>
-                  CIDADE
-                </th>
-
-                <th>
-                  UF
-                </th>
-
-                <th>
-                  TELEFONE
-                </th>
-
-                <th>
-                  E-MAIL
-                </th>
-
-                <th>
-                  ATIVO
-                </th>
-
-                <th>
-                  CRIADO EM
-                </th>
-
-                <th>
-                  AÇÕES
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody
-              id="tabelaTransportadoras"
-            >
-
-              <tr>
-
-                <td
-                  colspan="8"
-                  style="
-                    text-align:center;
-                    padding:30px;
-                    color:#94a3b8;
-                  "
-                >
-                  CARREGANDO TRANSPORTADORAS...
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- =====================================================
-       MODAL EDITAR
-       ===================================================== -->
+<section class="content">
 
   <div
-    id="modalEditar"
-    class="modal"
-  >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <div class="modal-title">
-          ✏️ EDITAR TRANSPORTADORA
-        </div>
-
-        <button
-          type="button"
-          class="fechar"
-          onclick="fecharModal()"
-        >
-          ×
-        </button>
-
-      </div>
+    id="mensagem"
+    class="mensagem"
+  ></div>
 
 
-      <form
-        id="formEditar"
-        onsubmit="atualizarTransportadora(event)"
-      >
+  <div class="page-title">
 
-        <input
-          type="hidden"
-          id="editarId"
-        >
+    <h1>
+      🚛 TRANSPORTADORAS
+    </h1>
 
+    <p>
+      Consulte as transportadoras cadastradas no sistema.
+    </p>
 
-        <div class="modal-grid">
-
-          <div class="campo">
-
-            <label for="editarNome">
-              Transportadora *
-            </label>
-
-            <input
-              type="text"
-              id="editarNome"
-              autocomplete="off"
-              required
-            >
-
-          </div>
+  </div>
 
 
-          <div class="campo">
+  <div class="panel">
 
-            <label for="editarCidade">
-              Cidade
-            </label>
+    <div class="panel-title">
+      Transportadoras cadastradas
+    </div>
 
-            <input
-              type="text"
-              id="editarCidade"
-              autocomplete="off"
-            >
-
-          </div>
+    <div class="panel-subtitle">
+      Lista atualizada diretamente do banco de dados do BiriLog.
+    </div>
 
 
-          <div class="campo">
+    <div class="tabela-container">
 
-            <label for="editarUf">
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              ID
+            </th>
+
+            <th>
+              NOME
+            </th>
+
+            <th>
+              CIDADE
+            </th>
+
+            <th>
               UF
-            </label>
+            </th>
 
-            <select id="editarUf">
+            <th>
+              STATUS
+            </th>
 
-              <option value="">
-                SELECIONE
-              </option>
+          </tr>
 
-              <option value="TO">
-                TOCANTINS - TO
-              </option>
-
-              <option value="PA">
-                PARÁ - PA
-              </option>
-
-              <option value="MA">
-                MARANHÃO - MA
-              </option>
-
-              <option value="GO">
-                GOIÁS - GO
-              </option>
-
-              <option value="MT">
-                MATO GROSSO - MT
-              </option>
-
-              <option value="BA">
-                BAHIA - BA
-              </option>
-
-              <option value="PI">
-                PIAUÍ - PI
-              </option>
-
-              <option value="MG">
-                MINAS GERAIS - MG
-              </option>
-
-              <option value="SP">
-                SÃO PAULO - SP
-              </option>
-
-              <option value="RJ">
-                RIO DE JANEIRO - RJ
-              </option>
-
-              <option value="DF">
-                DISTRITO FEDERAL - DF
-              </option>
-
-            </select>
-
-          </div>
+        </thead>
 
 
-          <div class="campo">
+        <tbody id="tabelaTransportadoras">
 
-            <label for="editarTelefone">
-              Telefone
-            </label>
+          <tr>
 
-            <input
-              type="text"
-              id="editarTelefone"
-              autocomplete="off"
+            <td
+              colspan="5"
+              class="sem-dados"
             >
 
-          </div>
+              <div class="sem-dados-icon">
+                🚛
+              </div>
 
+              <div class="sem-dados-titulo">
+                CARREGANDO TRANSPORTADORAS...
+              </div>
 
-          <div class="campo">
+            </td>
 
-            <label for="editarEmail">
-              E-mail
-            </label>
+          </tr>
 
-            <input
-              type="email"
-              id="editarEmail"
-              autocomplete="off"
-            >
+        </tbody>
 
-          </div>
-
-
-          <div class="campo">
-
-            <label for="editarAtivo">
-              Ativo
-            </label>
-
-            <select id="editarAtivo">
-
-              <option value="true">
-                ATIVO
-              </option>
-
-              <option value="false">
-                INATIVO
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <div class="form-acoes">
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="fecharModal()"
-          >
-            CANCELAR
-          </button>
-
-
-          <button
-            type="submit"
-            class="btn btn-primary"
-            id="btnAtualizar"
-          >
-            💾 SALVAR ALTERAÇÕES
-          </button>
-
-        </div>
-
-      </form>
+      </table>
 
     </div>
 
   </div>
 
+</section>
+```
+
+  </main>
 
   <!-- =====================================================
        JAVASCRIPT
@@ -1663,6 +925,7 @@
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
 
+
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
@@ -1670,24 +933,18 @@
       );
 
 
-    /* =====================================================
-       VARIÁVEIS
-       ===================================================== */
-
     let usuarioAtual = null;
 
-    let todasTransportadoras = [];
-
-
-    /* =====================================================
-       INICIALIZAÇÃO
-       ===================================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
     );
 
+
+    /* =====================================================
+       INICIAR
+       ===================================================== */
 
     async function iniciar() {
 
@@ -1698,20 +955,18 @@
         );
 
 
-        const resultadoSessao =
+        const resultado =
           await supabaseClient.auth.getSession();
 
 
-        if (resultadoSessao.error) {
-
-          throw resultadoSessao.error;
-
+        if (resultado.error) {
+          throw resultado.error;
         }
 
 
         const session =
-          resultadoSessao.data &&
-          resultadoSessao.data.session;
+          resultado.data &&
+          resultado.data.session;
 
 
         if (!session) {
@@ -1730,15 +985,18 @@
         const consulta =
           await supabaseClient
             .from("usuarios")
-            .select("id,nome,email,perfil,ativo")
-            .eq("auth_id", authUser.id)
+            .select(
+              "id, nome, email, perfil, ativo"
+            )
+            .eq(
+              "auth_id",
+              authUser.id
+            )
             .maybeSingle();
 
 
         if (consulta.error) {
-
           throw consulta.error;
-
         }
 
 
@@ -1770,40 +1028,31 @@
 
         preencherUsuario();
 
-        esconderLoading();
 
         await carregarTransportadoras();
+
+
+        esconderLoading();
 
       }
 
       catch (erro) {
 
         console.error(
-          "Erro ao iniciar Transportadoras:",
+          "Erro ao iniciar:",
           erro
         );
 
+
         esconderLoading();
 
+
         mostrarMensagem(
-          obterMensagemErro(erro),
+          "NÃO FOI POSSÍVEL CARREGAR A PÁGINA DE TRANSPORTADORAS.",
           "erro"
         );
 
       }
-
-    }
-
-
-    /* =====================================================
-       REDIRECIONAR LOGIN
-       ===================================================== */
-
-    function redirecionarLogin() {
-
-      window.location.replace(
-        "index.html"
-      );
 
     }
 
@@ -1819,21 +1068,22 @@
       }
 
 
+      const nome =
+        usuarioAtual.nome ||
+        usuarioAtual.email ||
+        "USUÁRIO";
+
+
       document.getElementById(
         "usuarioNome"
       ).textContent =
-        String(
-          usuarioAtual.nome ||
-          usuarioAtual.email ||
-          "USUÁRIO"
-        ).toUpperCase();
+        String(nome).toUpperCase();
 
 
       document.getElementById(
         "usuarioEmail"
       ).textContent =
-        usuarioAtual.email ||
-        "-";
+        usuarioAtual.email || "-";
 
 
       document.getElementById(
@@ -1848,24 +1098,23 @@
 
 
     /* =====================================================
-       CARREGAR TRANSPORTADORAS
+       TRANSPORTADORAS
        ===================================================== */
 
     async function carregarTransportadoras() {
 
-      mostrarLoading(
-        "CARREGANDO TRANSPORTADORAS..."
-      );
+      const tabela =
+        document.getElementById(
+          "tabelaTransportadoras"
+        );
 
 
       try {
 
-        const resultado =
+        const consulta =
           await supabaseClient
             .from("transportadoras")
-            .select(
-              "id,nome,cidade,uf,telefone,email,ativo,criado_em,atualizado_em"
-            )
+            .select("*")
             .order(
               "nome",
               {
@@ -1874,25 +1123,110 @@
             );
 
 
-        if (resultado.error) {
+        if (consulta.error) {
+          throw consulta.error;
+        }
 
-          throw resultado.error;
+
+        const lista =
+          consulta.data || [];
+
+
+        if (!lista.length) {
+
+          tabela.innerHTML = `
+
+            <tr>
+
+              <td
+                colspan="5"
+                class="sem-dados"
+              >
+
+                <div class="sem-dados-icon">
+                  🚛
+                </div>
+
+                <div class="sem-dados-titulo">
+                  NENHUMA TRANSPORTADORA CADASTRADA
+                </div>
+
+                <div class="sem-dados-texto">
+                  Não existem transportadoras para exibir.
+                </div>
+
+              </td>
+
+            </tr>
+
+          `;
+
+          return;
 
         }
 
 
-        todasTransportadoras =
-          resultado.data || [];
+        tabela.innerHTML =
+          lista.map(
+            function(item) {
+
+              const id =
+                item.id ??
+                "-";
 
 
-        atualizarCards(
-          todasTransportadoras
-        );
+              const nome =
+                item.nome ||
+                item.name ||
+                "-";
 
 
-        atualizarHora();
+              const cidade =
+                item.cidade ||
+                "-";
 
-        filtrarTransportadoras();
+
+              const uf =
+                item.uf ||
+                "-";
+
+
+              const ativo =
+                item.ativo !== false;
+
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${escaparHTML(id)}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${escaparHTML(nome)}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${escaparHTML(cidade)}
+                  </td>
+
+                  <td>
+                    ${escaparHTML(uf)}
+                  </td>
+
+                  <td>
+                    ${ativo ? "🟢 ATIVA" : "🔴 INATIVA"}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          ).join("");
 
       }
 
@@ -1904,696 +1238,28 @@
         );
 
 
-        todasTransportadoras = [];
-
-        atualizarCards([]);
-
-        renderizarTabela([]);
-
-
-        mostrarMensagem(
-          obterMensagemErro(erro),
-          "erro"
-        );
-
-      }
-
-      finally {
-
-        esconderLoading();
-
-      }
-
-    }
-
-
-    /* =====================================================
-       CARDS
-       ===================================================== */
-
-    function atualizarCards(lista) {
-
-      const total =
-        lista.length;
-
-
-      const ativas =
-        lista.filter(
-          function(item) {
-
-            return item.ativo !== false;
-
-          }
-        ).length;
-
-
-      document.getElementById(
-        "cardTotal"
-      ).textContent =
-        total;
-
-
-      document.getElementById(
-        "cardAtivas"
-      ).textContent =
-        ativas;
-
-    }
-
-
-    function atualizarHora() {
-
-      const elemento =
-        document.getElementById(
-          "cardAtualizacao"
-        );
-
-
-      if (!elemento) {
-        return;
-      }
-
-
-      elemento.textContent =
-        new Date().toLocaleTimeString(
-          "pt-BR",
-          {
-            hour: "2-digit",
-            minute: "2-digit"
-          }
-        );
-
-    }
-
-
-    /* =====================================================
-       SALVAR
-       ===================================================== */
-
-    async function salvarTransportadora(evento) {
-
-      evento.preventDefault();
-
-
-      const botao =
-        document.getElementById(
-          "btnSalvar"
-        );
-
-
-      const nome =
-        document.getElementById(
-          "nome"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const cidade =
-        document.getElementById(
-          "cidade"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const uf =
-        document.getElementById(
-          "uf"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const telefone =
-        document.getElementById(
-          "telefone"
-        ).value
-          .trim();
-
-
-      const email =
-        document.getElementById(
-          "email"
-        ).value
-          .trim()
-          .toLowerCase();
-
-
-      const ativo =
-        document.getElementById(
-          "ativo"
-        ).value === "true";
-
-
-      if (!nome) {
-
-        mostrarMensagem(
-          "INFORME O NOME DA TRANSPORTADORA.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        botao.disabled = true;
-
-        botao.textContent =
-          "💾 SALVANDO...";
-
-
-        mostrarLoading(
-          "SALVANDO TRANSPORTADORA..."
-        );
-
-
-        const consultaNome =
-          await supabaseClient
-            .from("transportadoras")
-            .select("id,nome")
-            .ilike("nome", nome)
-            .limit(1);
-
-
-        if (consultaNome.error) {
-
-          throw consultaNome.error;
-
-        }
-
-
-        if (
-          consultaNome.data &&
-          consultaNome.data.length > 0
-        ) {
-
-          throw new Error(
-            "A TRANSPORTADORA " +
-            nome +
-            " JÁ ESTÁ CADASTRADA."
-          );
-
-        }
-
-
-        const dados = {
-
-          nome: nome,
-
-          cidade:
-            cidade || null,
-
-          uf:
-            uf || null,
-
-          telefone:
-            telefone || null,
-
-          email:
-            email || null,
-
-          ativo:
-            ativo
-
-        };
-
-
-        const resultado =
-          await supabaseClient
-            .from("transportadoras")
-            .insert([dados]);
-
-
-        if (resultado.error) {
-
-          throw resultado.error;
-
-        }
-
-
-        esconderLoading();
-
-
-        mostrarMensagem(
-          "TRANSPORTADORA CADASTRADA COM SUCESSO!",
-          "sucesso"
-        );
-
-
-        limparFormulario();
-
-
-        await carregarTransportadoras();
-
-      }
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao salvar transportadora:",
-          erro
-        );
-
-
-        esconderLoading();
-
-
-        mostrarMensagem(
-          obterMensagemErro(erro),
-          "erro"
-        );
-
-      }
-
-      finally {
-
-        botao.disabled = false;
-
-        botao.textContent =
-          "💾 SALVAR TRANSPORTADORA";
-
-      }
-
-    }
-
-
-    /* =====================================================
-       EDITAR
-       ===================================================== */
-
-    function abrirEditar(id) {
-
-      const transportadora =
-        todasTransportadoras.find(
-          function(item) {
-
-            return String(item.id) ===
-              String(id);
-
-          }
-        );
-
-
-      if (!transportadora) {
-
-        mostrarMensagem(
-          "TRANSPORTADORA NÃO ENCONTRADA.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-
-      document.getElementById(
-        "editarId"
-      ).value =
-        transportadora.id;
-
-
-      document.getElementById(
-        "editarNome"
-      ).value =
-        transportadora.nome || "";
-
-
-      document.getElementById(
-        "editarCidade"
-      ).value =
-        transportadora.cidade || "";
-
-
-      document.getElementById(
-        "editarUf"
-      ).value =
-        transportadora.uf || "";
-
-
-      document.getElementById(
-        "editarTelefone"
-      ).value =
-        transportadora.telefone || "";
-
-
-      document.getElementById(
-        "editarEmail"
-      ).value =
-        transportadora.email || "";
-
-
-      document.getElementById(
-        "editarAtivo"
-      ).value =
-        transportadora.ativo === false
-          ? "false"
-          : "true";
-
-
-      document.getElementById(
-        "modalEditar"
-      ).classList.add(
-        "aberto"
-      );
-
-    }
-
-
-    /* =====================================================
-       ATUALIZAR
-       ===================================================== */
-
-    async function atualizarTransportadora(evento) {
-
-      evento.preventDefault();
-
-
-      const botao =
-        document.getElementById(
-          "btnAtualizar"
-        );
-
-
-      const id =
-        document.getElementById(
-          "editarId"
-        ).value;
-
-
-      const nome =
-        document.getElementById(
-          "editarNome"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const cidade =
-        document.getElementById(
-          "editarCidade"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const uf =
-        document.getElementById(
-          "editarUf"
-        ).value
-          .trim()
-          .toUpperCase();
-
-
-      const telefone =
-        document.getElementById(
-          "editarTelefone"
-        ).value
-          .trim();
-
-
-      const email =
-        document.getElementById(
-          "editarEmail"
-        ).value
-          .trim()
-          .toLowerCase();
-
-
-      const ativo =
-        document.getElementById(
-          "editarAtivo"
-        ).value === "true";
-
-
-      if (!id || !nome) {
-
-        mostrarMensagem(
-          "INFORME O NOME DA TRANSPORTADORA.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-
-      try {
-
-        botao.disabled = true;
-
-        botao.textContent =
-          "🔄 ATUALIZANDO...";
-
-
-        mostrarLoading(
-          "ATUALIZANDO TRANSPORTADORA..."
-        );
-
-
-        const consultaNome =
-          await supabaseClient
-            .from("transportadoras")
-            .select("id,nome")
-            .ilike("nome", nome)
-            .neq("id", id)
-            .limit(1);
-
-
-        if (consultaNome.error) {
-
-          throw consultaNome.error;
-
-        }
-
-
-        if (
-          consultaNome.data &&
-          consultaNome.data.length > 0
-        ) {
-
-          throw new Error(
-            "A TRANSPORTADORA " +
-            nome +
-            " JÁ ESTÁ CADASTRADA."
-          );
-
-        }
-
-
-        const dados = {
-
-          nome: nome,
-
-          cidade:
-            cidade || null,
-
-          uf:
-            uf || null,
-
-          telefone:
-            telefone || null,
-
-          email:
-            email || null,
-
-          ativo:
-            ativo
-
-        };
-
-
-        const resultado =
-          await supabaseClient
-            .from("transportadoras")
-            .update(dados)
-            .eq("id", id);
-
-
-        if (resultado.error) {
-
-          throw resultado.error;
-
-        }
-
-
-        esconderLoading();
-
-        fecharModal();
-
-
-        mostrarMensagem(
-          "TRANSPORTADORA ATUALIZADA COM SUCESSO!",
-          "sucesso"
-        );
-
-
-        await carregarTransportadoras();
-
-      }
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao atualizar transportadora:",
-          erro
-        );
-
-
-        esconderLoading();
-
-
-        mostrarMensagem(
-          obterMensagemErro(erro),
-          "erro"
-        );
-
-      }
-
-      finally {
-
-        botao.disabled = false;
-
-        botao.textContent =
-          "💾 SALVAR ALTERAÇÕES";
-
-      }
-
-    }
-
-
-    /* =====================================================
-       EXCLUIR
-       ===================================================== */
-
-    async function excluirTransportadora(id) {
-
-      const transportadora =
-        todasTransportadoras.find(
-          function(item) {
-
-            return String(item.id) ===
-              String(id);
-
-          }
-        );
-
-
-      if (!transportadora) {
-
-        mostrarMensagem(
-          "TRANSPORTADORA NÃO ENCONTRADA.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-
-      const confirmar =
-        window.confirm(
-
-          "DESEJA REALMENTE EXCLUIR A TRANSPORTADORA?\n\n" +
-
-          String(
-            transportadora.nome || ""
-          ).toUpperCase()
-
-        );
-
-
-      if (!confirmar) {
-        return;
-      }
-
-
-      try {
-
-        mostrarLoading(
-          "EXCLUINDO TRANSPORTADORA..."
-        );
-
-
-        const resultado =
-          await supabaseClient
-            .from("transportadoras")
-            .delete()
-            .eq("id", id);
-
-
-        if (resultado.error) {
-
-          throw resultado.error;
-
-        }
-
-
-        esconderLoading();
-
-
-        mostrarMensagem(
-          "TRANSPORTADORA EXCLUÍDA COM SUCESSO!",
-          "sucesso"
-        );
-
-
-        await carregarTransportadoras();
-
-      }
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao excluir transportadora:",
-          erro
-        );
-
-
-        esconderLoading();
-
-
-        mostrarMensagem(
-          obterMensagemErro(erro),
-          "erro"
-        );
-
-      }
-
-    }
-
-
-    /* =====================================================
-       TABELA
-       ===================================================== */
-
-    function renderizarTabela(lista) {
-
-      const tabela =
-        document.getElementById(
-          "tabelaTransportadoras"
-        );
-
-
-      if (!lista || lista.length === 0) {
-
         tabela.innerHTML = `
 
           <tr>
 
             <td
-              colspan="8"
-              style="
-                text-align:center;
-                padding:30px;
-                color:#94a3b8;
-              "
+              colspan="5"
+              class="sem-dados"
             >
 
-              🚛 NENHUMA TRANSPORTADORA ENCONTRADA
+              <div class="sem-dados-icon">
+                ⚠️
+              </div>
+
+              <div class="sem-dados-titulo">
+                ERRO AO CARREGAR
+              </div>
+
+              <div class="sem-dados-texto">
+                ${escaparHTML(
+                  obterMensagemErro(erro)
+                )}
+              </div>
 
             </td>
 
@@ -2601,256 +1267,39 @@
 
         `;
 
-        return;
-
       }
 
-
-      tabela.innerHTML =
-        lista
-          .map(
-            function(item) {
-
-              const ativo =
-                item.ativo !== false;
-
-
-              const criado =
-                formatarData(
-                  item.criado_em
-                );
-
-
-              return `
-
-                <tr>
-
-                  <td
-                    class="transportadora-nome"
-                  >
-                    ${escapeHTML(
-                      item.nome || "-"
-                    )}
-                  </td>
-
-
-                  <td>
-                    ${escapeHTML(
-                      item.cidade || "-"
-                    )}
-                  </td>
-
-
-                  <td>
-                    ${escapeHTML(
-                      item.uf || "-"
-                    )}
-                  </td>
-
-
-                  <td>
-                    ${escapeHTML(
-                      item.telefone || "-"
-                    )}
-                  </td>
-
-
-                  <td>
-                    ${escapeHTML(
-                      item.email || "-"
-                    )}
-                  </td>
-
-
-                  <td>
-
-                    <span
-                      class="${
-                        ativo
-                          ? "status-ativo"
-                          : "status-inativo"
-                      }"
-                    >
-
-                      ${
-                        ativo
-                          ? "ATIVO"
-                          : "INATIVO"
-                      }
-
-                    </span>
-
-                  </td>
-
-
-                  <td>
-                    ${escapeHTML(
-                      criado
-                    )}
-                  </td>
-
-
-                  <td>
-
-                    <div class="acoes">
-
-                      <button
-                        type="button"
-                        class="btn-mini btn-editar"
-                        title="Editar"
-                        onclick="abrirEditar('${escapeJS(
-                          item.id
-                        )}')"
-                      >
-                        ✏️
-                      </button>
-
-
-                      <button
-                        type="button"
-                        class="btn-mini btn-excluir"
-                        title="Excluir"
-                        onclick="excluirTransportadora('${escapeJS(
-                          item.id
-                        )}')"
-                      >
-                        🗑️
-                      </button>
-
-                    </div>
-
-                  </td>
-
-                </tr>
-
-              `;
-
-            }
-          )
-          .join("");
-
     }
 
 
     /* =====================================================
-       FILTRAR
+       ESCAPAR HTML
        ===================================================== */
 
-    function filtrarTransportadoras() {
+    function escaparHTML(valor) {
 
-      const campo =
-        document.getElementById(
-          "filtroTexto"
-        );
-
-
-      const texto =
-        normalizarTexto(
-          campo.value
-        );
-
-
-      const filtrados =
-        todasTransportadoras.filter(
-          function(item) {
-
-            const linha =
-              normalizarTexto(
-
-                String(
-                  item.nome || ""
-                ) +
-
-                " " +
-
-                String(
-                  item.cidade || ""
-                ) +
-
-                " " +
-
-                String(
-                  item.uf || ""
-                ) +
-
-                " " +
-
-                String(
-                  item.telefone || ""
-                ) +
-
-                " " +
-
-                String(
-                  item.email || ""
-                )
-
-              );
-
-
-            return (
-              !texto ||
-              linha.includes(texto)
-            );
-
-          }
-        );
-
-
-      renderizarTabela(
-        filtrados
-      );
-
-    }
-
-
-    /* =====================================================
-       LIMPAR FILTROS
-       ===================================================== */
-
-    function limparFiltros() {
-
-      document.getElementById(
-        "filtroTexto"
-      ).value = "";
-
-
-      filtrarTransportadoras();
-
-    }
-
-
-    /* =====================================================
-       LIMPAR FORMULÁRIO
-       ===================================================== */
-
-    function limparFormulario() {
-
-      document
-        .getElementById(
-          "formTransportadora"
-        )
-        .reset();
-
-
-      document.getElementById(
-        "ativo"
-      ).value =
-        "true";
-
-    }
-
-
-    /* =====================================================
-       MODAL
-       ===================================================== */
-
-    function fecharModal() {
-
-      document.getElementById(
-        "modalEditar"
-      ).classList.remove(
-        "aberto"
+      return String(
+        valor ?? ""
+      )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
       );
 
     }
@@ -2867,21 +1316,30 @@
       }
 
 
+      const separador =
+        pagina.includes("?")
+          ? "&"
+          : "?";
+
+
       window.location.href =
-        pagina;
+        pagina +
+        separador +
+        "_v=" +
+        Date.now();
 
     }
 
 
     /* =====================================================
-       PESQUISAR NF
+       LOGIN
        ===================================================== */
 
-    function irParaPesquisarNF() {
+    function redirecionarLogin() {
 
-      window.location.href =
-        window.location.origin +
-        "/Birilog-V3/pesquisar-nf.html";
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
@@ -2911,7 +1369,8 @@
 
       if (botao) {
 
-        botao.disabled = true;
+        botao.disabled =
+          true;
 
         botao.textContent =
           "SAINDO...";
@@ -2935,64 +1394,7 @@
       }
 
 
-      window.location.replace(
-        "index.html"
-      );
-
-    }
-
-
-    /* =====================================================
-       LOADING
-       ===================================================== */
-
-    function mostrarLoading(texto) {
-
-      const elemento =
-        document.getElementById(
-          "loadingTela"
-        );
-
-
-      const textoElemento =
-        document.getElementById(
-          "loadingText"
-        );
-
-
-      if (textoElemento) {
-
-        textoElemento.textContent =
-          texto ||
-          "CARREGANDO...";
-
-      }
-
-
-      if (elemento) {
-
-        elemento.style.display =
-          "flex";
-
-      }
-
-    }
-
-
-    function esconderLoading() {
-
-      const elemento =
-        document.getElementById(
-          "loadingTela"
-        );
-
-
-      if (elemento) {
-
-        elemento.style.display =
-          "none";
-
-      }
+      redirecionarLogin();
 
     }
 
@@ -3029,139 +1431,6 @@
       elemento.style.display =
         "block";
 
-
-      clearTimeout(
-        window.timerMensagem
-      );
-
-
-      window.timerMensagem =
-        setTimeout(
-          function() {
-
-            elemento.style.display =
-              "none";
-
-          },
-          5000
-        );
-
-    }
-
-
-    /* =====================================================
-       NORMALIZAR TEXTO
-       ===================================================== */
-
-    function normalizarTexto(valor) {
-
-      return String(
-        valor || ""
-      )
-        .normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-    }
-
-
-    /* =====================================================
-       DATA
-       ===================================================== */
-
-    function formatarData(valor) {
-
-      if (!valor) {
-        return "-";
-      }
-
-
-      const data =
-        new Date(valor);
-
-
-      if (Number.isNaN(
-        data.getTime()
-      )) {
-
-        return String(valor);
-
-      }
-
-
-      return data.toLocaleString(
-        "pt-BR",
-        {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          hour: "2-digit",
-          minute: "2-digit"
-        }
-      );
-
-    }
-
-
-    /* =====================================================
-       SEGURANÇA
-       ===================================================== */
-
-    function escapeHTML(valor) {
-
-      return String(
-        valor ?? ""
-      )
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-    function escapeJS(valor) {
-
-      return String(
-        valor ?? ""
-      )
-        .replace(
-          /\\/g,
-          "\\\\"
-        )
-        .replace(
-          /'/g,
-          "\\'"
-        )
-        .replace(
-          /"/g,
-          '\\"'
-        )
-        .replace(
-          /\r?\n/g,
-          "\\n"
-        );
-
     }
 
 
@@ -3171,155 +1440,81 @@
 
     function obterMensagemErro(erro) {
 
-      if (
-        erro &&
-        erro.message
-      ) {
+      if (!erro) {
 
-        const mensagem =
-          String(
-            erro.message
-          );
-
-
-        const texto =
-          mensagem.toLowerCase();
-
-
-        if (
-          texto.includes(
-            "row-level security"
-          ) ||
-          texto.includes(
-            "permission denied"
-          ) ||
-          texto.includes(
-            "violates row-level security"
-          )
-        ) {
-
-          return (
-            "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "duplicate"
-          ) ||
-          texto.includes(
-            "unique"
-          )
-        ) {
-
-          return (
-            "ESTE REGISTRO JÁ ESTÁ CADASTRADO."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "column"
-          ) &&
-          texto.includes(
-            "does not exist"
-          )
-        ) {
-
-          return (
-            "UMA DAS COLUNAS DA TABELA TRANSPORTADORAS NÃO FOI ENCONTRADA. VERIFIQUE A ESTRUTURA DA TABELA NO SUPABASE."
-          );
-
-        }
-
-
-        return mensagem.toUpperCase();
+        return "OCORREU UM ERRO.";
 
       }
 
 
-      return (
-        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
-      );
+      if (erro.message) {
+
+        return (
+          "ERRO: " +
+          erro.message
+        ).toUpperCase();
+
+      }
+
+
+      return "OCORREU UM ERRO.";
 
     }
 
 
     /* =====================================================
-       FECHAR MODAL CLICANDO FORA
+       LOADING
        ===================================================== */
 
-    document
-      .getElementById(
-        "modalEditar"
-      )
-      .addEventListener(
-        "click",
-        function(evento) {
+    function mostrarLoading(texto) {
 
-          if (
-            evento.target ===
-            this
-          ) {
-
-            fecharModal();
-
-          }
-
-        }
-      );
+      const elemento =
+        document.getElementById(
+          "loading"
+        );
 
 
-    /* =====================================================
-       ESC FECHA MODAL
-       ===================================================== */
+      const textoElemento =
+        document.getElementById(
+          "loadingText"
+        );
 
-    document.addEventListener(
-      "keydown",
-      function(evento) {
 
-        if (
-          evento.key ===
-          "Escape"
-        ) {
+      if (textoElemento) {
 
-          fecharModal();
-
-        }
+        textoElemento.textContent =
+          texto ||
+          "CARREGANDO...";
 
       }
-    );
 
 
-    /* =====================================================
-       ENTER NA PESQUISA
-       ===================================================== */
+      if (elemento) {
 
-    document
-      .getElementById(
-        "filtroTexto"
-      )
-      .addEventListener(
-        "keydown",
-        function(evento) {
+        elemento.style.display =
+          "flex";
 
-          if (
-            evento.key ===
-            "Enter"
-          ) {
+      }
 
-            evento.preventDefault();
+    }
 
-            filtrarTransportadoras();
 
-          }
+    function esconderLoading() {
 
-        }
-      );
+      const elemento =
+        document.getElementById(
+          "loading"
+        );
+
+
+      if (elemento) {
+
+        elemento.style.display =
+          "none";
+
+      }
+
+    }
 
 
     /* =====================================================
@@ -3337,9 +1532,7 @@
           "SIGNED_OUT"
         ) {
 
-          window.location.replace(
-            "index.html"
-          );
+          redirecionarLogin();
 
         }
 
@@ -3351,4 +1544,3 @@
 </body>
 
 </html>
-```
