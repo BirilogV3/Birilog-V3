@@ -1,21 +1,18 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Novo Envio</title>
-
-
-  <!-- =====================================================
-       CORREÇÃO DE CACHE
-       ===================================================== -->
 
   <script>
 
@@ -56,13 +53,7 @@
 
   </script>
 
-
-  <!-- =====================================================
-       SUPABASE
-       ===================================================== -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
   <style>
 
@@ -72,12 +63,10 @@
       padding: 0;
     }
 
-
     html,
     body {
       min-height: 100%;
     }
-
 
     body {
 
@@ -99,11 +88,6 @@
         #1f2937;
 
     }
-
-
-    /* =====================================================
-       SIDEBAR
-       ===================================================== */
 
     .sidebar {
 
@@ -140,11 +124,6 @@
 
     }
 
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
-
     .logo-area {
 
       padding:
@@ -159,7 +138,6 @@
       flex-shrink: 0;
 
     }
-
 
     .logo-icon {
 
@@ -191,7 +169,6 @@
 
     }
 
-
     .logo-title {
 
       font-size: 22px;
@@ -200,14 +177,12 @@
 
     }
 
-
     .logo-title span {
 
       color:
         #60a5fa;
 
     }
-
 
     .logo-version {
 
@@ -223,11 +198,6 @@
 
     }
 
-
-    /* =====================================================
-       MENU
-       ===================================================== */
-
     .menu {
 
       padding:
@@ -242,7 +212,6 @@
       scrollbar-width: thin;
 
     }
-
 
     .menu-title {
 
@@ -260,7 +229,6 @@
         1px;
 
     }
-
 
     .menu-item {
 
@@ -305,7 +273,6 @@
 
     }
 
-
     .menu-item:hover {
 
       background:
@@ -316,14 +283,12 @@
 
     }
 
-
     .menu-item:active {
 
       transform:
         scale(.99);
 
     }
-
 
     .menu-item.active {
 
@@ -343,7 +308,6 @@
 
     }
 
-
     .menu-icon {
 
       width: 22px;
@@ -358,11 +322,6 @@
         0;
 
     }
-
-
-    /* =====================================================
-       USUÁRIO
-       ===================================================== */
 
     .user-area {
 
@@ -381,7 +340,6 @@
 
     }
 
-
     .user-card {
 
       background:
@@ -394,7 +352,6 @@
         12px;
 
     }
-
 
     .user-name {
 
@@ -418,7 +375,6 @@
 
     }
 
-
     .user-email {
 
       margin-top:
@@ -441,7 +397,6 @@
 
     }
 
-
     .user-profile {
 
       margin-top:
@@ -460,11 +415,6 @@
         700;
 
     }
-
-
-    /* =====================================================
-       SAIR
-       ===================================================== */
 
     .logout {
 
@@ -515,7 +465,6 @@
 
     }
 
-
     .logout:hover {
 
       background:
@@ -529,7 +478,6 @@
 
     }
 
-
     .logout:disabled {
 
       opacity:
@@ -539,11 +487,6 @@
         wait;
 
     }
-
-
-    /* =====================================================
-       MAIN
-       ===================================================== */
 
     .main {
 
@@ -557,11 +500,6 @@
         100vh;
 
     }
-
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
 
     .header {
 
@@ -598,7 +536,6 @@
 
     }
 
-
     .header-title {
 
       font-size:
@@ -612,7 +549,6 @@
 
     }
 
-
     .header-subtitle {
 
       margin-top:
@@ -625,7 +561,6 @@
         #64748b;
 
     }
-
 
     .status-online {
 
@@ -658,7 +593,6 @@
 
     }
 
-
     .status-dot {
 
       width:
@@ -675,11 +609,6 @@
 
     }
 
-
-    /* =====================================================
-       CONTEÚDO
-       ===================================================== */
-
     .content {
 
       padding:
@@ -693,14 +622,12 @@
 
     }
 
-
     .page-header {
 
       margin-bottom:
         22px;
 
     }
-
 
     .page-title {
 
@@ -715,7 +642,6 @@
 
     }
 
-
     .page-subtitle {
 
       margin-top:
@@ -728,11 +654,6 @@
         #64748b;
 
     }
-
-
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
 
     .mensagem {
 
@@ -759,7 +680,6 @@
 
     }
 
-
     .mensagem.sucesso {
 
       display:
@@ -776,7 +696,6 @@
         #bbf7d0;
 
     }
-
 
     .mensagem.erro {
 
@@ -795,7 +714,6 @@
 
     }
 
-
     .mensagem.info {
 
       display:
@@ -812,11 +730,6 @@
         #bfdbfe;
 
     }
-
-
-    /* =====================================================
-       CARD
-       ===================================================== */
 
     .card {
 
@@ -841,7 +754,6 @@
         rgba(0,0,0,0.05);
 
     }
-
 
     .card-title {
 
@@ -875,7 +787,6 @@
 
     }
 
-
     .card-icon {
 
       width:
@@ -901,11 +812,6 @@
 
     }
 
-
-    /* =====================================================
-       LINHAS
-       ===================================================== */
-
     .linha {
 
       display:
@@ -922,7 +828,6 @@
 
     }
 
-
     .campo {
 
       display:
@@ -932,7 +837,6 @@
         column;
 
     }
-
 
     .campo label {
 
@@ -956,7 +860,6 @@
 
     }
 
-
     .obrigatorio {
 
       color:
@@ -966,11 +869,6 @@
         3px;
 
     }
-
-
-    /* =====================================================
-       INPUTS
-       ===================================================== */
 
     input,
     select,
@@ -1011,7 +909,6 @@
 
     }
 
-
     input:hover,
     select:hover,
     textarea:hover {
@@ -1020,7 +917,6 @@
         #94a3b8;
 
     }
-
 
     input:focus,
     select:focus,
@@ -1038,7 +934,6 @@
 
     }
 
-
     input::placeholder,
     textarea::placeholder {
 
@@ -1046,7 +941,6 @@
         #9ca3af;
 
     }
-
 
     textarea {
 
@@ -1060,7 +954,6 @@
         1.5;
 
     }
-
 
     .campo-nf input {
 
@@ -1076,18 +969,12 @@
 
     }
 
-
-    /* =====================================================
-       CLIENTE
-       ===================================================== */
-
     .cliente-wrapper {
 
       position:
         relative;
 
     }
-
 
     .cliente-pesquisa {
 
@@ -1096,14 +983,12 @@
 
     }
 
-
     .cliente-pesquisa input {
 
       padding-left:
         36px;
 
     }
-
 
     .cliente-icone {
 
@@ -1126,7 +1011,6 @@
         none;
 
     }
-
 
     .resultados-clientes {
 
@@ -1170,7 +1054,6 @@
 
     }
 
-
     .cliente-item {
 
       padding:
@@ -1194,14 +1077,12 @@
 
     }
 
-
     .cliente-item:last-child {
 
       border-bottom:
         none;
 
     }
-
 
     .cliente-item:hover {
 
@@ -1212,7 +1093,6 @@
         #1d4ed8;
 
     }
-
 
     .cliente-codigo {
 
@@ -1232,7 +1112,6 @@
         500;
 
     }
-
 
     .cliente-selecionado {
 
@@ -1262,11 +1141,6 @@
 
     }
 
-
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
-
     .acoes {
 
       display:
@@ -1289,7 +1163,6 @@
         #edf0f3;
 
     }
-
 
     .btn {
 
@@ -1316,14 +1189,12 @@
 
     }
 
-
     .btn:hover {
 
       transform:
         translateY(-1px);
 
     }
-
 
     .btn:disabled {
 
@@ -1338,7 +1209,6 @@
 
     }
 
-
     .btn-limpar {
 
       background:
@@ -1352,7 +1222,6 @@
         #e2e8f0;
 
     }
-
 
     .btn-salvar {
 
@@ -1374,11 +1243,6 @@
         rgba(25,118,210,.20);
 
     }
-
-
-    /* =====================================================
-       LOADING
-       ===================================================== */
 
     .loading {
 
@@ -1408,7 +1272,6 @@
 
     }
 
-
     .loading-box {
 
       background:
@@ -1428,7 +1291,6 @@
         rgba(15,23,42,.18);
 
     }
-
 
     .spinner {
 
@@ -1456,7 +1318,6 @@
 
     }
 
-
     .loading-text {
 
       font-size:
@@ -1470,7 +1331,6 @@
 
     }
 
-
     @keyframes girar {
 
       to {
@@ -1481,11 +1341,6 @@
       }
 
     }
-
-
-    /* =====================================================
-       RESPONSIVO
-       ===================================================== */
 
     @media (max-width: 900px) {
 
@@ -1498,7 +1353,6 @@
 
     }
 
-
     @media (max-width: 700px) {
 
       .sidebar {
@@ -1507,7 +1361,6 @@
           70px;
 
       }
-
 
       .logo-title,
       .logo-version,
@@ -1520,14 +1373,12 @@
 
       }
 
-
       .logo-area {
 
         padding:
           18px 8px;
 
       }
-
 
       .logo-icon {
 
@@ -1542,14 +1393,12 @@
 
       }
 
-
       .menu {
 
         padding:
           15px 8px;
 
       }
-
 
       .menu-item {
 
@@ -1561,14 +1410,12 @@
 
       }
 
-
       .user-area {
 
         padding:
           10px 8px;
 
       }
-
 
       .logout {
 
@@ -1583,7 +1430,6 @@
 
       }
 
-
       .logout::before {
 
         content:
@@ -1593,7 +1439,6 @@
           17px;
 
       }
-
 
       .main {
 
@@ -1605,7 +1450,6 @@
 
       }
 
-
       .header {
 
         padding:
@@ -1613,14 +1457,12 @@
 
       }
 
-
       .header-title {
 
         font-size:
           17px;
 
       }
-
 
       .status-online {
 
@@ -1632,7 +1474,6 @@
 
       }
 
-
       .status-dot {
 
         width:
@@ -1643,14 +1484,12 @@
 
       }
 
-
       .content {
 
         padding:
           18px;
 
       }
-
 
       .card {
 
@@ -1659,14 +1498,12 @@
 
       }
 
-
       .acoes {
 
         flex-direction:
           column;
 
       }
-
 
       .acoes .btn {
 
@@ -1676,7 +1513,6 @@
       }
 
     }
-
 
     @media (max-width: 450px) {
 
@@ -1693,804 +1529,703 @@
 
 </head>
 
-
 <body>
-
-
-  <!-- =====================================================
-       LOADING
-       ===================================================== -->
 
   <div
     id="loading"
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <aside class="sidebar">
+
+```
+<div class="logo-area">
+
+  <div class="logo-icon">
+    🚚
+  </div>
+
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
+
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
+
+</div>
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+
+    <span class="menu-icon">
+      📊
+    </span>
+
+    <span>
+      Dashboard
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item active"
+    onclick="irPara('envios.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Envios
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pesquisar-nf.html')"
+  >
+
+    <span class="menu-icon">
+      🔎
+    </span>
+
+    <span>
+      Pesquisar NF
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+
+    <span class="menu-icon">
+      👥
+    </span>
+
+    <span>
+      Clientes
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+
+    <span class="menu-icon">
+      🚛
+    </span>
+
+    <span>
+      Transportadoras
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+
+    <span class="menu-icon">
+      📄
+    </span>
+
+    <span>
+      Relatórios
+    </span>
+
+  </button>
+
+  <!-- =================================================
+       PÓS-ENTREGA
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Pós-Entrega
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+
+    <span class="menu-icon">
+      🔐
+    </span>
+
+    <span>
+      Usuários
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+
+    <span class="menu-icon">
+      ⚙️
+    </span>
+
+    <span>
+      Configurações
+    </span>
+
+  </button>
+
+</nav>
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
+    </div>
+
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
+    </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+
+    🚪 SAIR DO SISTEMA
+
+  </button>
+
+</div>
+```
+
+  </aside>
+
+  <main class="main">
+
+```
+<header class="header">
+
+  <div>
+
+    <div class="header-title">
+      Novo Envio
+    </div>
+
+    <div class="header-subtitle">
+      Cadastro e controle de notas fiscais
+    </div>
+
+  </div>
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+<section class="content">
+
+  <div class="page-header">
+
+    <div class="page-title">
+      📦 NOVO ENVIO
+    </div>
+
+    <div class="page-subtitle">
+      CADASTRO E CONTROLE DE ENVIO DE NOTAS FISCAIS
+    </div>
+
+  </div>
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📋
+      </div>
+
+      DADOS DO ENVIO
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo campo-nf">
+
+        <label for="nf">
+
+          NÚMERO DA NF
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <input
+          type="text"
+          id="nf"
+          placeholder="DIGITE O NÚMERO DA NF"
+          autocomplete="off"
+          maxlength="50"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="clientePesquisa">
+
+          CLIENTE
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <div class="cliente-wrapper">
+
+          <div class="cliente-pesquisa">
+
+            <span class="cliente-icone">
+              🔎
+            </span>
+
+            <input
+              type="text"
+              id="clientePesquisa"
+              placeholder="DIGITE O NOME DO CLIENTE"
+              autocomplete="off"
+            >
+
+          </div>
+
+          <div
+            id="resultadosClientes"
+            class="resultados-clientes"
+          ></div>
+
+          <div
+            id="clienteSelecionado"
+            class="cliente-selecionado"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="uf">
+
+          UF
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="uf">
+
+          <option value="">
+            SELECIONE
+          </option>
+
+          <option value="TO">
+            TOCANTINS
+          </option>
+
+          <option value="PA">
+            PARÁ
+          </option>
+
+          <option value="MA">
+            MARANHÃO
+          </option>
+
+          <option value="GO">
+            GOIÁS
+          </option>
+
+          <option value="BA">
+            BAHIA
+          </option>
+
+          <option value="PI">
+            PIAUÍ
+          </option>
+
+          <option value="MT">
+            MATO GROSSO
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="cidade">
+
+          CIDADE
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <input
+          type="text"
+          id="cidade"
+          placeholder="DIGITE A CIDADE"
+          autocomplete="off"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="transportadora">
+
+          TRANSPORTADORA
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="transportadora">
+
+          <option value="">
+            CARREGANDO...
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="status">
+
+          STATUS
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="status">
+
+          <option value="COLETADO">
+            📦 COLETADO
+          </option>
+
+          <option value="EM TRANSITO">
+            🚚 EM TRÂNSITO
+          </option>
+
+          <option value="ENTREGUE">
+            ✅ ENTREGUE
+          </option>
+
+          <option value="ATRASADO">
+            ⚠️ ATRASADO
+          </option>
+
+        </select>
+
       </div>
 
     </div>
 
   </div>
 
+  <div class="card">
 
-  <!-- =====================================================
-       SIDEBAR
-       ===================================================== -->
+    <div class="card-title">
 
-  <aside class="sidebar">
-
-
-    <div class="logo-area">
-
-      <div class="logo-icon">
-        🚚
+      <div class="card-icon">
+        📦
       </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
+      DADOS DA CARGA
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="valor">
+          VALOR DA CARGA
+        </label>
+
+        <input
+          type="number"
+          id="valor"
+          step="0.01"
+          min="0"
+          placeholder="0,00"
+        >
+
       </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
+      <div class="campo">
+
+        <label for="peso">
+          PESO (KG)
+        </label>
+
+        <input
+          type="number"
+          id="peso"
+          step="0.01"
+          min="0"
+          placeholder="0,00"
+        >
+
       </div>
 
     </div>
 
+    <div class="linha">
 
-    <nav class="menu">
+      <div class="campo">
 
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
+        <label for="volumes">
+          VOLUMES
+        </label>
 
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item active"
-        onclick="irPara('envios.html')"
-      >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pesquisar-nf.html')"
-      >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
-      </button>
-
-
-    </nav>
-
-
-    <!-- =================================================
-         USUÁRIO
-         ================================================= -->
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
+        <input
+          type="number"
+          id="volumes"
+          min="1"
+          step="1"
+          value="1"
         >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
 
       </div>
 
+      <div class="campo">
+
+        <label for="dataEnvio">
+          DATA DE ENVIO
+        </label>
+
+        <input
+          type="date"
+          id="dataEnvio"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📅
+      </div>
+
+      PRAZOS E ENTREGA
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="previsao">
+          PREVISÃO DE ENTREGA
+        </label>
+
+        <input
+          type="date"
+          id="previsao"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="dataEntrega">
+          DATA DE ENTREGA
+        </label>
+
+        <input
+          type="date"
+          id="dataEntrega"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📝
+      </div>
+
+      OBSERVAÇÕES
+
+    </div>
+
+    <div class="campo">
+
+      <label for="observacao">
+        OBSERVAÇÃO
+      </label>
+
+      <textarea
+        id="observacao"
+        placeholder="DIGITE UMA OBSERVAÇÃO, SE NECESSÁRIO..."
+      ></textarea>
+
+    </div>
+
+    <div class="acoes">
 
       <button
         type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
+        class="btn btn-limpar"
+        onclick="limparCampos()"
       >
 
-        🚪 SAIR DO SISTEMA
+        🧹 LIMPAR
+
+      </button>
+
+      <button
+        type="button"
+        id="btnSalvar"
+        class="btn btn-salvar"
+        onclick="salvarEnvio()"
+      >
+
+        💾 SALVAR ENVIO
 
       </button>
 
     </div>
 
+  </div>
 
-  </aside>
-
-
-  <!-- =====================================================
-       MAIN
-       ===================================================== -->
-
-  <main class="main">
-
-
-    <header class="header">
-
-      <div>
-
-        <div class="header-title">
-          Novo Envio
-        </div>
-
-        <div class="header-subtitle">
-          Cadastro e controle de notas fiscais
-        </div>
-
-      </div>
-
-
-      <div class="status-online">
-
-        <span class="status-dot"></span>
-
-        SISTEMA ONLINE
-
-      </div>
-
-    </header>
-
-
-    <section class="content">
-
-
-      <div class="page-header">
-
-        <div class="page-title">
-          📦 NOVO ENVIO
-        </div>
-
-        <div class="page-subtitle">
-          CADASTRO E CONTROLE DE ENVIO DE NOTAS FISCAIS
-        </div>
-
-      </div>
-
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-
-      <!-- =================================================
-           DADOS DO ENVIO
-           ================================================= -->
-
-      <div class="card">
-
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📋
-          </div>
-
-          DADOS DO ENVIO
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo campo-nf">
-
-            <label for="nf">
-
-              NÚMERO DA NF
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <input
-              type="text"
-              id="nf"
-              placeholder="DIGITE O NÚMERO DA NF"
-              autocomplete="off"
-              maxlength="50"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="clientePesquisa">
-
-              CLIENTE
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <div class="cliente-wrapper">
-
-
-              <div class="cliente-pesquisa">
-
-                <span class="cliente-icone">
-                  🔎
-                </span>
-
-                <input
-                  type="text"
-                  id="clientePesquisa"
-                  placeholder="DIGITE O NOME DO CLIENTE"
-                  autocomplete="off"
-                >
-
-              </div>
-
-
-              <div
-                id="resultadosClientes"
-                class="resultados-clientes"
-              ></div>
-
-
-              <div
-                id="clienteSelecionado"
-                class="cliente-selecionado"
-              ></div>
-
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo">
-
-            <label for="uf">
-
-              UF
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <select id="uf">
-
-              <option value="">
-                SELECIONE
-              </option>
-
-              <option value="TO">
-                TOCANTINS
-              </option>
-
-              <option value="PA">
-                PARÁ
-              </option>
-
-              <option value="MA">
-                MARANHÃO
-              </option>
-
-              <option value="GO">
-                GOIÁS
-              </option>
-
-              <option value="BA">
-                BAHIA
-              </option>
-
-              <option value="PI">
-                PIAUÍ
-              </option>
-
-              <option value="MT">
-                MATO GROSSO
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="cidade">
-
-              CIDADE
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <input
-              type="text"
-              id="cidade"
-              placeholder="DIGITE A CIDADE"
-              autocomplete="off"
-            >
-
-          </div>
-
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo">
-
-            <label for="transportadora">
-
-              TRANSPORTADORA
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <select id="transportadora">
-
-              <option value="">
-                CARREGANDO...
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="status">
-
-              STATUS
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-
-            <select id="status">
-
-              <option value="COLETADO">
-                📦 COLETADO
-              </option>
-
-              <option value="EM TRANSITO">
-                🚚 EM TRÂNSITO
-              </option>
-
-              <option value="ENTREGUE">
-                ✅ ENTREGUE
-              </option>
-
-              <option value="ATRASADO">
-                ⚠️ ATRASADO
-              </option>
-
-            </select>
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =================================================
-           DADOS DA CARGA
-           ================================================= -->
-
-      <div class="card">
-
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📦
-          </div>
-
-          DADOS DA CARGA
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo">
-
-            <label for="valor">
-              VALOR DA CARGA
-            </label>
-
-
-            <input
-              type="number"
-              id="valor"
-              step="0.01"
-              min="0"
-              placeholder="0,00"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="peso">
-              PESO (KG)
-            </label>
-
-
-            <input
-              type="number"
-              id="peso"
-              step="0.01"
-              min="0"
-              placeholder="0,00"
-            >
-
-          </div>
-
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo">
-
-            <label for="volumes">
-              VOLUMES
-            </label>
-
-
-            <input
-              type="number"
-              id="volumes"
-              min="1"
-              step="1"
-              value="1"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="dataEnvio">
-              DATA DE ENVIO
-            </label>
-
-
-            <input
-              type="date"
-              id="dataEnvio"
-            >
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =================================================
-           PRAZOS
-           ================================================= -->
-
-      <div class="card">
-
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📅
-          </div>
-
-          PRAZOS E ENTREGA
-
-        </div>
-
-
-        <div class="linha">
-
-
-          <div class="campo">
-
-            <label for="previsao">
-              PREVISÃO DE ENTREGA
-            </label>
-
-
-            <input
-              type="date"
-              id="previsao"
-            >
-
-          </div>
-
-
-          <div class="campo">
-
-            <label for="dataEntrega">
-              DATA DE ENTREGA
-            </label>
-
-
-            <input
-              type="date"
-              id="dataEntrega"
-            >
-
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-
-      <!-- =================================================
-           OBSERVAÇÕES
-           ================================================= -->
-
-      <div class="card">
-
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📝
-          </div>
-
-          OBSERVAÇÕES
-
-        </div>
-
-
-        <div class="campo">
-
-          <label for="observacao">
-            OBSERVAÇÃO
-          </label>
-
-
-          <textarea
-            id="observacao"
-            placeholder="DIGITE UMA OBSERVAÇÃO, SE NECESSÁRIO..."
-          ></textarea>
-
-        </div>
-
-
-        <div class="acoes">
-
-
-          <button
-            type="button"
-            class="btn btn-limpar"
-            onclick="limparCampos()"
-          >
-
-            🧹 LIMPAR
-
-          </button>
-
-
-          <button
-            type="button"
-            id="btnSalvar"
-            class="btn btn-salvar"
-            onclick="salvarEnvio()"
-          >
-
-            💾 SALVAR ENVIO
-
-          </button>
-
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
+</section>
+```
 
   </main>
 
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
   <script>
-
-
-    /* =====================================================
-       SUPABASE
-       ===================================================== */
 
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
 
-
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -2498,40 +2233,25 @@
         SUPABASE_KEY
       );
 
-
-    /* =====================================================
-       VARIÁVEIS
-       ===================================================== */
-
     let usuarioAtual =
       null;
-
 
     let clientes =
       [];
 
-
     let transportadoras =
       [];
-
 
     let clienteSelecionadoAtual =
       null;
 
-
     let transportadoraSelecionadaAtual =
       null;
-
-
-    /* =====================================================
-       INICIALIZAÇÃO
-       ===================================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
     );
-
 
     async function iniciar() {
 
@@ -2541,10 +2261,8 @@
           "VERIFICANDO SESSÃO..."
         );
 
-
         const resultadoSessao =
           await supabaseClient.auth.getSession();
-
 
         if (
           resultadoSessao.error
@@ -2554,11 +2272,9 @@
 
         }
 
-
         const session =
           resultadoSessao.data &&
           resultadoSessao.data.session;
-
 
         if (!session) {
 
@@ -2568,33 +2284,20 @@
 
         }
 
-
         const authUser =
           session.user;
 
-
-        /* =================================================
-           CORREÇÃO:
-           A TABELA USUARIOS NÃO POSSUI AUTH_ID.
-           USAMOS O E-MAIL DO USUÁRIO AUTENTICADO.
-           ================================================= */
-
         const consultaUsuario =
           await supabaseClient
-
             .from("usuarios")
-
             .select(
               "id,nome,email,perfil,ativo"
             )
-
             .eq(
               "email",
               authUser.email
             )
-
             .maybeSingle();
-
 
         if (
           consultaUsuario.error
@@ -2603,7 +2306,6 @@
           throw consultaUsuario.error;
 
         }
-
 
         if (
           !consultaUsuario.data
@@ -2625,7 +2327,6 @@
 
         }
 
-
         if (
           consultaUsuario.data.ativo === false
         ) {
@@ -2646,27 +2347,21 @@
 
         }
 
-
         usuarioAtual =
           consultaUsuario.data;
 
-
         preencherUsuario();
 
-
         definirDataHoje();
-
 
         await Promise.all([
           carregarClientes(),
           carregarTransportadoras()
         ]);
 
-
         esconderLoading();
 
       }
-
 
       catch (erro) {
 
@@ -2675,9 +2370,7 @@
           erro
         );
 
-
         esconderLoading();
-
 
         mostrarMensagem(
           obterMensagemErro(erro),
@@ -2688,11 +2381,6 @@
 
     }
 
-
-    /* =====================================================
-       USUÁRIO
-       ===================================================== */
-
     function preencherUsuario() {
 
       if (!usuarioAtual) {
@@ -2700,7 +2388,6 @@
         return;
 
       }
-
 
       document.getElementById(
         "usuarioNome"
@@ -2711,13 +2398,11 @@
           "USUÁRIO"
         ).toUpperCase();
 
-
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email ||
         "-";
-
 
       document.getElementById(
         "usuarioPerfil"
@@ -2729,22 +2414,14 @@
 
     }
 
-
-    /* =====================================================
-       CLIENTES
-       ===================================================== */
-
     async function carregarClientes() {
 
       const resultado =
         await supabaseClient
-
           .from("clientes")
-
           .select(
             "id,codigo,nome,cidade,uf"
           )
-
           .order(
             "nome",
             {
@@ -2752,7 +2429,6 @@
                 true
             }
           );
-
 
       if (
         resultado.error
@@ -2763,7 +2439,6 @@
           resultado.error
         );
 
-
         clientes =
           [];
 
@@ -2771,29 +2446,21 @@
 
       }
 
-
       clientes =
         resultado.data ||
         [];
 
     }
 
-
-    /* =====================================================
-       PESQUISA DE CLIENTE
-       ===================================================== */
-
     const campoCliente =
       document.getElementById(
         "clientePesquisa"
       );
 
-
     const resultadosClientes =
       document.getElementById(
         "resultadosClientes"
       );
-
 
     campoCliente.addEventListener(
       "input",
@@ -2804,20 +2471,16 @@
             campoCliente.value
           );
 
-
         clienteSelecionadoAtual =
           null;
-
 
         document.getElementById(
           "clienteSelecionado"
         ).style.display =
           "none";
 
-
         resultadosClientes.innerHTML =
           "";
-
 
         if (!texto) {
 
@@ -2828,7 +2491,6 @@
 
         }
 
-
         const encontrados =
           clientes.filter(
             function(cliente) {
@@ -2838,12 +2500,10 @@
                   cliente.nome
                 );
 
-
               const codigo =
                 normalizarTexto(
                   cliente.codigo
                 );
-
 
               return (
                 nome.includes(texto) ||
@@ -2852,7 +2512,6 @@
 
             }
           );
-
 
         if (
           encontrados.length === 0
@@ -2865,14 +2524,12 @@
               </div>
             `;
 
-
           resultadosClientes.style.display =
             "block";
 
           return;
 
         }
-
 
         encontrados
           .slice(0, 20)
@@ -2884,10 +2541,8 @@
                   "div"
                 );
 
-
               item.className =
                 "cliente-item";
-
 
               const nome =
                 String(
@@ -2897,7 +2552,6 @@
                 .trim()
                 .toUpperCase();
 
-
               const codigo =
                 String(
                   cliente.codigo ||
@@ -2905,7 +2559,6 @@
                 )
                 .trim()
                 .toUpperCase();
-
 
               item.innerHTML =
                 `
@@ -2919,7 +2572,6 @@
                   </span>
                 `;
 
-
               item.addEventListener(
                 "click",
                 function() {
@@ -2931,7 +2583,6 @@
                 }
               );
 
-
               resultadosClientes.appendChild(
                 item
               );
@@ -2939,17 +2590,11 @@
             }
           );
 
-
         resultadosClientes.style.display =
           "block";
 
       }
     );
-
-
-    /* =====================================================
-       SELECIONAR CLIENTE
-       ===================================================== */
 
     function selecionarCliente(
       cliente
@@ -2961,10 +2606,8 @@
 
       }
 
-
       clienteSelecionadoAtual =
         cliente;
-
 
       const nome =
         String(
@@ -2974,29 +2617,23 @@
         .trim()
         .toUpperCase();
 
-
       campoCliente.value =
         nome;
 
-
       resultadosClientes.style.display =
         "none";
-
 
       const info =
         document.getElementById(
           "clienteSelecionado"
         );
 
-
       info.textContent =
         "✅ CLIENTE SELECIONADO: " +
         nome;
 
-
       info.style.display =
         "block";
-
 
       if (
         cliente.uf
@@ -3010,7 +2647,6 @@
           ).toUpperCase();
 
       }
-
 
       if (
         cliente.cidade
@@ -3027,11 +2663,6 @@
 
     }
 
-
-    /* =====================================================
-       TRANSPORTADORAS
-       ===================================================== */
-
     async function carregarTransportadoras() {
 
       const select =
@@ -3039,21 +2670,16 @@
           "transportadora"
         );
 
-
       const resultado =
         await supabaseClient
-
           .from("transportadoras")
-
           .select(
             "id,nome"
           )
-
           .eq(
             "ativo",
             true
           )
-
           .order(
             "nome",
             {
@@ -3061,7 +2687,6 @@
                 true
             }
           );
-
 
       if (
         resultado.error
@@ -3072,7 +2697,6 @@
           resultado.error
         );
 
-
         select.innerHTML =
           `
             <option value="">
@@ -3080,20 +2704,16 @@
             </option>
           `;
 
-
         return;
 
       }
-
 
       transportadoras =
         resultado.data ||
         [];
 
-
       select.innerHTML =
         '<option value="">SELECIONE</option>';
-
 
       transportadoras.forEach(
         function(transportadora) {
@@ -3103,10 +2723,8 @@
               "option"
             );
 
-
           option.value =
             transportadora.id;
-
 
           option.textContent =
             String(
@@ -3116,7 +2734,6 @@
             .trim()
             .toUpperCase();
 
-
           select.appendChild(
             option
           );
@@ -3125,11 +2742,6 @@
       );
 
     }
-
-
-    /* =====================================================
-       ALTERAÇÃO DA TRANSPORTADORA
-       ===================================================== */
 
     document
       .getElementById(
@@ -3141,7 +2753,6 @@
 
           const id =
             this.value;
-
 
           transportadoraSelecionadaAtual =
             transportadoras.find(
@@ -3157,18 +2768,12 @@
         }
       );
 
-
-    /* =====================================================
-       SALVAR ENVIO
-       ===================================================== */
-
     async function salvarEnvio() {
 
       const btn =
         document.getElementById(
           "btnSalvar"
         );
-
 
       const nf =
         String(
@@ -3179,7 +2784,6 @@
         )
         .trim()
         .toUpperCase();
-
 
       const clienteNome =
         clienteSelecionadoAtual
@@ -3200,12 +2804,10 @@
             .trim()
             .toUpperCase();
 
-
       const clienteId =
         clienteSelecionadoAtual
           ? clienteSelecionadoAtual.id
           : null;
-
 
       const cidade =
         String(
@@ -3217,7 +2819,6 @@
         .trim()
         .toUpperCase();
 
-
       const uf =
         String(
           document.getElementById(
@@ -3228,12 +2829,10 @@
         .trim()
         .toUpperCase();
 
-
       const transportadoraId =
         document.getElementById(
           "transportadora"
         ).value;
-
 
       const transportadoraNome =
         transportadoraSelecionadaAtual
@@ -3245,7 +2844,6 @@
             .toUpperCase()
           : "";
 
-
       const status =
         String(
           document.getElementById(
@@ -3256,42 +2854,35 @@
         .trim()
         .toUpperCase();
 
-
       const valorTexto =
         document.getElementById(
           "valor"
         ).value;
-
 
       const pesoTexto =
         document.getElementById(
           "peso"
         ).value;
 
-
       const volumesTexto =
         document.getElementById(
           "volumes"
         ).value;
-
 
       const dataEnvio =
         document.getElementById(
           "dataEnvio"
         ).value;
 
-
       const previsao =
         document.getElementById(
           "previsao"
         ).value;
 
-
       const dataEntrega =
         document.getElementById(
           "dataEntrega"
         ).value;
-
 
       const observacao =
         String(
@@ -3302,11 +2893,6 @@
         )
         .trim()
         .toUpperCase();
-
-
-      /* =================================================
-         VALIDAÇÕES
-         ================================================= */
 
       if (!nf) {
 
@@ -3322,7 +2908,6 @@
         return;
 
       }
-
 
       if (!clienteNome) {
 
@@ -3341,7 +2926,6 @@
 
       }
 
-
       if (!uf) {
 
         mostrarMensagem(
@@ -3352,7 +2936,6 @@
         return;
 
       }
-
 
       if (!cidade) {
 
@@ -3365,7 +2948,6 @@
 
       }
 
-
       if (!transportadoraId) {
 
         mostrarMensagem(
@@ -3377,24 +2959,20 @@
 
       }
 
-
       const valor =
         valorTexto
           ? Number(valorTexto)
           : 0;
-
 
       const peso =
         pesoTexto
           ? Number(pesoTexto)
           : 0;
 
-
       const volumes =
         volumesTexto
           ? Number(volumesTexto)
           : 1;
-
 
       if (
         Number.isNaN(valor)
@@ -3409,7 +2987,6 @@
 
       }
 
-
       if (
         Number.isNaN(peso)
       ) {
@@ -3422,7 +2999,6 @@
         return;
 
       }
-
 
       if (
         !Number.isInteger(volumes) ||
@@ -3438,45 +3014,32 @@
 
       }
 
-
       btn.disabled =
         true;
 
-
       btn.textContent =
         "🔄 SALVANDO...";
-
 
       mostrarMensagem(
         "SALVANDO ENVIO...",
         "info"
       );
 
-
       try {
-
-        /* ===============================================
-           VERIFICAR NF DUPLICADA
-           =============================================== */
 
         const consultaNF =
           await supabaseClient
-
             .from("envios")
-
             .select(
               "id"
             )
-
             .eq(
               "nf",
               nf
             )
-
             .limit(
               1
             );
-
 
         if (
           consultaNF.error
@@ -3485,7 +3048,6 @@
           throw consultaNF.error;
 
         }
-
 
         if (
           consultaNF.data &&
@@ -3499,11 +3061,6 @@
           );
 
         }
-
-
-        /* ===============================================
-           DADOS PARA O SUPABASE
-           =============================================== */
 
         const dadosEnvio = {
 
@@ -3565,26 +3122,17 @@
 
         };
 
-
         console.log(
           "DADOS DO ENVIO:",
           dadosEnvio
         );
 
-
-        /* ===============================================
-           INSERIR
-           =============================================== */
-
         const resultado =
           await supabaseClient
-
             .from("envios")
-
             .insert(
               dadosEnvio
             );
-
 
         if (
           resultado.error
@@ -3594,7 +3142,6 @@
 
         }
 
-
         mostrarMensagem(
           "✅ ENVIO DA NF " +
           nf +
@@ -3602,11 +3149,9 @@
           "sucesso"
         );
 
-
         limparCampos(false);
 
       }
-
 
       catch (erro) {
 
@@ -3615,14 +3160,12 @@
           erro
         );
 
-
         mostrarMensagem(
           obterMensagemErro(erro),
           "erro"
         );
 
       }
-
 
       finally {
 
@@ -3636,11 +3179,6 @@
 
     }
 
-
-    /* =====================================================
-       LIMPAR
-       ===================================================== */
-
     function limparCampos(
       esconder = true
     ) {
@@ -3650,107 +3188,88 @@
       ).value =
         "";
 
-
       document.getElementById(
         "clientePesquisa"
       ).value =
         "";
-
 
       document.getElementById(
         "resultadosClientes"
       ).innerHTML =
         "";
 
-
       document.getElementById(
         "resultadosClientes"
       ).style.display =
         "none";
-
 
       document.getElementById(
         "clienteSelecionado"
       ).textContent =
         "";
 
-
       document.getElementById(
         "clienteSelecionado"
       ).style.display =
         "none";
 
-
       clienteSelecionadoAtual =
         null;
-
 
       document.getElementById(
         "uf"
       ).value =
         "";
 
-
       document.getElementById(
         "cidade"
       ).value =
         "";
-
 
       document.getElementById(
         "transportadora"
       ).value =
         "";
 
-
       transportadoraSelecionadaAtual =
         null;
-
 
       document.getElementById(
         "valor"
       ).value =
         "";
 
-
       document.getElementById(
         "peso"
       ).value =
         "";
-
 
       document.getElementById(
         "volumes"
       ).value =
         "1";
 
-
       definirDataHoje();
-
 
       document.getElementById(
         "previsao"
       ).value =
         "";
 
-
       document.getElementById(
         "dataEntrega"
       ).value =
         "";
-
 
       document.getElementById(
         "status"
       ).value =
         "COLETADO";
 
-
       document.getElementById(
         "observacao"
       ).value =
         "";
-
 
       if (esconder) {
 
@@ -3760,20 +3279,13 @@
 
     }
 
-
-    /* =====================================================
-       DATA HOJE
-       ===================================================== */
-
     function definirDataHoje() {
 
       const hoje =
         new Date();
 
-
       const ano =
         hoje.getFullYear();
-
 
       const mes =
         String(
@@ -3784,7 +3296,6 @@
           "0"
         );
 
-
       const dia =
         String(
           hoje.getDate()
@@ -3793,7 +3304,6 @@
           2,
           "0"
         );
-
 
       document.getElementById(
         "dataEnvio"
@@ -3806,11 +3316,6 @@
 
     }
 
-
-    /* =====================================================
-       NAVEGAÇÃO
-       ===================================================== */
-
     function irPara(
       pagina
     ) {
@@ -3821,16 +3326,10 @@
 
       }
 
-
       window.location.href =
         pagina;
 
     }
-
-
-    /* =====================================================
-       LOGIN
-       ===================================================== */
 
     function redirecionarLogin() {
 
@@ -3839,11 +3338,6 @@
       );
 
     }
-
-
-    /* =====================================================
-       LOADING
-       ===================================================== */
 
     function mostrarLoading(
       texto
@@ -3854,12 +3348,10 @@
           "loading"
         );
 
-
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
-
 
       if (textoElemento) {
 
@@ -3868,7 +3360,6 @@
           "CARREGANDO...";
 
       }
-
 
       if (elemento) {
 
@@ -3879,14 +3370,12 @@
 
     }
 
-
     function esconderLoading() {
 
       const elemento =
         document.getElementById(
           "loading"
         );
-
 
       if (elemento) {
 
@@ -3896,11 +3385,6 @@
       }
 
     }
-
-
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
 
     function mostrarMensagem(
       texto,
@@ -3912,31 +3396,25 @@
           "mensagem"
         );
 
-
       if (!elemento) {
 
         return;
 
       }
 
-
       elemento.textContent =
         texto;
-
 
       elemento.className =
         "mensagem " +
         tipo;
 
-
       elemento.style.display =
         "block";
-
 
       clearTimeout(
         window.timerMensagem
       );
-
 
       window.timerMensagem =
         setTimeout(
@@ -3951,7 +3429,6 @@
 
     }
 
-
     function esconderMensagem() {
 
       const elemento =
@@ -3959,16 +3436,13 @@
           "mensagem"
         );
 
-
       if (elemento) {
 
         elemento.textContent =
           "";
 
-
         elemento.className =
           "mensagem";
-
 
         elemento.style.display =
           "none";
@@ -3976,11 +3450,6 @@
       }
 
     }
-
-
-    /* =====================================================
-       NORMALIZAR TEXTO
-       ===================================================== */
 
     function normalizarTexto(
       valor
@@ -4000,11 +3469,6 @@
         .toUpperCase();
 
     }
-
-
-    /* =====================================================
-       ESCAPAR HTML
-       ===================================================== */
 
     function escapeHTML(
       valor
@@ -4036,11 +3500,6 @@
 
     }
 
-
-    /* =====================================================
-       TRATAMENTO DE ERROS
-       ===================================================== */
-
     function obterMensagemErro(
       erro
     ) {
@@ -4055,10 +3514,8 @@
             erro.message
           );
 
-
         const texto =
           mensagem.toLowerCase();
-
 
         if (
           texto.includes(
@@ -4075,7 +3532,6 @@
 
         }
 
-
         if (
           texto.includes(
             "row-level security"
@@ -4090,7 +3546,6 @@
           );
 
         }
-
 
         if (
           texto.includes(
@@ -4108,7 +3563,6 @@
 
         }
 
-
         if (
           texto.includes(
             "relation"
@@ -4124,22 +3578,15 @@
 
         }
 
-
         return mensagem.toUpperCase();
 
       }
-
 
       return (
         "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
       );
 
     }
-
-
-    /* =====================================================
-       CLIQUE FORA DO CLIENTE
-       ===================================================== */
 
     document.addEventListener(
       "click",
@@ -4150,12 +3597,10 @@
             "clientePesquisa"
           );
 
-
         const resultados =
           document.getElementById(
             "resultadosClientes"
           );
-
 
         if (
           campo &&
@@ -4176,18 +3621,12 @@
       }
     );
 
-
-    /* =====================================================
-       MAIÚSCULAS
-       ===================================================== */
-
     document.addEventListener(
       "input",
       function(evento) {
 
         const elemento =
           evento.target;
-
 
         if (
           elemento &&
@@ -4202,7 +3641,6 @@
 
         }
 
-
         if (
           elemento &&
           elemento.tagName ===
@@ -4216,11 +3654,6 @@
 
       }
     );
-
-
-    /* =====================================================
-       ENTER NF
-       ===================================================== */
 
     document
       .getElementById("nf")
@@ -4246,11 +3679,6 @@
         }
       );
 
-
-    /* =====================================================
-       MONITORAR SESSÃO
-       ===================================================== */
-
     supabaseClient.auth.onAuthStateChange(
       function(
         evento,
@@ -4269,11 +3697,6 @@
       }
     );
 
-
-    /* =====================================================
-       SAIR
-       ===================================================== */
-
     async function sair() {
 
       const confirmar =
@@ -4281,19 +3704,16 @@
           "DESEJA REALMENTE SAIR DO BIRILOG?"
         );
 
-
       if (!confirmar) {
 
         return;
 
       }
 
-
       const botao =
         document.getElementById(
           "botaoSair"
         );
-
 
       if (botao) {
 
@@ -4304,7 +3724,6 @@
           "SAINDO...";
 
       }
-
 
       try {
 
@@ -4321,14 +3740,11 @@
 
       }
 
-
       redirecionarLogin();
 
     }
 
-
   </script>
-
 
 </body>
 
