@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -572,6 +571,42 @@
     }
 
     /* =====================================================
+       BOTÃO ALTERAR TRANSPORTADORA
+       ===================================================== */
+
+    .acoes-envio {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn-alterar-transportadora {
+      min-height: 42px;
+      padding: 0 18px;
+      border: 1px solid #bfdbfe;
+      border-radius: 9px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .btn-alterar-transportadora:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      transform: translateY(-1px);
+    }
+
+    .btn-alterar-transportadora:active {
+      transform: scale(0.98);
+    }
+
+    /* =====================================================
        ALERTA
        ===================================================== */
 
@@ -642,6 +677,196 @@
     }
 
     /* =====================================================
+       MODAL TRANSPORTADORA
+       ===================================================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.60);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 10000;
+      backdrop-filter: blur(3px);
+    }
+
+    .modal.aberto {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 25px 70px rgba(15,23,42,0.25);
+      overflow: hidden;
+      animation: aparecerModal 0.18s ease-out;
+    }
+
+    @keyframes aparecerModal {
+
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+    }
+
+    .modal-header {
+      padding: 20px 22px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .modal-titulo {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .modal-subtitulo {
+      margin-top: 4px;
+      font-size: 10px;
+      color: #64748b;
+    }
+
+    .modal-fechar {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: #475569;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .modal-fechar:hover {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .modal-conteudo {
+      padding: 22px;
+    }
+
+    .modal-nf {
+      padding: 12px 14px;
+      border: 1px solid #dbeafe;
+      border-radius: 9px;
+      background: #eff6ff;
+      margin-bottom: 18px;
+    }
+
+    .modal-nf-label {
+      font-size: 9px;
+      font-weight: 800;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    .modal-nf-valor {
+      margin-top: 5px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+
+    .campo-modal-label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #334155;
+      text-transform: uppercase;
+    }
+
+    .select-transportadora {
+      width: 100%;
+      height: 46px;
+      padding: 0 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      background: white;
+      color: #0f172a;
+      outline: none;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .select-transportadora:focus {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
+    }
+
+    .modal-ajuda {
+      margin-top: 8px;
+      font-size: 9px;
+      color: #94a3b8;
+    }
+
+    .modal-acoes {
+      padding: 18px 22px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .btn-cancelar {
+      min-height: 42px;
+      padding: 0 17px;
+      border: 1px solid #cbd5e1;
+      border-radius: 9px;
+      background: white;
+      color: #475569;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .btn-cancelar:hover {
+      background: #f8fafc;
+    }
+
+    .btn-salvar-alteracao {
+      min-height: 42px;
+      padding: 0 19px;
+      border: none;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #1976d2, #2563eb);
+      color: white;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
+    }
+
+    .btn-salvar-alteracao:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-salvar-alteracao:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    /* =====================================================
        LOADING
        ===================================================== */
 
@@ -681,9 +906,11 @@
     }
 
     @keyframes girar {
+
       to {
         transform: rotate(360deg);
       }
+
     }
 
     /* =====================================================
@@ -790,6 +1017,23 @@
         grid-template-columns: 1fr;
       }
 
+      .acoes-envio {
+        justify-content: stretch;
+      }
+
+      .btn-alterar-transportadora {
+        width: 100%;
+      }
+
+      .modal-acoes {
+        flex-direction: column-reverse;
+      }
+
+      .btn-cancelar,
+      .btn-salvar-alteracao {
+        width: 100%;
+      }
+
     }
 
     @media (max-width: 450px) {
@@ -832,6 +1076,114 @@
         class="loading-text"
       >
         CARREGANDO...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL ALTERAR TRANSPORTADORA
+       ===================================================== -->
+
+  <div
+    id="modalTransportadora"
+    class="modal"
+  >
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <div>
+
+          <div class="modal-titulo">
+            🚛 ALTERAR TRANSPORTADORA
+          </div>
+
+          <div class="modal-subtitulo">
+            Altere somente a transportadora deste envio.
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          class="modal-fechar"
+          onclick="fecharModalTransportadora()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="modal-conteudo">
+
+        <div class="modal-nf">
+
+          <div class="modal-nf-label">
+            Nota Fiscal
+          </div>
+
+          <div
+            id="modalNF"
+            class="modal-nf-valor"
+          >
+            NF -
+          </div>
+
+        </div>
+
+
+        <label
+          for="selectTransportadora"
+          class="campo-modal-label"
+        >
+          Nova Transportadora
+        </label>
+
+
+        <select
+          id="selectTransportadora"
+          class="select-transportadora"
+        >
+
+          <option value="">
+            CARREGANDO TRANSPORTADORAS...
+          </option>
+
+        </select>
+
+
+        <div class="modal-ajuda">
+          Somente transportadoras cadastradas e ativas serão exibidas.
+        </div>
+
+      </div>
+
+
+      <div class="modal-acoes">
+
+        <button
+          type="button"
+          class="btn-cancelar"
+          onclick="fecharModalTransportadora()"
+        >
+          CANCELAR
+        </button>
+
+
+        <button
+          type="button"
+          id="btnSalvarTransportadora"
+          class="btn-salvar-alteracao"
+          onclick="salvarAlteracaoTransportadora()"
+        >
+          💾 SALVAR ALTERAÇÃO
+        </button>
+
       </div>
 
     </div>
@@ -969,11 +1321,6 @@
 
       </button>
 
-
-      <!-- =================================================
-           PÓS-ENTREGA
-           CORRIGIDO: NOME EXATO DO ARQUIVO
-           ================================================= -->
 
       <button
         type="button"
@@ -1175,6 +1522,10 @@
       </div>
 
 
+      <!-- =================================================
+           RESULTADO
+           ================================================= -->
+
       <div
         id="resultado"
         class="resultado"
@@ -1299,6 +1650,25 @@
 
           </div>
 
+
+          <!-- =================================================
+               AÇÕES DO ENVIO
+               ================================================= -->
+
+          <div class="acoes-envio">
+
+            <button
+              type="button"
+              class="btn-alterar-transportadora"
+              onclick="abrirModalTransportadora()"
+            >
+
+              🚛 ALTERAR TRANSPORTADORA
+
+            </button>
+
+          </div>
+
         </div>
 
       </div>
@@ -1356,6 +1726,8 @@
 
 
     let usuarioAtual = null;
+
+    let envioAtual = null;
 
 
     document.addEventListener(
@@ -1629,6 +2001,10 @@
         }
 
 
+        envioAtual =
+          envio;
+
+
         mostrarResultado(
           envio
         );
@@ -1660,6 +2036,10 @@
     }
 
 
+    /* =====================================================
+       MOSTRAR RESULTADO
+       ===================================================== */
+
     function mostrarResultado(envio) {
 
       document
@@ -1684,7 +2064,9 @@
       document.getElementById(
         "infoCliente"
       ).textContent =
-        envio.cliente || "-";
+        envio.cliente_nome ||
+        envio.cliente ||
+        "-";
 
 
       document.getElementById(
@@ -1702,7 +2084,9 @@
       document.getElementById(
         "infoTransportadora"
       ).textContent =
-        envio.transportadora || "-";
+        envio.transportadora_nome ||
+        envio.transportadora ||
+        "-";
 
 
       document.getElementById(
@@ -1757,8 +2141,10 @@
         "infoAtualizacao"
       ).textContent =
         formatarDataHora(
+          envio.atualizado_em ||
           envio.updated_at ||
           envio.atualizacao ||
+          envio.criado_em ||
           envio.created_at
         );
 
@@ -1793,6 +2179,458 @@
 
     }
 
+
+    /* =====================================================
+       ALTERAR TRANSPORTADORA
+       ===================================================== */
+
+    async function abrirModalTransportadora() {
+
+      if (!envioAtual || !envioAtual.id) {
+
+        mostrarMensagem(
+          "PESQUISE UMA NF ANTES DE ALTERAR A TRANSPORTADORA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const modal =
+        document.getElementById(
+          "modalTransportadora"
+        );
+
+
+      const select =
+        document.getElementById(
+          "selectTransportadora"
+        );
+
+
+      const modalNF =
+        document.getElementById(
+          "modalNF"
+        );
+
+
+      modalNF.textContent =
+        "NF " +
+        String(
+          envioAtual.nf || "-"
+        ).toUpperCase();
+
+
+      select.innerHTML =
+        "<option value=\"\">CARREGANDO TRANSPORTADORAS...</option>";
+
+
+      modal.classList.add(
+        "aberto"
+      );
+
+
+      try {
+
+        const consulta =
+          await supabaseClient
+            .from("transportadoras")
+            .select("id, nome")
+            .eq("ativo", true)
+            .order("nome", {
+              ascending: true
+            });
+
+
+        if (consulta.error) {
+          throw consulta.error;
+        }
+
+
+        const transportadoras =
+          consulta.data || [];
+
+
+        select.innerHTML =
+          "";
+
+
+        if (
+          transportadoras.length === 0
+        ) {
+
+          select.innerHTML =
+            "<option value=\"\">NENHUMA TRANSPORTADORA ATIVA CADASTRADA</option>";
+
+          return;
+
+        }
+
+
+        const opcaoInicial =
+          document.createElement(
+            "option"
+          );
+
+        opcaoInicial.value = "";
+
+        opcaoInicial.textContent =
+          "SELECIONE A TRANSPORTADORA";
+
+        select.appendChild(
+          opcaoInicial
+        );
+
+
+        transportadoras.forEach(
+          function(transportadora) {
+
+            const opcao =
+              document.createElement(
+                "option"
+              );
+
+            opcao.value =
+              transportadora.id;
+
+            opcao.textContent =
+              String(
+                transportadora.nome || ""
+              ).toUpperCase();
+
+
+            if (
+              envioAtual.transportadora_id &&
+              String(
+                envioAtual.transportadora_id
+              ) ===
+              String(
+                transportadora.id
+              )
+            ) {
+
+              opcao.selected =
+                true;
+
+            }
+
+            else if (
+              !envioAtual.transportadora_id &&
+              String(
+                envioAtual.transportadora_nome ||
+                envioAtual.transportadora ||
+                ""
+              ).trim().toUpperCase() ===
+              String(
+                transportadora.nome || ""
+              ).trim().toUpperCase()
+            ) {
+
+              opcao.selected =
+                true;
+
+            }
+
+
+            select.appendChild(
+              opcao
+            );
+
+          }
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao carregar transportadoras:",
+          erro
+        );
+
+
+        select.innerHTML =
+          "<option value=\"\">ERRO AO CARREGAR TRANSPORTADORAS</option>";
+
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CARREGAR AS TRANSPORTADORAS.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    function fecharModalTransportadora() {
+
+      const modal =
+        document.getElementById(
+          "modalTransportadora"
+        );
+
+
+      const botao =
+        document.getElementById(
+          "btnSalvarTransportadora"
+        );
+
+
+      modal.classList.remove(
+        "aberto"
+      );
+
+
+      botao.disabled =
+        false;
+
+
+      botao.textContent =
+        "💾 SALVAR ALTERAÇÃO";
+
+    }
+
+
+    async function salvarAlteracaoTransportadora() {
+
+      if (!envioAtual || !envioAtual.id) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO SELECIONADO.",
+          "erro"
+        );
+
+        fecharModalTransportadora();
+
+        return;
+
+      }
+
+
+      const select =
+        document.getElementById(
+          "selectTransportadora"
+        );
+
+
+      const botao =
+        document.getElementById(
+          "btnSalvarTransportadora"
+        );
+
+
+      const transportadoraId =
+        String(
+          select.value || ""
+        ).trim();
+
+
+      if (!transportadoraId) {
+
+        mostrarMensagem(
+          "SELECIONE UMA TRANSPORTADORA.",
+          "erro"
+        );
+
+        select.focus();
+
+        return;
+
+      }
+
+
+      const opcaoSelecionada =
+        select.options[
+          select.selectedIndex
+        ];
+
+
+      const transportadoraNome =
+        opcaoSelecionada
+          ? String(
+              opcaoSelecionada.textContent || ""
+            ).trim()
+          : "";
+
+
+      if (!transportadoraNome) {
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL IDENTIFICAR A TRANSPORTADORA SELECIONADA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const confirmar =
+        window.confirm(
+          "CONFIRMA A ALTERAÇÃO DA TRANSPORTADORA DA NF " +
+          String(
+            envioAtual.nf || ""
+          ) +
+          " PARA " +
+          transportadoraNome +
+          "?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      try {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "🔄 SALVANDO...";
+
+
+        /*
+         * =================================================
+         * IMPORTANTE:
+         * Atualizamos SOMENTE:
+         *
+         * transportadora_id
+         * transportadora_nome
+         *
+         * Todos os demais campos permanecem intactos.
+         * =================================================
+         */
+
+        const atualizacao =
+          await supabaseClient
+            .from("envios")
+            .update({
+              transportadora_id:
+                transportadoraId,
+
+              transportadora_nome:
+                transportadoraNome,
+
+              atualizado_em:
+                new Date().toISOString()
+            })
+            .eq(
+              "id",
+              envioAtual.id
+            )
+            .select("*")
+            .single();
+
+
+        if (atualizacao.error) {
+          throw atualizacao.error;
+        }
+
+
+        if (!atualizacao.data) {
+
+          throw new Error(
+            "NENHUM REGISTRO FOI ATUALIZADO."
+          );
+
+        }
+
+
+        /*
+         * Atualiza o registro atualmente
+         * carregado na memória.
+         */
+
+        envioAtual =
+          atualizacao.data;
+
+
+        /*
+         * Atualiza a tela.
+         */
+
+        mostrarResultado(
+          envioAtual
+        );
+
+
+        fecharModalTransportadora();
+
+
+        mostrarMensagem(
+          "TRANSPORTADORA DA NF " +
+          String(
+            envioAtual.nf || ""
+          ) +
+          " ALTERADA COM SUCESSO PARA " +
+          transportadoraNome +
+          ".",
+          "sucesso"
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao alterar transportadora:",
+          erro
+        );
+
+
+        botao.disabled =
+          false;
+
+        botao.textContent =
+          "💾 SALVAR ALTERAÇÃO";
+
+
+        mostrarMensagem(
+          obterMensagemErroTransportadora(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    function obterMensagemErroTransportadora(
+      erro
+    ) {
+
+      if (!erro) {
+
+        return "OCORREU UM ERRO AO ALTERAR A TRANSPORTADORA.";
+
+      }
+
+
+      if (erro.message) {
+
+        return (
+          "ERRO AO ALTERAR A TRANSPORTADORA: " +
+          erro.message
+        ).toUpperCase();
+
+      }
+
+
+      return "OCORREU UM ERRO AO ALTERAR A TRANSPORTADORA.";
+
+    }
+
+
+    /* =====================================================
+       STATUS
+       ===================================================== */
 
     function normalizarStatus(status) {
 
@@ -1882,6 +2720,10 @@
 
     }
 
+
+    /* =====================================================
+       ALERTA
+       ===================================================== */
 
     function atualizarAlerta(envio) {
 
@@ -2015,6 +2857,10 @@
 
     }
 
+
+    /* =====================================================
+       RESULTADO VAZIO
+       ===================================================== */
 
     function mostrarSemResultado() {
 
@@ -2465,6 +3311,52 @@
 
 
     /* =====================================================
+       FECHAR MODAL CLICANDO FORA
+       ===================================================== */
+
+    document
+      .getElementById(
+        "modalTransportadora"
+      )
+      .addEventListener(
+        "click",
+        function(evento) {
+
+          if (
+            evento.target ===
+            this
+          ) {
+
+            fecharModalTransportadora();
+
+          }
+
+        }
+      );
+
+
+    /* =====================================================
+       ESC FECHA O MODAL
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      function(evento) {
+
+        if (
+          evento.key ===
+          "Escape"
+        ) {
+
+          fecharModalTransportadora();
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
        MONITORAR SESSÃO
        ===================================================== */
 
@@ -2491,4 +3383,3 @@
 </body>
 
 </html>
-```
