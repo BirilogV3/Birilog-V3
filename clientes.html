@@ -1,18 +1,17 @@
+```html
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BiriLog V3 - Clientes</title>
-
-  <!-- =====================================================
-       SUPABASE
-       ===================================================== -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -35,10 +34,6 @@
       background: #f1f5f9;
       color: #1e293b;
     }
-
-    /* =====================================================
-       SIDEBAR
-       ===================================================== */
 
     .sidebar {
       width: 250px;
@@ -92,10 +87,6 @@
       letter-spacing: 1px;
     }
 
-    /* =====================================================
-       MENU
-       ===================================================== */
-
     .menu {
       padding: 20px 12px;
       flex: 1;
@@ -146,10 +137,6 @@
       flex-shrink: 0;
     }
 
-    /* =====================================================
-       USUÁRIO
-       ===================================================== */
-
     .user-area {
       padding: 15px;
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -189,10 +176,6 @@
       text-transform: uppercase;
     }
 
-    /* =====================================================
-       SAIR
-       ===================================================== */
-
     .logout {
       width: 100%;
       margin-top: 10px;
@@ -219,19 +202,11 @@
       cursor: wait;
     }
 
-    /* =====================================================
-       MAIN
-       ===================================================== */
-
     .main {
       margin-left: 250px;
       width: calc(100% - 250px);
       min-height: 100vh;
     }
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
 
     .header {
       height: 75px;
@@ -277,17 +252,9 @@
       background: #22c55e;
     }
 
-    /* =====================================================
-       CONTEÚDO
-       ===================================================== */
-
     .content {
       padding: 30px;
     }
-
-    /* =====================================================
-       MENSAGEM
-       ===================================================== */
 
     .mensagem {
       display: none;
@@ -312,10 +279,6 @@
       color: #b91c1c;
       border: 1px solid #fecaca;
     }
-
-    /* =====================================================
-       CARDS
-       ===================================================== */
 
     .cards {
       display: grid;
@@ -346,10 +309,6 @@
       color: #0f172a;
     }
 
-    /* =====================================================
-       PAINEL
-       ===================================================== */
-
     .panel {
       background: white;
       border: 1px solid #e2e8f0;
@@ -378,10 +337,6 @@
       font-size: 10px;
       color: #94a3b8;
     }
-
-    /* =====================================================
-       FORMULÁRIO
-       ===================================================== */
 
     .form-grid {
       display: grid;
@@ -438,10 +393,6 @@
       border-top: 1px solid #f1f5f9;
     }
 
-    /* =====================================================
-       BOTÕES
-       ===================================================== */
-
     .btn {
       border: none;
       border-radius: 8px;
@@ -457,7 +408,7 @@
     }
 
     .btn:disabled {
-      opacity: 0.6;
+      opacity: .6;
       cursor: wait;
       transform: none;
     }
@@ -474,13 +425,9 @@
       border: 1px solid #e2e8f0;
     }
 
-    /* =====================================================
-       FILTROS
-       ===================================================== */
-
     .filtros {
       display: grid;
-      grid-template-columns: 2fr 1fr auto;
+      grid-template-columns: 2fr 1fr 1fr;
       gap: 10px;
       margin-bottom: 20px;
     }
@@ -502,10 +449,6 @@
       border-color: #1976d2;
       box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
-
-    /* =====================================================
-       TABELA
-       ===================================================== */
 
     .table-wrapper {
       width: 100%;
@@ -579,10 +522,6 @@
       color: #b91c1c;
     }
 
-    /* =====================================================
-       MODAL
-       ===================================================== */
-
     .modal {
       display: none;
       position: fixed;
@@ -601,8 +540,6 @@
     .modal-box {
       width: 100%;
       max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
       background: white;
       border-radius: 16px;
       padding: 25px;
@@ -629,10 +566,6 @@
       font-size: 24px;
       cursor: pointer;
     }
-
-    /* =====================================================
-       LOADING
-       ===================================================== */
 
     .loading {
       position: fixed;
@@ -674,10 +607,6 @@
         transform: rotate(360deg);
       }
     }
-
-    /* =====================================================
-       RESPONSIVO
-       ===================================================== */
 
     @media (max-width: 900px) {
 
@@ -810,340 +739,638 @@
 
 <body>
 
-  <!-- =====================================================
-       LOADING
-       ===================================================== -->
-
   <div id="loadingTela" class="loading">
 
-```
-<div class="loading-box">
+    <div class="loading-box">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div id="loadingText" class="loading-text">
-    CARREGANDO...
-  </div>
+      <div id="loadingText" class="loading-text">
+        CARREGANDO...
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
-
-  <!-- =====================================================
-       SIDEBAR
-       ===================================================== -->
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
+    <div class="logo-area">
 
-  <div class="logo-icon">
-    🚚
-  </div>
+      <div class="logo-icon">
+        🚚
+      </div>
 
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
 
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
 
-</div>
-
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('dashboard.html')"
-  >
-    <span class="menu-icon">📊</span>
-    <span>Dashboard</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('envios.html')"
-  >
-    <span class="menu-icon">📦</span>
-    <span>Envios</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irParaPesquisarNF()"
-  >
-    <span class="menu-icon">🔎</span>
-    <span>Pesquisar NF</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item active"
-  >
-    <span class="menu-icon">👥</span>
-    <span>Clientes</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('transportadoras.html')"
-  >
-    <span class="menu-icon">🚛</span>
-    <span>Transportadoras</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('relatorios.html')"
-  >
-    <span class="menu-icon">📄</span>
-    <span>Relatórios</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('usuarios.html')"
-  >
-    <span class="menu-icon">🔐</span>
-    <span>Usuários</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('configuracoes.html')"
-  >
-    <span class="menu-icon">⚙️</span>
-    <span>Configurações</span>
-  </button>
-
-</nav>
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div id="usuarioNome" class="user-name">
-      USUÁRIO
     </div>
 
-    <div id="usuarioEmail" class="user-email">
-      -
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+        <span class="menu-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+        <span class="menu-icon">📦</span>
+        <span>Envios</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irParaPesquisarNF()"
+      >
+        <span class="menu-icon">🔎</span>
+        <span>Pesquisar NF</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+        <span class="menu-icon">👥</span>
+        <span>Clientes</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+        <span class="menu-icon">🚛</span>
+        <span>Transportadoras</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+        <span class="menu-icon">📄</span>
+        <span>Relatórios</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+        <span class="menu-icon">🔐</span>
+        <span>Usuários</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+        <span class="menu-icon">⚙️</span>
+        <span>Configurações</span>
+      </button>
+
+    </nav>
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div id="usuarioNome" class="user-name">
+          USUÁRIO
+        </div>
+
+        <div id="usuarioEmail" class="user-email">
+          -
+        </div>
+
+        <div id="usuarioPerfil" class="user-profile">
+          PERFIL
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+        🚪 SAIR DO SISTEMA
+      </button>
+
     </div>
-
-    <div id="usuarioPerfil" class="user-profile">
-      PERFIL
-    </div>
-
-  </div>
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-    🚪 SAIR DO SISTEMA
-  </button>
-
-</div>
-```
 
   </aside>
 
-  <!-- =====================================================
-       MAIN
-       ===================================================== -->
-
   <main class="main">
 
-```
-<header class="header">
-
-  <div>
-
-    <div class="header-title">
-      Clientes
-    </div>
-
-    <div class="header-subtitle">
-      Cadastro e gerenciamento de clientes
-    </div>
-
-  </div>
-
-  <div class="status-online">
-
-    <span class="status-dot"></span>
-
-    SISTEMA ONLINE
-
-  </div>
-
-</header>
-
-<section class="content">
-
-  <div id="mensagem" class="mensagem"></div>
-
-  <!-- =================================================
-       CARDS
-       ================================================= -->
-
-  <div class="cards">
-
-    <div class="card">
-
-      <div class="card-label">
-        Total de Clientes
-      </div>
-
-      <div id="cardTotal" class="card-value">
-        0
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <div class="card-label">
-        Estados Cadastrados
-      </div>
-
-      <div id="cardEstados" class="card-value">
-        0
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <div class="card-label">
-        Última Atualização
-      </div>
-
-      <div
-        id="cardAtualizacao"
-        class="card-value"
-        style="font-size:17px;"
-      >
-        -
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- =================================================
-       CADASTRAR CLIENTE
-       ================================================= -->
-
-  <div class="panel">
-
-    <div class="panel-header">
+    <header class="header">
 
       <div>
 
-        <div class="panel-title">
-          👥 NOVO CLIENTE
+        <div class="header-title">
+          Clientes
         </div>
 
-        <div class="panel-subtitle">
-          Cadastre um novo cliente no BiriLog.
+        <div class="header-subtitle">
+          Cadastro e gerenciamento de clientes
         </div>
 
       </div>
 
-    </div>
+      <div class="status-online">
 
-    <form
-      id="formCliente"
-      onsubmit="salvarCliente(event)"
-    >
+        <span class="status-dot"></span>
 
-      <div class="form-grid">
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <div id="mensagem" class="mensagem"></div>
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="card-label">
+            Total de Clientes
+          </div>
+
+          <div id="cardTotal" class="card-value">
+            0
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-label">
+            Estados Cadastrados
+          </div>
+
+          <div id="cardEstados" class="card-value">
+            0
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-label">
+            Última Atualização
+          </div>
+
+          <div
+            id="cardAtualizacao"
+            class="card-value"
+            style="font-size:17px;"
+          >
+            -
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              👥 NOVO CLIENTE
+            </div>
+
+            <div class="panel-subtitle">
+              Cadastre um novo cliente no BiriLog.
+            </div>
+
+          </div>
+
+        </div>
+
+        <form
+          id="formCliente"
+          onsubmit="salvarCliente(event)"
+        >
+
+          <div class="form-grid">
+
+            <div class="campo">
+
+              <label for="codigo">
+                Código
+              </label>
+
+              <input
+                type="text"
+                id="codigo"
+                placeholder="CÓDIGO"
+                autocomplete="off"
+              >
+
+            </div>
+
+            <div class="campo">
+
+              <label for="nome">
+                Nome do Cliente *
+              </label>
+
+              <input
+                type="text"
+                id="nome"
+                placeholder="NOME DO CLIENTE"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+            <div class="campo">
+
+              <label for="uf">
+                UF *
+              </label>
+
+              <select id="uf" required>
+
+                <option value="">
+                  SELECIONE
+                </option>
+
+                <option value="TO">
+                  TOCANTINS - TO
+                </option>
+
+                <option value="PA">
+                  PARÁ - PA
+                </option>
+
+                <option value="MA">
+                  MARANHÃO - MA
+                </option>
+
+                <option value="GO">
+                  GOIÁS - GO
+                </option>
+
+                <option value="MT">
+                  MATO GROSSO - MT
+                </option>
+
+                <option value="BA">
+                  BAHIA - BA
+                </option>
+
+                <option value="PI">
+                  PIAUÍ - PI
+                </option>
+
+                <option value="MG">
+                  MINAS GERAIS - MG
+                </option>
+
+                <option value="SP">
+                  SÃO PAULO - SP
+                </option>
+
+                <option value="RJ">
+                  RIO DE JANEIRO - RJ
+                </option>
+
+                <option value="DF">
+                  DISTRITO FEDERAL - DF
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="campo">
+
+              <label for="telefone">
+                Telefone / WhatsApp
+              </label>
+
+              <input
+                type="tel"
+                id="telefone"
+                placeholder="(63) 99999-9999"
+                autocomplete="off"
+                inputmode="tel"
+                maxlength="15"
+              >
+
+            </div>
+
+            <div
+              class="campo"
+              style="grid-column: span 2;"
+            >
+
+              <label for="cidade">
+                Cidade *
+              </label>
+
+              <input
+                type="text"
+                id="cidade"
+                placeholder="CIDADE"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+          </div>
+
+          <div class="form-acoes">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="limparFormulario()"
+            >
+              🧹 LIMPAR
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="btnSalvar"
+            >
+              💾 SALVAR CLIENTE
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              📋 CLIENTES CADASTRADOS
+            </div>
+
+            <div class="panel-subtitle">
+              Consulte, edite e exclua clientes.
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="carregarClientes()"
+          >
+            🔄 ATUALIZAR
+          </button>
+
+        </div>
+
+        <div class="filtros">
+
+          <input
+            type="text"
+            id="filtroTexto"
+            class="filtro"
+            placeholder="🔎 CÓDIGO, NOME, CIDADE OU TELEFONE"
+            autocomplete="off"
+            oninput="filtrarClientes()"
+          >
+
+          <select
+            id="filtroUF"
+            class="filtro"
+            onchange="filtrarClientes()"
+          >
+
+            <option value="">
+              TODAS AS UFs
+            </option>
+
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="MA">MA</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="BA">BA</option>
+            <option value="PI">PI</option>
+            <option value="MG">MG</option>
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="DF">DF</option>
+
+          </select>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="limparFiltros()"
+          >
+            LIMPAR FILTROS
+          </button>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>CÓDIGO</th>
+                <th>CLIENTE</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>TELEFONE / WHATSAPP</th>
+                <th>AÇÕES</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tabelaClientes">
+
+              <tr>
+
+                <td
+                  colspan="6"
+                  style="
+                    text-align:center;
+                    padding:30px;
+                    color:#94a3b8;
+                  "
+                >
+                  CARREGANDO CLIENTES...
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="modalEditar" class="modal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <div class="modal-title">
+          ✏️ EDITAR CLIENTE
+        </div>
+
+        <button
+          type="button"
+          class="fechar"
+          onclick="fecharModal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        id="formEditar"
+        onsubmit="atualizarCliente(event)"
+      >
+
+        <input
+          type="hidden"
+          id="editarId"
+        >
 
         <div class="campo">
 
-          <label for="codigo">
+          <label for="editarCodigo">
             Código
           </label>
 
           <input
             type="text"
-            id="codigo"
-            placeholder="CÓDIGO"
+            id="editarCodigo"
             autocomplete="off"
           >
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="nome">
+          <label for="editarNome">
             Nome do Cliente *
           </label>
 
           <input
             type="text"
-            id="nome"
-            placeholder="NOME DO CLIENTE"
-            autocomplete="off"
+            id="editarNome"
             required
+            autocomplete="off"
           >
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="uf">
+          <label for="editarCidade">
+            Cidade *
+          </label>
+
+          <input
+            type="text"
+            id="editarCidade"
+            required
+            autocomplete="off"
+          >
+
+        </div>
+
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
+
+          <label for="editarUF">
             UF *
           </label>
 
-          <select id="uf" required>
+          <select id="editarUF" required>
 
-            <option value="">
-              SELECIONE
-            </option>
-
-            <option value="TO">TOCANTINS - TO</option>
-            <option value="PA">PARÁ - PA</option>
-            <option value="MA">MARANHÃO - MA</option>
-            <option value="GO">GOIÁS - GO</option>
-            <option value="MT">MATO GROSSO - MT</option>
-            <option value="BA">BAHIA - BA</option>
-            <option value="PI">PIAUÍ - PI</option>
-            <option value="MG">MINAS GERAIS - MG</option>
-            <option value="SP">SÃO PAULO - SP</option>
-            <option value="RJ">RIO DE JANEIRO - RJ</option>
-            <option value="DF">DISTRITO FEDERAL - DF</option>
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="MA">MA</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="BA">BA</option>
+            <option value="PI">PI</option>
+            <option value="MG">MG</option>
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="DF">DF</option>
 
           </select>
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="telefone">
+          <label for="editarTelefone">
             Telefone / WhatsApp
           </label>
 
           <input
             type="tel"
-            id="telefone"
+            id="editarTelefone"
             placeholder="(63) 99999-9999"
             autocomplete="off"
             inputmode="tel"
@@ -1152,338 +1379,31 @@
 
         </div>
 
-        <div
-          class="campo"
-          style="grid-column: span 2;"
-        >
+        <div class="form-acoes">
 
-          <label for="cidade">
-            Cidade *
-          </label>
-
-          <input
-            type="text"
-            id="cidade"
-            placeholder="CIDADE"
-            autocomplete="off"
-            required
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="fecharModal()"
           >
+            CANCELAR
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="btnAtualizar"
+          >
+            💾 SALVAR ALTERAÇÕES
+          </button>
 
         </div>
 
-      </div>
-
-      <div class="form-acoes">
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="limparFormulario()"
-        >
-          🧹 LIMPAR
-        </button>
-
-        <button
-          type="submit"
-          class="btn btn-primary"
-          id="btnSalvar"
-        >
-          💾 SALVAR CLIENTE
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-  <!-- =================================================
-       LISTA
-       ================================================= -->
-
-  <div class="panel">
-
-    <div class="panel-header">
-
-      <div>
-
-        <div class="panel-title">
-          📋 CLIENTES CADASTRADOS
-        </div>
-
-        <div class="panel-subtitle">
-          Consulte, edite e exclua clientes.
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="carregarClientes()"
-      >
-        🔄 ATUALIZAR
-      </button>
-
-    </div>
-
-    <div class="filtros">
-
-      <input
-        type="text"
-        id="filtroTexto"
-        class="filtro"
-        placeholder="🔎 CÓDIGO, NOME, CIDADE OU TELEFONE"
-        autocomplete="off"
-      >
-
-      <select
-        id="filtroUF"
-        class="filtro"
-      >
-
-        <option value="">
-          TODAS AS UFs
-        </option>
-
-        <option value="TO">TO</option>
-        <option value="PA">PA</option>
-        <option value="MA">MA</option>
-        <option value="GO">GO</option>
-        <option value="MT">MT</option>
-        <option value="BA">BA</option>
-        <option value="PI">PI</option>
-        <option value="MG">MG</option>
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="DF">DF</option>
-
-      </select>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="limparFiltros()"
-      >
-        LIMPAR FILTROS
-      </button>
-
-    </div>
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>CÓDIGO</th>
-            <th>CLIENTE</th>
-            <th>CIDADE</th>
-            <th>UF</th>
-            <th>TELEFONE / WHATSAPP</th>
-            <th>AÇÕES</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody id="tabelaClientes">
-
-          <tr>
-
-            <td
-              colspan="6"
-              style="
-                text-align:center;
-                padding:30px;
-                color:#94a3b8;
-              "
-            >
-              CARREGANDO CLIENTES...
-            </td>
-
-          </tr>
-
-        </tbody>
-
-      </table>
+      </form>
 
     </div>
 
   </div>
-
-</section>
-```
-
-  </main>
-
-  <!-- =====================================================
-       MODAL EDITAR
-       ===================================================== -->
-
-  <div id="modalEditar" class="modal">
-
-```
-<div class="modal-box">
-
-  <div class="modal-header">
-
-    <div class="modal-title">
-      ✏️ EDITAR CLIENTE
-    </div>
-
-    <button
-      type="button"
-      class="fechar"
-      onclick="fecharModal()"
-    >
-      ×
-    </button>
-
-  </div>
-
-  <form
-    id="formEditar"
-    onsubmit="atualizarCliente(event)"
-  >
-
-    <input
-      type="hidden"
-      id="editarId"
-    >
-
-    <div class="campo">
-
-      <label for="editarCodigo">
-        Código
-      </label>
-
-      <input
-        type="text"
-        id="editarCodigo"
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarNome">
-        Nome do Cliente *
-      </label>
-
-      <input
-        type="text"
-        id="editarNome"
-        required
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarCidade">
-        Cidade *
-      </label>
-
-      <input
-        type="text"
-        id="editarCidade"
-        required
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarUF">
-        UF *
-      </label>
-
-      <select
-        id="editarUF"
-        required
-      >
-
-        <option value="TO">TO</option>
-        <option value="PA">PA</option>
-        <option value="MA">MA</option>
-        <option value="GO">GO</option>
-        <option value="MT">MT</option>
-        <option value="BA">BA</option>
-        <option value="PI">PI</option>
-        <option value="MG">MG</option>
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="DF">DF</option>
-
-      </select>
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarTelefone">
-        Telefone / WhatsApp
-      </label>
-
-      <input
-        type="tel"
-        id="editarTelefone"
-        placeholder="(63) 99999-9999"
-        autocomplete="off"
-        inputmode="tel"
-        maxlength="15"
-      >
-
-    </div>
-
-    <div class="form-acoes">
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="fecharModal()"
-      >
-        CANCELAR
-      </button>
-
-      <button
-        type="submit"
-        class="btn btn-primary"
-        id="btnAtualizar"
-      >
-        💾 SALVAR ALTERAÇÕES
-      </button>
-
-    </div>
-
-  </form>
-
-</div>
-```
-
-  </div>
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
 
   <script>
 
@@ -1576,9 +1496,7 @@
 
         }
 
-        if (
-          consulta.data.ativo === false
-        ) {
+        if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
 
@@ -1609,7 +1527,7 @@
         esconderLoading();
 
         mostrarMensagem(
-          obterMensagemErro(erro),
+          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO DE CLIENTES.",
           "erro"
         );
 
@@ -1668,6 +1586,10 @@
           await supabaseClient
             .from("clientes")
             .select("*")
+            .eq(
+              "ativo",
+              true
+            )
             .order(
               "nome",
               {
@@ -1734,14 +1656,18 @@
           lista
             .map(
               function(cliente) {
+
                 return normalizarTexto(
                   cliente.uf
                 );
+
               }
             )
             .filter(
               function(uf) {
+
                 return uf;
+
               }
             )
         );
@@ -1799,33 +1725,33 @@
       const codigo =
         document.getElementById(
           "codigo"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const nome =
         document.getElementById(
           "nome"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const cidade =
         document.getElementById(
           "cidade"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const uf =
         document.getElementById(
           "uf"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const telefone =
         document.getElementById(
           "telefone"
         ).value.trim();
 
-      if (
-        !nome ||
-        !cidade ||
-        !uf
-      ) {
+      if (!nome || !cidade || !uf) {
 
         mostrarMensagem(
           "PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS.",
@@ -1852,10 +1778,14 @@
           const consultaCodigo =
             await supabaseClient
               .from("clientes")
-              .select("id,codigo")
+              .select("id,codigo,ativo")
               .eq(
                 "codigo",
                 codigo
+              )
+              .eq(
+                "ativo",
+                true
               )
               .limit(1);
 
@@ -1881,7 +1811,8 @@
         const dados = {
 
           codigo:
-            codigo || null,
+            codigo ||
+            null,
 
           nome:
             nome,
@@ -1893,18 +1824,26 @@
             uf,
 
           telefone:
-            telefone || null
+            telefone ||
+            null,
+
+          ativo:
+            true
 
         };
 
         const resultado =
           await supabaseClient
             .from("clientes")
-            .insert([dados]);
+            .insert([
+              dados
+            ]);
 
         if (resultado.error) {
           throw resultado.error;
         }
+
+        esconderLoading();
 
         mostrarMensagem(
           "CLIENTE CADASTRADO COM SUCESSO!",
@@ -1924,6 +1863,8 @@
           erro
         );
 
+        esconderLoading();
+
         mostrarMensagem(
           obterMensagemErro(erro),
           "erro"
@@ -1932,8 +1873,6 @@
       }
 
       finally {
-
-        esconderLoading();
 
         botao.disabled = false;
 
@@ -1954,8 +1893,12 @@
         todosClientes.find(
           function(item) {
 
-            return String(item.id) ===
-              String(id);
+            return String(
+              item.id
+            ) ===
+            String(
+              id
+            );
 
           }
         );
@@ -1979,27 +1922,32 @@
       document.getElementById(
         "editarCodigo"
       ).value =
-        cliente.codigo || "";
+        cliente.codigo ||
+        "";
 
       document.getElementById(
         "editarNome"
       ).value =
-        cliente.nome || "";
+        cliente.nome ||
+        "";
 
       document.getElementById(
         "editarCidade"
       ).value =
-        cliente.cidade || "";
+        cliente.cidade ||
+        "";
 
       document.getElementById(
         "editarUF"
       ).value =
-        cliente.uf || "";
+        cliente.uf ||
+        "";
 
       document.getElementById(
         "editarTelefone"
       ).value =
-        cliente.telefone || "";
+        cliente.telefone ||
+        "";
 
       document.getElementById(
         "modalEditar"
@@ -2030,34 +1978,33 @@
       const codigo =
         document.getElementById(
           "editarCodigo"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const nome =
         document.getElementById(
           "editarNome"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const cidade =
         document.getElementById(
           "editarCidade"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const uf =
         document.getElementById(
           "editarUF"
-        ).value.trim().toUpperCase();
+        ).value.trim()
+          .toUpperCase();
 
       const telefone =
         document.getElementById(
           "editarTelefone"
         ).value.trim();
 
-      if (
-        !id ||
-        !nome ||
-        !cidade ||
-        !uf
-      ) {
+      if (!id || !nome || !cidade || !uf) {
 
         mostrarMensagem(
           "PREENCHA TODOS OS CAMPOS OBRIGATÓRIOS.",
@@ -2089,6 +2036,10 @@
                 "codigo",
                 codigo
               )
+              .eq(
+                "ativo",
+                true
+              )
               .neq(
                 "id",
                 id
@@ -2117,7 +2068,8 @@
         const dados = {
 
           codigo:
-            codigo || null,
+            codigo ||
+            null,
 
           nome:
             nome,
@@ -2129,7 +2081,8 @@
             uf,
 
           telefone:
-            telefone || null
+            telefone ||
+            null
 
         };
 
@@ -2140,11 +2093,17 @@
             .eq(
               "id",
               id
+            )
+            .eq(
+              "ativo",
+              true
             );
 
         if (resultado.error) {
           throw resultado.error;
         }
+
+        esconderLoading();
 
         fecharModal();
 
@@ -2164,6 +2123,8 @@
           erro
         );
 
+        esconderLoading();
+
         mostrarMensagem(
           obterMensagemErro(erro),
           "erro"
@@ -2172,8 +2133,6 @@
       }
 
       finally {
-
-        esconderLoading();
 
         botao.disabled = false;
 
@@ -2185,7 +2144,7 @@
     }
 
     /* =====================================================
-       EXCLUIR
+       EXCLUIR CLIENTE
        ===================================================== */
 
     async function excluirCliente(id) {
@@ -2194,8 +2153,12 @@
         todosClientes.find(
           function(item) {
 
-            return String(item.id) ===
-              String(id);
+            return String(
+              item.id
+            ) ===
+            String(
+              id
+            );
 
           }
         );
@@ -2213,10 +2176,16 @@
 
       const confirmar =
         window.confirm(
+
           "DESEJA REALMENTE EXCLUIR O CLIENTE?\n\n" +
+
           String(
-            cliente.nome || ""
-          ).toUpperCase()
+            cliente.nome ||
+            ""
+          ).toUpperCase() +
+
+          "\n\nO CLIENTE SERÁ DESATIVADO, MAS O HISTÓRICO DOS ENVIOS SERÁ PRESERVADO."
+
         );
 
       if (!confirmar) {
@@ -2226,13 +2195,15 @@
       try {
 
         mostrarLoading(
-          "EXCLUINDO CLIENTE..."
+          "DESATIVANDO CLIENTE..."
         );
 
         const resultado =
           await supabaseClient
             .from("clientes")
-            .delete()
+            .update({
+              ativo: false
+            })
             .eq(
               "id",
               id
@@ -2242,8 +2213,10 @@
           throw resultado.error;
         }
 
+        esconderLoading();
+
         mostrarMensagem(
-          "CLIENTE EXCLUÍDO COM SUCESSO!",
+          "CLIENTE DESATIVADO COM SUCESSO!",
           "sucesso"
         );
 
@@ -2254,20 +2227,16 @@
       catch (erro) {
 
         console.error(
-          "Erro ao excluir cliente:",
+          "Erro ao desativar cliente:",
           erro
         );
+
+        esconderLoading();
 
         mostrarMensagem(
           obterMensagemErro(erro),
           "erro"
         );
-
-      }
-
-      finally {
-
-        esconderLoading();
 
       }
 
@@ -2284,13 +2253,12 @@
           "tabelaClientes"
         );
 
-      if (
-        !lista ||
-        lista.length === 0
-      ) {
+      if (!lista || lista.length === 0) {
 
         tabela.innerHTML = `
+
           <tr>
+
             <td
               colspan="6"
               style="
@@ -2299,9 +2267,13 @@
                 color:#94a3b8;
               "
             >
+
               👥 NENHUM CLIENTE ENCONTRADO
+
             </td>
+
           </tr>
+
         `;
 
         return;
@@ -2314,39 +2286,55 @@
             function(cliente) {
 
               const telefone =
-                cliente.telefone || "-";
+                cliente.telefone ||
+                "-";
 
               return `
+
                 <tr>
 
                   <td class="codigo">
+
                     ${escapeHTML(
-                      cliente.codigo || "-"
+                      cliente.codigo ||
+                      "-"
                     )}
+
                   </td>
 
                   <td class="cliente-nome">
+
                     ${escapeHTML(
-                      cliente.nome || "-"
+                      cliente.nome ||
+                      "-"
                     )}
+
                   </td>
 
                   <td>
+
                     ${escapeHTML(
-                      cliente.cidade || "-"
+                      cliente.cidade ||
+                      "-"
                     )}
+
                   </td>
 
                   <td>
+
                     ${escapeHTML(
-                      cliente.uf || "-"
+                      cliente.uf ||
+                      "-"
                     )}
+
                   </td>
 
                   <td class="telefone">
+
                     ${escapeHTML(
                       telefone
                     )}
+
                   </td>
 
                   <td>
@@ -2356,7 +2344,9 @@
                       <button
                         type="button"
                         class="btn-mini btn-editar"
-                        onclick="abrirEditar('${escapeJS(cliente.id)}')"
+                        onclick="abrirEditar('${escapeJS(
+                          cliente.id
+                        )}')"
                         title="Editar cliente"
                       >
                         ✏️
@@ -2365,8 +2355,10 @@
                       <button
                         type="button"
                         class="btn-mini btn-excluir"
-                        onclick="excluirCliente('${escapeJS(cliente.id)}')"
-                        title="Excluir cliente"
+                        onclick="excluirCliente('${escapeJS(
+                          cliente.id
+                        )}')"
+                        title="Desativar cliente"
                       >
                         🗑️
                       </button>
@@ -2376,6 +2368,7 @@
                   </td>
 
                 </tr>
+
               `;
 
             }
@@ -2390,28 +2383,18 @@
 
     function filtrarClientes() {
 
-      const campoTexto =
-        document.getElementById(
-          "filtroTexto"
-        );
-
-      const campoUF =
-        document.getElementById(
-          "filtroUF"
-        );
-
       const texto =
         normalizarTexto(
-          campoTexto
-            ? campoTexto.value
-            : ""
+          document.getElementById(
+            "filtroTexto"
+          ).value
         );
 
       const uf =
         normalizarTexto(
-          campoUF
-            ? campoUF.value
-            : ""
+          document.getElementById(
+            "filtroUF"
+          ).value
         );
 
       const filtrados =
@@ -2420,25 +2403,40 @@
 
             const textoCliente =
               normalizarTexto(
+
                 String(
-                  cliente.codigo || ""
+                  cliente.codigo ||
+                  ""
                 ) +
+
                 " " +
+
                 String(
-                  cliente.nome || ""
+                  cliente.nome ||
+                  ""
                 ) +
+
                 " " +
+
                 String(
-                  cliente.cidade || ""
+                  cliente.cidade ||
+                  ""
                 ) +
+
                 " " +
+
                 String(
-                  cliente.uf || ""
+                  cliente.uf ||
+                  ""
                 ) +
+
                 " " +
+
                 String(
-                  cliente.telefone || ""
+                  cliente.telefone ||
+                  ""
                 )
+
               );
 
             const textoOK =
@@ -2451,7 +2449,8 @@
               !uf ||
               normalizarTexto(
                 cliente.uf
-              ) === uf;
+              ) ===
+              uf;
 
             return (
               textoOK &&
@@ -2475,11 +2474,13 @@
 
       document.getElementById(
         "filtroTexto"
-      ).value = "";
+      ).value =
+        "";
 
       document.getElementById(
         "filtroUF"
-      ).value = "";
+      ).value =
+        "";
 
       filtrarClientes();
 
@@ -2505,8 +2506,14 @@
 
       let valor =
         campo.value
-          .replace(/\D/g, "")
-          .substring(0, 11);
+          .replace(
+            /\D/g,
+            ""
+          )
+          .substring(
+            0,
+            11
+          );
 
       if (valor.length <= 10) {
 
@@ -2523,6 +2530,7 @@
           );
 
       }
+
       else {
 
         valor =
@@ -2543,6 +2551,36 @@
         valor;
 
     }
+
+    document
+      .getElementById(
+        "telefone"
+      )
+      .addEventListener(
+        "input",
+        function() {
+
+          aplicarMascaraTelefone(
+            this
+          );
+
+        }
+      );
+
+    document
+      .getElementById(
+        "editarTelefone"
+      )
+      .addEventListener(
+        "input",
+        function() {
+
+          aplicarMascaraTelefone(
+            this
+          );
+
+        }
+      );
 
     /* =====================================================
        MODAL
@@ -2573,10 +2611,15 @@
 
     }
 
+    /* =====================================================
+       PESQUISAR NF
+       ===================================================== */
+
     function irParaPesquisarNF() {
 
       window.location.href =
-        "pesquisar-nf.html";
+        window.location.origin +
+        "/Birilog-V3/pesquisar-nf.html";
 
     }
 
@@ -2611,10 +2654,6 @@
 
       try {
 
-        mostrarLoading(
-          "ENCERRANDO SESSÃO..."
-        );
-
         await supabaseClient.auth.signOut();
 
       }
@@ -2628,18 +2667,14 @@
 
       }
 
-      finally {
-
-        window.location.replace(
-          "index.html"
-        );
-
-      }
+      window.location.replace(
+        "index.html"
+      );
 
     }
 
     /* =====================================================
-       LOGIN
+       REDIRECIONAR LOGIN
        ===================================================== */
 
     function redirecionarLogin() {
@@ -2751,7 +2786,8 @@
     function normalizarTexto(valor) {
 
       return String(
-        valor || ""
+        valor ||
+        ""
       )
         .normalize("NFD")
         .replace(
@@ -2770,7 +2806,8 @@
     function escapeHTML(valor) {
 
       return String(
-        valor ?? ""
+        valor ??
+        ""
       )
         .replace(
           /&/g,
@@ -2798,7 +2835,8 @@
     function escapeJS(valor) {
 
       return String(
-        valor ?? ""
+        valor ??
+        ""
       )
         .replace(
           /\\/g,
@@ -2888,6 +2926,21 @@
 
         }
 
+        if (
+          texto.includes(
+            "ativo"
+          ) &&
+          texto.includes(
+            "column"
+          )
+        ) {
+
+          return (
+            "A COLUNA ATIVO NÃO FOI CRIADA CORRETAMENTE NA TABELA CLIENTES."
+          );
+
+        }
+
         return mensagem.toUpperCase();
 
       }
@@ -2899,121 +2952,43 @@
     }
 
     /* =====================================================
-       EVENTOS
+       CLIQUE FORA DO MODAL
+       ===================================================== */
+
+    document
+      .getElementById(
+        "modalEditar"
+      )
+      .addEventListener(
+        "click",
+        function(evento) {
+
+          if (
+            evento.target ===
+            this
+          ) {
+
+            fecharModal();
+
+          }
+
+        }
+      );
+
+    /* =====================================================
+       ESC FECHA MODAL
        ===================================================== */
 
     document.addEventListener(
-      "DOMContentLoaded",
-      function() {
+      "keydown",
+      function(evento) {
 
-        const telefone =
-          document.getElementById(
-            "telefone"
-          );
+        if (
+          evento.key ===
+          "Escape"
+        ) {
 
-        const editarTelefone =
-          document.getElementById(
-            "editarTelefone"
-          );
-
-        const filtroTexto =
-          document.getElementById(
-            "filtroTexto"
-          );
-
-        const filtroUF =
-          document.getElementById(
-            "filtroUF"
-          );
-
-        const modal =
-          document.getElementById(
-            "modalEditar"
-          );
-
-        if (telefone) {
-
-          telefone.addEventListener(
-            "input",
-            function() {
-
-              aplicarMascaraTelefone(
-                this
-              );
-
-            }
-          );
-
-        }
-
-        if (editarTelefone) {
-
-          editarTelefone.addEventListener(
-            "input",
-            function() {
-
-              aplicarMascaraTelefone(
-                this
-              );
-
-            }
-          );
-
-        }
-
-        if (filtroTexto) {
-
-          filtroTexto.addEventListener(
-            "input",
-            filtrarClientes
-          );
-
-          filtroTexto.addEventListener(
-            "keydown",
-            function(evento) {
-
-              if (
-                evento.key ===
-                "Enter"
-              ) {
-
-                evento.preventDefault();
-
-                filtrarClientes();
-
-              }
-
-            }
-          );
-
-        }
-
-        if (filtroUF) {
-
-          filtroUF.addEventListener(
-            "change",
-            filtrarClientes
-          );
-
-        }
-
-        if (modal) {
-
-          modal.addEventListener(
-            "click",
-            function(evento) {
-
-              if (
-                evento.target ===
-                this
-              ) {
-
-                fecharModal();
-
-              }
-
-            }
-          );
+          fecharModal();
 
         }
 
@@ -3021,11 +2996,40 @@
     );
 
     /* =====================================================
+       ENTER NA PESQUISA
+       ===================================================== */
+
+    document
+      .getElementById(
+        "filtroTexto"
+      )
+      .addEventListener(
+        "keydown",
+        function(evento) {
+
+          if (
+            evento.key ===
+            "Enter"
+          ) {
+
+            evento.preventDefault();
+
+            filtrarClientes();
+
+          }
+
+        }
+      );
+
+    /* =====================================================
        MONITORAR SESSÃO
        ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
-      function(evento) {
+      function(
+        evento,
+        session
+      ) {
 
         if (
           evento ===
@@ -3041,23 +3045,9 @@
       }
     );
 
-    /* =====================================================
-       INICIALIZAÇÃO SEGURA
-       ===================================================== */
-
-    window.addEventListener(
-      "beforeunload",
-      function() {
-
-        clearTimeout(
-          window.timerMensagem
-        );
-
-      }
-    );
-
   </script>
 
 </body>
 
 </html>
+```
