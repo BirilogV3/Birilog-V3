@@ -1,14 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Pesquisar NF</title>
 
@@ -53,10 +55,6 @@
       box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
     }
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
 
     .logo-area {
       padding: 28px 22px;
@@ -547,6 +545,43 @@
       word-break: break-word;
     }
 
+    /* =====================================================
+       CAMPOS DE EDIÇÃO
+       ===================================================== */
+
+    .campo-edicao {
+      width: 100%;
+      height: 40px;
+      margin-top: 6px;
+      padding: 0 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      background: white;
+      color: #0f172a;
+      outline: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .campo-edicao:focus {
+      border-color: #1976d2;
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
+    }
+
+    .campo-edicao:disabled {
+      background: #f1f5f9;
+      color: #64748b;
+      cursor: not-allowed;
+    }
+
+    textarea.campo-edicao {
+      min-height: 90px;
+      height: auto;
+      padding: 10px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+
     .observacao-box {
       margin-top: 14px;
       border: 1px solid #e2e8f0;
@@ -568,42 +603,6 @@
       color: #475569;
       line-height: 1.5;
       white-space: pre-wrap;
-    }
-
-    /* =====================================================
-       BOTÃO ALTERAR TRANSPORTADORA
-       ===================================================== */
-
-    .acoes-envio {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    .btn-alterar-transportadora {
-      min-height: 42px;
-      padding: 0 18px;
-      border: 1px solid #bfdbfe;
-      border-radius: 9px;
-      background: #eff6ff;
-      color: #1d4ed8;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-      transition: 0.2s;
-    }
-
-    .btn-alterar-transportadora:hover {
-      background: #dbeafe;
-      border-color: #93c5fd;
-      transform: translateY(-1px);
-    }
-
-    .btn-alterar-transportadora:active {
-      transform: scale(0.98);
     }
 
     /* =====================================================
@@ -653,6 +652,95 @@
       border: 1px solid #e2e8f0;
     }
 
+    /* =====================================================
+       BOTÕES DE EDIÇÃO
+       ===================================================== */
+
+    .acoes-envio {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn {
+      min-height: 42px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+
+    .btn-editar {
+      background: linear-gradient(135deg, #1976d2, #2563eb);
+      color: white;
+      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
+    }
+
+    .btn-salvar {
+      background: linear-gradient(135deg, #15803d, #16a34a);
+      color: white;
+      box-shadow: 0 5px 14px rgba(22,163,74,0.20);
+    }
+
+    .btn-cancelar {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .modo-edicao {
+      display: none;
+    }
+
+    .modo-edicao.aberto {
+      display: block;
+    }
+
+    .modo-consulta {
+      display: block;
+    }
+
+    .modo-consulta.oculto {
+      display: none;
+    }
+
+    .aviso-edicao {
+      display: none;
+      margin-bottom: 18px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .aviso-edicao.aberto {
+      display: block;
+    }
+
+    /* =====================================================
+       SEM RESULTADO
+       ===================================================== */
+
     .sem-resultado {
       padding: 35px 20px;
       text-align: center;
@@ -674,196 +762,6 @@
       margin-top: 5px;
       font-size: 10px;
       color: #94a3b8;
-    }
-
-    /* =====================================================
-       MODAL TRANSPORTADORA
-       ===================================================== */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(15,23,42,0.60);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 10000;
-      backdrop-filter: blur(3px);
-    }
-
-    .modal.aberto {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 480px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 25px 70px rgba(15,23,42,0.25);
-      overflow: hidden;
-      animation: aparecerModal 0.18s ease-out;
-    }
-
-    @keyframes aparecerModal {
-
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.98);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-    }
-
-    .modal-header {
-      padding: 20px 22px;
-      border-bottom: 1px solid #e2e8f0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .modal-titulo {
-      font-size: 16px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-
-    .modal-subtitulo {
-      margin-top: 4px;
-      font-size: 10px;
-      color: #64748b;
-    }
-
-    .modal-fechar {
-      width: 34px;
-      height: 34px;
-      border: none;
-      border-radius: 8px;
-      background: #f1f5f9;
-      color: #475569;
-      cursor: pointer;
-      font-size: 17px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .modal-fechar:hover {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
-
-    .modal-conteudo {
-      padding: 22px;
-    }
-
-    .modal-nf {
-      padding: 12px 14px;
-      border: 1px solid #dbeafe;
-      border-radius: 9px;
-      background: #eff6ff;
-      margin-bottom: 18px;
-    }
-
-    .modal-nf-label {
-      font-size: 9px;
-      font-weight: 800;
-      color: #64748b;
-      text-transform: uppercase;
-    }
-
-    .modal-nf-valor {
-      margin-top: 5px;
-      font-size: 13px;
-      font-weight: 800;
-      color: #1d4ed8;
-    }
-
-    .campo-modal-label {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 10px;
-      font-weight: 800;
-      color: #334155;
-      text-transform: uppercase;
-    }
-
-    .select-transportadora {
-      width: 100%;
-      height: 46px;
-      padding: 0 13px;
-      border: 1px solid #cbd5e1;
-      border-radius: 9px;
-      background: white;
-      color: #0f172a;
-      outline: none;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .select-transportadora:focus {
-      border-color: #1976d2;
-      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
-    }
-
-    .modal-ajuda {
-      margin-top: 8px;
-      font-size: 9px;
-      color: #94a3b8;
-    }
-
-    .modal-acoes {
-      padding: 18px 22px;
-      border-top: 1px solid #e2e8f0;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .btn-cancelar {
-      min-height: 42px;
-      padding: 0 17px;
-      border: 1px solid #cbd5e1;
-      border-radius: 9px;
-      background: white;
-      color: #475569;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .btn-cancelar:hover {
-      background: #f8fafc;
-    }
-
-    .btn-salvar-alteracao {
-      min-height: 42px;
-      padding: 0 19px;
-      border: none;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #1976d2, #2563eb);
-      color: white;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
-    }
-
-    .btn-salvar-alteracao:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-salvar-alteracao:disabled {
-      opacity: 0.6;
-      cursor: wait;
-      transform: none;
     }
 
     /* =====================================================
@@ -906,11 +804,9 @@
     }
 
     @keyframes girar {
-
       to {
         transform: rotate(360deg);
       }
-
     }
 
     /* =====================================================
@@ -1018,19 +914,10 @@
       }
 
       .acoes-envio {
-        justify-content: stretch;
+        flex-direction: column;
       }
 
-      .btn-alterar-transportadora {
-        width: 100%;
-      }
-
-      .modal-acoes {
-        flex-direction: column-reverse;
-      }
-
-      .btn-cancelar,
-      .btn-salvar-alteracao {
+      .acoes-envio .btn {
         width: 100%;
       }
 
@@ -1067,129 +954,22 @@
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
-
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       MODAL ALTERAR TRANSPORTADORA
-       ===================================================== -->
+  <div class="spinner"></div>
 
   <div
-    id="modalTransportadora"
-    class="modal"
+    id="loadingText"
+    class="loading-text"
   >
-
-    <div class="modal-box">
-
-      <div class="modal-header">
-
-        <div>
-
-          <div class="modal-titulo">
-            🚛 ALTERAR TRANSPORTADORA
-          </div>
-
-          <div class="modal-subtitulo">
-            Altere somente a transportadora deste envio.
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="modal-fechar"
-          onclick="fecharModalTransportadora()"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div class="modal-conteudo">
-
-        <div class="modal-nf">
-
-          <div class="modal-nf-label">
-            Nota Fiscal
-          </div>
-
-          <div
-            id="modalNF"
-            class="modal-nf-valor"
-          >
-            NF -
-          </div>
-
-        </div>
-
-
-        <label
-          for="selectTransportadora"
-          class="campo-modal-label"
-        >
-          Nova Transportadora
-        </label>
-
-
-        <select
-          id="selectTransportadora"
-          class="select-transportadora"
-        >
-
-          <option value="">
-            CARREGANDO TRANSPORTADORAS...
-          </option>
-
-        </select>
-
-
-        <div class="modal-ajuda">
-          Somente transportadoras cadastradas e ativas serão exibidas.
-        </div>
-
-      </div>
-
-
-      <div class="modal-acoes">
-
-        <button
-          type="button"
-          class="btn-cancelar"
-          onclick="fecharModalTransportadora()"
-        >
-          CANCELAR
-        </button>
-
-
-        <button
-          type="button"
-          id="btnSalvarTransportadora"
-          class="btn-salvar-alteracao"
-          onclick="salvarAlteracaoTransportadora()"
-        >
-          💾 SALVAR ALTERAÇÃO
-        </button>
-
-      </div>
-
-    </div>
-
+    CARREGANDO...
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        SIDEBAR
@@ -1197,231 +977,228 @@
 
   <aside class="sidebar">
 
-    <div class="logo-area">
+```
+<div class="logo-area">
 
-      <div class="logo-icon">
-        🚚
-      </div>
+  <div class="logo-icon">
+    🚚
+  </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
 
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+
+    <span class="menu-icon">
+      📊
+    </span>
+
+    <span>
+      Dashboard
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Envios
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+
+    <span class="menu-icon">
+      🔎
+    </span>
+
+    <span>
+      Pesquisar NF
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+
+    <span class="menu-icon">
+      👥
+    </span>
+
+    <span>
+      Clientes
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+
+    <span class="menu-icon">
+      🚛
+    </span>
+
+    <span>
+      Transportadoras
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+
+    <span class="menu-icon">
+      📄
+    </span>
+
+    <span>
+      Relatórios
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+
+    <span class="menu-icon">
+      📱
+    </span>
+
+    <span>
+      Pós-Entrega
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+
+    <span class="menu-icon">
+      🔐
+    </span>
+
+    <span>
+      Usuários
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+
+    <span class="menu-icon">
+      ⚙️
+    </span>
+
+    <span>
+      Configurações
+    </span>
+
+  </button>
+
+</nav>
+
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
     </div>
 
-
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pos-entrega.html')"
-      >
-
-        <span class="menu-icon">
-          📱
-        </span>
-
-        <span>
-          Pós-Entrega
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
-      </button>
-
-    </nav>
-
-
-    <!-- =================================================
-         USUÁRIO LOGADO
-         ================================================= -->
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-
-        🚪 SAIR DO SISTEMA
-
-      </button>
-
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
     </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+
+    🚪 SAIR DO SISTEMA
+
+  </button>
+
+</div>
+```
 
   </aside>
-
 
   <!-- =====================================================
        MAIN
@@ -1429,91 +1206,263 @@
 
   <main class="main">
 
-    <header class="header">
+```
+<header class="header">
 
-      <div>
+  <div>
 
-        <div class="header-title">
-          Pesquisar NF
-        </div>
+    <div class="header-title">
+      Pesquisar NF
+    </div>
 
-        <div class="header-subtitle">
-          Consulte rapidamente os dados de uma nota fiscal
-        </div>
+    <div class="header-subtitle">
+      Consulte e altere os dados completos de um envio
+    </div>
+
+  </div>
+
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+
+  <div class="page-title">
+
+    <h1>
+      🔎 PESQUISA DE NOTA FISCAL
+    </h1>
+
+    <p>
+      Informe a NF para consultar ou editar os dados completos do envio.
+    </p>
+
+  </div>
+
+
+  <!-- =================================================
+       PESQUISA
+       ================================================= -->
+
+  <div class="panel">
+
+    <div class="panel-title">
+      Consultar Nota Fiscal
+    </div>
+
+    <div class="panel-subtitle">
+      A pesquisa é feita diretamente no banco de dados do BiriLog.
+    </div>
+
+
+    <div class="pesquisa-area">
+
+      <div class="campo-pesquisa">
+
+        <span class="icone-pesquisa">
+          🔎
+        </span>
+
+        <input
+          type="text"
+          id="campoNF"
+          placeholder="DIGITE O NÚMERO DA NF"
+          autocomplete="off"
+          inputmode="numeric"
+        >
 
       </div>
 
 
-      <div class="status-online">
+      <button
+        type="button"
+        class="btn-pesquisar"
+        id="btnPesquisar"
+        onclick="pesquisarNF()"
+      >
 
-        <span class="status-dot"></span>
+        🔎 PESQUISAR NF
 
-        SISTEMA ONLINE
+      </button>
 
-      </div>
+    </div>
 
-    </header>
-
-
-    <section class="content">
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
+  </div>
 
 
-      <div class="page-title">
+  <!-- =================================================
+       RESULTADO
+       ================================================= -->
 
-        <h1>
-          🔎 PESQUISA DE NOTA FISCAL
-        </h1>
+  <div
+    id="resultado"
+    class="resultado"
+  >
 
-        <p>
-          Informe a NF para consultar os dados completos do envio.
-        </p>
+    <div class="panel">
 
-      </div>
+      <div class="resultado-header">
 
+        <div>
 
-      <div class="panel">
-
-        <div class="panel-title">
-          Consultar Nota Fiscal
-        </div>
-
-        <div class="panel-subtitle">
-          A pesquisa é feita diretamente no banco de dados do BiriLog.
-        </div>
-
-
-        <div class="pesquisa-area">
-
-          <div class="campo-pesquisa">
-
-            <span class="icone-pesquisa">
-              🔎
-            </span>
-
-            <input
-              type="text"
-              id="campoNF"
-              placeholder="DIGITE O NÚMERO DA NF"
-              autocomplete="off"
-              inputmode="numeric"
-            >
-
+          <div
+            id="resultadoTitulo"
+            class="resultado-titulo"
+          >
+            ENVIO ENCONTRADO
           </div>
 
+          <div
+            id="resultadoNF"
+            class="resultado-nf"
+          >
+            NF -
+          </div>
+
+        </div>
+
+
+        <div
+          id="resultadoStatus"
+          class="status status-padrao"
+        >
+          SEM STATUS
+        </div>
+
+      </div>
+
+
+      <!-- =============================================
+           AVISO EDIÇÃO
+           ============================================= -->
+
+      <div
+        id="avisoEdicao"
+        class="aviso-edicao"
+      >
+        ✏️ MODO DE EDIÇÃO ATIVADO. ALTERE OS CAMPOS NECESSÁRIOS E CLIQUE EM SALVAR ALTERAÇÕES.
+      </div>
+
+
+      <!-- =============================================
+           MODO CONSULTA
+           ============================================= -->
+
+      <div
+        id="modoConsulta"
+        class="modo-consulta"
+      >
+
+        <div class="info-grid">
+
+          <div class="info-box">
+            <div class="info-label">Cliente</div>
+            <div id="infoCliente" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Cidade</div>
+            <div id="infoCidade" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">UF</div>
+            <div id="infoUF" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Transportadora</div>
+            <div id="infoTransportadora" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Valor da NF</div>
+            <div id="infoValor" class="info-value">R$ 0,00</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Volumes</div>
+            <div id="infoVolumes" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Peso</div>
+            <div id="infoPeso" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Data de Envio</div>
+            <div id="infoDataEnvio" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Previsão</div>
+            <div id="infoPrevisao" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Data de Entrega</div>
+            <div id="infoDataEntrega" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">Última Atualização</div>
+            <div id="infoAtualizacao" class="info-value">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="info-label">ID do Registro</div>
+            <div id="infoID" class="info-value">-</div>
+          </div>
+
+        </div>
+
+
+        <div
+          id="alertaEntrega"
+          class="alerta-entrega"
+        ></div>
+
+
+        <div class="observacao-box">
+
+          <div class="observacao-label">
+            Observação
+          </div>
+
+          <div
+            id="infoObservacao"
+            class="observacao-texto"
+          >
+            -
+          </div>
+
+        </div>
+
+
+        <div class="acoes-envio">
 
           <button
             type="button"
-            class="btn-pesquisar"
-            id="btnPesquisar"
-            onclick="pesquisarNF()"
+            class="btn btn-editar"
+            onclick="ativarEdicao()"
           >
 
-            🔎 PESQUISAR NF
+            ✏️ EDITAR ENVIO
 
           </button>
 
@@ -1522,185 +1471,397 @@
       </div>
 
 
-      <!-- =================================================
-           RESULTADO
-           ================================================= -->
+      <!-- =============================================
+           MODO EDIÇÃO
+           ============================================= -->
 
       <div
-        id="resultado"
-        class="resultado"
+        id="modoEdicao"
+        class="modo-edicao"
       >
 
-        <div class="panel">
+        <div class="info-grid">
 
-          <div class="resultado-header">
+          <!-- NF -->
 
-            <div>
+          <div class="info-box">
 
-              <div
-                id="resultadoTitulo"
-                class="resultado-titulo"
-              >
-                ENVIO ENCONTRADO
-              </div>
-
-              <div
-                id="resultadoNF"
-                class="resultado-nf"
-              >
-                NF -
-              </div>
-
+            <div class="info-label">
+              Número da NF
             </div>
 
-
-            <div
-              id="resultadoStatus"
-              class="status status-padrao"
-            >
-              SEM STATUS
-            </div>
-
-          </div>
-
-
-          <div class="info-grid">
-
-            <div class="info-box">
-              <div class="info-label">Cliente</div>
-              <div id="infoCliente" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Cidade</div>
-              <div id="infoCidade" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">UF</div>
-              <div id="infoUF" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Transportadora</div>
-              <div id="infoTransportadora" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Valor da NF</div>
-              <div id="infoValor" class="info-value">R$ 0,00</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Volumes</div>
-              <div id="infoVolumes" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Peso</div>
-              <div id="infoPeso" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Data de Envio</div>
-              <div id="infoDataEnvio" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Previsão</div>
-              <div id="infoPrevisao" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Data de Entrega</div>
-              <div id="infoDataEntrega" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">Última Atualização</div>
-              <div id="infoAtualizacao" class="info-value">-</div>
-            </div>
-
-            <div class="info-box">
-              <div class="info-label">ID do Registro</div>
-              <div id="infoID" class="info-value">-</div>
-            </div>
-
-          </div>
-
-
-          <div
-            id="alertaEntrega"
-            class="alerta-entrega"
-          ></div>
-
-
-          <div class="observacao-box">
-
-            <div class="observacao-label">
-              Observação
-            </div>
-
-            <div
-              id="infoObservacao"
-              class="observacao-texto"
-            >
-              -
-            </div>
-
-          </div>
-
-
-          <!-- =================================================
-               AÇÕES DO ENVIO
-               ================================================= -->
-
-          <div class="acoes-envio">
-
-            <button
-              type="button"
-              class="btn-alterar-transportadora"
-              onclick="abrirModalTransportadora()"
+            <input
+              type="text"
+              id="editNF"
+              class="campo-edicao"
+              autocomplete="off"
             >
 
-              🚛 ALTERAR TRANSPORTADORA
+          </div>
 
-            </button>
+
+          <!-- CLIENTE -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Cliente
+            </div>
+
+            <select
+              id="editCliente"
+              class="campo-edicao"
+            >
+
+              <option value="">
+                CARREGANDO CLIENTES...
+              </option>
+
+            </select>
 
           </div>
+
+
+          <!-- CIDADE -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Cidade
+            </div>
+
+            <input
+              type="text"
+              id="editCidade"
+              class="campo-edicao"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- UF -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              UF
+            </div>
+
+            <input
+              type="text"
+              id="editUF"
+              class="campo-edicao"
+              maxlength="2"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- TRANSPORTADORA -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Transportadora
+            </div>
+
+            <select
+              id="editTransportadora"
+              class="campo-edicao"
+            >
+
+              <option value="">
+                CARREGANDO TRANSPORTADORAS...
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- VALOR -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Valor da NF
+            </div>
+
+            <input
+              type="number"
+              id="editValor"
+              class="campo-edicao"
+              step="0.01"
+              min="0"
+            >
+
+          </div>
+
+
+          <!-- VOLUMES -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Volumes
+            </div>
+
+            <input
+              type="number"
+              id="editVolumes"
+              class="campo-edicao"
+              min="1"
+              step="1"
+            >
+
+          </div>
+
+
+          <!-- PESO -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Peso
+            </div>
+
+            <input
+              type="number"
+              id="editPeso"
+              class="campo-edicao"
+              min="0"
+              step="0.01"
+            >
+
+          </div>
+
+
+          <!-- DATA ENVIO -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Data de Envio
+            </div>
+
+            <input
+              type="date"
+              id="editDataEnvio"
+              class="campo-edicao"
+            >
+
+          </div>
+
+
+          <!-- PREVISÃO -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Previsão
+            </div>
+
+            <input
+              type="date"
+              id="editPrevisao"
+              class="campo-edicao"
+            >
+
+          </div>
+
+
+          <!-- STATUS -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Status
+            </div>
+
+            <select
+              id="editStatus"
+              class="campo-edicao"
+            >
+
+              <option value="COLETADO">
+                📦 COLETADO
+              </option>
+
+              <option value="EM TRANSITO">
+                🚚 EM TRÂNSITO
+              </option>
+
+              <option value="ENTREGUE">
+                ✅ ENTREGUE
+              </option>
+
+              <option value="ATRASADO">
+                ⚠️ ATRASADO
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- DATA ENTREGA -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Data de Entrega
+            </div>
+
+            <input
+              type="date"
+              id="editDataEntrega"
+              class="campo-edicao"
+            >
+
+          </div>
+
+
+          <!-- CONFIRMAÇÃO -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Confirmação de Entrega
+            </div>
+
+            <input
+              type="text"
+              id="editConfirmacao"
+              class="campo-edicao"
+              autocomplete="off"
+            >
+
+          </div>
+
+
+          <!-- DATA CONTATO -->
+
+          <div class="info-box">
+
+            <div class="info-label">
+              Data de Contato
+            </div>
+
+            <input
+              type="datetime-local"
+              id="editDataContato"
+              class="campo-edicao"
+            >
+
+          </div>
+
+
+        </div>
+
+
+        <!-- OBSERVAÇÃO -->
+
+        <div class="observacao-box">
+
+          <div class="observacao-label">
+            Observação
+          </div>
+
+          <textarea
+            id="editObservacao"
+            class="campo-edicao"
+            placeholder="DIGITE UMA OBSERVAÇÃO..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- OBSERVAÇÃO CONTATO -->
+
+        <div class="observacao-box">
+
+          <div class="observacao-label">
+            Observação do Contato
+          </div>
+
+          <textarea
+            id="editObservacaoContato"
+            class="campo-edicao"
+            placeholder="DIGITE UMA OBSERVAÇÃO SOBRE O CONTATO..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- AÇÕES -->
+
+        <div class="acoes-envio">
+
+          <button
+            type="button"
+            class="btn btn-cancelar"
+            id="btnCancelar"
+            onclick="cancelarEdicao()"
+          >
+
+            ↩️ CANCELAR
+
+          </button>
+
+
+          <button
+            type="button"
+            class="btn btn-salvar"
+            id="btnSalvar"
+            onclick="salvarAlteracoes()"
+          >
+
+            💾 SALVAR ALTERAÇÕES
+
+          </button>
 
         </div>
 
       </div>
 
+    </div>
 
-      <div
-        id="semResultado"
-        class="panel"
-      >
+  </div>
 
-        <div class="sem-resultado">
 
-          <div class="sem-resultado-icon">
-            🔎
-          </div>
+  <!-- =================================================
+       SEM RESULTADO
+       ================================================= -->
 
-          <div class="sem-resultado-titulo">
-            CONSULTE UMA NOTA FISCAL
-          </div>
+  <div
+    id="semResultado"
+    class="panel"
+  >
 
-          <div class="sem-resultado-texto">
-            Digite a NF acima para visualizar os dados do envio.
-          </div>
+    <div class="sem-resultado">
 
-        </div>
-
+      <div class="sem-resultado-icon">
+        🔎
       </div>
 
-    </section>
+      <div class="sem-resultado-titulo">
+        CONSULTE UMA NOTA FISCAL
+      </div>
+
+      <div class="sem-resultado-texto">
+        Digite a NF acima para visualizar os dados do envio.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+```
 
   </main>
-
 
   <!-- =====================================================
        JAVASCRIPT
@@ -1730,6 +1891,10 @@
     let envioAtual = null;
 
 
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
@@ -1744,16 +1909,20 @@
           "VERIFICANDO SESSÃO..."
         );
 
+
         const resultado =
           await supabaseClient.auth.getSession();
+
 
         if (resultado.error) {
           throw resultado.error;
         }
 
+
         const session =
           resultado.data &&
           resultado.data.session;
+
 
         if (!session) {
 
@@ -1762,6 +1931,7 @@
           return;
 
         }
+
 
         const authUser =
           session.user;
@@ -1810,6 +1980,9 @@
 
         esconderLoading();
 
+
+        await carregarListas();
+
       }
 
       catch (erro) {
@@ -1830,6 +2003,10 @@
 
     }
 
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
 
     function preencherUsuario() {
 
@@ -1868,6 +2045,229 @@
 
 
     /* =====================================================
+       CARREGAR CLIENTES E TRANSPORTADORAS
+       ===================================================== */
+
+    async function carregarListas() {
+
+      try {
+
+        const resultadoClientes =
+          await supabaseClient
+            .from("clientes")
+            .select("id, codigo, nome, cidade, uf, ativo")
+            .eq("ativo", true)
+            .order("nome", {
+              ascending: true
+            });
+
+
+        if (resultadoClientes.error) {
+          throw resultadoClientes.error;
+        }
+
+
+        const resultadoTransportadoras =
+          await supabaseClient
+            .from("transportadoras")
+            .select("id, nome, cidade, uf, ativo")
+            .eq("ativo", true)
+            .order("nome", {
+              ascending: true
+            });
+
+
+        if (resultadoTransportadoras.error) {
+          throw resultadoTransportadoras.error;
+        }
+
+
+        window.listaClientes =
+          resultadoClientes.data || [];
+
+
+        window.listaTransportadoras =
+          resultadoTransportadoras.data || [];
+
+
+        preencherSelectClientes();
+
+        preencherSelectTransportadoras();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao carregar listas:",
+          erro
+        );
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CARREGAR CLIENTES E TRANSPORTADORAS.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    function preencherSelectClientes() {
+
+      const select =
+        document.getElementById(
+          "editCliente"
+        );
+
+
+      if (!select) {
+        return;
+      }
+
+
+      select.innerHTML =
+        "";
+
+
+      const opcao =
+        document.createElement(
+          "option"
+        );
+
+
+      opcao.value =
+        "";
+
+
+      opcao.textContent =
+        "SELECIONE O CLIENTE";
+
+
+      select.appendChild(
+        opcao
+      );
+
+
+      const lista =
+        window.listaClientes || [];
+
+
+      lista.forEach(
+        function(cliente) {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            cliente.id;
+
+
+          option.textContent =
+            cliente.codigo
+              ? cliente.codigo +
+                " - " +
+                cliente.nome
+              : cliente.nome;
+
+
+          option.dataset.nome =
+            cliente.nome || "";
+
+
+          option.dataset.cidade =
+            cliente.cidade || "";
+
+
+          option.dataset.uf =
+            cliente.uf || "";
+
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    function preencherSelectTransportadoras() {
+
+      const select =
+        document.getElementById(
+          "editTransportadora"
+        );
+
+
+      if (!select) {
+        return;
+      }
+
+
+      select.innerHTML =
+        "";
+
+
+      const opcao =
+        document.createElement(
+          "option"
+        );
+
+
+      opcao.value =
+        "";
+
+
+      opcao.textContent =
+        "SELECIONE A TRANSPORTADORA";
+
+
+      select.appendChild(
+        opcao
+      );
+
+
+      const lista =
+        window.listaTransportadoras || [];
+
+
+      lista.forEach(
+        function(transportadora) {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            transportadora.id;
+
+
+          option.textContent =
+            transportadora.nome;
+
+
+          option.dataset.nome =
+            transportadora.nome || "";
+
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================================
        PESQUISAR NF
        ===================================================== */
 
@@ -1878,10 +2278,12 @@
           "campoNF"
         );
 
+
       const botao =
         document.getElementById(
           "btnPesquisar"
         );
+
 
       const nf =
         String(
@@ -1892,6 +2294,8 @@
       esconderResultado();
 
       limparMensagem();
+
+      cancelarEdicaoInterna();
 
 
       if (!nf) {
@@ -1910,7 +2314,9 @@
 
       try {
 
-        botao.disabled = true;
+        botao.disabled =
+          true;
+
 
         botao.textContent =
           "🔄 PESQUISANDO...";
@@ -1942,6 +2348,11 @@
             ? consulta.data[0]
             : null;
 
+
+        /*
+         * Mantém a busca alternativa para casos
+         * em que o tipo/formato da NF esteja diferente.
+         */
 
         if (!envio) {
 
@@ -1979,7 +2390,10 @@
 
         esconderLoading();
 
-        botao.disabled = false;
+
+        botao.disabled =
+          false;
+
 
         botao.textContent =
           "🔎 PESQUISAR NF";
@@ -2018,9 +2432,13 @@
           erro
         );
 
+
         esconderLoading();
 
-        botao.disabled = false;
+
+        botao.disabled =
+          false;
+
 
         botao.textContent =
           "🔎 PESQUISAR NF";
@@ -2049,7 +2467,8 @@
 
       document.getElementById(
         "semResultado"
-      ).style.display = "none";
+      ).style.display =
+        "none";
 
 
       document.getElementById(
@@ -2072,13 +2491,15 @@
       document.getElementById(
         "infoCidade"
       ).textContent =
-        envio.cidade || "-";
+        envio.cidade ||
+        "-";
 
 
       document.getElementById(
         "infoUF"
       ).textContent =
-        envio.uf || "-";
+        envio.uf ||
+        "-";
 
 
       document.getElementById(
@@ -2092,13 +2513,16 @@
       document.getElementById(
         "infoValor"
       ).textContent =
-        formatarValor(envio.valor);
+        formatarValor(
+          envio.valor
+        );
 
 
       document.getElementById(
         "infoVolumes"
       ).textContent =
-        envio.volumes ?? "-";
+        envio.volumes ??
+        "-";
 
 
       document.getElementById(
@@ -2122,19 +2546,25 @@
       document.getElementById(
         "infoDataEnvio"
       ).textContent =
-        formatarData(envio.data_envio);
+        formatarData(
+          envio.data_envio
+        );
 
 
       document.getElementById(
         "infoPrevisao"
       ).textContent =
-        formatarData(envio.previsao);
+        formatarData(
+          envio.previsao
+        );
 
 
       document.getElementById(
         "infoDataEntrega"
       ).textContent =
-        formatarData(envio.data_entrega);
+        formatarData(
+          envio.data_entrega
+        );
 
 
       document.getElementById(
@@ -2152,7 +2582,8 @@
       document.getElementById(
         "infoID"
       ).textContent =
-        envio.id || "-";
+        envio.id ||
+        "-";
 
 
       document.getElementById(
@@ -2172,6 +2603,11 @@
       );
 
 
+      preencherCamposEdicao(
+        envio
+      );
+
+
       window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -2181,251 +2617,504 @@
 
 
     /* =====================================================
-       ALTERAR TRANSPORTADORA
+       PREENCHER EDIÇÃO
        ===================================================== */
 
-    async function abrirModalTransportadora() {
+    function preencherCamposEdicao(envio) {
 
-      if (!envioAtual || !envioAtual.id) {
+      document.getElementById(
+        "editNF"
+      ).value =
+        envio.nf ||
+        "";
 
-        mostrarMensagem(
-          "PESQUISE UMA NF ANTES DE ALTERAR A TRANSPORTADORA.",
-          "erro"
+
+      document.getElementById(
+        "editCidade"
+      ).value =
+        envio.cidade ||
+        "";
+
+
+      document.getElementById(
+        "editUF"
+      ).value =
+        envio.uf ||
+        "";
+
+
+      document.getElementById(
+        "editValor"
+      ).value =
+        envio.valor ??
+        "";
+
+
+      document.getElementById(
+        "editVolumes"
+      ).value =
+        envio.volumes ??
+        "";
+
+
+      document.getElementById(
+        "editPeso"
+      ).value =
+        envio.peso ??
+        "";
+
+
+      document.getElementById(
+        "editDataEnvio"
+      ).value =
+        normalizarDataInput(
+          envio.data_envio
         );
+
+
+      document.getElementById(
+        "editPrevisao"
+      ).value =
+        normalizarDataInput(
+          envio.previsao
+        );
+
+
+      document.getElementById(
+        "editStatus"
+      ).value =
+        normalizarStatus(
+          envio.status
+        ) ||
+        "COLETADO";
+
+
+      document.getElementById(
+        "editDataEntrega"
+      ).value =
+        normalizarDataInput(
+          envio.data_entrega
+        );
+
+
+      document.getElementById(
+        "editConfirmacao"
+      ).value =
+        envio.confirmacao_entrega ||
+        "";
+
+
+      document.getElementById(
+        "editDataContato"
+      ).value =
+        normalizarDataHoraInput(
+          envio.data_contato
+        );
+
+
+      document.getElementById(
+        "editObservacao"
+      ).value =
+        envio.observacao ||
+        "";
+
+
+      document.getElementById(
+        "editObservacaoContato"
+      ).value =
+        envio.observacao_contato ||
+        "";
+
+
+      selecionarCliente(
+        envio.cliente_id,
+        envio.cliente_nome
+      );
+
+
+      selecionarTransportadora(
+        envio.transportadora_id,
+        envio.transportadora_nome ||
+        envio.transportadora
+      );
+
+    }
+
+
+    function selecionarCliente(
+      clienteId,
+      clienteNome
+    ) {
+
+      const select =
+        document.getElementById(
+          "editCliente"
+        );
+
+
+      if (!select) {
+        return;
+      }
+
+
+      if (clienteId) {
+
+        select.value =
+          clienteId;
 
         return;
 
       }
 
 
-      const modal =
-        document.getElementById(
-          "modalTransportadora"
-        );
+      const lista =
+        window.listaClientes || [];
 
 
-      const select =
-        document.getElementById(
-          "selectTransportadora"
-        );
+      const encontrado =
+        lista.find(
+          function(cliente) {
 
-
-      const modalNF =
-        document.getElementById(
-          "modalNF"
-        );
-
-
-      modalNF.textContent =
-        "NF " +
-        String(
-          envioAtual.nf || "-"
-        ).toUpperCase();
-
-
-      select.innerHTML =
-        "<option value=\"\">CARREGANDO TRANSPORTADORAS...</option>";
-
-
-      modal.classList.add(
-        "aberto"
-      );
-
-
-      try {
-
-        const consulta =
-          await supabaseClient
-            .from("transportadoras")
-            .select("id, nome")
-            .eq("ativo", true)
-            .order("nome", {
-              ascending: true
-            });
-
-
-        if (consulta.error) {
-          throw consulta.error;
-        }
-
-
-        const transportadoras =
-          consulta.data || [];
-
-
-        select.innerHTML =
-          "";
-
-
-        if (
-          transportadoras.length === 0
-        ) {
-
-          select.innerHTML =
-            "<option value=\"\">NENHUMA TRANSPORTADORA ATIVA CADASTRADA</option>";
-
-          return;
-
-        }
-
-
-        const opcaoInicial =
-          document.createElement(
-            "option"
-          );
-
-        opcaoInicial.value = "";
-
-        opcaoInicial.textContent =
-          "SELECIONE A TRANSPORTADORA";
-
-        select.appendChild(
-          opcaoInicial
-        );
-
-
-        transportadoras.forEach(
-          function(transportadora) {
-
-            const opcao =
-              document.createElement(
-                "option"
-              );
-
-            opcao.value =
-              transportadora.id;
-
-            opcao.textContent =
-              String(
-                transportadora.nome || ""
-              ).toUpperCase();
-
-
-            if (
-              envioAtual.transportadora_id &&
-              String(
-                envioAtual.transportadora_id
-              ) ===
-              String(
-                transportadora.id
-              )
-            ) {
-
-              opcao.selected =
-                true;
-
-            }
-
-            else if (
-              !envioAtual.transportadora_id &&
-              String(
-                envioAtual.transportadora_nome ||
-                envioAtual.transportadora ||
-                ""
-              ).trim().toUpperCase() ===
-              String(
-                transportadora.nome || ""
-              ).trim().toUpperCase()
-            ) {
-
-              opcao.selected =
-                true;
-
-            }
-
-
-            select.appendChild(
-              opcao
-            );
+            return String(
+              cliente.nome || ""
+            )
+            .trim()
+            .toUpperCase() ===
+            String(
+              clienteNome || ""
+            )
+            .trim()
+            .toUpperCase();
 
           }
         );
 
-      }
 
-      catch (erro) {
+      if (encontrado) {
 
-        console.error(
-          "Erro ao carregar transportadoras:",
-          erro
-        );
-
-
-        select.innerHTML =
-          "<option value=\"\">ERRO AO CARREGAR TRANSPORTADORAS</option>";
-
-
-        mostrarMensagem(
-          "NÃO FOI POSSÍVEL CARREGAR AS TRANSPORTADORAS.",
-          "erro"
-        );
+        select.value =
+          encontrado.id;
 
       }
 
     }
 
 
-    function fecharModalTransportadora() {
+    function selecionarTransportadora(
+      transportadoraId,
+      transportadoraNome
+    ) {
 
-      const modal =
+      const select =
         document.getElementById(
-          "modalTransportadora"
+          "editTransportadora"
         );
 
 
-      const botao =
-        document.getElementById(
-          "btnSalvarTransportadora"
-        );
+      if (!select) {
+        return;
+      }
 
 
-      modal.classList.remove(
-        "aberto"
-      );
+      if (transportadoraId) {
 
-
-      botao.disabled =
-        false;
-
-
-      botao.textContent =
-        "💾 SALVAR ALTERAÇÃO";
-
-    }
-
-
-    async function salvarAlteracaoTransportadora() {
-
-      if (!envioAtual || !envioAtual.id) {
-
-        mostrarMensagem(
-          "NENHUM ENVIO SELECIONADO.",
-          "erro"
-        );
-
-        fecharModalTransportadora();
+        select.value =
+          transportadoraId;
 
         return;
 
       }
 
 
-      const select =
-        document.getElementById(
-          "selectTransportadora"
+      const lista =
+        window.listaTransportadoras || [];
+
+
+      const encontrado =
+        lista.find(
+          function(item) {
+
+            return String(
+              item.nome || ""
+            )
+            .trim()
+            .toUpperCase() ===
+            String(
+              transportadoraNome || ""
+            )
+            .trim()
+            .toUpperCase();
+
+          }
         );
+
+
+      if (encontrado) {
+
+        select.value =
+          encontrado.id;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       ATIVAR EDIÇÃO
+       ===================================================== */
+
+    function ativarEdicao() {
+
+      if (!envioAtual) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO FOI SELECIONADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      document.getElementById(
+        "modoConsulta"
+      ).classList.add(
+        "oculto"
+      );
+
+
+      document.getElementById(
+        "modoEdicao"
+      ).classList.add(
+        "aberto"
+      );
+
+
+      document.getElementById(
+        "avisoEdicao"
+      ).classList.add(
+        "aberto"
+      );
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* =====================================================
+       CANCELAR EDIÇÃO
+       ===================================================== */
+
+    function cancelarEdicao() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA CANCELAR A EDIÇÃO? TODAS AS ALTERAÇÕES NÃO SALVAS SERÃO DESCARTADAS."
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      cancelarEdicaoInterna();
+
+
+      if (envioAtual) {
+
+        preencherCamposEdicao(
+          envioAtual
+        );
+
+      }
+
+    }
+
+
+    function cancelarEdicaoInterna() {
+
+      document.getElementById(
+        "modoConsulta"
+      ).classList.remove(
+        "oculto"
+      );
+
+
+      document.getElementById(
+        "modoEdicao"
+      ).classList.remove(
+        "aberto"
+      );
+
+
+      document.getElementById(
+        "avisoEdicao"
+      ).classList.remove(
+        "aberto"
+      );
+
+    }
+
+
+    /* =====================================================
+       SALVAR ALTERAÇÕES
+       ===================================================== */
+
+    async function salvarAlteracoes() {
+
+      if (!envioAtual) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO FOI SELECIONADO.",
+          "erro"
+        );
+
+        return;
+
+      }
 
 
       const botao =
         document.getElementById(
-          "btnSalvarTransportadora"
+          "btnSalvar"
         );
 
 
-      const transportadoraId =
+      const nf =
         String(
-          select.value || ""
+          document.getElementById(
+            "editNF"
+          ).value || ""
         ).trim();
+
+
+      const clienteId =
+        document.getElementById(
+          "editCliente"
+        ).value;
+
+
+      const transportadoraId =
+        document.getElementById(
+          "editTransportadora"
+        ).value;
+
+
+      const cidade =
+        String(
+          document.getElementById(
+            "editCidade"
+          ).value || ""
+        ).trim();
+
+
+      const uf =
+        String(
+          document.getElementById(
+            "editUF"
+          ).value || ""
+        ).trim()
+        .toUpperCase();
+
+
+      const valorTexto =
+        document.getElementById(
+          "editValor"
+        ).value;
+
+
+      const volumesTexto =
+        document.getElementById(
+          "editVolumes"
+        ).value;
+
+
+      const pesoTexto =
+        document.getElementById(
+          "editPeso"
+        ).value;
+
+
+      const dataEnvio =
+        document.getElementById(
+          "editDataEnvio"
+        ).value || null;
+
+
+      const previsao =
+        document.getElementById(
+          "editPrevisao"
+        ).value || null;
+
+
+      const status =
+        normalizarStatus(
+          document.getElementById(
+            "editStatus"
+          ).value
+        );
+
+
+      const dataEntrega =
+        document.getElementById(
+          "editDataEntrega"
+        ).value || null;
+
+
+      const confirmacaoEntrega =
+        String(
+          document.getElementById(
+            "editConfirmacao"
+          ).value || ""
+        ).trim();
+
+
+      const dataContato =
+        document.getElementById(
+          "editDataContato"
+        ).value || null;
+
+
+      const observacao =
+        document.getElementById(
+          "editObservacao"
+        ).value || null;
+
+
+      const observacaoContato =
+        document.getElementById(
+          "editObservacaoContato"
+        ).value || null;
+
+
+      if (!nf) {
+
+        mostrarMensagem(
+          "INFORME O NÚMERO DA NF.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (!clienteId) {
+
+        mostrarMensagem(
+          "SELECIONE UM CLIENTE.",
+          "erro"
+        );
+
+        return;
+
+      }
 
 
       if (!transportadoraId) {
@@ -2435,31 +3124,15 @@
           "erro"
         );
 
-        select.focus();
-
         return;
 
       }
 
 
-      const opcaoSelecionada =
-        select.options[
-          select.selectedIndex
-        ];
-
-
-      const transportadoraNome =
-        opcaoSelecionada
-          ? String(
-              opcaoSelecionada.textContent || ""
-            ).trim()
-          : "";
-
-
-      if (!transportadoraNome) {
+      if (!cidade) {
 
         mostrarMensagem(
-          "NÃO FOI POSSÍVEL IDENTIFICAR A TRANSPORTADORA SELECIONADA.",
+          "INFORME A CIDADE.",
           "erro"
         );
 
@@ -2468,15 +3141,175 @@
       }
 
 
+      if (!uf) {
+
+        mostrarMensagem(
+          "INFORME A UF.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const valor =
+        valorTexto === ""
+          ? 0
+          : Number(
+              valorTexto
+            );
+
+
+      const volumes =
+        volumesTexto === ""
+          ? 1
+          : Number(
+              volumesTexto
+            );
+
+
+      const peso =
+        pesoTexto === ""
+          ? 0
+          : Number(
+              pesoTexto
+            );
+
+
+      if (
+        isNaN(valor) ||
+        valor < 0
+      ) {
+
+        mostrarMensagem(
+          "INFORME UM VALOR VÁLIDO PARA A NF.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        isNaN(volumes) ||
+        volumes < 1
+      ) {
+
+        mostrarMensagem(
+          "INFORME UMA QUANTIDADE VÁLIDA DE VOLUMES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        isNaN(peso) ||
+        peso < 0
+      ) {
+
+        mostrarMensagem(
+          "INFORME UM PESO VÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        dataEntrega &&
+        status !== "ENTREGUE"
+      ) {
+
+        const confirmar =
+          window.confirm(
+            "FOI INFORMADA UMA DATA DE ENTREGA, MAS O STATUS NÃO ESTÁ COMO ENTREGUE. DESEJA CONTINUAR?"
+          );
+
+
+        if (!confirmar) {
+          return;
+        }
+
+      }
+
+
+      const cliente =
+        (window.listaClientes || [])
+        .find(
+          function(item) {
+
+            return String(
+              item.id
+            ) ===
+            String(
+              clienteId
+            );
+
+          }
+        );
+
+
+      const transportadora =
+        (window.listaTransportadoras || [])
+        .find(
+          function(item) {
+
+            return String(
+              item.id
+            ) ===
+            String(
+              transportadoraId
+            );
+
+          }
+        );
+
+
+      if (!cliente) {
+
+        mostrarMensagem(
+          "CLIENTE SELECIONADO NÃO FOI ENCONTRADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (!transportadora) {
+
+        mostrarMensagem(
+          "TRANSPORTADORA SELECIONADA NÃO FOI ENCONTRADA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const statusAnterior =
+        normalizarStatus(
+          envioAtual.status
+        );
+
+
+      const houveMudancaStatus =
+        statusAnterior !==
+        status;
+
+
       const confirmar =
         window.confirm(
-          "CONFIRMA A ALTERAÇÃO DA TRANSPORTADORA DA NF " +
-          String(
-            envioAtual.nf || ""
-          ) +
-          " PARA " +
-          transportadoraNome +
-          "?"
+          "DESEJA REALMENTE SALVAR AS ALTERAÇÕES DESTE ENVIO?"
         );
 
 
@@ -2490,35 +3323,93 @@
         botao.disabled =
           true;
 
+
         botao.textContent =
-          "🔄 SALVANDO...";
+          "💾 SALVANDO...";
 
 
-        /*
-         * =================================================
-         * IMPORTANTE:
-         * Atualizamos SOMENTE:
-         *
-         * transportadora_id
-         * transportadora_nome
-         *
-         * Todos os demais campos permanecem intactos.
-         * =================================================
-         */
+        mostrarLoading(
+          "SALVANDO ALTERAÇÕES..."
+        );
+
+
+        const dadosAtualizacao = {
+
+          nf:
+            nf,
+
+          cliente_id:
+            clienteId,
+
+          cliente_nome:
+            cliente.nome,
+
+          cidade:
+            cidade,
+
+          uf:
+            uf,
+
+          transportadora_id:
+            transportadoraId,
+
+          transportadora_nome:
+            transportadora.nome,
+
+          valor:
+            valor,
+
+          peso:
+            peso,
+
+          volumes:
+            Math.round(
+              volumes
+            ),
+
+          data_envio:
+            dataEnvio,
+
+          previsao:
+            previsao,
+
+          status:
+            status,
+
+          data_entrega:
+            dataEntrega,
+
+          observacao:
+            observacao,
+
+          atualizacao:
+            new Date().toISOString(),
+
+          confirmacao_entrega:
+            confirmacaoEntrega || null,
+
+          data_contato:
+            dataContato
+              ? new Date(
+                  dataContato
+                ).toISOString()
+              : null,
+
+          observacao_contato:
+            observacaoContato,
+
+          atualizado_em:
+            new Date().toISOString()
+
+        };
+
 
         const atualizacao =
           await supabaseClient
             .from("envios")
-            .update({
-              transportadora_id:
-                transportadoraId,
-
-              transportadora_nome:
-                transportadoraNome,
-
-              atualizado_em:
-                new Date().toISOString()
-            })
+            .update(
+              dadosAtualizacao
+            )
             .eq(
               "id",
               envioAtual.id
@@ -2532,98 +3423,117 @@
         }
 
 
-        if (!atualizacao.data) {
-
-          throw new Error(
-            "NENHUM REGISTRO FOI ATUALIZADO."
-          );
-
-        }
-
-
-        /*
-         * Atualiza o registro atualmente
-         * carregado na memória.
-         */
-
-        envioAtual =
+        const envioSalvo =
           atualizacao.data;
 
 
         /*
-         * Atualiza a tela.
+         * Registra alteração de status no histórico.
          */
 
+        if (houveMudancaStatus) {
+
+          const registroHistorico = {
+
+            envio_id:
+              envioAtual.id,
+
+            status_anterior:
+              statusAnterior ||
+              null,
+
+            status_novo:
+              status,
+
+            observacao:
+              "STATUS ALTERADO PELA PESQUISA NF.",
+
+            usuario_id:
+              usuarioAtual
+                ? usuarioAtual.id
+                : null
+
+          };
+
+
+          const historico =
+            await supabaseClient
+              .from("historico_envios")
+              .insert(
+                registroHistorico
+              );
+
+
+          if (historico.error) {
+
+            console.error(
+              "Erro ao registrar histórico:",
+              historico.error
+            );
+
+          }
+
+        }
+
+
+        envioAtual =
+          envioSalvo;
+
+
+        esconderLoading();
+
+
+        botao.disabled =
+          false;
+
+
+        botao.textContent =
+          "💾 SALVAR ALTERAÇÕES";
+
+
+        cancelarEdicaoInterna();
+
+
         mostrarResultado(
-          envioAtual
+          envioSalvo
         );
-
-
-        fecharModalTransportadora();
 
 
         mostrarMensagem(
-          "TRANSPORTADORA DA NF " +
-          String(
-            envioAtual.nf || ""
-          ) +
-          " ALTERADA COM SUCESSO PARA " +
-          transportadoraNome +
-          ".",
+          "ALTERAÇÕES SALVAS COM SUCESSO.",
           "sucesso"
         );
+
 
       }
 
       catch (erro) {
 
         console.error(
-          "Erro ao alterar transportadora:",
+          "Erro ao salvar:",
           erro
         );
+
+
+        esconderLoading();
 
 
         botao.disabled =
           false;
 
+
         botao.textContent =
-          "💾 SALVAR ALTERAÇÃO";
+          "💾 SALVAR ALTERAÇÕES";
 
 
         mostrarMensagem(
-          obterMensagemErroTransportadora(
+          obterMensagemErroSalvar(
             erro
           ),
           "erro"
         );
 
       }
-
-    }
-
-
-    function obterMensagemErroTransportadora(
-      erro
-    ) {
-
-      if (!erro) {
-
-        return "OCORREU UM ERRO AO ALTERAR A TRANSPORTADORA.";
-
-      }
-
-
-      if (erro.message) {
-
-        return (
-          "ERRO AO ALTERAR A TRANSPORTADORA: " +
-          erro.message
-        ).toUpperCase();
-
-      }
-
-
-      return "OCORREU UM ERRO AO ALTERAR A TRANSPORTADORA.";
 
     }
 
@@ -2640,7 +3550,10 @@
       .trim()
       .toUpperCase()
       .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
+      .replace(
+        /[\u0300-\u036f]/g,
+        ""
+      );
 
     }
 
@@ -2654,17 +3567,23 @@
 
 
       const texto =
-        normalizarStatus(status);
+        normalizarStatus(
+          status
+        );
 
 
       let classe =
         "status-padrao";
 
+
       let icone =
         "📌";
 
 
-      if (texto === "COLETADO") {
+      if (
+        texto ===
+        "COLETADO"
+      ) {
 
         classe =
           "status-coletado";
@@ -2674,7 +3593,10 @@
 
       }
 
-      else if (texto === "EM TRANSITO") {
+      else if (
+        texto ===
+        "EM TRANSITO"
+      ) {
 
         classe =
           "status-transito";
@@ -2684,7 +3606,10 @@
 
       }
 
-      else if (texto === "ENTREGUE") {
+      else if (
+        texto ===
+        "ENTREGUE"
+      ) {
 
         classe =
           "status-entregue";
@@ -2694,7 +3619,10 @@
 
       }
 
-      else if (texto === "ATRASADO") {
+      else if (
+        texto ===
+        "ATRASADO"
+      ) {
 
         classe =
           "status-atrasado";
@@ -2756,7 +3684,8 @@
 
 
       if (
-        status === "ENTREGUE" ||
+        status ===
+        "ENTREGUE" ||
         dataEntrega
       ) {
 
@@ -2765,8 +3694,10 @@
           "alerta-verde"
         );
 
+
         elemento.textContent =
           "🟢 ENVIO ENTREGUE.";
+
 
         return;
 
@@ -2780,8 +3711,10 @@
           "alerta-neutro"
         );
 
+
         elemento.textContent =
           "⚪ ENVIO SEM PREVISÃO DE ENTREGA.";
+
 
         return;
 
@@ -2789,7 +3722,9 @@
 
 
       const data =
-        criarData(previsao);
+        criarData(
+          previsao
+        );
 
 
       if (!data) {
@@ -2802,12 +3737,18 @@
 
 
       hoje.setHours(
-        0, 0, 0, 0
+        0,
+        0,
+        0,
+        0
       );
 
 
       data.setHours(
-        0, 0, 0, 0
+        0,
+        0,
+        0,
+        0
       );
 
 
@@ -2821,8 +3762,10 @@
           "alerta-amarelo"
         );
 
+
         elemento.textContent =
           "🟡 PREVISÃO DE ENTREGA PARA HOJE.";
+
 
         return;
 
@@ -2839,8 +3782,10 @@
           "alerta-vermelho"
         );
 
+
         elemento.textContent =
           "🔴 A PREVISÃO DE ENTREGA ESTÁ ATRASADA.";
+
 
         return;
 
@@ -2852,40 +3797,9 @@
         "alerta-azul"
       );
 
+
       elemento.textContent =
         "🔵 ENVIO DENTRO DO PRAZO PREVISTO.";
-
-    }
-
-
-    /* =====================================================
-       RESULTADO VAZIO
-       ===================================================== */
-
-    function mostrarSemResultado() {
-
-      document.getElementById(
-        "resultado"
-      ).classList.remove(
-        "aberto"
-      );
-
-
-      document.getElementById(
-        "semResultado"
-      ).style.display =
-        "block";
-
-    }
-
-
-    function esconderResultado() {
-
-      document.getElementById(
-        "resultado"
-      ).classList.remove(
-        "aberto"
-      );
 
     }
 
@@ -2902,7 +3816,9 @@
 
 
       const texto =
-        String(valor);
+        String(
+          valor
+        );
 
 
       if (
@@ -2916,20 +3832,30 @@
 
 
         return new Date(
-          Number(partes[0]),
-          Number(partes[1]) - 1,
-          Number(partes[2])
+          Number(
+            partes[0]
+          ),
+          Number(
+            partes[1]
+          ) - 1,
+          Number(
+            partes[2]
+          )
         );
 
       }
 
 
       const data =
-        new Date(valor);
+        new Date(
+          valor
+        );
 
 
       if (
-        isNaN(data.getTime())
+        isNaN(
+          data.getTime()
+        )
       ) {
 
         return null;
@@ -2945,7 +3871,9 @@
     function formatarData(valor) {
 
       const data =
-        criarData(valor);
+        criarData(
+          valor
+        );
 
 
       if (!data) {
@@ -2955,11 +3883,17 @@
 
       return String(
         data.getDate()
-      ).padStart(2, "0") +
+      ).padStart(
+        2,
+        "0"
+      ) +
       "/" +
       String(
         data.getMonth() + 1
-      ).padStart(2, "0") +
+      ).padStart(
+        2,
+        "0"
+      ) +
       "/" +
       data.getFullYear();
 
@@ -2969,7 +3903,9 @@
     function formatarDataHora(valor) {
 
       const data =
-        criarData(valor);
+        criarData(
+          valor
+        );
 
 
       if (!data) {
@@ -2979,21 +3915,150 @@
 
       return String(
         data.getDate()
-      ).padStart(2, "0") +
+      ).padStart(
+        2,
+        "0"
+      ) +
       "/" +
       String(
         data.getMonth() + 1
-      ).padStart(2, "0") +
+      ).padStart(
+        2,
+        "0"
+      ) +
       "/" +
       data.getFullYear() +
       " " +
       String(
         data.getHours()
-      ).padStart(2, "0") +
+      ).padStart(
+        2,
+        "0"
+      ) +
       ":" +
       String(
         data.getMinutes()
-      ).padStart(2, "0");
+      ).padStart(
+        2,
+        "0"
+      );
+
+    }
+
+
+    function normalizarDataInput(valor) {
+
+      if (!valor) {
+        return "";
+      }
+
+
+      const texto =
+        String(
+          valor
+        );
+
+
+      if (
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
+      ) {
+
+        return texto;
+
+      }
+
+
+      const data =
+        new Date(
+          valor
+        );
+
+
+      if (
+        isNaN(
+          data.getTime()
+        )
+      ) {
+
+        return "";
+
+      }
+
+
+      return data.getFullYear() +
+        "-" +
+        String(
+          data.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "-" +
+        String(
+          data.getDate()
+        ).padStart(
+          2,
+          "0"
+        );
+
+    }
+
+
+    function normalizarDataHoraInput(valor) {
+
+      if (!valor) {
+        return "";
+      }
+
+
+      const data =
+        new Date(
+          valor
+        );
+
+
+      if (
+        isNaN(
+          data.getTime()
+        )
+      ) {
+
+        return "";
+
+      }
+
+
+      return data.getFullYear() +
+        "-" +
+        String(
+          data.getMonth() + 1
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "-" +
+        String(
+          data.getDate()
+        ).padStart(
+          2,
+          "0"
+        ) +
+        "T" +
+        String(
+          data.getHours()
+        ).padStart(
+          2,
+          "0"
+        ) +
+        ":" +
+        String(
+          data.getMinutes()
+        ).padStart(
+          2,
+          "0"
+        );
 
     }
 
@@ -3013,8 +4078,11 @@
       return numero.toLocaleString(
         "pt-BR",
         {
-          style: "currency",
-          currency: "BRL"
+          style:
+            "currency",
+
+          currency:
+            "BRL"
         }
       );
 
@@ -3022,7 +4090,7 @@
 
 
     /* =====================================================
-       MENSAGEM
+       MENSAGENS
        ===================================================== */
 
     function mostrarMensagem(
@@ -3094,7 +4162,9 @@
        ERROS
        ===================================================== */
 
-    function obterMensagemErro(erro) {
+    function obterMensagemErro(
+      erro
+    ) {
 
       if (!erro) {
 
@@ -3118,11 +4188,49 @@
     }
 
 
+    function obterMensagemErroSalvar(
+      erro
+    ) {
+
+      if (!erro) {
+
+        return "OCORREU UM ERRO AO SALVAR AS ALTERAÇÕES.";
+
+      }
+
+
+      if (
+        erro.code ===
+        "23505"
+      ) {
+
+        return "A NF INFORMADA JÁ ESTÁ CADASTRADA EM OUTRO ENVIO.";
+
+      }
+
+
+      if (erro.message) {
+
+        return (
+          "ERRO AO SALVAR: " +
+          erro.message
+        ).toUpperCase();
+
+      }
+
+
+      return "OCORREU UM ERRO AO SALVAR AS ALTERAÇÕES.";
+
+    }
+
+
     /* =====================================================
        LOADING
        ===================================================== */
 
-    function mostrarLoading(texto) {
+    function mostrarLoading(
+      texto
+    ) {
 
       const elemento =
         document.getElementById(
@@ -3174,10 +4282,44 @@
 
 
     /* =====================================================
+       RESULTADO
+       ===================================================== */
+
+    function mostrarSemResultado() {
+
+      document.getElementById(
+        "resultado"
+      ).classList.remove(
+        "aberto"
+      );
+
+
+      document.getElementById(
+        "semResultado"
+      ).style.display =
+        "block";
+
+    }
+
+
+    function esconderResultado() {
+
+      document.getElementById(
+        "resultado"
+      ).classList.remove(
+        "aberto"
+      );
+
+    }
+
+
+    /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(pagina) {
+    function irPara(
+      pagina
+    ) {
 
       if (!pagina) {
         return;
@@ -3240,6 +4382,7 @@
         botao.disabled =
           true;
 
+
         botao.textContent =
           "SAINDO...";
 
@@ -3272,7 +4415,9 @@
        ===================================================== */
 
     document
-      .getElementById("campoNF")
+      .getElementById(
+        "campoNF"
+      )
       .addEventListener(
         "keydown",
         function(evento) {
@@ -3297,7 +4442,9 @@
        ===================================================== */
 
     document
-      .getElementById("campoNF")
+      .getElementById(
+        "campoNF"
+      )
       .addEventListener(
         "input",
         function() {
@@ -3311,23 +4458,57 @@
 
 
     /* =====================================================
-       FECHAR MODAL CLICANDO FORA
+       ATUALIZAÇÃO AUTOMÁTICA DA CIDADE/UF
+       AO SELECIONAR CLIENTE
        ===================================================== */
 
     document
       .getElementById(
-        "modalTransportadora"
+        "editCliente"
       )
       .addEventListener(
-        "click",
-        function(evento) {
+        "change",
+        function() {
 
-          if (
-            evento.target ===
-            this
-          ) {
+          const opcao =
+            this.options[
+              this.selectedIndex
+            ];
 
-            fecharModalTransportadora();
+
+          if (!opcao) {
+            return;
+          }
+
+
+          const cidade =
+            opcao.dataset.cidade ||
+            "";
+
+
+          const uf =
+            opcao.dataset.uf ||
+            "";
+
+
+          if (cidade) {
+
+            document.getElementById(
+              "editCidade"
+            ).value =
+              cidade;
+
+          }
+
+
+          if (uf) {
+
+            document.getElementById(
+              "editUF"
+            ).value =
+              String(
+                uf
+              ).toUpperCase();
 
           }
 
@@ -3336,24 +4517,61 @@
 
 
     /* =====================================================
-       ESC FECHA O MODAL
+       STATUS ENTREGUE
        ===================================================== */
 
-    document.addEventListener(
-      "keydown",
-      function(evento) {
+    document
+      .getElementById(
+        "editStatus"
+      )
+      .addEventListener(
+        "change",
+        function() {
 
-        if (
-          evento.key ===
-          "Escape"
-        ) {
+          if (
+            normalizarStatus(
+              this.value
+            ) ===
+            "ENTREGUE"
+          ) {
 
-          fecharModalTransportadora();
+            const campo =
+              document.getElementById(
+                "editDataEntrega"
+              );
+
+
+            if (
+              !campo.value
+            ) {
+
+              const hoje =
+                new Date();
+
+
+              campo.value =
+                hoje.getFullYear() +
+                "-" +
+                String(
+                  hoje.getMonth() + 1
+                ).padStart(
+                  2,
+                  "0"
+                ) +
+                "-" +
+                String(
+                  hoje.getDate()
+                ).padStart(
+                  2,
+                  "0"
+                );
+
+            }
+
+          }
 
         }
-
-      }
-    );
+      );
 
 
     /* =====================================================
