@@ -6,11 +6,7 @@
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>BiriLog V3 - Clientes</title>
 
@@ -28,1243 +24,656 @@ content="width=device-width, initial-scale=1.0"
       padding: 0;
     }
 
-
     html,
     body {
       min-height: 100%;
     }
 
-
     body {
-
       min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+      font-family: Arial, Helvetica, sans-serif;
       background: #f1f5f9;
-
       color: #1e293b;
-
     }
-
 
     /* =====================================================
        SIDEBAR
        ===================================================== */
 
     .sidebar {
-
       width: 250px;
-
       height: 100vh;
-
       position: fixed;
-
       left: 0;
       top: 0;
       bottom: 0;
-
-      background:
-        linear-gradient(
-          180deg,
-          #0f172a,
-          #172554
-        );
-
+      background: linear-gradient(180deg, #0f172a, #172554);
       color: white;
-
       display: flex;
-
       flex-direction: column;
-
       z-index: 100;
-
-      box-shadow:
-        5px 0 20px
-        rgba(0,0,0,0.10);
-
+      box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
-
     }
-
-
-    /* =====================================================
-       LOGO
-       ===================================================== */
 
     .logo-area {
-
       padding: 28px 22px;
-
       text-align: center;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       flex-shrink: 0;
-
     }
-
 
     .logo-icon {
-
       width: 58px;
       height: 58px;
-
       margin: 0 auto 12px;
-
       border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #0d47a1
-        );
-
+      background: linear-gradient(135deg, #1976d2, #0d47a1);
       display: flex;
-
       align-items: center;
-
       justify-content: center;
-
       font-size: 28px;
-
-      box-shadow:
-        0 8px 20px
-        rgba(25,118,210,0.30);
-
+      box-shadow: 0 8px 20px rgba(25,118,210,0.30);
     }
-
 
     .logo-title {
-
       font-size: 22px;
-
       font-weight: 800;
-
     }
-
 
     .logo-title span {
-
       color: #60a5fa;
-
     }
-
 
     .logo-version {
-
       margin-top: 5px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
       letter-spacing: 1px;
-
     }
-
 
     /* =====================================================
        MENU
        ===================================================== */
 
     .menu {
-
       padding: 20px 12px;
-
       flex: 1;
-
       min-height: 0;
-
       overflow-y: auto;
-
     }
-
 
     .menu-title {
-
-      padding:
-        0 12px 10px;
-
+      padding: 0 12px 10px;
       font-size: 10px;
-
       font-weight: 700;
-
       color: #64748b;
-
       letter-spacing: 1px;
-
     }
-
 
     .menu-item {
-
       width: 100%;
-
       border: none;
-
       background: transparent;
-
       color: #cbd5e1;
-
       display: flex;
-
       align-items: center;
-
       gap: 12px;
-
       padding: 13px 14px;
-
       margin-bottom: 4px;
-
       border-radius: 9px;
-
       cursor: pointer;
-
       font-size: 13px;
-
       text-align: left;
-
       transition: 0.2s;
-
     }
-
 
     .menu-item:hover {
-
-      background:
-        rgba(255,255,255,0.08);
-
+      background: rgba(255,255,255,0.08);
       color: white;
-
     }
-
 
     .menu-item.active {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 15px
-        rgba(37,99,235,0.25);
-
+      box-shadow: 0 5px 15px rgba(37,99,235,0.25);
     }
-
 
     .menu-icon {
-
       width: 22px;
-
       text-align: center;
-
       font-size: 17px;
-
       flex-shrink: 0;
-
     }
-
 
     /* =====================================================
        USUÁRIO
        ===================================================== */
 
     .user-area {
-
       padding: 15px;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      background:
-        rgba(0,0,0,0.08);
-
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.08);
       flex-shrink: 0;
-
     }
-
 
     .user-card {
-
-      background:
-        rgba(255,255,255,0.06);
-
+      background: rgba(255,255,255,0.06);
       border-radius: 10px;
-
       padding: 12px;
-
     }
-
 
     .user-name {
-
       font-size: 12px;
-
       font-weight: 700;
-
       color: white;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-email {
-
       margin-top: 3px;
-
       font-size: 9px;
-
       color: #94a3b8;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
-
     }
-
 
     .user-profile {
-
       margin-top: 6px;
-
       font-size: 10px;
-
       color: #60a5fa;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
     }
-
 
     /* =====================================================
        SAIR
        ===================================================== */
 
     .logout {
-
       width: 100%;
-
       margin-top: 10px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-      background:
-        rgba(255,255,255,0.06);
-
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
       color: #e2e8f0;
-
       padding: 11px 10px;
-
       min-height: 38px;
-
       border-radius: 8px;
-
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 700;
-
       transition: 0.2s;
-
     }
-
 
     .logout:hover {
-
       background: #dc2626;
-
       border-color: #dc2626;
-
       color: white;
-
     }
-
 
     .logout:disabled {
-
       opacity: 0.6;
-
       cursor: wait;
-
     }
-
 
     /* =====================================================
        MAIN
        ===================================================== */
 
     .main {
-
       margin-left: 250px;
-
-      width:
-        calc(100% - 250px);
-
+      width: calc(100% - 250px);
       min-height: 100vh;
-
     }
-
 
     /* =====================================================
        HEADER
        ===================================================== */
 
     .header {
-
       height: 75px;
-
       background: white;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
-      padding:
-        0 30px;
-
+      padding: 0 30px;
       position: sticky;
-
       top: 0;
-
       z-index: 50;
-
     }
-
 
     .header-title {
-
       font-size: 20px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .header-subtitle {
-
       margin-top: 3px;
-
       font-size: 11px;
-
       color: #64748b;
-
     }
-
 
     .status-online {
-
       display: flex;
-
       align-items: center;
-
       gap: 7px;
-
-      padding:
-        7px 12px;
-
+      padding: 7px 12px;
       border-radius: 20px;
-
       background: #f0fdf4;
-
       color: #15803d;
-
       font-size: 11px;
-
       font-weight: 700;
-
     }
-
 
     .status-dot {
-
       width: 7px;
       height: 7px;
-
       border-radius: 50%;
-
       background: #22c55e;
-
     }
-
 
     /* =====================================================
        CONTEÚDO
        ===================================================== */
 
     .content {
-
       padding: 30px;
-
     }
-
 
     /* =====================================================
        MENSAGEM
        ===================================================== */
 
     .mensagem {
-
       display: none;
-
       margin-bottom: 20px;
-
       padding: 13px 16px;
-
       border-radius: 9px;
-
       font-size: 11px;
-
       font-weight: 700;
-
       text-align: center;
-
     }
-
 
     .mensagem.sucesso {
-
       display: block;
-
       background: #f0fdf4;
-
       color: #15803d;
-
-      border:
-        1px solid #bbf7d0;
-
+      border: 1px solid #bbf7d0;
     }
-
 
     .mensagem.erro {
-
       display: block;
-
       background: #fef2f2;
-
       color: #b91c1c;
-
-      border:
-        1px solid #fecaca;
-
+      border: 1px solid #fecaca;
     }
-
 
     /* =====================================================
        CARDS
        ===================================================== */
 
     .cards {
-
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-
       margin-bottom: 22px;
-
     }
-
 
     .card {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 20px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
     }
-
 
     .card-label {
-
       font-size: 10px;
-
       color: #64748b;
-
       font-weight: 700;
-
       text-transform: uppercase;
-
     }
-
 
     .card-value {
-
       margin-top: 8px;
-
       font-size: 28px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     /* =====================================================
        PAINEL
        ===================================================== */
 
     .panel {
-
       background: white;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
       border-radius: 14px;
-
       padding: 22px;
-
-      box-shadow:
-        0 4px 15px
-        rgba(15,23,42,0.04);
-
+      box-shadow: 0 4px 15px rgba(15,23,42,0.04);
       margin-bottom: 20px;
-
     }
-
 
     .panel-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       gap: 15px;
-
       margin-bottom: 20px;
-
     }
-
 
     .panel-title {
-
       font-size: 15px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .panel-subtitle {
-
       margin-top: 4px;
-
       font-size: 10px;
-
       color: #94a3b8;
-
     }
-
 
     /* =====================================================
        FORMULÁRIO
        ===================================================== */
 
     .form-grid {
-
       display: grid;
-
-      grid-template-columns:
-        1fr 2fr 1fr;
-
+      grid-template-columns: 1fr 2fr 1fr;
       gap: 15px;
-
     }
-
 
     .campo {
-
       display: flex;
-
       flex-direction: column;
-
     }
-
 
     .campo label {
-
       margin-bottom: 7px;
-
       font-size: 10px;
-
       font-weight: 700;
-
       color: #475569;
-
       text-transform: uppercase;
-
     }
-
 
     .campo input,
     .campo select {
-
       width: 100%;
-
       min-height: 44px;
-
-      padding:
-        10px 12px;
-
-      border:
-        1px solid #cbd5e1;
-
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-
       background: #f8fafc;
-
       color: #0f172a;
-
       outline: none;
-
       font-size: 12px;
-
       text-transform: uppercase;
-
-      transition:
-        0.2s;
-
+      transition: 0.2s;
     }
-
 
     .campo input:focus,
     .campo select:focus {
-
       background: white;
-
       border-color: #1976d2;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(25,118,210,0.10);
-
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
-
 
     #telefone,
     #editarTelefone {
-
       text-transform: none;
-
     }
-
 
     .form-acoes {
-
       display: flex;
-
       justify-content: flex-end;
-
       gap: 10px;
-
       margin-top: 18px;
-
       padding-top: 18px;
-
-      border-top:
-        1px solid #f1f5f9;
-
+      border-top: 1px solid #f1f5f9;
     }
-
 
     /* =====================================================
        BOTÕES
        ===================================================== */
 
     .btn {
-
       border: none;
-
       border-radius: 8px;
-
-      padding:
-        11px 17px;
-
+      padding: 11px 17px;
       cursor: pointer;
-
       font-size: 11px;
-
       font-weight: 800;
-
       transition: 0.2s;
-
     }
-
 
     .btn:hover {
-
-      transform:
-        translateY(-1px);
-
+      transform: translateY(-1px);
     }
-
 
     .btn:disabled {
-
-      opacity: .6;
-
+      opacity: 0.6;
       cursor: wait;
-
       transform: none;
-
     }
-
 
     .btn-primary {
-
-      background:
-        linear-gradient(
-          135deg,
-          #1976d2,
-          #2563eb
-        );
-
+      background: linear-gradient(135deg, #1976d2, #2563eb);
       color: white;
-
-      box-shadow:
-        0 5px 14px
-        rgba(37,99,235,0.20);
-
+      box-shadow: 0 5px 14px rgba(37,99,235,0.20);
     }
-
 
     .btn-secondary {
-
       background: #f1f5f9;
-
       color: #475569;
-
-      border:
-        1px solid #e2e8f0;
-
+      border: 1px solid #e2e8f0;
     }
-
 
     /* =====================================================
        FILTROS
        ===================================================== */
 
     .filtros {
-
       display: grid;
-
-      grid-template-columns:
-        2fr 1fr 1fr;
-
+      grid-template-columns: 2fr 1fr auto;
       gap: 10px;
-
       margin-bottom: 20px;
-
     }
-
 
     .filtro {
-
       width: 100%;
-
       height: 42px;
-
-      border:
-        1px solid #cbd5e1;
-
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
-
-      padding:
-        0 12px;
-
+      padding: 0 12px;
       background: #f8fafc;
-
       color: #334155;
-
       outline: none;
-
       font-size: 11px;
-
     }
-
 
     .filtro:focus {
-
       background: white;
-
       border-color: #1976d2;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(25,118,210,0.10);
-
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
-
 
     /* =====================================================
        TABELA
        ===================================================== */
 
     .table-wrapper {
-
       width: 100%;
-
       overflow-x: auto;
-
     }
-
 
     table {
-
       width: 100%;
-
       min-width: 900px;
-
       border-collapse: collapse;
-
     }
-
 
     th {
-
-      padding:
-        11px 8px;
-
+      padding: 11px 8px;
       text-align: left;
-
-      border-bottom:
-        1px solid #e2e8f0;
-
+      border-bottom: 1px solid #e2e8f0;
       color: #64748b;
-
       font-size: 9px;
-
       text-transform: uppercase;
-
       white-space: nowrap;
-
     }
-
 
     td {
-
-      padding:
-        12px 8px;
-
-      border-bottom:
-        1px solid #f1f5f9;
-
+      padding: 12px 8px;
+      border-bottom: 1px solid #f1f5f9;
       font-size: 10px;
-
       color: #334155;
-
       white-space: nowrap;
-
     }
-
 
     tbody tr:hover td {
-
       background: #f8fafc;
-
     }
-
 
     .codigo {
-
       font-weight: 800;
-
       color: #1976d2;
-
     }
-
 
     .cliente-nome {
-
       font-weight: 700;
-
       color: #0f172a;
-
     }
-
 
     .telefone {
-
       font-weight: 700;
-
       color: #475569;
-
     }
-
 
     .acoes {
-
       display: flex;
-
       gap: 5px;
-
     }
-
 
     .btn-mini {
-
       border: none;
-
-      padding:
-        6px 8px;
-
+      padding: 6px 8px;
       border-radius: 6px;
-
       cursor: pointer;
-
       font-size: 10px;
-
       font-weight: 700;
-
     }
-
 
     .btn-editar {
-
       background: #dbeafe;
-
       color: #1d4ed8;
-
     }
-
 
     .btn-excluir {
-
       background: #fee2e2;
-
       color: #b91c1c;
-
     }
-
 
     /* =====================================================
        MODAL
        ===================================================== */
 
     .modal {
-
       display: none;
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(15,23,42,0.55);
-
+      background: rgba(15,23,42,0.55);
       align-items: center;
-
       justify-content: center;
-
       padding: 20px;
-
       z-index: 500;
-
     }
-
 
     .modal.aberto {
-
       display: flex;
-
     }
-
 
     .modal-box {
-
       width: 100%;
-
       max-width: 600px;
-
+      max-height: 90vh;
+      overflow-y: auto;
       background: white;
-
       border-radius: 16px;
-
       padding: 25px;
-
-      box-shadow:
-        0 25px 60px
-        rgba(0,0,0,0.25);
-
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
     }
-
 
     .modal-header {
-
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
-
       margin-bottom: 20px;
-
     }
-
 
     .modal-title {
-
       font-size: 16px;
-
       font-weight: 800;
-
       color: #0f172a;
-
     }
-
 
     .fechar {
-
       border: none;
-
       background: transparent;
-
       color: #64748b;
-
       font-size: 24px;
-
       cursor: pointer;
-
     }
-
 
     /* =====================================================
        LOADING
        ===================================================== */
 
     .loading {
-
       position: fixed;
-
       inset: 0;
-
-      background:
-        rgba(248,250,252,0.88);
-
+      background: rgba(248,250,252,0.88);
       display: none;
-
       align-items: center;
-
       justify-content: center;
-
       z-index: 9999;
-
       backdrop-filter: blur(2px);
-
     }
-
 
     .loading-box {
-
       background: white;
-
       border-radius: 14px;
-
-      padding:
-        25px 30px;
-
+      padding: 25px 30px;
       text-align: center;
-
-      box-shadow:
-        0 20px 50px
-        rgba(15,23,42,0.18);
-
+      box-shadow: 0 20px 50px rgba(15,23,42,0.18);
     }
-
 
     .spinner {
-
       width: 35px;
-
       height: 35px;
-
-      margin:
-        0 auto 12px;
-
-      border:
-        3px solid #dbeafe;
-
-      border-top-color:
-        #1976d2;
-
+      margin: 0 auto 12px;
+      border: 3px solid #dbeafe;
+      border-top-color: #1976d2;
       border-radius: 50%;
-
-      animation:
-        girar .8s linear infinite;
-
+      animation: girar .8s linear infinite;
     }
-
 
     .loading-text {
-
       font-size: 11px;
-
       color: #64748b;
-
       font-weight: 700;
-
     }
-
 
     @keyframes girar {
-
       to {
-
-        transform:
-          rotate(360deg);
-
+        transform: rotate(360deg);
       }
-
     }
-
 
     /* =====================================================
        RESPONSIVO
@@ -1273,218 +682,124 @@ content="width=device-width, initial-scale=1.0"
     @media (max-width: 900px) {
 
       .cards {
-
-        grid-template-columns:
-          repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
       }
-
 
       .form-grid {
-
-        grid-template-columns:
-          1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
       }
 
-
       .filtros {
-
-        grid-template-columns:
-          1fr 1fr;
-
+        grid-template-columns: 1fr 1fr;
       }
 
     }
 
-
     @media (max-width: 700px) {
 
       .sidebar {
-
         width: 70px;
-
       }
-
 
       .logo-title,
       .logo-version,
       .menu-title,
       .menu-item span:not(.menu-icon),
       .user-card {
-
         display: none;
-
       }
-
 
       .logo-area {
-
-        padding:
-          18px 8px;
-
+        padding: 18px 8px;
       }
-
 
       .logo-icon {
-
         width: 42px;
         height: 42px;
-
         font-size: 20px;
-
       }
-
 
       .menu {
-
-        padding:
-          15px 8px;
-
+        padding: 15px 8px;
       }
-
 
       .menu-item {
-
         justify-content: center;
-
-        padding:
-          13px 5px;
-
+        padding: 13px 5px;
       }
-
 
       .user-area {
-
-        padding:
-          10px 8px;
-
+        padding: 10px 8px;
       }
-
 
       .logout {
-
         font-size: 0;
-
-        padding:
-          12px 5px;
-
+        padding: 12px 5px;
         min-height: 42px;
-
       }
-
 
       .logout::before {
-
         content: "🚪";
-
         font-size: 17px;
-
       }
-
 
       .main {
-
         margin-left: 70px;
-
-        width:
-          calc(100% - 70px);
-
+        width: calc(100% - 70px);
       }
-
 
       .header {
-
-        padding:
-          0 18px;
-
+        padding: 0 18px;
       }
-
 
       .header-title {
-
         font-size: 17px;
-
       }
-
 
       .status-online {
-
         font-size: 0;
-
         padding: 9px;
-
       }
-
 
       .status-dot {
-
         width: 8px;
         height: 8px;
-
       }
-
 
       .content {
-
         padding: 18px;
-
       }
-
 
       .cards {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
 
       .form-grid {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
 
       .filtros {
-
-        grid-template-columns:
-          1fr;
-
+        grid-template-columns: 1fr;
       }
-
 
       .form-acoes {
-
         flex-direction: column;
-
       }
-
 
       .form-acoes .btn {
-
         width: 100%;
-
       }
 
-
       .panel {
-
         padding: 18px;
-
       }
 
     }
 
-
     @media (max-width: 450px) {
 
       .header-subtitle {
-
         display: none;
-
       }
 
     }
@@ -1499,20 +814,14 @@ content="width=device-width, initial-scale=1.0"
        LOADING
        ===================================================== -->
 
-  <div
-    id="loadingTela"
-    class="loading"
-  >
+  <div id="loadingTela" class="loading">
 
 ```
 <div class="loading-box">
 
   <div class="spinner"></div>
 
-  <div
-    id="loadingText"
-    class="loading-text"
-  >
+  <div id="loadingText" class="loading-text">
     CARREGANDO...
   </div>
 
@@ -1544,181 +853,102 @@ content="width=device-width, initial-scale=1.0"
 
 </div>
 
-
 <nav class="menu">
 
   <div class="menu-title">
     MENU PRINCIPAL
   </div>
 
-
   <button
     type="button"
     class="menu-item"
     onclick="irPara('dashboard.html')"
   >
-
-    <span class="menu-icon">
-      📊
-    </span>
-
-    <span>
-      Dashboard
-    </span>
-
+    <span class="menu-icon">📊</span>
+    <span>Dashboard</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irPara('envios.html')"
   >
-
-    <span class="menu-icon">
-      📦
-    </span>
-
-    <span>
-      Envios
-    </span>
-
+    <span class="menu-icon">📦</span>
+    <span>Envios</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irParaPesquisarNF()"
   >
-
-    <span class="menu-icon">
-      🔎
-    </span>
-
-    <span>
-      Pesquisar NF
-    </span>
-
+    <span class="menu-icon">🔎</span>
+    <span>Pesquisar NF</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item active"
   >
-
-    <span class="menu-icon">
-      👥
-    </span>
-
-    <span>
-      Clientes
-    </span>
-
+    <span class="menu-icon">👥</span>
+    <span>Clientes</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irPara('transportadoras.html')"
   >
-
-    <span class="menu-icon">
-      🚛
-    </span>
-
-    <span>
-      Transportadoras
-    </span>
-
+    <span class="menu-icon">🚛</span>
+    <span>Transportadoras</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irPara('relatorios.html')"
   >
-
-    <span class="menu-icon">
-      📄
-    </span>
-
-    <span>
-      Relatórios
-    </span>
-
+    <span class="menu-icon">📄</span>
+    <span>Relatórios</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irPara('usuarios.html')"
   >
-
-    <span class="menu-icon">
-      🔐
-    </span>
-
-    <span>
-      Usuários
-    </span>
-
+    <span class="menu-icon">🔐</span>
+    <span>Usuários</span>
   </button>
-
 
   <button
     type="button"
     class="menu-item"
     onclick="irPara('configuracoes.html')"
   >
-
-    <span class="menu-icon">
-      ⚙️
-    </span>
-
-    <span>
-      Configurações
-    </span>
-
+    <span class="menu-icon">⚙️</span>
+    <span>Configurações</span>
   </button>
 
-
 </nav>
-
 
 <div class="user-area">
 
   <div class="user-card">
 
-    <div
-      id="usuarioNome"
-      class="user-name"
-    >
+    <div id="usuarioNome" class="user-name">
       USUÁRIO
     </div>
 
-
-    <div
-      id="usuarioEmail"
-      class="user-email"
-    >
+    <div id="usuarioEmail" class="user-email">
       -
     </div>
 
-
-    <div
-      id="usuarioPerfil"
-      class="user-profile"
-    >
+    <div id="usuarioPerfil" class="user-profile">
       PERFIL
     </div>
 
   </div>
-
 
   <button
     type="button"
@@ -1726,9 +956,7 @@ content="width=device-width, initial-scale=1.0"
     id="botaoSair"
     onclick="sair()"
   >
-
     🚪 SAIR DO SISTEMA
-
   </button>
 
 </div>
@@ -1757,7 +985,6 @@ content="width=device-width, initial-scale=1.0"
 
   </div>
 
-
   <div class="status-online">
 
     <span class="status-dot"></span>
@@ -1768,15 +995,9 @@ content="width=device-width, initial-scale=1.0"
 
 </header>
 
-
 <section class="content">
 
-
-  <div
-    id="mensagem"
-    class="mensagem"
-  ></div>
-
+  <div id="mensagem" class="mensagem"></div>
 
   <!-- =================================================
        CARDS
@@ -1784,22 +1005,17 @@ content="width=device-width, initial-scale=1.0"
 
   <div class="cards">
 
-
     <div class="card">
 
       <div class="card-label">
         Total de Clientes
       </div>
 
-      <div
-        id="cardTotal"
-        class="card-value"
-      >
+      <div id="cardTotal" class="card-value">
         0
       </div>
 
     </div>
-
 
     <div class="card">
 
@@ -1807,15 +1023,11 @@ content="width=device-width, initial-scale=1.0"
         Estados Cadastrados
       </div>
 
-      <div
-        id="cardEstados"
-        class="card-value"
-      >
+      <div id="cardEstados" class="card-value">
         0
       </div>
 
     </div>
-
 
     <div class="card">
 
@@ -1833,16 +1045,13 @@ content="width=device-width, initial-scale=1.0"
 
     </div>
 
-
   </div>
-
 
   <!-- =================================================
        CADASTRAR CLIENTE
        ================================================= -->
 
   <div class="panel">
-
 
     <div class="panel-header">
 
@@ -1860,15 +1069,12 @@ content="width=device-width, initial-scale=1.0"
 
     </div>
 
-
     <form
       id="formCliente"
       onsubmit="salvarCliente(event)"
     >
 
-
       <div class="form-grid">
-
 
         <div class="campo">
 
@@ -1884,7 +1090,6 @@ content="width=device-width, initial-scale=1.0"
           >
 
         </div>
-
 
         <div class="campo">
 
@@ -1902,70 +1107,33 @@ content="width=device-width, initial-scale=1.0"
 
         </div>
 
-
         <div class="campo">
 
           <label for="uf">
             UF *
           </label>
 
-          <select
-            id="uf"
-            required
-          >
+          <select id="uf" required>
 
             <option value="">
               SELECIONE
             </option>
 
-            <option value="TO">
-              TOCANTINS - TO
-            </option>
-
-            <option value="PA">
-              PARÁ - PA
-            </option>
-
-            <option value="MA">
-              MARANHÃO - MA
-            </option>
-
-            <option value="GO">
-              GOIÁS - GO
-            </option>
-
-            <option value="MT">
-              MATO GROSSO - MT
-            </option>
-
-            <option value="BA">
-              BAHIA - BA
-            </option>
-
-            <option value="PI">
-              PIAUÍ - PI
-            </option>
-
-            <option value="MG">
-              MINAS GERAIS - MG
-            </option>
-
-            <option value="SP">
-              SÃO PAULO - SP
-            </option>
-
-            <option value="RJ">
-              RIO DE JANEIRO - RJ
-            </option>
-
-            <option value="DF">
-              DISTRITO FEDERAL - DF
-            </option>
+            <option value="TO">TOCANTINS - TO</option>
+            <option value="PA">PARÁ - PA</option>
+            <option value="MA">MARANHÃO - MA</option>
+            <option value="GO">GOIÁS - GO</option>
+            <option value="MT">MATO GROSSO - MT</option>
+            <option value="BA">BAHIA - BA</option>
+            <option value="PI">PIAUÍ - PI</option>
+            <option value="MG">MINAS GERAIS - MG</option>
+            <option value="SP">SÃO PAULO - SP</option>
+            <option value="RJ">RIO DE JANEIRO - RJ</option>
+            <option value="DF">DISTRITO FEDERAL - DF</option>
 
           </select>
 
         </div>
-
 
         <div class="campo">
 
@@ -1983,7 +1151,6 @@ content="width=device-width, initial-scale=1.0"
           >
 
         </div>
-
 
         <div
           class="campo"
@@ -2004,50 +1171,37 @@ content="width=device-width, initial-scale=1.0"
 
         </div>
 
-
       </div>
 
-
       <div class="form-acoes">
-
 
         <button
           type="button"
           class="btn btn-secondary"
           onclick="limparFormulario()"
         >
-
           🧹 LIMPAR
-
         </button>
-
 
         <button
           type="submit"
           class="btn btn-primary"
           id="btnSalvar"
         >
-
           💾 SALVAR CLIENTE
-
         </button>
-
 
       </div>
 
-
     </form>
-
 
   </div>
 
-
   <!-- =================================================
-       LISTA DE CLIENTES
+       LISTA
        ================================================= -->
 
   <div class="panel">
-
 
     <div class="panel-header">
 
@@ -2063,24 +1217,17 @@ content="width=device-width, initial-scale=1.0"
 
       </div>
 
-
       <button
         type="button"
         class="btn btn-secondary"
         onclick="carregarClientes()"
       >
-
         🔄 ATUALIZAR
-
       </button>
 
     </div>
 
-
-    <!-- FILTROS -->
-
     <div class="filtros">
-
 
       <input
         type="text"
@@ -2088,14 +1235,11 @@ content="width=device-width, initial-scale=1.0"
         class="filtro"
         placeholder="🔎 CÓDIGO, NOME, CIDADE OU TELEFONE"
         autocomplete="off"
-        oninput="filtrarClientes()"
       >
-
 
       <select
         id="filtroUF"
         class="filtro"
-        onchange="filtrarClientes()"
       >
 
         <option value="">
@@ -2116,52 +1260,36 @@ content="width=device-width, initial-scale=1.0"
 
       </select>
 
-
       <button
         type="button"
         class="btn btn-secondary"
         onclick="limparFiltros()"
       >
-
         LIMPAR FILTROS
-
       </button>
 
-
     </div>
-
-
-    <!-- TABELA -->
 
     <div class="table-wrapper">
 
       <table>
-
 
         <thead>
 
           <tr>
 
             <th>CÓDIGO</th>
-
             <th>CLIENTE</th>
-
             <th>CIDADE</th>
-
             <th>UF</th>
-
             <th>TELEFONE / WHATSAPP</th>
-
             <th>AÇÕES</th>
 
           </tr>
 
         </thead>
 
-
-        <tbody
-          id="tabelaClientes"
-        >
+        <tbody id="tabelaClientes">
 
           <tr>
 
@@ -2173,24 +1301,18 @@ content="width=device-width, initial-scale=1.0"
                 color:#94a3b8;
               "
             >
-
               CARREGANDO CLIENTES...
-
             </td>
 
           </tr>
 
-
         </tbody>
-
 
       </table>
 
     </div>
 
-
   </div>
-
 
 </section>
 ```
@@ -2201,14 +1323,10 @@ content="width=device-width, initial-scale=1.0"
        MODAL EDITAR
        ===================================================== -->
 
-  <div
-    id="modalEditar"
-    class="modal"
-  >
+  <div id="modalEditar" class="modal">
 
 ```
 <div class="modal-box">
-
 
   <div class="modal-header">
 
@@ -2216,31 +1334,25 @@ content="width=device-width, initial-scale=1.0"
       ✏️ EDITAR CLIENTE
     </div>
 
-
     <button
       type="button"
       class="fechar"
       onclick="fecharModal()"
     >
-
       ×
-
     </button>
 
   </div>
-
 
   <form
     id="formEditar"
     onsubmit="atualizarCliente(event)"
   >
 
-
     <input
       type="hidden"
       id="editarId"
     >
-
 
     <div class="campo">
 
@@ -2255,7 +1367,6 @@ content="width=device-width, initial-scale=1.0"
       >
 
     </div>
-
 
     <div
       class="campo"
@@ -2275,7 +1386,6 @@ content="width=device-width, initial-scale=1.0"
 
     </div>
 
-
     <div
       class="campo"
       style="margin-top:15px;"
@@ -2293,7 +1403,6 @@ content="width=device-width, initial-scale=1.0"
       >
 
     </div>
-
 
     <div
       class="campo"
@@ -2325,7 +1434,6 @@ content="width=device-width, initial-scale=1.0"
 
     </div>
 
-
     <div
       class="campo"
       style="margin-top:15px;"
@@ -2346,37 +1454,27 @@ content="width=device-width, initial-scale=1.0"
 
     </div>
 
-
     <div class="form-acoes">
-
 
       <button
         type="button"
         class="btn btn-secondary"
         onclick="fecharModal()"
       >
-
         CANCELAR
-
       </button>
-
 
       <button
         type="submit"
         class="btn btn-primary"
         id="btnAtualizar"
       >
-
         💾 SALVAR ALTERAÇÕES
-
       </button>
-
 
     </div>
 
-
   </form>
-
 
 </div>
 ```
@@ -2389,7 +1487,6 @@ content="width=device-width, initial-scale=1.0"
 
   <script>
 
-
     /* =====================================================
        SUPABASE
        ===================================================== */
@@ -2397,10 +1494,8 @@ content="width=device-width, initial-scale=1.0"
     const SUPABASE_URL =
       "https://sjfwjwwkomrcalahqanw.supabase.co";
 
-
     const SUPABASE_KEY =
       "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
-
 
     const supabaseClient =
       window.supabase.createClient(
@@ -2408,18 +1503,13 @@ content="width=device-width, initial-scale=1.0"
         SUPABASE_KEY
       );
 
-
     /* =====================================================
        VARIÁVEIS
        ===================================================== */
 
-    let usuarioAtual =
-      null;
+    let usuarioAtual = null;
 
-
-    let todosClientes =
-      [];
-
+    let todosClientes = [];
 
     /* =====================================================
        INICIALIZAÇÃO
@@ -2430,7 +1520,6 @@ content="width=device-width, initial-scale=1.0"
       iniciar
     );
 
-
     async function iniciar() {
 
       try {
@@ -2439,24 +1528,16 @@ content="width=device-width, initial-scale=1.0"
           "VERIFICANDO SESSÃO..."
         );
 
-
         const resultadoSessao =
           await supabaseClient.auth.getSession();
 
-
-        if (
-          resultadoSessao.error
-        ) {
-
+        if (resultadoSessao.error) {
           throw resultadoSessao.error;
-
         }
-
 
         const session =
           resultadoSessao.data &&
           resultadoSessao.data.session;
-
 
         if (!session) {
 
@@ -2466,40 +1547,26 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         const authUser =
           session.user;
 
-
         const consulta =
           await supabaseClient
-
             .from("usuarios")
-
             .select(
               "id,nome,email,perfil,ativo"
             )
-
             .eq(
               "auth_id",
               authUser.id
             )
-
             .maybeSingle();
 
-
-        if (
-          consulta.error
-        ) {
-
+        if (consulta.error) {
           throw consulta.error;
-
         }
 
-
-        if (
-          !consulta.data
-        ) {
+        if (!consulta.data) {
 
           await supabaseClient.auth.signOut();
 
@@ -2508,7 +1575,6 @@ content="width=device-width, initial-scale=1.0"
           return;
 
         }
-
 
         if (
           consulta.data.ativo === false
@@ -2522,16 +1588,12 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         usuarioAtual =
           consulta.data;
 
-
         preencherUsuario();
 
-
         esconderLoading();
-
 
         await carregarClientes();
 
@@ -2544,19 +1606,16 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
-
         esconderLoading();
 
-
         mostrarMensagem(
-          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO DE CLIENTES.",
+          obterMensagemErro(erro),
           "erro"
         );
 
       }
 
     }
-
 
     /* =====================================================
        USUÁRIO
@@ -2565,11 +1624,8 @@ content="width=device-width, initial-scale=1.0"
     function preencherUsuario() {
 
       if (!usuarioAtual) {
-
         return;
-
       }
-
 
       document.getElementById(
         "usuarioNome"
@@ -2580,13 +1636,11 @@ content="width=device-width, initial-scale=1.0"
           "USUÁRIO"
         ).toUpperCase();
 
-
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email ||
         "-";
-
 
       document.getElementById(
         "usuarioPerfil"
@@ -2598,7 +1652,6 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        CARREGAR CLIENTES
        ===================================================== */
@@ -2609,16 +1662,12 @@ content="width=device-width, initial-scale=1.0"
         "CARREGANDO CLIENTES..."
       );
 
-
       try {
 
         const resultado =
           await supabaseClient
-
             .from("clientes")
-
             .select("*")
-
             .order(
               "nome",
               {
@@ -2626,27 +1675,18 @@ content="width=device-width, initial-scale=1.0"
               }
             );
 
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
-
 
         todosClientes =
           resultado.data || [];
-
 
         atualizarCards(
           todosClientes
         );
 
-
         atualizarDataAtualizacao();
-
 
         filtrarClientes();
 
@@ -2659,25 +1699,14 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
+        todosClientes = [];
 
-        todosClientes =
-          [];
+        atualizarCards([]);
 
-
-        atualizarCards(
-          []
-        );
-
-
-        renderizarTabela(
-          []
-        );
-
+        renderizarTabela([]);
 
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2691,46 +1720,36 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        CARDS
        ===================================================== */
 
-    function atualizarCards(
-      lista
-    ) {
+    function atualizarCards(lista) {
 
       const total =
         lista.length;
-
 
       const estados =
         new Set(
           lista
             .map(
               function(cliente) {
-
                 return normalizarTexto(
                   cliente.uf
                 );
-
               }
             )
             .filter(
               function(uf) {
-
                 return uf;
-
               }
             )
         );
-
 
       document.getElementById(
         "cardTotal"
       ).textContent =
         total;
-
 
       document.getElementById(
         "cardEstados"
@@ -2739,7 +1758,6 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function atualizarDataAtualizacao() {
 
       const elemento =
@@ -2747,17 +1765,12 @@ content="width=device-width, initial-scale=1.0"
           "cardAtualizacao"
         );
 
-
       if (!elemento) {
-
         return;
-
       }
-
 
       const agora =
         new Date();
-
 
       elemento.textContent =
         agora.toLocaleTimeString(
@@ -2770,57 +1783,43 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        SALVAR CLIENTE
        ===================================================== */
 
-    async function salvarCliente(
-      evento
-    ) {
+    async function salvarCliente(evento) {
 
       evento.preventDefault();
-
 
       const botao =
         document.getElementById(
           "btnSalvar"
         );
 
-
       const codigo =
         document.getElementById(
           "codigo"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const nome =
         document.getElementById(
           "nome"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const cidade =
         document.getElementById(
           "cidade"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const uf =
         document.getElementById(
           "uf"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const telefone =
         document.getElementById(
           "telefone"
         ).value.trim();
-
 
       if (
         !nome ||
@@ -2837,47 +1836,32 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       try {
 
-        botao.disabled =
-          true;
-
+        botao.disabled = true;
 
         botao.textContent =
           "💾 SALVANDO...";
-
 
         mostrarLoading(
           "SALVANDO CLIENTE..."
         );
 
-
         if (codigo) {
 
           const consultaCodigo =
             await supabaseClient
-
               .from("clientes")
-
               .select("id,codigo")
-
               .eq(
                 "codigo",
                 codigo
               )
-
               .limit(1);
 
-
-          if (
-            consultaCodigo.error
-          ) {
-
+          if (consultaCodigo.error) {
             throw consultaCodigo.error;
-
           }
-
 
           if (
             consultaCodigo.data &&
@@ -2894,12 +1878,10 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         const dados = {
 
           codigo:
-            codigo ||
-            null,
+            codigo || null,
 
           nome:
             nome,
@@ -2911,42 +1893,25 @@ content="width=device-width, initial-scale=1.0"
             uf,
 
           telefone:
-            telefone ||
-            null
+            telefone || null
 
         };
 
-
         const resultado =
           await supabaseClient
-
             .from("clientes")
+            .insert([dados]);
 
-            .insert([
-              dados
-            ]);
-
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
-
-
-        esconderLoading();
-
 
         mostrarMensagem(
           "CLIENTE CADASTRADO COM SUCESSO!",
           "sucesso"
         );
 
-
         limparFormulario();
-
 
         await carregarClientes();
 
@@ -2959,14 +1924,8 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
-
-        esconderLoading();
-
-
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -2974,9 +1933,9 @@ content="width=device-width, initial-scale=1.0"
 
       finally {
 
-        botao.disabled =
-          false;
+        esconderLoading();
 
+        botao.disabled = false;
 
         botao.textContent =
           "💾 SALVAR CLIENTE";
@@ -2985,29 +1944,21 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        EDITAR
        ===================================================== */
 
-    function abrirEditar(
-      id
-    ) {
+    function abrirEditar(id) {
 
       const cliente =
         todosClientes.find(
           function(item) {
 
-            return String(
-              item.id
-            ) ===
-            String(
-              id
-            );
+            return String(item.id) ===
+              String(id);
 
           }
         );
-
 
       if (!cliente) {
 
@@ -3020,47 +1971,35 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       document.getElementById(
         "editarId"
       ).value =
         cliente.id;
 
-
       document.getElementById(
         "editarCodigo"
       ).value =
-        cliente.codigo ||
-        "";
-
+        cliente.codigo || "";
 
       document.getElementById(
         "editarNome"
       ).value =
-        cliente.nome ||
-        "";
-
+        cliente.nome || "";
 
       document.getElementById(
         "editarCidade"
       ).value =
-        cliente.cidade ||
-        "";
-
+        cliente.cidade || "";
 
       document.getElementById(
         "editarUF"
       ).value =
-        cliente.uf ||
-        "";
-
+        cliente.uf || "";
 
       document.getElementById(
         "editarTelefone"
       ).value =
-        cliente.telefone ||
-        "";
-
+        cliente.telefone || "";
 
       document.getElementById(
         "modalEditar"
@@ -3070,63 +2009,48 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        ATUALIZAR
        ===================================================== */
 
-    async function atualizarCliente(
-      evento
-    ) {
+    async function atualizarCliente(evento) {
 
       evento.preventDefault();
-
 
       const botao =
         document.getElementById(
           "btnAtualizar"
         );
 
-
       const id =
         document.getElementById(
           "editarId"
         ).value;
 
-
       const codigo =
         document.getElementById(
           "editarCodigo"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const nome =
         document.getElementById(
           "editarNome"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const cidade =
         document.getElementById(
           "editarCidade"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const uf =
         document.getElementById(
           "editarUF"
-        ).value.trim()
-          .toUpperCase();
-
+        ).value.trim().toUpperCase();
 
       const telefone =
         document.getElementById(
           "editarTelefone"
         ).value.trim();
-
 
       if (
         !id ||
@@ -3144,52 +2068,36 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       try {
 
-        botao.disabled =
-          true;
-
+        botao.disabled = true;
 
         botao.textContent =
           "🔄 SALVANDO...";
-
 
         mostrarLoading(
           "ATUALIZANDO CLIENTE..."
         );
 
-
         if (codigo) {
 
           const consultaCodigo =
             await supabaseClient
-
               .from("clientes")
-
               .select("id,codigo")
-
               .eq(
                 "codigo",
                 codigo
               )
-
               .neq(
                 "id",
                 id
               )
-
               .limit(1);
 
-
-          if (
-            consultaCodigo.error
-          ) {
-
+          if (consultaCodigo.error) {
             throw consultaCodigo.error;
-
           }
-
 
           if (
             consultaCodigo.data &&
@@ -3206,12 +2114,10 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         const dados = {
 
           codigo:
-            codigo ||
-            null,
+            codigo || null,
 
           nome:
             nome,
@@ -3223,47 +2129,29 @@ content="width=device-width, initial-scale=1.0"
             uf,
 
           telefone:
-            telefone ||
-            null
+            telefone || null
 
         };
 
-
         const resultado =
           await supabaseClient
-
             .from("clientes")
-
-            .update(
-              dados
-            )
-
+            .update(dados)
             .eq(
               "id",
               id
             );
 
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
 
-
-        esconderLoading();
-
-
         fecharModal();
-
 
         mostrarMensagem(
           "CLIENTE ATUALIZADO COM SUCESSO!",
           "sucesso"
         );
-
 
         await carregarClientes();
 
@@ -3276,14 +2164,8 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
-
-        esconderLoading();
-
-
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
@@ -3291,9 +2173,9 @@ content="width=device-width, initial-scale=1.0"
 
       finally {
 
-        botao.disabled =
-          false;
+        esconderLoading();
 
+        botao.disabled = false;
 
         botao.textContent =
           "💾 SALVAR ALTERAÇÕES";
@@ -3302,29 +2184,21 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        EXCLUIR
        ===================================================== */
 
-    async function excluirCliente(
-      id
-    ) {
+    async function excluirCliente(id) {
 
       const cliente =
         todosClientes.find(
           function(item) {
 
-            return String(
-              item.id
-            ) ===
-            String(
-              id
-            );
+            return String(item.id) ===
+              String(id);
 
           }
         );
-
 
       if (!cliente) {
 
@@ -3337,26 +2211,17 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       const confirmar =
         window.confirm(
-
           "DESEJA REALMENTE EXCLUIR O CLIENTE?\n\n" +
-
           String(
-            cliente.nome ||
-            ""
+            cliente.nome || ""
           ).toUpperCase()
-
         );
 
-
       if (!confirmar) {
-
         return;
-
       }
-
 
       try {
 
@@ -3364,37 +2229,23 @@ content="width=device-width, initial-scale=1.0"
           "EXCLUINDO CLIENTE..."
         );
 
-
         const resultado =
           await supabaseClient
-
             .from("clientes")
-
             .delete()
-
             .eq(
               "id",
               id
             );
 
-
-        if (
-          resultado.error
-        ) {
-
+        if (resultado.error) {
           throw resultado.error;
-
         }
-
-
-        esconderLoading();
-
 
         mostrarMensagem(
           "CLIENTE EXCLUÍDO COM SUCESSO!",
           "sucesso"
         );
-
 
         await carregarClientes();
 
@@ -3407,35 +2258,31 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
-
-        esconderLoading();
-
-
         mostrarMensagem(
-          obterMensagemErro(
-            erro
-          ),
+          obterMensagemErro(erro),
           "erro"
         );
 
       }
 
-    }
+      finally {
 
+        esconderLoading();
+
+      }
+
+    }
 
     /* =====================================================
        TABELA
        ===================================================== */
 
-    function renderizarTabela(
-      lista
-    ) {
+    function renderizarTabela(lista) {
 
       const tabela =
         document.getElementById(
           "tabelaClientes"
         );
-
 
       if (
         !lista ||
@@ -3443,9 +2290,7 @@ content="width=device-width, initial-scale=1.0"
       ) {
 
         tabela.innerHTML = `
-
           <tr>
-
             <td
               colspan="6"
               style="
@@ -3454,19 +2299,14 @@ content="width=device-width, initial-scale=1.0"
                 color:#94a3b8;
               "
             >
-
               👥 NENHUM CLIENTE ENCONTRADO
-
             </td>
-
           </tr>
-
         `;
 
         return;
 
       }
-
 
       tabela.innerHTML =
         lista
@@ -3474,108 +2314,68 @@ content="width=device-width, initial-scale=1.0"
             function(cliente) {
 
               const telefone =
-                cliente.telefone ||
-                "-";
-
+                cliente.telefone || "-";
 
               return `
-
                 <tr>
 
-                  <td
-                    class="codigo"
-                  >
-
+                  <td class="codigo">
                     ${escapeHTML(
-                      cliente.codigo ||
-                      "-"
+                      cliente.codigo || "-"
                     )}
-
                   </td>
 
-
-                  <td
-                    class="cliente-nome"
-                  >
-
+                  <td class="cliente-nome">
                     ${escapeHTML(
-                      cliente.nome ||
-                      "-"
+                      cliente.nome || "-"
                     )}
-
                   </td>
-
 
                   <td>
-
                     ${escapeHTML(
-                      cliente.cidade ||
-                      "-"
+                      cliente.cidade || "-"
                     )}
-
                   </td>
-
 
                   <td>
-
                     ${escapeHTML(
-                      cliente.uf ||
-                      "-"
+                      cliente.uf || "-"
                     )}
-
                   </td>
 
-
-                  <td
-                    class="telefone"
-                  >
-
+                  <td class="telefone">
                     ${escapeHTML(
                       telefone
                     )}
-
                   </td>
-
 
                   <td>
 
                     <div class="acoes">
 
-
                       <button
                         type="button"
                         class="btn-mini btn-editar"
-                        onclick="abrirEditar('${escapeJS(
-                          cliente.id
-                        )}')"
+                        onclick="abrirEditar('${escapeJS(cliente.id)}')"
                         title="Editar cliente"
                       >
-
                         ✏️
-
                       </button>
-
 
                       <button
                         type="button"
                         class="btn-mini btn-excluir"
-                        onclick="excluirCliente('${escapeJS(
-                          cliente.id
-                        )}')"
+                        onclick="excluirCliente('${escapeJS(cliente.id)}')"
                         title="Excluir cliente"
                       >
-
                         🗑️
-
                       </button>
-
 
                     </div>
 
                   </td>
 
                 </tr>
-
               `;
 
             }
@@ -3584,28 +2384,35 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        FILTRAR
        ===================================================== */
 
     function filtrarClientes() {
 
-      const texto =
-        normalizarTexto(
-          document.getElementById(
-            "filtroTexto"
-          ).value
+      const campoTexto =
+        document.getElementById(
+          "filtroTexto"
         );
 
+      const campoUF =
+        document.getElementById(
+          "filtroUF"
+        );
+
+      const texto =
+        normalizarTexto(
+          campoTexto
+            ? campoTexto.value
+            : ""
+        );
 
       const uf =
         normalizarTexto(
-          document.getElementById(
-            "filtroUF"
-          ).value
+          campoUF
+            ? campoUF.value
+            : ""
         );
-
 
       const filtrados =
         todosClientes.filter(
@@ -3613,34 +2420,26 @@ content="width=device-width, initial-scale=1.0"
 
             const textoCliente =
               normalizarTexto(
-
                 String(
-                  cliente.codigo ||
-                  ""
+                  cliente.codigo || ""
                 ) +
                 " " +
                 String(
-                  cliente.nome ||
-                  ""
+                  cliente.nome || ""
                 ) +
                 " " +
                 String(
-                  cliente.cidade ||
-                  ""
+                  cliente.cidade || ""
                 ) +
                 " " +
                 String(
-                  cliente.uf ||
-                  ""
+                  cliente.uf || ""
                 ) +
                 " " +
                 String(
-                  cliente.telefone ||
-                  ""
+                  cliente.telefone || ""
                 )
-
               );
-
 
             const textoOK =
               !texto ||
@@ -3648,14 +2447,11 @@ content="width=device-width, initial-scale=1.0"
                 texto
               );
 
-
             const ufOK =
               !uf ||
               normalizarTexto(
                 cliente.uf
-              ) ===
-              uf;
-
+              ) === uf;
 
             return (
               textoOK &&
@@ -3665,13 +2461,11 @@ content="width=device-width, initial-scale=1.0"
           }
         );
 
-
       renderizarTabela(
         filtrados
       );
 
     }
-
 
     /* =====================================================
        LIMPAR FILTROS
@@ -3681,20 +2475,15 @@ content="width=device-width, initial-scale=1.0"
 
       document.getElementById(
         "filtroTexto"
-      ).value =
-        "";
-
+      ).value = "";
 
       document.getElementById(
         "filtroUF"
-      ).value =
-        "";
-
+      ).value = "";
 
       filtrarClientes();
 
     }
-
 
     /* =====================================================
        LIMPAR FORMULÁRIO
@@ -3708,30 +2497,18 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        MÁSCARA TELEFONE
        ===================================================== */
 
-    function aplicarMascaraTelefone(
-      campo
-    ) {
+    function aplicarMascaraTelefone(campo) {
 
       let valor =
         campo.value
-          .replace(
-            /\D/g,
-            ""
-          )
-          .substring(
-            0,
-            11
-          );
+          .replace(/\D/g, "")
+          .substring(0, 11);
 
-
-      if (
-        valor.length <= 10
-      ) {
+      if (valor.length <= 10) {
 
         valor =
           valor.replace(
@@ -3762,44 +2539,10 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       campo.value =
         valor;
 
     }
-
-
-    document
-      .getElementById(
-        "telefone"
-      )
-      .addEventListener(
-        "input",
-        function() {
-
-          aplicarMascaraTelefone(
-            this
-          );
-
-        }
-      );
-
-
-    document
-      .getElementById(
-        "editarTelefone"
-      )
-      .addEventListener(
-        "input",
-        function() {
-
-          aplicarMascaraTelefone(
-            this
-          );
-
-        }
-      );
-
 
     /* =====================================================
        MODAL
@@ -3815,40 +2558,27 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(
-      pagina
-    ) {
+    function irPara(pagina) {
 
       if (!pagina) {
-
         return;
-
       }
-
 
       window.location.href =
         pagina;
 
     }
 
-
-    /* =====================================================
-       PESQUISAR NF
-       ===================================================== */
-
     function irParaPesquisarNF() {
 
       window.location.href =
-        window.location.origin +
-        "/Birilog-V3/pesquisar-nf.html";
+        "pesquisar-nf.html";
 
     }
-
 
     /* =====================================================
        SAIR
@@ -3861,32 +2591,29 @@ content="width=device-width, initial-scale=1.0"
           "DESEJA REALMENTE SAIR DO BIRILOG?"
         );
 
-
       if (!confirmar) {
-
         return;
-
       }
-
 
       const botao =
         document.getElementById(
           "botaoSair"
         );
 
-
       if (botao) {
 
-        botao.disabled =
-          true;
+        botao.disabled = true;
 
         botao.textContent =
           "SAINDO...";
 
       }
 
-
       try {
+
+        mostrarLoading(
+          "ENCERRANDO SESSÃO..."
+        );
 
         await supabaseClient.auth.signOut();
 
@@ -3901,16 +2628,18 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
+      finally {
 
-      window.location.replace(
-        "index.html"
-      );
+        window.location.replace(
+          "index.html"
+        );
+
+      }
 
     }
 
-
     /* =====================================================
-       REDIRECIONAR LOGIN
+       LOGIN
        ===================================================== */
 
     function redirecionarLogin() {
@@ -3921,26 +2650,21 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        LOADING
        ===================================================== */
 
-    function mostrarLoading(
-      texto
-    ) {
+    function mostrarLoading(texto) {
 
       const elemento =
         document.getElementById(
           "loadingTela"
         );
 
-
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
-
 
       if (textoElemento) {
 
@@ -3949,7 +2673,6 @@ content="width=device-width, initial-scale=1.0"
           "CARREGANDO...";
 
       }
-
 
       if (elemento) {
 
@@ -3960,14 +2683,12 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function esconderLoading() {
 
       const elemento =
         document.getElementById(
           "loadingTela"
         );
-
 
       if (elemento) {
 
@@ -3977,7 +2698,6 @@ content="width=device-width, initial-scale=1.0"
       }
 
     }
-
 
     /* =====================================================
        MENSAGEM
@@ -3993,31 +2713,23 @@ content="width=device-width, initial-scale=1.0"
           "mensagem"
         );
 
-
       if (!elemento) {
-
         return;
-
       }
-
 
       elemento.textContent =
         texto;
-
 
       elemento.className =
         "mensagem " +
         tipo;
 
-
       elemento.style.display =
         "block";
-
 
       clearTimeout(
         window.timerMensagem
       );
-
 
       window.timerMensagem =
         setTimeout(
@@ -4032,18 +2744,14 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        TEXTO
        ===================================================== */
 
-    function normalizarTexto(
-      valor
-    ) {
+    function normalizarTexto(valor) {
 
       return String(
-        valor ||
-        ""
+        valor || ""
       )
         .normalize("NFD")
         .replace(
@@ -4055,18 +2763,14 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        SEGURANÇA
        ===================================================== */
 
-    function escapeHTML(
-      valor
-    ) {
+    function escapeHTML(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
         .replace(
           /&/g,
@@ -4091,14 +2795,10 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
-    function escapeJS(
-      valor
-    ) {
+    function escapeJS(valor) {
 
       return String(
-        valor ??
-        ""
+        valor ?? ""
       )
         .replace(
           /\\/g,
@@ -4119,14 +2819,11 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
        ERROS
        ===================================================== */
 
-    function obterMensagemErro(
-      erro
-    ) {
+    function obterMensagemErro(erro) {
 
       if (
         erro &&
@@ -4138,10 +2835,8 @@ content="width=device-width, initial-scale=1.0"
             erro.message
           );
 
-
         const texto =
           mensagem.toLowerCase();
-
 
         if (
           texto.includes(
@@ -4158,7 +2853,6 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         if (
           texto.includes(
             "duplicate"
@@ -4174,16 +2868,17 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         if (
           texto.includes(
             "telefone"
           ) ||
-          texto.includes(
-            "column"
-          ) &&
-          texto.includes(
-            "does not exist"
+          (
+            texto.includes(
+              "column"
+            ) &&
+            texto.includes(
+              "does not exist"
+            )
           )
         ) {
 
@@ -4193,11 +2888,9 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         return mensagem.toUpperCase();
 
       }
-
 
       return (
         "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
@@ -4205,89 +2898,134 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     /* =====================================================
-       CLIQUE FORA DO MODAL
-       ===================================================== */
-
-    document
-      .getElementById(
-        "modalEditar"
-      )
-      .addEventListener(
-        "click",
-        function(evento) {
-
-          if (
-            evento.target ===
-            this
-          ) {
-
-            fecharModal();
-
-          }
-
-        }
-      );
-
-
-    /* =====================================================
-       ESC FECHA MODAL
+       EVENTOS
        ===================================================== */
 
     document.addEventListener(
-      "keydown",
-      function(evento) {
+      "DOMContentLoaded",
+      function() {
 
-        if (
-          evento.key ===
-          "Escape"
-        ) {
+        const telefone =
+          document.getElementById(
+            "telefone"
+          );
 
-          fecharModal();
+        const editarTelefone =
+          document.getElementById(
+            "editarTelefone"
+          );
+
+        const filtroTexto =
+          document.getElementById(
+            "filtroTexto"
+          );
+
+        const filtroUF =
+          document.getElementById(
+            "filtroUF"
+          );
+
+        const modal =
+          document.getElementById(
+            "modalEditar"
+          );
+
+        if (telefone) {
+
+          telefone.addEventListener(
+            "input",
+            function() {
+
+              aplicarMascaraTelefone(
+                this
+              );
+
+            }
+          );
+
+        }
+
+        if (editarTelefone) {
+
+          editarTelefone.addEventListener(
+            "input",
+            function() {
+
+              aplicarMascaraTelefone(
+                this
+              );
+
+            }
+          );
+
+        }
+
+        if (filtroTexto) {
+
+          filtroTexto.addEventListener(
+            "input",
+            filtrarClientes
+          );
+
+          filtroTexto.addEventListener(
+            "keydown",
+            function(evento) {
+
+              if (
+                evento.key ===
+                "Enter"
+              ) {
+
+                evento.preventDefault();
+
+                filtrarClientes();
+
+              }
+
+            }
+          );
+
+        }
+
+        if (filtroUF) {
+
+          filtroUF.addEventListener(
+            "change",
+            filtrarClientes
+          );
+
+        }
+
+        if (modal) {
+
+          modal.addEventListener(
+            "click",
+            function(evento) {
+
+              if (
+                evento.target ===
+                this
+              ) {
+
+                fecharModal();
+
+              }
+
+            }
+          );
 
         }
 
       }
     );
 
-
-    /* =====================================================
-       ENTER NA PESQUISA
-       ===================================================== */
-
-    document
-      .getElementById(
-        "filtroTexto"
-      )
-      .addEventListener(
-        "keydown",
-        function(evento) {
-
-          if (
-            evento.key ===
-            "Enter"
-          ) {
-
-            evento.preventDefault();
-
-            filtrarClientes();
-
-          }
-
-        }
-      );
-
-
     /* =====================================================
        MONITORAR SESSÃO
        ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
-      function(
-        evento,
-        session
-      ) {
+      function(evento) {
 
         if (
           evento ===
@@ -4303,6 +3041,20 @@ content="width=device-width, initial-scale=1.0"
       }
     );
 
+    /* =====================================================
+       INICIALIZAÇÃO SEGURA
+       ===================================================== */
+
+    window.addEventListener(
+      "beforeunload",
+      function() {
+
+        clearTimeout(
+          window.timerMensagem
+        );
+
+      }
+    );
 
   </script>
 
