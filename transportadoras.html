@@ -1,14 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Transportadoras</title>
 
@@ -787,21 +789,22 @@
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
-      </div>
-
-    </div>
-
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        SIDEBAR
@@ -809,166 +812,170 @@
 
   <aside class="sidebar">
 
-    <div class="logo-area">
+```
+<div class="logo-area">
 
-      <div class="logo-icon">
-        🚚
-      </div>
+  <div class="logo-icon">
+    🚚
+  </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
 
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+    <span class="menu-icon">📊</span>
+    <span>Dashboard</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+    <span class="menu-icon">📦</span>
+    <span>Envios</span>
+  </button>
+
+
+  <!-- CORREÇÃO DO 404:
+       O NOME DO ARQUIVO DEVE SER EXATAMENTE PesquisaNF.html -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('PesquisaNF.html')"
+  >
+    <span class="menu-icon">🔎</span>
+    <span>Pesquisar NF</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+    <span class="menu-icon">👥</span>
+    <span>Clientes</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+    <span class="menu-icon">🚛</span>
+    <span>Transportadoras</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+    <span class="menu-icon">📄</span>
+    <span>Relatórios</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+    <span class="menu-icon">📱</span>
+    <span>Pós-Entrega</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+    <span class="menu-icon">🔐</span>
+    <span>Usuários</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+    <span class="menu-icon">⚙️</span>
+    <span>Configurações</span>
+  </button>
+
+</nav>
+
+
+<!-- =================================================
+     USUÁRIO LOGADO
+     ================================================= -->
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
     </div>
 
-
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-        <span class="menu-icon">📊</span>
-        <span>Dashboard</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-        <span class="menu-icon">📦</span>
-        <span>Envios</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pesquisanf.html')"
-      >
-        <span class="menu-icon">🔎</span>
-        <span>Pesquisar NF</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-        <span class="menu-icon">👥</span>
-        <span>Clientes</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-        <span class="menu-icon">🚛</span>
-        <span>Transportadoras</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-        <span class="menu-icon">📄</span>
-        <span>Relatórios</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pos-entrega.html')"
-      >
-        <span class="menu-icon">📱</span>
-        <span>Pós-Entrega</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-        <span class="menu-icon">🔐</span>
-        <span>Usuários</span>
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-        <span class="menu-icon">⚙️</span>
-        <span>Configurações</span>
-      </button>
-
-    </nav>
-
-
-    <!-- =================================================
-         USUÁRIO LOGADO
-         ================================================= -->
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-        🚪 SAIR DO SISTEMA
-      </button>
-
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
     </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+    🚪 SAIR DO SISTEMA
+  </button>
+
+</div>
+```
 
   </aside>
-
 
   <!-- =====================================================
        MAIN
@@ -976,305 +983,306 @@
 
   <main class="main">
 
-    <header class="header">
+```
+<header class="header">
+
+  <div>
+
+    <div class="header-title">
+      Transportadoras
+    </div>
+
+    <div class="header-subtitle">
+      Cadastro e consulta das transportadoras do BiriLog
+    </div>
+
+  </div>
+
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+
+  <div class="page-title">
+
+    <h1>
+      🚛 TRANSPORTADORAS
+    </h1>
+
+    <p>
+      Cadastre, consulte e altere os dados das transportadoras utilizadas pelo sistema.
+    </p>
+
+  </div>
+
+
+  <!-- =================================================
+       PAINEL
+       ================================================= -->
+
+  <div class="panel">
+
+    <div class="panel-header">
 
       <div>
 
-        <div class="header-title">
-          Transportadoras
+        <div class="panel-title">
+          Transportadoras cadastradas
         </div>
 
-        <div class="header-subtitle">
-          Cadastro e consulta das transportadoras do BiriLog
+        <div class="panel-subtitle">
+          Lista atualizada diretamente do banco de dados do BiriLog.
         </div>
 
       </div>
 
 
-      <div class="status-online">
+      <button
+        type="button"
+        class="botao-novo"
+        onclick="abrirFormularioNovo()"
+      >
+        ➕ NOVA TRANSPORTADORA
+      </button>
 
-        <span class="status-dot"></span>
-
-        SISTEMA ONLINE
-
-      </div>
-
-    </header>
+    </div>
 
 
-    <section class="content">
+    <!-- =================================================
+         FORMULÁRIO
+         ================================================= -->
+
+    <div
+      id="formulario"
+      class="formulario"
+    >
 
       <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-
-      <div class="page-title">
-
-        <h1>
-          🚛 TRANSPORTADORAS
-        </h1>
-
-        <p>
-          Cadastre, consulte e altere os dados das transportadoras utilizadas pelo sistema.
-        </p>
-
+        id="formularioTitulo"
+        class="formulario-titulo"
+      >
+        🚛 CADASTRAR NOVA TRANSPORTADORA
       </div>
 
 
-      <!-- =================================================
-           PAINEL
-           ================================================= -->
+      <div class="form-grid">
 
-      <div class="panel">
+        <div class="campo">
 
-        <div class="panel-header">
+          <label for="nome">
+            Nome da Transportadora *
+          </label>
 
-          <div>
-
-            <div class="panel-title">
-              Transportadoras cadastradas
-            </div>
-
-            <div class="panel-subtitle">
-              Lista atualizada diretamente do banco de dados do BiriLog.
-            </div>
-
-          </div>
-
-
-          <button
-            type="button"
-            class="botao-novo"
-            onclick="abrirFormularioNovo()"
+          <input
+            type="text"
+            id="nome"
+            maxlength="150"
+            placeholder="Digite o nome da transportadora"
+            autocomplete="off"
           >
-            ➕ NOVA TRANSPORTADORA
-          </button>
 
         </div>
 
 
-        <!-- =================================================
-             FORMULÁRIO
-             ================================================= -->
+        <div class="campo">
 
-        <div
-          id="formulario"
-          class="formulario"
+          <label for="cidade">
+            Cidade
+          </label>
+
+          <input
+            type="text"
+            id="cidade"
+            maxlength="100"
+            placeholder="Digite a cidade"
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="uf">
+            UF
+          </label>
+
+          <select id="uf">
+
+            <option value="">
+              SELECIONE
+            </option>
+
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="ativo">
+            Status
+          </label>
+
+          <select id="ativo">
+
+            <option value="true">
+              ATIVA
+            </option>
+
+            <option value="false">
+              INATIVA
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-acoes">
+
+        <button
+          type="button"
+          class="botao-cancelar"
+          onclick="fecharFormulario()"
         >
-
-          <div
-            id="formularioTitulo"
-            class="formulario-titulo"
-          >
-            🚛 CADASTRAR NOVA TRANSPORTADORA
-          </div>
+          CANCELAR
+        </button>
 
 
-          <div class="form-grid">
-
-            <div class="campo">
-
-              <label for="nome">
-                Nome da Transportadora *
-              </label>
-
-              <input
-                type="text"
-                id="nome"
-                maxlength="150"
-                placeholder="Digite o nome da transportadora"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="cidade">
-                Cidade
-              </label>
-
-              <input
-                type="text"
-                id="cidade"
-                maxlength="100"
-                placeholder="Digite a cidade"
-                autocomplete="off"
-              >
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="uf">
-                UF
-              </label>
-
-              <select id="uf">
-
-                <option value="">
-                  SELECIONE
-                </option>
-
-                <option value="AC">AC</option>
-                <option value="AL">AL</option>
-                <option value="AP">AP</option>
-                <option value="AM">AM</option>
-                <option value="BA">BA</option>
-                <option value="CE">CE</option>
-                <option value="DF">DF</option>
-                <option value="ES">ES</option>
-                <option value="GO">GO</option>
-                <option value="MA">MA</option>
-                <option value="MT">MT</option>
-                <option value="MS">MS</option>
-                <option value="MG">MG</option>
-                <option value="PA">PA</option>
-                <option value="PB">PB</option>
-                <option value="PR">PR</option>
-                <option value="PE">PE</option>
-                <option value="PI">PI</option>
-                <option value="RJ">RJ</option>
-                <option value="RN">RN</option>
-                <option value="RS">RS</option>
-                <option value="RO">RO</option>
-                <option value="RR">RR</option>
-                <option value="SC">SC</option>
-                <option value="SP">SP</option>
-                <option value="SE">SE</option>
-                <option value="TO">TO</option>
-
-              </select>
-
-            </div>
-
-
-            <div class="campo">
-
-              <label for="ativo">
-                Status
-              </label>
-
-              <select id="ativo">
-
-                <option value="true">
-                  ATIVA
-                </option>
-
-                <option value="false">
-                  INATIVA
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-
-          <div class="form-acoes">
-
-            <button
-              type="button"
-              class="botao-cancelar"
-              onclick="fecharFormulario()"
-            >
-              CANCELAR
-            </button>
-
-
-            <button
-              type="button"
-              class="botao-salvar"
-              id="botaoSalvar"
-              onclick="salvarTransportadora()"
-            >
-              💾 SALVAR TRANSPORTADORA
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- =================================================
-             TABELA
-             ================================================= -->
-
-        <div class="tabela-container">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  ID
-                </th>
-
-                <th>
-                  NOME
-                </th>
-
-                <th>
-                  CIDADE
-                </th>
-
-                <th>
-                  UF
-                </th>
-
-                <th>
-                  STATUS
-                </th>
-
-                <th>
-                  AÇÕES
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody id="tabelaTransportadoras">
-
-              <tr>
-
-                <td
-                  colspan="6"
-                  class="sem-dados"
-                >
-
-                  <div class="sem-dados-icon">
-                    🚛
-                  </div>
-
-                  <div class="sem-dados-titulo">
-                    CARREGANDO TRANSPORTADORAS...
-                  </div>
-
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
+        <button
+          type="button"
+          class="botao-salvar"
+          id="botaoSalvar"
+          onclick="salvarTransportadora()"
+        >
+          💾 SALVAR TRANSPORTADORA
+        </button>
 
       </div>
 
-    </section>
+    </div>
+
+
+    <!-- =================================================
+         TABELA
+         ================================================= -->
+
+    <div class="tabela-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              ID
+            </th>
+
+            <th>
+              NOME
+            </th>
+
+            <th>
+              CIDADE
+            </th>
+
+            <th>
+              UF
+            </th>
+
+            <th>
+              STATUS
+            </th>
+
+            <th>
+              AÇÕES
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="tabelaTransportadoras">
+
+          <tr>
+
+            <td
+              colspan="6"
+              class="sem-dados"
+            >
+
+              <div class="sem-dados-icon">
+                🚛
+              </div>
+
+              <div class="sem-dados-titulo">
+                CARREGANDO TRANSPORTADORAS...
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+```
 
   </main>
-
 
   <!-- =====================================================
        JAVASCRIPT
