@@ -1,35 +1,15 @@
 ```html
-<!-- No menu, entre RELATÓRIOS e USUÁRIOS, será acrescentado: -->
-
-<!-- PÓS-ENTREGA -->
-
-<button
-  type="button"
-  class="menu-item"
-  onclick="irPara('posentrega.html')"
->
-  <span class="menu-icon">
-    📋
-  </span>
-
-  <span>
-    Pós-Entrega
-  </span>
-</button>
-```
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BiriLog V3 - Pesquisar NF</title>
 
@@ -55,6 +35,10 @@ content="width=device-width, initial-scale=1.0"
       color: #1e293b;
     }
 
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
+
     .sidebar {
       width: 250px;
       height: 100vh;
@@ -70,6 +54,10 @@ content="width=device-width, initial-scale=1.0"
       box-shadow: 5px 0 20px rgba(0,0,0,0.10);
       overflow: hidden;
     }
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
 
     .logo-area {
       padding: 28px 22px;
@@ -107,6 +95,10 @@ content="width=device-width, initial-scale=1.0"
       letter-spacing: 1px;
     }
 
+    /* =====================================================
+       MENU
+       ===================================================== */
+
     .menu {
       padding: 20px 12px;
       flex: 1;
@@ -137,7 +129,10 @@ content="width=device-width, initial-scale=1.0"
       cursor: pointer;
       font-size: 13px;
       text-align: left;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
+      transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s;
     }
 
     .menu-item:hover {
@@ -161,6 +156,10 @@ content="width=device-width, initial-scale=1.0"
       font-size: 17px;
       flex-shrink: 0;
     }
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
 
     .user-area {
       padding: 15px;
@@ -201,6 +200,10 @@ content="width=device-width, initial-scale=1.0"
       text-transform: uppercase;
     }
 
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
     .logout {
       width: 100%;
       display: block;
@@ -219,7 +222,11 @@ content="width=device-width, initial-scale=1.0"
       cursor: pointer;
       font-size: 11px;
       font-weight: 700;
-      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+      transition:
+        background 0.2s,
+        border-color 0.2s,
+        color 0.2s,
+        transform 0.2s;
     }
 
     .logout:hover {
@@ -237,11 +244,19 @@ content="width=device-width, initial-scale=1.0"
       cursor: wait;
     }
 
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
     .main {
       margin-left: 250px;
       width: calc(100% - 250px);
       min-height: 100vh;
     }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
 
     .header {
       height: 75px;
@@ -286,6 +301,10 @@ content="width=device-width, initial-scale=1.0"
       border-radius: 50%;
       background: #22c55e;
     }
+
+    /* =====================================================
+       CONTENT
+       ===================================================== */
 
     .content {
       padding: 30px;
@@ -338,6 +357,10 @@ content="width=device-width, initial-scale=1.0"
       color: #64748b;
     }
 
+    /* =====================================================
+       PAINEL
+       ===================================================== */
+
     .panel {
       background: white;
       border: 1px solid #e2e8f0;
@@ -358,6 +381,10 @@ content="width=device-width, initial-scale=1.0"
       font-size: 10px;
       color: #94a3b8;
     }
+
+    /* =====================================================
+       BUSCA
+       ===================================================== */
 
     .pesquisa-area {
       display: grid;
@@ -421,6 +448,10 @@ content="width=device-width, initial-scale=1.0"
       transform: none;
     }
 
+    /* =====================================================
+       RESULTADO
+       ===================================================== */
+
     .resultado {
       display: none;
     }
@@ -451,13 +482,9 @@ content="width=device-width, initial-scale=1.0"
       color: #64748b;
     }
 
-    .resultado-acoes {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    /* =====================================================
+       STATUS
+       ===================================================== */
 
     .status {
       display: inline-flex;
@@ -496,31 +523,9 @@ content="width=device-width, initial-scale=1.0"
       color: #475569;
     }
 
-    .btn-excluir {
-      height: 36px;
-      padding: 0 14px;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      background: #fef2f2;
-      color: #b91c1c;
-      cursor: pointer;
-      font-size: 10px;
-      font-weight: 800;
-      transition: 0.2s;
-    }
-
-    .btn-excluir:hover {
-      background: #dc2626;
-      border-color: #dc2626;
-      color: white;
-      transform: translateY(-1px);
-    }
-
-    .btn-excluir:disabled {
-      opacity: 0.6;
-      cursor: wait;
-      transform: none;
-    }
+    /* =====================================================
+       INFORMAÇÕES
+       ===================================================== */
 
     .info-grid {
       display: grid;
@@ -573,6 +578,10 @@ content="width=device-width, initial-scale=1.0"
       white-space: pre-wrap;
     }
 
+    /* =====================================================
+       ALERTA
+       ===================================================== */
+
     .alerta-entrega {
       display: none;
       margin-top: 15px;
@@ -616,6 +625,10 @@ content="width=device-width, initial-scale=1.0"
       border: 1px solid #e2e8f0;
     }
 
+    /* =====================================================
+       SEM RESULTADO
+       ===================================================== */
+
     .sem-resultado {
       padding: 35px 20px;
       text-align: center;
@@ -638,6 +651,10 @@ content="width=device-width, initial-scale=1.0"
       font-size: 10px;
       color: #94a3b8;
     }
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
 
     .loading {
       position: fixed;
@@ -680,10 +697,16 @@ content="width=device-width, initial-scale=1.0"
       }
     }
 
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
     @media (max-width: 1000px) {
+
       .info-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 700px) {
@@ -774,14 +797,10 @@ content="width=device-width, initial-scale=1.0"
         flex-direction: column;
       }
 
-      .resultado-acoes {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
       .info-grid {
         grid-template-columns: 1fr;
       }
+
     }
 
     @media (max-width: 450px) {
@@ -798,9 +817,6 @@ content="width=device-width, initial-scale=1.0"
         font-size: 16px;
       }
 
-      .btn-excluir {
-        width: 100%;
-      }
     }
 
   </style>
@@ -809,568 +825,515 @@ content="width=device-width, initial-scale=1.0"
 
 <body>
 
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
   <div
     id="loading"
     class="loading"
   >
 
-```
-<div class="loading-box">
+    <div class="loading-box">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div
-    id="loadingText"
-    class="loading-text"
-  >
-    CARREGANDO...
-  </div>
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
+    <div class="logo-area">
 
-  <div class="logo-icon">
-    🚚
-  </div>
-
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
-
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
-
-</div>
-
-
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('dashboard.html')"
-  >
-    <span class="menu-icon">📊</span>
-    <span>Dashboard</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('envios.html')"
-  >
-    <span class="menu-icon">📦</span>
-    <span>Envios</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item active"
-  >
-    <span class="menu-icon">🔎</span>
-    <span>Pesquisar NF</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('clientes.html')"
-  >
-    <span class="menu-icon">👥</span>
-    <span>Clientes</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('transportadoras.html')"
-  >
-    <span class="menu-icon">🚛</span>
-    <span>Transportadoras</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('relatorios.html')"
-  >
-    <span class="menu-icon">📄</span>
-    <span>Relatórios</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('usuarios.html')"
-  >
-    <span class="menu-icon">🔐</span>
-    <span>Usuários</span>
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('configuracoes.html')"
-  >
-    <span class="menu-icon">⚙️</span>
-    <span>Configurações</span>
-  </button>
-
-</nav>
-
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div
-      id="usuarioNome"
-      class="user-name"
-    >
-      USUÁRIO
-    </div>
-
-    <div
-      id="usuarioEmail"
-      class="user-email"
-    >
-      -
-    </div>
-
-    <div
-      id="usuarioPerfil"
-      class="user-profile"
-    >
-      PERFIL
-    </div>
-
-  </div>
-
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-    🚪 SAIR DO SISTEMA
-  </button>
-
-</div>
-```
-
-  </aside>
-
-  <main class="main">
-
-```
-<header class="header">
-
-  <div>
-
-    <div class="header-title">
-      Pesquisar NF
-    </div>
-
-    <div class="header-subtitle">
-      Consulte rapidamente os dados de uma nota fiscal
-    </div>
-
-  </div>
-
-  <div class="status-online">
-    <span class="status-dot"></span>
-    SISTEMA ONLINE
-  </div>
-
-</header>
-
-
-<section class="content">
-
-  <div
-    id="mensagem"
-    class="mensagem"
-  ></div>
-
-
-  <div class="page-title">
-
-    <h1>
-      🔎 PESQUISA DE NOTA FISCAL
-    </h1>
-
-    <p>
-      Informe a NF para consultar os dados completos do envio.
-    </p>
-
-  </div>
-
-
-  <div class="panel">
-
-    <div class="panel-title">
-      Consultar Nota Fiscal
-    </div>
-
-    <div class="panel-subtitle">
-      A pesquisa é feita diretamente no banco de dados do BiriLog.
-    </div>
-
-
-    <div class="pesquisa-area">
-
-      <div class="campo-pesquisa">
-
-        <span class="icone-pesquisa">
-          🔎
-        </span>
-
-        <input
-          type="text"
-          id="campoNF"
-          placeholder="DIGITE O NÚMERO DA NF"
-          autocomplete="off"
-          inputmode="numeric"
-        >
-
+      <div class="logo-icon">
+        🚚
       </div>
 
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
+
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
+
+    </div>
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+      <!-- DASHBOARD -->
 
       <button
         type="button"
-        class="btn-pesquisar"
-        id="btnPesquisar"
-        onclick="pesquisarNF()"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
       >
-        🔎 PESQUISAR NF
+
+        <span class="menu-icon">
+          📊
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+      <!-- ENVIOS -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+
+        <span class="menu-icon">
+          📦
+        </span>
+
+        <span>
+          Envios
+        </span>
+
+      </button>
+
+      <!-- PESQUISAR NF -->
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          🔎
+        </span>
+
+        <span>
+          Pesquisar NF
+        </span>
+
+      </button>
+
+      <!-- CLIENTES -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+
+        <span class="menu-icon">
+          👥
+        </span>
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+      <!-- TRANSPORTADORAS -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+
+        <span class="menu-icon">
+          🚛
+        </span>
+
+        <span>
+          Transportadoras
+        </span>
+
+      </button>
+
+      <!-- RELATÓRIOS -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+      <!-- =================================================
+           PÓS-ENTREGA
+           ================================================= -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('posentrega.html')"
+      >
+
+        <span class="menu-icon">
+          📱
+        </span>
+
+        <span>
+          Pós-Entrega
+        </span>
+
+      </button>
+
+      <!-- USUÁRIOS -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+      <!-- CONFIGURAÇÕES -->
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+    </nav>
+
+    <!-- =================================================
+         USUÁRIO LOGADO
+         ================================================= -->
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
+        </div>
+
+        <div
+          id="usuarioEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+
+        🚪 SAIR DO SISTEMA
+
       </button>
 
     </div>
 
-  </div>
+  </aside>
 
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
-  <div
-    id="resultado"
-    class="resultado"
-  >
+  <main class="main">
 
-    <div class="panel">
+    <header class="header">
 
-      <div class="resultado-header">
+      <div>
 
-        <div>
-
-          <div
-            id="resultadoTitulo"
-            class="resultado-titulo"
-          >
-            ENVIO ENCONTRADO
-          </div>
-
-          <div
-            id="resultadoNF"
-            class="resultado-nf"
-          >
-            NF -
-          </div>
-
+        <div class="header-title">
+          Pesquisar NF
         </div>
 
+        <div class="header-subtitle">
+          Consulte rapidamente os dados de uma nota fiscal
+        </div>
 
-        <div class="resultado-acoes">
+      </div>
 
-          <div
-            id="resultadoStatus"
-            class="status status-padrao"
-          >
-            SEM STATUS
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <div
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+      <div class="page-title">
+
+        <h1>
+          🔎 PESQUISA DE NOTA FISCAL
+        </h1>
+
+        <p>
+          Informe a NF para consultar os dados completos do envio.
+        </p>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-title">
+          Consultar Nota Fiscal
+        </div>
+
+        <div class="panel-subtitle">
+          A pesquisa é feita diretamente no banco de dados do BiriLog.
+        </div>
+
+        <div class="pesquisa-area">
+
+          <div class="campo-pesquisa">
+
+            <span class="icone-pesquisa">
+              🔎
+            </span>
+
+            <input
+              type="text"
+              id="campoNF"
+              placeholder="DIGITE O NÚMERO DA NF"
+              autocomplete="off"
+              inputmode="numeric"
+            >
+
           </div>
 
           <button
             type="button"
-            id="btnExcluir"
-            class="btn-excluir"
-            onclick="excluirEnvio()"
+            class="btn-pesquisar"
+            id="btnPesquisar"
+            onclick="pesquisarNF()"
           >
-            🗑️ EXCLUIR ENVIO
+
+            🔎 PESQUISAR NF
+
           </button>
 
         </div>
 
       </div>
 
+      <div
+        id="resultado"
+        class="resultado"
+      >
 
-      <div class="info-grid">
+        <div class="panel">
 
-        <div class="info-box">
+          <div class="resultado-header">
 
-          <div class="info-label">
-            Cliente
+            <div>
+
+              <div
+                id="resultadoTitulo"
+                class="resultado-titulo"
+              >
+                ENVIO ENCONTRADO
+              </div>
+
+              <div
+                id="resultadoNF"
+                class="resultado-nf"
+              >
+                NF -
+              </div>
+
+            </div>
+
+            <div
+              id="resultadoStatus"
+              class="status status-padrao"
+            >
+              SEM STATUS
+            </div>
+
+          </div>
+
+          <div class="info-grid">
+
+            <div class="info-box">
+              <div class="info-label">Cliente</div>
+              <div id="infoCliente" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Cidade</div>
+              <div id="infoCidade" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">UF</div>
+              <div id="infoUF" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Transportadora</div>
+              <div id="infoTransportadora" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Valor da NF</div>
+              <div id="infoValor" class="info-value">R$ 0,00</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Volumes</div>
+              <div id="infoVolumes" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Peso</div>
+              <div id="infoPeso" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Data de Envio</div>
+              <div id="infoDataEnvio" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Previsão</div>
+              <div id="infoPrevisao" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Data de Entrega</div>
+              <div id="infoDataEntrega" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">Última Atualização</div>
+              <div id="infoAtualizacao" class="info-value">-</div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-label">ID do Registro</div>
+              <div id="infoID" class="info-value">-</div>
+            </div>
+
           </div>
 
           <div
-            id="infoCliente"
-            class="info-value"
-          >
-            -
-          </div>
+            id="alertaEntrega"
+            class="alerta-entrega"
+          ></div>
 
-        </div>
+          <div class="observacao-box">
 
+            <div class="observacao-label">
+              Observação
+            </div>
 
-        <div class="info-box">
+            <div
+              id="infoObservacao"
+              class="observacao-texto"
+            >
+              -
+            </div>
 
-          <div class="info-label">
-            Cidade
-          </div>
-
-          <div
-            id="infoCidade"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            UF
-          </div>
-
-          <div
-            id="infoUF"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Transportadora
-          </div>
-
-          <div
-            id="infoTransportadora"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Valor da NF
-          </div>
-
-          <div
-            id="infoValor"
-            class="info-value"
-          >
-            R$ 0,00
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Volumes
-          </div>
-
-          <div
-            id="infoVolumes"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Peso
-          </div>
-
-          <div
-            id="infoPeso"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Data de Envio
-          </div>
-
-          <div
-            id="infoDataEnvio"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Previsão
-          </div>
-
-          <div
-            id="infoPrevisao"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Data de Entrega
-          </div>
-
-          <div
-            id="infoDataEntrega"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            Última Atualização
-          </div>
-
-          <div
-            id="infoAtualizacao"
-            class="info-value"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="info-box">
-
-          <div class="info-label">
-            ID do Registro
-          </div>
-
-          <div
-            id="infoID"
-            class="info-value"
-          >
-            -
           </div>
 
         </div>
 
       </div>
-
 
       <div
-        id="alertaEntrega"
-        class="alerta-entrega"
-      ></div>
+        id="semResultado"
+        class="panel"
+      >
 
+        <div class="sem-resultado">
 
-      <div class="observacao-box">
+          <div class="sem-resultado-icon">
+            🔎
+          </div>
 
-        <div class="observacao-label">
-          Observação
+          <div class="sem-resultado-titulo">
+            CONSULTE UMA NOTA FISCAL
+          </div>
+
+          <div class="sem-resultado-texto">
+            Digite a NF acima para visualizar os dados do envio.
+          </div>
+
         </div>
 
-        <div
-          id="infoObservacao"
-          class="observacao-texto"
-        >
-          -
-        </div>
-
       </div>
 
-    </div>
-
-  </div>
-
-
-  <div
-    id="semResultado"
-    class="panel"
-  >
-
-    <div class="sem-resultado">
-
-      <div class="sem-resultado-icon">
-        🔎
-      </div>
-
-      <div class="sem-resultado-titulo">
-        CONSULTE UMA NOTA FISCAL
-      </div>
-
-      <div class="sem-resultado-texto">
-        Digite a NF acima para visualizar os dados do envio.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-```
+    </section>
 
   </main>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script>
 
@@ -1386,17 +1349,12 @@ content="width=device-width, initial-scale=1.0"
         SUPABASE_KEY
       );
 
-
     let usuarioAtual = null;
-
-    let envioAtual = null;
-
 
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
     );
-
 
     async function iniciar() {
 
@@ -1406,33 +1364,24 @@ content="width=device-width, initial-scale=1.0"
           "VERIFICANDO SESSÃO..."
         );
 
-
         const resultado =
           await supabaseClient.auth.getSession();
-
 
         if (resultado.error) {
           throw resultado.error;
         }
 
-
         const session =
           resultado.data &&
           resultado.data.session;
 
-
         if (!session) {
-
           redirecionarLogin();
-
           return;
-
         }
-
 
         const authUser =
           session.user;
-
 
         const consulta =
           await supabaseClient
@@ -1446,11 +1395,9 @@ content="width=device-width, initial-scale=1.0"
             )
             .maybeSingle();
 
-
         if (consulta.error) {
           throw consulta.error;
         }
-
 
         if (!consulta.data) {
 
@@ -1462,7 +1409,6 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         if (consulta.data.ativo === false) {
 
           await supabaseClient.auth.signOut();
@@ -1473,10 +1419,8 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         usuarioAtual =
           consulta.data;
-
 
         preencherUsuario();
 
@@ -1502,31 +1446,26 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function preencherUsuario() {
 
       if (!usuarioAtual) {
         return;
       }
 
-
       const nome =
         usuarioAtual.nome ||
         usuarioAtual.email ||
         "USUÁRIO";
-
 
       document.getElementById(
         "usuarioNome"
       ).textContent =
         String(nome).toUpperCase();
 
-
       document.getElementById(
         "usuarioEmail"
       ).textContent =
         usuarioAtual.email || "-";
-
 
       document.getElementById(
         "usuarioPerfil"
@@ -1538,7 +1477,6 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     async function pesquisarNF() {
 
       const campo =
@@ -1546,23 +1484,19 @@ content="width=device-width, initial-scale=1.0"
           "campoNF"
         );
 
-
       const botao =
         document.getElementById(
           "btnPesquisar"
         );
-
 
       const nf =
         String(
           campo.value || ""
         ).trim();
 
-
       esconderResultado();
 
       limparMensagem();
-
 
       if (!nf) {
 
@@ -1577,7 +1511,6 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       try {
 
         botao.disabled = true;
@@ -1585,33 +1518,31 @@ content="width=device-width, initial-scale=1.0"
         botao.textContent =
           "🔄 PESQUISANDO...";
 
-
         mostrarLoading(
           "PESQUISANDO NF " +
           nf +
           "..."
         );
 
-
         const consulta =
           await supabaseClient
             .from("envios")
             .select("*")
-            .eq("nf", nf)
+            .eq(
+              "nf",
+              nf
+            )
             .limit(1);
-
 
         if (consulta.error) {
           throw consulta.error;
         }
-
 
         let envio =
           consulta.data &&
           consulta.data.length > 0
             ? consulta.data[0]
             : null;
-
 
         if (!envio) {
 
@@ -1620,15 +1551,12 @@ content="width=device-width, initial-scale=1.0"
               .from("envios")
               .select("*");
 
-
           if (todos.error) {
             throw todos.error;
           }
 
-
           const lista =
             todos.data || [];
-
 
           envio =
             lista.find(
@@ -1646,7 +1574,6 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
         esconderLoading();
 
         botao.disabled = false;
@@ -1654,10 +1581,7 @@ content="width=device-width, initial-scale=1.0"
         botao.textContent =
           "🔎 PESQUISAR NF";
 
-
         if (!envio) {
-
-          envioAtual = null;
 
           mostrarMensagem(
             "NENHUM ENVIO ENCONTRADO PARA A NF " +
@@ -1672,13 +1596,11 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
-
-        envioAtual = envio;
-
-        mostrarResultado(envio);
+        mostrarResultado(
+          envio
+        );
 
       }
-
 
       catch (erro) {
 
@@ -1687,14 +1609,12 @@ content="width=device-width, initial-scale=1.0"
           erro
         );
 
-
         esconderLoading();
 
         botao.disabled = false;
 
         botao.textContent =
           "🔎 PESQUISAR NF";
-
 
         mostrarMensagem(
           obterMensagemErro(erro),
@@ -1705,18 +1625,15 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function mostrarResultado(envio) {
 
       document
         .getElementById("resultado")
         .classList.add("aberto");
 
-
       document.getElementById(
         "semResultado"
       ).style.display = "none";
-
 
       document.getElementById(
         "resultadoNF"
@@ -1726,42 +1643,37 @@ content="width=device-width, initial-scale=1.0"
           envio.nf || "-"
         ).toUpperCase();
 
-
       document.getElementById(
         "infoCliente"
       ).textContent =
         envio.cliente || "-";
-
 
       document.getElementById(
         "infoCidade"
       ).textContent =
         envio.cidade || "-";
 
-
       document.getElementById(
         "infoUF"
       ).textContent =
         envio.uf || "-";
-
 
       document.getElementById(
         "infoTransportadora"
       ).textContent =
         envio.transportadora || "-";
 
-
       document.getElementById(
         "infoValor"
       ).textContent =
-        formatarValor(envio.valor);
-
+        formatarValor(
+          envio.valor
+        );
 
       document.getElementById(
         "infoVolumes"
       ).textContent =
         envio.volumes ?? "-";
-
 
       document.getElementById(
         "infoPeso"
@@ -1777,10 +1689,8 @@ content="width=device-width, initial-scale=1.0"
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
               }
-            ) +
-            " KG"
+            ) + " KG"
           : "-";
-
 
       document.getElementById(
         "infoDataEnvio"
@@ -1789,7 +1699,6 @@ content="width=device-width, initial-scale=1.0"
           envio.data_envio
         );
 
-
       document.getElementById(
         "infoPrevisao"
       ).textContent =
@@ -1797,14 +1706,12 @@ content="width=device-width, initial-scale=1.0"
           envio.previsao
         );
 
-
       document.getElementById(
         "infoDataEntrega"
       ).textContent =
         formatarData(
           envio.data_entrega
         );
-
 
       document.getElementById(
         "infoAtualizacao"
@@ -1815,12 +1722,10 @@ content="width=device-width, initial-scale=1.0"
           envio.created_at
         );
 
-
       document.getElementById(
         "infoID"
       ).textContent =
         envio.id || "-";
-
 
       document.getElementById(
         "infoObservacao"
@@ -1828,33 +1733,13 @@ content="width=device-width, initial-scale=1.0"
         envio.observacao ||
         "SEM OBSERVAÇÃO.";
 
-
       atualizarStatus(
         envio.status
       );
 
-
       atualizarAlerta(
         envio
       );
-
-
-      const btnExcluir =
-        document.getElementById(
-          "btnExcluir"
-        );
-
-
-      if (btnExcluir) {
-
-        btnExcluir.disabled =
-          false;
-
-        btnExcluir.textContent =
-          "🗑️ EXCLUIR ENVIO";
-
-      }
-
 
       window.scrollTo({
         top: 0,
@@ -1862,294 +1747,6 @@ content="width=device-width, initial-scale=1.0"
       });
 
     }
-
-
-    /* =====================================================
-       EXCLUIR ENVIO
-       ===================================================== */
-
-    async function excluirEnvio() {
-
-      if (!envioAtual) {
-
-        mostrarMensagem(
-          "NENHUM ENVIO SELECIONADO PARA EXCLUSÃO.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-
-      const nf =
-        String(
-          envioAtual.nf || ""
-        ).trim();
-
-
-      const cliente =
-        String(
-          envioAtual.cliente || ""
-        ).trim();
-
-
-      const confirmar =
-        window.confirm(
-          "ATENÇÃO!\n\n" +
-          "VOCÊ ESTÁ PRESTES A EXCLUIR O ENVIO:\n\n" +
-          "NF: " +
-          (nf || "-") +
-          "\n" +
-          "CLIENTE: " +
-          (cliente || "-") +
-          "\n\n" +
-          "ESTA AÇÃO NÃO PODERÁ SER DESFEITA.\n\n" +
-          "DESEJA REALMENTE EXCLUIR ESTE ENVIO?"
-        );
-
-
-      if (!confirmar) {
-        return;
-      }
-
-
-      const btnExcluir =
-        document.getElementById(
-          "btnExcluir"
-        );
-
-
-      try {
-
-        if (btnExcluir) {
-
-          btnExcluir.disabled =
-            true;
-
-          btnExcluir.textContent =
-            "🔄 EXCLUINDO...";
-
-        }
-
-
-        mostrarLoading(
-          "EXCLUINDO ENVIO..."
-        );
-
-
-        /*
-        -----------------------------------------------------
-        EXCLUSÃO PELO ID
-        -----------------------------------------------------
-        */
-
-        if (
-          envioAtual.id === null ||
-          envioAtual.id === undefined ||
-          envioAtual.id === ""
-        ) {
-
-          throw new Error(
-            "O ENVIO NÃO POSSUI UM ID VÁLIDO PARA EXCLUSÃO."
-          );
-
-        }
-
-
-        const exclusao =
-          await supabaseClient
-            .from("envios")
-            .delete()
-            .eq(
-              "id",
-              envioAtual.id
-            );
-
-
-        if (exclusao.error) {
-
-          throw exclusao.error;
-
-        }
-
-
-        esconderLoading();
-
-
-        envioAtual =
-          null;
-
-
-        esconderResultado();
-
-
-        mostrarSemResultado();
-
-
-        document.getElementById(
-          "campoNF"
-        ).value = "";
-
-
-        mostrarMensagem(
-          "✅ ENVIO DA NF " +
-          nf +
-          " EXCLUÍDO COM SUCESSO.",
-          "sucesso"
-        );
-
-
-        document.getElementById(
-          "campoNF"
-        ).focus();
-
-      }
-
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao excluir envio:",
-          erro
-        );
-
-
-        esconderLoading();
-
-
-        if (btnExcluir) {
-
-          btnExcluir.disabled =
-            false;
-
-          btnExcluir.textContent =
-            "🗑️ EXCLUIR ENVIO";
-
-        }
-
-
-        mostrarMensagem(
-          obterMensagemExclusao(erro),
-          "erro"
-        );
-
-      }
-
-    }
-
-
-    function obterMensagemExclusao(
-      erro
-    ) {
-
-      if (!erro) {
-
-        return "NÃO FOI POSSÍVEL EXCLUIR O ENVIO.";
-
-      }
-
-
-      const mensagem =
-        String(
-          erro.message ||
-          erro.details ||
-          erro.hint ||
-          ""
-        ).toLowerCase();
-
-
-      if (
-        mensagem.includes("row-level security") ||
-        mensagem.includes("rls") ||
-        mensagem.includes("permission") ||
-        mensagem.includes("not authorized") ||
-        mensagem.includes("policy")
-      ) {
-
-        return (
-          "EXCLUSÃO NÃO AUTORIZADA PELO BANCO DE DADOS. " +
-          "VERIFIQUE A POLÍTICA DE DELETE DA TABELA ENVIOS NO SUPABASE."
-        );
-
-      }
-
-
-      return (
-        "NÃO FOI POSSÍVEL EXCLUIR O ENVIO. " +
-        (
-          erro.message ||
-          "VERIFIQUE AS CONFIGURAÇÕES DO BANCO DE DADOS."
-        )
-      );
-
-    }
-
-
-    function atualizarStatus(status) {
-
-      const elemento =
-        document.getElementById(
-          "resultadoStatus"
-        );
-
-
-      const texto =
-        normalizarStatus(status);
-
-
-      let classe =
-        "status-padrao";
-
-
-      let icone =
-        "📌";
-
-
-      if (texto === "COLETADO") {
-
-        classe = "status-coletado";
-        icone = "📦";
-
-      }
-
-      else if (texto === "EM TRANSITO") {
-
-        classe = "status-transito";
-        icone = "🚚";
-
-      }
-
-      else if (texto === "ENTREGUE") {
-
-        classe = "status-entregue";
-        icone = "✅";
-
-      }
-
-      else if (texto === "ATRASADO") {
-
-        classe = "status-atrasado";
-        icone = "⚠️";
-
-      }
-
-
-      elemento.className =
-        "status " +
-        classe;
-
-
-      elemento.textContent =
-        icone +
-        " " +
-        (
-          texto ||
-          "SEM STATUS"
-        );
-
-    }
-
 
     function normalizarStatus(status) {
 
@@ -2162,14 +1759,79 @@ content="width=device-width, initial-scale=1.0"
       .replace(
         /[\u0300-\u036f]/g,
         ""
-      )
-      .replace(
-        /\s+/g,
-        " "
       );
 
     }
 
+    function atualizarStatus(status) {
+
+      const elemento =
+        document.getElementById(
+          "resultadoStatus"
+        );
+
+      const texto =
+        normalizarStatus(status);
+
+      let classe =
+        "status-padrao";
+
+      let icone =
+        "📌";
+
+      if (texto === "COLETADO") {
+
+        classe =
+          "status-coletado";
+
+        icone =
+          "📦";
+
+      }
+
+      else if (texto === "EM TRANSITO") {
+
+        classe =
+          "status-transito";
+
+        icone =
+          "🚚";
+
+      }
+
+      else if (texto === "ENTREGUE") {
+
+        classe =
+          "status-entregue";
+
+        icone =
+          "✅";
+
+      }
+
+      else if (texto === "ATRASADO") {
+
+        classe =
+          "status-atrasado";
+
+        icone =
+          "⚠️";
+
+      }
+
+      elemento.className =
+        "status " +
+        classe;
+
+      elemento.textContent =
+        icone +
+        " " +
+        (
+          texto ||
+          "SEM STATUS"
+        );
+
+    }
 
     function atualizarAlerta(envio) {
 
@@ -2178,28 +1840,22 @@ content="width=device-width, initial-scale=1.0"
           "alertaEntrega"
         );
 
-
       elemento.className =
         "alerta-entrega";
 
-
       elemento.textContent =
         "";
-
 
       const status =
         normalizarStatus(
           envio.status
         );
 
-
       const dataEntrega =
         envio.data_entrega;
 
-
       const previsao =
         envio.previsao;
-
 
       if (
         status === "ENTREGUE" ||
@@ -2211,14 +1867,12 @@ content="width=device-width, initial-scale=1.0"
           "alerta-verde"
         );
 
-
         elemento.textContent =
           "🟢 ENVIO ENTREGUE.";
 
         return;
 
       }
-
 
       if (!previsao) {
 
@@ -2227,7 +1881,6 @@ content="width=device-width, initial-scale=1.0"
           "alerta-neutro"
         );
 
-
         elemento.textContent =
           "⚪ ENVIO SEM PREVISÃO DE ENTREGA.";
 
@@ -2235,19 +1888,17 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       const data =
-        criarData(previsao);
-
+        criarData(
+          previsao
+        );
 
       if (!data) {
         return;
       }
 
-
       const hoje =
         new Date();
-
 
       hoje.setHours(
         0,
@@ -2256,14 +1907,12 @@ content="width=device-width, initial-scale=1.0"
         0
       );
 
-
       data.setHours(
         0,
         0,
         0,
         0
       );
-
 
       if (
         data.getTime() ===
@@ -2275,14 +1924,12 @@ content="width=device-width, initial-scale=1.0"
           "alerta-amarelo"
         );
 
-
         elemento.textContent =
           "🟡 PREVISÃO DE ENTREGA PARA HOJE.";
 
         return;
 
       }
-
 
       if (
         data.getTime() <
@@ -2294,7 +1941,6 @@ content="width=device-width, initial-scale=1.0"
           "alerta-vermelho"
         );
 
-
         elemento.textContent =
           "🔴 A PREVISÃO DE ENTREGA ESTÁ ATRASADA.";
 
@@ -2302,18 +1948,15 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       elemento.classList.add(
         "aberto",
         "alerta-azul"
       );
 
-
       elemento.textContent =
         "🔵 ENVIO DENTRO DO PRAZO PREVISTO.";
 
     }
-
 
     function mostrarSemResultado() {
 
@@ -2323,14 +1966,12 @@ content="width=device-width, initial-scale=1.0"
         "aberto"
       );
 
-
       document.getElementById(
         "semResultado"
       ).style.display =
         "block";
 
     }
-
 
     function esconderResultado() {
 
@@ -2342,25 +1983,23 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function criarData(valor) {
 
       if (!valor) {
         return null;
       }
 
-
       const texto =
         String(valor);
 
-
       if (
-        /^\d{4}-\d{2}-\d{2}$/.test(texto)
+        /^\d{4}-\d{2}-\d{2}$/.test(
+          texto
+        )
       ) {
 
         const partes =
           texto.split("-");
-
 
         return new Date(
           Number(partes[0]),
@@ -2370,35 +2009,31 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       const data =
         new Date(valor);
 
-
       if (
-        isNaN(data.getTime())
+        isNaN(
+          data.getTime()
+        )
       ) {
 
         return null;
 
       }
 
-
       return data;
 
     }
-
 
     function formatarData(valor) {
 
       const data =
         criarData(valor);
 
-
       if (!data) {
         return "-";
       }
-
 
       return String(
         data.getDate()
@@ -2412,17 +2047,14 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function formatarDataHora(valor) {
 
       const data =
         criarData(valor);
 
-
       if (!data) {
         return "-";
       }
-
 
       return String(
         data.getDate()
@@ -2444,12 +2076,12 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function formatarValor(valor) {
 
       const numero =
-        Number(valor || 0);
-
+        Number(
+          valor || 0
+        );
 
       return numero.toLocaleString(
         "pt-BR",
@@ -2461,35 +2093,26 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
-    function mostrarMensagem(
-      texto,
-      tipo
-    ) {
+    function mostrarMensagem(texto, tipo) {
 
       const elemento =
         document.getElementById(
           "mensagem"
         );
 
-
       elemento.textContent =
         texto;
-
 
       elemento.className =
         "mensagem " +
         tipo;
 
-
       elemento.style.display =
         "block";
-
 
       clearTimeout(
         window.timerMensagem
       );
-
 
       window.timerMensagem =
         setTimeout(
@@ -2504,7 +2127,6 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function limparMensagem() {
 
       const elemento =
@@ -2512,20 +2134,16 @@ content="width=device-width, initial-scale=1.0"
           "mensagem"
         );
 
-
       elemento.textContent =
         "";
 
-
       elemento.className =
         "mensagem";
-
 
       elemento.style.display =
         "none";
 
     }
-
 
     function mostrarLoading(texto) {
 
@@ -2534,12 +2152,10 @@ content="width=device-width, initial-scale=1.0"
           "loading"
         );
 
-
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
-
 
       if (textoElemento) {
 
@@ -2548,7 +2164,6 @@ content="width=device-width, initial-scale=1.0"
           "CARREGANDO...";
 
       }
-
 
       if (elemento) {
 
@@ -2559,14 +2174,12 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-
     function esconderLoading() {
 
       const elemento =
         document.getElementById(
           "loading"
         );
-
 
       if (elemento) {
 
@@ -2577,6 +2190,24 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
+    function obterMensagemErro(erro) {
+
+      if (!erro) {
+
+        return "ERRO AO PESQUISAR A NOTA FISCAL.";
+
+      }
+
+      return (
+        erro.message ||
+        "ERRO AO PESQUISAR A NOTA FISCAL."
+      );
+
+    }
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
 
     function irPara(pagina) {
 
@@ -2584,12 +2215,10 @@ content="width=device-width, initial-scale=1.0"
         return;
       }
 
-
       const separador =
         pagina.includes("?")
           ? "&"
           : "?";
-
 
       window.location.href =
         pagina +
@@ -2599,6 +2228,9 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
+    /* =====================================================
+       LOGIN
+       ===================================================== */
 
     function redirecionarLogin() {
 
@@ -2608,6 +2240,9 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
+    /* =====================================================
+       SAIR
+       ===================================================== */
 
     async function sair() {
 
@@ -2616,27 +2251,24 @@ content="width=device-width, initial-scale=1.0"
           "DESEJA REALMENTE SAIR DO BIRILOG?"
         );
 
-
       if (!confirmar) {
         return;
       }
-
 
       const botao =
         document.getElementById(
           "botaoSair"
         );
 
-
       if (botao) {
 
-        botao.disabled = true;
+        botao.disabled =
+          true;
 
         botao.textContent =
           "SAINDO...";
 
       }
-
 
       try {
 
@@ -2653,11 +2285,13 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-
       redirecionarLogin();
 
     }
 
+    /* =====================================================
+       ENTER
+       ===================================================== */
 
     document
       .getElementById("campoNF")
@@ -2666,7 +2300,8 @@ content="width=device-width, initial-scale=1.0"
         function(evento) {
 
           if (
-            evento.key === "Enter"
+            evento.key ===
+            "Enter"
           ) {
 
             evento.preventDefault();
@@ -2678,6 +2313,9 @@ content="width=device-width, initial-scale=1.0"
         }
       );
 
+    /* =====================================================
+       LIMPAR AO DIGITAR
+       ===================================================== */
 
     document
       .getElementById("campoNF")
@@ -2692,6 +2330,9 @@ content="width=device-width, initial-scale=1.0"
         }
       );
 
+    /* =====================================================
+       MONITORAR SESSÃO
+       ===================================================== */
 
     supabaseClient.auth.onAuthStateChange(
       function(
@@ -2700,7 +2341,8 @@ content="width=device-width, initial-scale=1.0"
       ) {
 
         if (
-          evento === "SIGNED_OUT"
+          evento ===
+          "SIGNED_OUT"
         ) {
 
           redirecionarLogin();
@@ -2710,50 +2352,9 @@ content="width=device-width, initial-scale=1.0"
       }
     );
 
-
-    function obterMensagemErro(erro) {
-
-      if (!erro) {
-
-        return "NÃO FOI POSSÍVEL REALIZAR A PESQUISA.";
-
-      }
-
-
-      const mensagem =
-        String(
-          erro.message ||
-          erro.details ||
-          ""
-        ).toLowerCase();
-
-
-      if (
-        mensagem.includes("permission") ||
-        mensagem.includes("row-level security") ||
-        mensagem.includes("rls")
-      ) {
-
-        return (
-          "ACESSO NEGADO PELO BANCO DE DADOS. " +
-          "VERIFIQUE AS PERMISSÕES DO USUÁRIO."
-        );
-
-      }
-
-
-      return (
-        "ERRO AO PESQUISAR A NF: " +
-        (
-          erro.message ||
-          "ERRO DESCONHECIDO."
-        )
-      );
-
-    }
-
   </script>
 
 </body>
 
 </html>
+```
