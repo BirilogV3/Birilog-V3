@@ -1,15 +1,16 @@
-```html
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Pós Entrega</title>
 
@@ -264,6 +265,10 @@
       padding: 30px;
     }
 
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
     .mensagem {
       display: none;
       margin-bottom: 20px;
@@ -365,6 +370,10 @@
       font-size: 10px;
       color: #94a3b8;
     }
+
+    /* =====================================================
+       WHATSAPP INFO
+       ===================================================== */
 
     .whatsapp-info {
       display: flex;
@@ -511,6 +520,7 @@
     .acoes {
       display: flex;
       gap: 5px;
+      flex-wrap: wrap;
     }
 
     .btn-mini {
@@ -543,18 +553,18 @@
       color: #1d4ed8;
     }
 
-    .btn-editar {
+    .btn-edit {
       background: #fef3c7;
       color: #92400e;
     }
 
-    .btn-editar:hover {
+    .btn-edit:hover {
       background: #f59e0b;
       color: white;
     }
 
     /* =====================================================
-       MODAIS
+       MODAL
        ===================================================== */
 
     .modal {
@@ -627,57 +637,46 @@
     }
 
     /* =====================================================
-       FORMULÁRIO DE EDIÇÃO
+       FORMULÁRIO EDITAR
        ===================================================== */
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+    .campo {
+      margin-bottom: 15px;
     }
 
-    .form-grupo {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-grupo.full {
-      grid-column: 1 / -1;
-    }
-
-    .form-grupo label {
+    .campo label {
+      display: block;
+      margin-bottom: 6px;
       font-size: 10px;
       font-weight: 800;
       color: #475569;
       text-transform: uppercase;
     }
 
-    .form-grupo input,
-    .form-grupo select,
-    .form-grupo textarea {
+    .campo input,
+    .campo select {
       width: 100%;
+      height: 42px;
+      padding: 0 12px;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      padding: 10px 12px;
+      outline: none;
       background: #f8fafc;
       color: #334155;
-      outline: none;
       font-size: 11px;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .form-grupo input:focus,
-    .form-grupo select:focus,
-    .form-grupo textarea:focus {
+    .campo input:focus,
+    .campo select:focus {
       background: white;
       border-color: #1976d2;
       box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
     }
 
-    .form-grupo textarea {
-      min-height: 90px;
-      resize: vertical;
+    .ajuda-telefone {
+      margin-top: 5px;
+      font-size: 9px;
+      color: #94a3b8;
     }
 
     /* =====================================================
@@ -716,10 +715,20 @@
       box-shadow: 0 5px 14px rgba(34,197,94,0.20);
     }
 
+    .btn-whatsapp-web {
+      background: #16a34a;
+      color: white;
+    }
+
     .btn-secondary {
       background: #f1f5f9;
       color: #475569;
       border: 1px solid #e2e8f0;
+    }
+
+    .btn-warning {
+      background: #f59e0b;
+      color: white;
     }
 
     /* =====================================================
@@ -827,8 +836,8 @@
       }
 
       .logout::before {
-        content: "SAIR";
-        font-size: 9px;
+        content: "\1F6AA";
+        font-size: 17px;
       }
 
       .main {
@@ -882,14 +891,6 @@
         width: 100%;
       }
 
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grupo.full {
-        grid-column: auto;
-      }
-
     }
 
   </style>
@@ -902,23 +903,19 @@
        LOADING
        ===================================================== -->
 
-  <div
-    id="loadingTela"
-    class="loading"
-  >
+  <div id="loadingTela" class="loading">
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
-      </div>
+  <div id="loadingText" class="loading-text">
+    CARREGANDO...
+  </div>
 
-    </div>
+</div>
+```
 
   </div>
 
@@ -928,147 +925,152 @@
 
   <aside class="sidebar">
 
-    <div class="logo-area">
+```
+<div class="logo-area">
 
-      <div class="logo-icon">
-        🚚
-      </div>
+  <div class="logo-icon">
+    🚚
+  </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
 
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+    <span class="menu-icon">📊</span>
+    <span>Dashboard</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+    <span class="menu-icon">📦</span>
+    <span>Envios</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irParaPesquisarNF()"
+  >
+    <span class="menu-icon">🔎</span>
+    <span>Pesquisar NF</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+    <span class="menu-icon">👥</span>
+    <span>Clientes</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+    <span class="menu-icon">🚛</span>
+    <span>Transportadoras</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+    <span class="menu-icon">📄</span>
+    <span>Relatórios</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+    <span class="menu-icon">📱</span>
+    <span>Pós Entrega</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+    <span class="menu-icon">🔐</span>
+    <span>Usuários</span>
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+    <span class="menu-icon">⚙️</span>
+    <span>Configurações</span>
+  </button>
+
+</nav>
+
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div id="usuarioNome" class="user-name">
+      USUÁRIO
     </div>
 
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-        <span class="menu-icon">📊</span>
-        <span>Dashboard</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-        <span class="menu-icon">📦</span>
-        <span>Envios</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irParaPesquisarNF()"
-      >
-        <span class="menu-icon">🔎</span>
-        <span>Pesquisar NF</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-        <span class="menu-icon">👥</span>
-        <span>Clientes</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-        <span class="menu-icon">🚛</span>
-        <span>Transportadoras</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-        <span class="menu-icon">📄</span>
-        <span>Relatórios</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-        <span class="menu-icon">📱</span>
-        <span>Pós Entrega</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-        <span class="menu-icon">🔐</span>
-        <span>Usuários</span>
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-        <span class="menu-icon">⚙️</span>
-        <span>Configurações</span>
-      </button>
-
-    </nav>
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-        SAIR DO SISTEMA
-      </button>
-
+    <div id="usuarioEmail" class="user-email">
+      -
     </div>
+
+    <div id="usuarioPerfil" class="user-profile">
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+    🚪 SAIR DO SISTEMA
+  </button>
+
+</div>
+```
 
   </aside>
 
@@ -1078,274 +1080,285 @@
 
   <main class="main">
 
-    <header class="header">
+```
+<header class="header">
+
+  <div>
+
+    <div class="header-title">
+      Pós Entrega
+    </div>
+
+    <div class="header-subtitle">
+      Acompanhamento e confirmação das entregas
+    </div>
+
+  </div>
+
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+
+<section class="content">
+
+  <div id="mensagem" class="mensagem"></div>
+
+
+  <!-- CARDS -->
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="card-label">
+        Total de Envios
+      </div>
+
+      <div id="cardTotal" class="card-value">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-success">
+
+      <div class="card-label">
+        Entregues
+      </div>
+
+      <div id="cardEntregues" class="card-value">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-warning">
+
+      <div class="card-label">
+        Em Trânsito
+      </div>
+
+      <div id="cardTransito" class="card-value">
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card card-danger">
+
+      <div class="card-label">
+        Atrasados
+      </div>
+
+      <div id="cardAtrasados" class="card-value">
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- PAINEL -->
+
+  <div class="panel">
+
+    <div class="panel-header">
 
       <div>
 
-        <div class="header-title">
-          Pós Entrega
+        <div class="panel-title">
+          📱 CONFIRMAÇÃO DE ENTREGA
         </div>
 
-        <div class="header-subtitle">
-          Acompanhamento e confirmação das entregas
-        </div>
-
-      </div>
-
-      <div class="status-online">
-
-        <span class="status-dot"></span>
-
-        SISTEMA ONLINE
-
-      </div>
-
-    </header>
-
-    <section class="content">
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-      <div class="cards">
-
-        <div class="card">
-
-          <div class="card-label">
-            Total de Envios
-          </div>
-
-          <div
-            id="cardTotal"
-            class="card-value"
-          >
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-success">
-
-          <div class="card-label">
-            Entregues
-          </div>
-
-          <div
-            id="cardEntregues"
-            class="card-value"
-          >
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-warning">
-
-          <div class="card-label">
-            Em Trânsito
-          </div>
-
-          <div
-            id="cardTransito"
-            class="card-value"
-          >
-            0
-          </div>
-
-        </div>
-
-        <div class="card card-danger">
-
-          <div class="card-label">
-            Atrasados
-          </div>
-
-          <div
-            id="cardAtrasados"
-            class="card-value"
-          >
-            0
-          </div>
-
+        <div class="panel-subtitle">
+          Envie a confirmação ao cliente pelo WhatsApp.
         </div>
 
       </div>
 
-      <div class="panel">
 
-        <div class="panel-header">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="carregarEnvios()"
+      >
+        🔄 ATUALIZAR
+      </button>
 
-          <div>
+    </div>
 
-            <div class="panel-title">
-              CONFIRMAÇÃO DE ENTREGA
-            </div>
 
-            <div class="panel-subtitle">
-              Confirme a entrega e envie a mensagem diretamente pelo WhatsApp.
-            </div>
+    <div class="whatsapp-info">
 
-          </div>
+      <div class="whatsapp-info-icon">
+        📱
+      </div>
 
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="carregarEnvios()"
-          >
-            ATUALIZAR
-          </button>
+      <div class="whatsapp-info-text">
 
-        </div>
+        <strong>CONFIRMAÇÃO DE ENTREGA</strong>
 
-        <div class="whatsapp-info">
+        <br>
 
-          <div class="whatsapp-info-icon">
-            📱
-          </div>
+        Antes de enviar, você pode clicar em
+        <strong>EDITAR</strong>
+        para corrigir o telefone do cliente.
 
-          <div class="whatsapp-info-text">
+        <br><br>
 
-            <strong>CONFIRMAÇÃO DE ENTREGA</strong>
+        O botão
+        <strong>ENVIAR WHATSAPP</strong>
+        tenta abrir diretamente o aplicativo WhatsApp instalado no dispositivo.
 
-            <br>
+        <br><br>
 
-            Antes de enviar, você pode clicar em
-            <strong>ALTERAR</strong>
-            para corrigir o telefone ou outros dados do envio.
-
-            <br><br>
-
-            O botão
-            <strong>ENVIAR WHATSAPP</strong>
-            tentará abrir o aplicativo WhatsApp instalado no computador.
-
-          </div>
-
-        </div>
-
-        <div class="filtros">
-
-          <input
-            type="text"
-            id="filtroTexto"
-            class="filtro"
-            placeholder="NF, CLIENTE OU CIDADE"
-            autocomplete="off"
-            oninput="filtrarEnvios()"
-          >
-
-          <select
-            id="filtroStatus"
-            class="filtro"
-            onchange="filtrarEnvios()"
-          >
-
-            <option value="">
-              TODOS OS STATUS
-            </option>
-
-            <option value="COLETADO">
-              COLETADO
-            </option>
-
-            <option value="EM TRANSITO">
-              EM TRANSITO
-            </option>
-
-            <option value="ENTREGUE">
-              ENTREGUE
-            </option>
-
-            <option value="ATRASADO">
-              ATRASADO
-            </option>
-
-          </select>
-
-          <select
-            id="filtroUF"
-            class="filtro"
-            onchange="filtrarEnvios()"
-          >
-
-            <option value="">
-              TODAS AS UFs
-            </option>
-
-            <option value="TO">TO</option>
-            <option value="PA">PA</option>
-            <option value="MA">MA</option>
-            <option value="GO">GO</option>
-            <option value="MT">MT</option>
-            <option value="BA">BA</option>
-            <option value="PI">PI</option>
-            <option value="MG">MG</option>
-            <option value="SP">SP</option>
-            <option value="RJ">RJ</option>
-            <option value="DF">DF</option>
-
-          </select>
-
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="limparFiltros()"
-          >
-            LIMPAR FILTROS
-          </button>
-
-        </div>
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>NF</th>
-                <th>CLIENTE</th>
-                <th>TELEFONE</th>
-                <th>CIDADE</th>
-                <th>UF</th>
-                <th>TRANSPORTADORA</th>
-                <th>PREVISÃO</th>
-                <th>STATUS</th>
-                <th>AÇÕES</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody id="tabelaEnvios">
-
-              <tr>
-
-                <td
-                  colspan="9"
-                  style="
-                    text-align:center;
-                    padding:30px;
-                    color:#94a3b8;
-                  "
-                >
-                  CARREGANDO ENVIOS...
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
+        Se o aplicativo não estiver instalado, utilize a opção
+        <strong>WHATSAPP WEB</strong>.
 
       </div>
 
-    </section>
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="filtros">
+
+      <input
+        type="text"
+        id="filtroTexto"
+        class="filtro"
+        placeholder="🔎 NF, CLIENTE, CIDADE OU TELEFONE"
+        autocomplete="off"
+        oninput="filtrarEnvios()"
+      >
+
+
+      <select
+        id="filtroStatus"
+        class="filtro"
+        onchange="filtrarEnvios()"
+      >
+
+        <option value="">
+          TODOS OS STATUS
+        </option>
+
+        <option value="COLETADO">
+          📦 COLETADO
+        </option>
+
+        <option value="EM TRANSITO">
+          🚚 EM TRÂNSITO
+        </option>
+
+        <option value="ENTREGUE">
+          ✅ ENTREGUE
+        </option>
+
+        <option value="ATRASADO">
+          ⚠️ ATRASADO
+        </option>
+
+      </select>
+
+
+      <select
+        id="filtroUF"
+        class="filtro"
+        onchange="filtrarEnvios()"
+      >
+
+        <option value="">
+          TODAS AS UFs
+        </option>
+
+        <option value="TO">TO</option>
+        <option value="PA">PA</option>
+        <option value="MA">MA</option>
+        <option value="GO">GO</option>
+        <option value="MT">MT</option>
+        <option value="BA">BA</option>
+        <option value="PI">PI</option>
+        <option value="MG">MG</option>
+        <option value="SP">SP</option>
+        <option value="RJ">RJ</option>
+        <option value="DF">DF</option>
+
+      </select>
+
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="limparFiltros()"
+      >
+        LIMPAR FILTROS
+      </button>
+
+    </div>
+
+
+    <!-- TABELA -->
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>NF</th>
+            <th>CLIENTE</th>
+            <th>TELEFONE</th>
+            <th>CIDADE</th>
+            <th>UF</th>
+            <th>TRANSPORTADORA</th>
+            <th>PREVISÃO</th>
+            <th>STATUS</th>
+            <th>AÇÕES</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="tabelaEnvios">
+
+          <tr>
+
+            <td
+              colspan="9"
+              style="text-align:center;padding:30px;color:#94a3b8;"
+            >
+              CARREGANDO ENVIOS...
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+```
 
   </main>
 
@@ -1353,55 +1366,80 @@
        MODAL WHATSAPP
        ===================================================== -->
 
-  <div
-    id="modalWhatsapp"
-    class="modal"
-  >
+  <div id="modalWhatsapp" class="modal">
 
-    <div class="modal-box">
+```
+<div class="modal-box">
 
-      <div class="modal-header">
+  <div class="modal-header">
 
-        <div class="modal-title">
-          CONFIRMAÇÃO DE ENTREGA
-        </div>
-
-        <button
-          type="button"
-          class="fechar"
-          onclick="fecharModal()"
-        >
-          ×
-        </button>
-
-      </div>
-
-      <div
-        id="mensagemPreview"
-        class="mensagem-preview"
-      ></div>
-
-      <div class="modal-acoes">
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="fecharModal()"
-        >
-          CANCELAR
-        </button>
-
-        <button
-          type="button"
-          class="btn btn-whatsapp-large"
-          onclick="abrirWhatsApp()"
-        >
-          ENVIAR PELO WHATSAPP
-        </button>
-
-      </div>
-
+    <div class="modal-title">
+      📱 CONFIRMAÇÃO DE ENTREGA
     </div>
+
+    <button
+      type="button"
+      class="fechar"
+      onclick="fecharModal()"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <div
+    id="dadosWhatsapp"
+    style="
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:10px;
+      padding:12px;
+      margin-bottom:15px;
+      font-size:10px;
+      line-height:1.7;
+    "
+  ></div>
+
+
+  <div
+    id="mensagemPreview"
+    class="mensagem-preview"
+  ></div>
+
+
+  <div class="modal-acoes">
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      onclick="fecharModal()"
+    >
+      CANCELAR
+    </button>
+
+
+    <button
+      type="button"
+      class="btn btn-whatsapp-web"
+      onclick="abrirWhatsAppWeb()"
+    >
+      🌐 WHATSAPP WEB
+    </button>
+
+
+    <button
+      type="button"
+      class="btn btn-whatsapp-large"
+      onclick="abrirWhatsAppApp()"
+    >
+      📱 ABRIR WHATSAPP
+    </button>
+
+  </div>
+
+</div>
+```
 
   </div>
 
@@ -1409,163 +1447,165 @@
        MODAL EDITAR ENVIO
        ===================================================== -->
 
-  <div
-    id="modalEditar"
-    class="modal"
-  >
+  <div id="modalEditar" class="modal">
 
-    <div class="modal-box">
+```
+<div class="modal-box">
 
-      <div class="modal-header">
+  <div class="modal-header">
 
-        <div class="modal-title">
-          ALTERAR ENVIO
-        </div>
+    <div class="modal-title">
+      ✏️ ALTERAR ENVIO
+    </div>
 
-        <button
-          type="button"
-          class="fechar"
-          onclick="fecharEditar()"
-        >
-          ×
-        </button>
+    <button
+      type="button"
+      class="fechar"
+      onclick="fecharEditar()"
+    >
+      ×
+    </button>
 
-      </div>
+  </div>
 
-      <div class="form-grid">
 
-        <div class="form-grupo">
+  <div class="campo">
 
-          <label>Nota Fiscal</label>
+    <label>
+      Nota Fiscal
+    </label>
 
-          <input
-            type="text"
-            id="editarNF"
-            disabled
-          >
+    <input
+      type="text"
+      id="editarNF"
+      readonly
+    >
 
-        </div>
+  </div>
 
-        <div class="form-grupo">
 
-          <label>Telefone do Cliente</label>
+  <div class="campo">
 
-          <input
-            type="text"
-            id="editarTelefone"
-            placeholder="Ex.: 63999999999"
-            inputmode="tel"
-          >
+    <label>
+      Cliente
+    </label>
 
-        </div>
+    <input
+      type="text"
+      id="editarCliente"
+    >
 
-        <div class="form-grupo">
+  </div>
 
-          <label>Cliente</label>
 
-          <input
-            type="text"
-            id="editarCliente"
-          >
+  <div class="campo">
 
-        </div>
+    <label>
+      Telefone / WhatsApp
+    </label>
 
-        <div class="form-grupo">
+    <input
+      type="tel"
+      id="editarTelefone"
+      placeholder="Ex.: (63) 99999-9999"
+      autocomplete="off"
+    >
 
-          <label>Cidade</label>
-
-          <input
-            type="text"
-            id="editarCidade"
-          >
-
-        </div>
-
-        <div class="form-grupo">
-
-          <label>UF</label>
-
-          <input
-            type="text"
-            id="editarUF"
-            maxlength="2"
-          >
-
-        </div>
-
-        <div class="form-grupo">
-
-          <label>Transportadora</label>
-
-          <input
-            type="text"
-            id="editarTransportadora"
-          >
-
-        </div>
-
-        <div class="form-grupo">
-
-          <label>Status</label>
-
-          <select id="editarStatus">
-
-            <option value="COLETADO">COLETADO</option>
-            <option value="EM TRANSITO">EM TRANSITO</option>
-            <option value="ENTREGUE">ENTREGUE</option>
-            <option value="ATRASADO">ATRASADO</option>
-
-          </select>
-
-        </div>
-
-        <div class="form-grupo">
-
-          <label>Previsão</label>
-
-          <input
-            type="date"
-            id="editarPrevisao"
-          >
-
-        </div>
-
-        <div class="form-grupo full">
-
-          <label>Observação</label>
-
-          <textarea
-            id="editarObservacao"
-          ></textarea>
-
-        </div>
-
-      </div>
-
-      <div class="modal-acoes">
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="fecharEditar()"
-        >
-          CANCELAR
-        </button>
-
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="btnSalvarEdicao"
-          onclick="salvarEdicao()"
-        >
-          SALVAR ALTERAÇÕES
-        </button>
-
-      </div>
-
+    <div class="ajuda-telefone">
+      Informe o número com DDD. O sistema acrescentará o código do Brasil automaticamente.
     </div>
 
   </div>
+
+
+  <div class="campo">
+
+    <label>
+      Cidade
+    </label>
+
+    <input
+      type="text"
+      id="editarCidade"
+    >
+
+  </div>
+
+
+  <div class="campo">
+
+    <label>
+      UF
+    </label>
+
+    <input
+      type="text"
+      id="editarUF"
+      maxlength="2"
+    >
+
+  </div>
+
+
+  <div class="campo">
+
+    <label>
+      Status
+    </label>
+
+    <select id="editarStatus">
+
+      <option value="COLETADO">
+        📦 COLETADO
+      </option>
+
+      <option value="EM TRANSITO">
+        🚚 EM TRÂNSITO
+      </option>
+
+      <option value="ENTREGUE">
+        ✅ ENTREGUE
+      </option>
+
+      <option value="ATRASADO">
+        ⚠️ ATRASADO
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="modal-acoes">
+
+    <button
+      type="button"
+      class="btn btn-secondary"
+      onclick="fecharEditar()"
+    >
+      CANCELAR
+    </button>
+
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      id="botaoSalvarEdicao"
+      onclick="salvarEdicao()"
+    >
+      💾 SALVAR ALTERAÇÕES
+    </button>
+
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script>
 
@@ -1585,6 +1625,7 @@
         SUPABASE_KEY
       );
 
+
     /* =====================================================
        VARIÁVEIS
        ===================================================== */
@@ -1597,53 +1638,154 @@
 
     let envioEditando = null;
 
+
     /* =====================================================
-       MENSAGEM WHATSAPP
-       
-       IMPORTANTE:
-       SEM EMOJIS PARA EVITAR PROBLEMAS DE CODIFICAÇÃO.
+       CAMPOS POSSÍVEIS DE TELEFONE
        ===================================================== */
 
-    function montarMensagemWhatsapp(numeroNF) {
+    const CAMPOS_TELEFONE = [
+      "telefone",
+      "celular",
+      "telefone_cliente",
+      "celular_cliente",
+      "whatsapp",
+      "fone",
+      "numero_telefone"
+    ];
 
-      const nf =
+
+    /* =====================================================
+       ENCONTRAR CAMPO DE TELEFONE
+       ===================================================== */
+
+    function obterCampoTelefone(envio) {
+
+      if (!envio) {
+        return null;
+      }
+
+      for (
+        const campo of CAMPOS_TELEFONE
+      ) {
+
+        if (
+          Object.prototype.hasOwnProperty.call(
+            envio,
+            campo
+          )
+        ) {
+
+          return campo;
+
+        }
+
+      }
+
+      return null;
+
+    }
+
+
+    /* =====================================================
+       OBTER TELEFONE
+       ===================================================== */
+
+    function obterTelefone(envio) {
+
+      if (!envio) {
+        return "";
+      }
+
+      const campo =
+        obterCampoTelefone(
+          envio
+        );
+
+      if (!campo) {
+        return "";
+      }
+
+      return String(
+        envio[campo] || ""
+      ).trim();
+
+    }
+
+
+    /* =====================================================
+       MONTAR MENSAGEM
+       ===================================================== */
+
+    function montarMensagemWhatsapp(
+      envio
+    ) {
+
+      const numeroNF =
         String(
-          numeroNF || ""
+          envio?.nf ||
+          ""
         ).trim();
 
+      const cliente =
+        String(
+          envio?.cliente ||
+          ""
+        ).trim();
+
+      /*
+       * Os emojis abaixo são montados por Unicode
+       * para evitar problemas de codificação.
+       */
+
+      const emojiPacote =
+        "\u{1F4E6}";
+
+      const emojiCaminhao =
+        "\u{1F69A}";
+
+      const emojiAlerta =
+        "\u{26A0}\u{FE0F}";
+
+
       return (
-        "CONFIRMACAO DE ENTREGA - BIRIVET\n\n" +
 
-        "Ola, tudo bem?\n\n" +
+        "CONFIRMAÇÃO DE ENTREGA - BIRIVET\n\n" +
 
-        "A BIRIVET esta realizando o acompanhamento das entregas de seus pedidos e gostariamos de confirmar se a mercadoria relacionada a Nota Fiscal n. " +
+        "Olá, tudo bem?\n\n" +
 
-        nf +
+        "A BIRIVET está realizando o acompanhamento das entregas de seus pedidos e gostaríamos de confirmar se a mercadoria relacionada à Nota Fiscal nº " +
 
-        " ja foi recebida.\n\n" +
+        numeroNF +
 
-        "Para mantermos nosso sistema de acompanhamento devidamente atualizado, pedimos a gentileza de nos informar a situacao da entrega:\n\n" +
+        " já foi recebida.\n\n" +
 
-        "ENTREGUE - A mercadoria foi recebida normalmente.\n\n" +
+        "Para mantermos nosso sistema de acompanhamento devidamente atualizado, pedimos a gentileza de nos informar a situação da entrega:\n\n" +
 
-        "NAO ENTREGUE - A mercadoria ainda nao foi recebida.\n\n" +
+        emojiPacote +
+        " ENTREGUE - A mercadoria foi recebida normalmente.\n\n" +
 
-        "COM DIVERGENCIA - A mercadoria foi recebida, porem houve alguma ocorrencia ou divergencia no momento da entrega.\n\n" +
+        emojiCaminhao +
+        " NÃO ENTREGUE - A mercadoria ainda não foi recebida.\n\n" +
 
-        "Caso a mercadoria ja tenha sido recebida, agradecemos se puder nos confirmar o recebimento.\n\n" +
+        emojiAlerta +
+        " COM DIVERGÊNCIA - A mercadoria foi recebida, porém houve alguma ocorrência ou divergência no momento da entrega.\n\n" +
 
-        "Se ainda nao tiver sido entregue ou se houver qualquer problema relacionado ao pedido, pedimos que nos informe para que possamos verificar a situacao junto a transportadora responsavel e tomar as providencias necessarias.\n\n" +
+        "Caso a mercadoria já tenha sido recebida, agradecemos se puder nos confirmar o recebimento.\n\n" +
 
-        "Agradecemos pela atencao e colaboracao.\n\n" +
+        "Se ainda não tiver sido entregue ou se houver qualquer problema relacionado ao pedido, pedimos que nos informe para que possamos verificar a situação junto à transportadora responsável e tomar as providências necessárias.\n\n" +
+
+        "Agradecemos pela atenção e colaboração.\n\n" +
 
         "Atenciosamente,\n" +
 
         "BIRIVET\n" +
 
         "Controle e acompanhamento de entregas"
+
       );
 
     }
+
 
     /* =====================================================
        INICIALIZAÇÃO
@@ -1654,24 +1796,33 @@
       iniciar
     );
 
+
     async function iniciar() {
 
       try {
 
         mostrarLoading(
-          "VERIFICANDO SESSAO..."
+          "VERIFICANDO SESSÃO..."
         );
+
 
         const resultadoSessao =
           await supabaseClient.auth.getSession();
 
-        if (resultadoSessao.error) {
+
+        if (
+          resultadoSessao.error
+        ) {
+
           throw resultadoSessao.error;
+
         }
+
 
         const session =
           resultadoSessao.data &&
           resultadoSessao.data.session;
+
 
         if (!session) {
 
@@ -1681,8 +1832,10 @@
 
         }
 
+
         const authUser =
           session.user;
+
 
         const consulta =
           await supabaseClient
@@ -1696,11 +1849,19 @@
             )
             .maybeSingle();
 
-        if (consulta.error) {
+
+        if (
+          consulta.error
+        ) {
+
           throw consulta.error;
+
         }
 
-        if (!consulta.data) {
+
+        if (
+          !consulta.data
+        ) {
 
           await supabaseClient.auth.signOut();
 
@@ -1710,7 +1871,10 @@
 
         }
 
-        if (consulta.data.ativo === false) {
+
+        if (
+          consulta.data.ativo === false
+        ) {
 
           await supabaseClient.auth.signOut();
 
@@ -1719,9 +1883,11 @@
           return;
 
         }
+
 
         usuarioAtual =
           consulta.data;
+
 
         preencherUsuario();
 
@@ -1741,13 +1907,14 @@
         esconderLoading();
 
         mostrarMensagem(
-          "NAO FOI POSSIVEL CARREGAR O MODULO POS ENTREGA.",
+          "NÃO FOI POSSÍVEL CARREGAR O MÓDULO PÓS ENTREGA.",
           "erro"
         );
 
       }
 
     }
+
 
     /* =====================================================
        USUÁRIO
@@ -1765,8 +1932,9 @@
         String(
           usuarioAtual.nome ||
           usuarioAtual.email ||
-          "USUARIO"
+          "USUÁRIO"
         ).toUpperCase();
+
 
       document.getElementById(
         "usuarioEmail"
@@ -1774,15 +1942,17 @@
         usuarioAtual.email ||
         "-";
 
+
       document.getElementById(
         "usuarioPerfil"
       ).textContent =
         String(
           usuarioAtual.perfil ||
-          "USUARIO"
+          "USUÁRIO"
         ).toUpperCase();
 
     }
+
 
     /* =====================================================
        CARREGAR ENVIOS
@@ -1807,16 +1977,24 @@
               }
             );
 
-        if (resultado.error) {
+
+        if (
+          resultado.error
+        ) {
+
           throw resultado.error;
+
         }
+
 
         todosEnvios =
           resultado.data || [];
 
+
         atualizarCards(
           todosEnvios
         );
+
 
         filtrarEnvios();
 
@@ -1836,7 +2014,9 @@
         renderizarTabela([]);
 
         mostrarMensagem(
-          obterMensagemErro(erro),
+          obterMensagemErro(
+            erro
+          ),
           "erro"
         );
 
@@ -1850,18 +2030,24 @@
 
     }
 
+
     /* =====================================================
        CARDS
        ===================================================== */
 
-    function atualizarCards(lista) {
+    function atualizarCards(
+      lista
+    ) {
 
       const total =
         lista.length;
 
       let entregues = 0;
+
       let transito = 0;
+
       let atrasados = 0;
+
 
       lista.forEach(
         function(envio) {
@@ -1871,19 +2057,29 @@
               envio.status
             );
 
-          if (status === "ENTREGUE") {
+
+          if (
+            status ===
+            "ENTREGUE"
+          ) {
 
             entregues++;
 
           }
 
-          else if (status === "EM TRANSITO") {
+          else if (
+            status ===
+            "EM TRANSITO"
+          ) {
 
             transito++;
 
           }
 
-          else if (status === "ATRASADO") {
+          else if (
+            status ===
+            "ATRASADO"
+          ) {
 
             atrasados++;
 
@@ -1892,23 +2088,32 @@
         }
       );
 
+
       document.getElementById(
         "cardTotal"
-      ).textContent = total;
+      ).textContent =
+        total;
+
 
       document.getElementById(
         "cardEntregues"
-      ).textContent = entregues;
+      ).textContent =
+        entregues;
+
 
       document.getElementById(
         "cardTransito"
-      ).textContent = transito;
+      ).textContent =
+        transito;
+
 
       document.getElementById(
         "cardAtrasados"
-      ).textContent = atrasados;
+      ).textContent =
+        atrasados;
 
     }
+
 
     /* =====================================================
        FILTRAR
@@ -1923,12 +2128,14 @@
           ).value
         );
 
+
       const status =
         normalizarTexto(
           document.getElementById(
             "filtroStatus"
           ).value
         );
+
 
       const uf =
         normalizarTexto(
@@ -1937,6 +2144,7 @@
           ).value
         );
 
+
       const filtrados =
         todosEnvios.filter(
           function(envio) {
@@ -1944,37 +2152,70 @@
             const textoEnvio =
               normalizarTexto(
 
-                String(envio.nf || "") +
-                " " +
-                String(envio.cliente || "") +
-                " " +
-                String(envio.cidade || "") +
-                " " +
-                String(envio.transportadora || "") +
-                " " +
-                String(envio.uf || "") +
-                " " +
                 String(
-                  obterTelefone(envio)
+                  envio.nf ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.cliente ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.cidade ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.transportadora ||
+                  ""
+                ) +
+
+                " " +
+
+                String(
+                  envio.uf ||
+                  ""
+                ) +
+
+                " " +
+
+                obterTelefone(
+                  envio
                 )
 
               );
 
+
             const textoOK =
               !texto ||
-              textoEnvio.includes(texto);
+              textoEnvio.includes(
+                texto
+              );
+
 
             const statusOK =
               !status ||
               normalizarTexto(
                 envio.status
-              ) === status;
+              ) ===
+              status;
+
 
             const ufOK =
               !uf ||
               normalizarTexto(
                 envio.uf
-              ) === uf;
+              ) ===
+              uf;
+
 
             return (
               textoOK &&
@@ -1985,27 +2226,37 @@
           }
         );
 
+
       renderizarTabela(
         filtrados
       );
 
     }
 
+
     /* =====================================================
        TABELA
        ===================================================== */
 
-    function renderizarTabela(lista) {
+    function renderizarTabela(
+      lista
+    ) {
 
       const tabela =
         document.getElementById(
           "tabelaEnvios"
         );
 
-      if (!lista || lista.length === 0) {
+
+      if (
+        !lista ||
+        lista.length === 0
+      ) {
 
         tabela.innerHTML = `
+
           <tr>
+
             <td
               colspan="9"
               style="
@@ -2014,216 +2265,270 @@
                 color:#94a3b8;
               "
             >
-              NENHUM ENVIO ENCONTRADO
+
+              📦 NENHUM ENVIO ENCONTRADO
+
             </td>
+
           </tr>
+
         `;
 
         return;
 
       }
 
+
       tabela.innerHTML =
-        lista.map(
-          function(envio) {
+        lista
+          .map(
+            function(envio) {
 
-            const status =
-              normalizarTexto(
-                envio.status
-              );
+              const status =
+                normalizarTexto(
+                  envio.status
+                );
 
-            const classeStatus =
-              obterClasseStatus(
-                status
-              );
 
-            const textoStatus =
-              obterTextoStatus(
-                status
-              );
+              const classeStatus =
+                obterClasseStatus(
+                  status
+                );
 
-            const telefone =
-              obterTelefone(
-                envio
-              );
 
-            return `
+              const textoStatus =
+                obterTextoStatus(
+                  status
+                );
 
-              <tr>
 
-                <td class="nf">
-                  ${escapeHTML(
-                    envio.nf || "-"
-                  )}
-                </td>
+              const telefone =
+                obterTelefone(
+                  envio
+                );
 
-                <td class="cliente">
-                  ${escapeHTML(
-                    envio.cliente || "-"
-                  )}
-                </td>
 
-                <td class="telefone">
-                  ${escapeHTML(
-                    formatarTelefone(telefone)
-                  )}
-                </td>
+              return `
 
-                <td>
-                  ${escapeHTML(
-                    envio.cidade || "-"
-                  )}
-                </td>
+                <tr>
 
-                <td>
-                  ${escapeHTML(
-                    envio.uf || "-"
-                  )}
-                </td>
+                  <td class="nf">
 
-                <td>
-                  ${escapeHTML(
-                    envio.transportadora || "-"
-                  )}
-                </td>
+                    ${escapeHTML(
+                      envio.nf ||
+                      "-"
+                    )}
 
-                <td>
-                  ${formatarData(
-                    envio.previsao
-                  )}
-                </td>
+                  </td>
 
-                <td>
 
-                  <span
-                    class="status ${classeStatus}"
-                  >
-                    ${textoStatus}
-                  </span>
+                  <td class="cliente">
 
-                </td>
+                    ${escapeHTML(
+                      envio.cliente ||
+                      "-"
+                    )}
 
-                <td>
+                  </td>
 
-                  <div class="acoes">
 
-                    <button
-                      type="button"
-                      class="btn-mini btn-editar"
-                      onclick="editarEnvio('${escapeJS(envio.id)}')"
-                      title="Alterar envio"
+                  <td class="telefone">
+
+                    ${escapeHTML(
+                      formatarTelefone(
+                        telefone
+                      ) ||
+                      "NÃO INFORMADO"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.cidade ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.uf ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${escapeHTML(
+                      envio.transportadora ||
+                      "-"
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${formatarData(
+                      envio.previsao
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    <span
+                      class="status ${classeStatus}"
                     >
-                      ALTERAR
-                    </button>
 
-                    <button
-                      type="button"
-                      class="btn-mini btn-preview"
-                      onclick="visualizarMensagem('${escapeJS(envio.id)}')"
-                      title="Visualizar mensagem"
-                    >
-                      VER
-                    </button>
+                      ${textoStatus}
 
-                    <button
-                      type="button"
-                      class="btn-mini btn-whatsapp"
-                      onclick="prepararWhatsApp('${escapeJS(envio.id)}')"
-                      title="Enviar pelo WhatsApp"
-                    >
-                      WHATSAPP
-                    </button>
+                    </span>
 
-                  </div>
+                  </td>
 
-                </td>
 
-              </tr>
+                  <td>
 
-            `;
+                    <div class="acoes">
 
-          }
-        ).join("");
+                      <button
+                        type="button"
+                        class="btn-mini btn-edit"
+                        onclick="editarEnvio('${escapeJS(
+                          envio.id
+                        )}')"
+                        title="Alterar envio"
+                      >
+                        ✏️ EDITAR
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-preview"
+                        onclick="visualizarMensagem('${escapeJS(
+                          envio.id
+                        )}')"
+                        title="Visualizar mensagem"
+                      >
+                        👁️ VER
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="btn-mini btn-whatsapp"
+                        onclick="prepararWhatsApp('${escapeJS(
+                          envio.id
+                        )}')"
+                        title="Enviar pelo aplicativo WhatsApp"
+                      >
+                        📱 WHATSAPP
+                      </button>
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }
+          )
+          .join("");
 
     }
 
-    /* =====================================================
-       TELEFONE
-       
-       Aceita nomes comuns de coluna:
-       telefone
-       celular
-       whatsapp
-       telefone_cliente
-       celular_cliente
-       ===================================================== */
-
-    function obterTelefone(envio) {
-
-      if (!envio) {
-        return "";
-      }
-
-      return String(
-        envio.telefone ??
-        envio.celular ??
-        envio.whatsapp ??
-        envio.telefone_cliente ??
-        envio.celular_cliente ??
-        ""
-      ).trim();
-
-    }
 
     /* =====================================================
        PREPARAR WHATSAPP
        ===================================================== */
 
-    function prepararWhatsApp(id) {
+    function prepararWhatsApp(
+      id
+    ) {
 
       const envio =
-        encontrarEnvio(id);
+        encontrarEnvio(
+          id
+        );
+
 
       if (!envio) {
 
         mostrarMensagem(
-          "ENVIO NAO ENCONTRADO.",
+          "ENVIO NÃO ENCONTRADO.",
           "erro"
         );
 
         return;
 
       }
+
 
       envioSelecionado =
         envio;
 
+
       const telefone =
-        obterTelefone(envio);
-
-      if (!telefone) {
-
-        mostrarMensagem(
-          "ESTE ENVIO NAO POSSUI TELEFONE CADASTRADO. CLIQUE EM ALTERAR PARA INFORMAR O NUMERO.",
-          "erro"
+        obterTelefone(
+          envio
         );
 
-        editarEnvio(id);
-
-        return;
-
-      }
 
       const mensagem =
         montarMensagemWhatsapp(
-          envio.nf
+          envio
         );
+
 
       document.getElementById(
         "mensagemPreview"
       ).textContent =
         mensagem;
 
+
+      document.getElementById(
+        "dadosWhatsapp"
+      ).innerHTML = `
+
+        <strong>CLIENTE:</strong>
+        ${escapeHTML(
+          envio.cliente ||
+          "-"
+        )}
+
+        <br>
+
+        <strong>NF:</strong>
+        ${escapeHTML(
+          envio.nf ||
+          "-"
+        )}
+
+        <br>
+
+        <strong>WHATSAPP:</strong>
+        ${escapeHTML(
+          formatarTelefone(
+            telefone
+          ) ||
+          "NÃO INFORMADO"
+        )}
+
+      `;
+
+
       document.getElementById(
         "modalWhatsapp"
       ).classList.add(
@@ -2231,49 +2536,28 @@
       );
 
     }
+
 
     /* =====================================================
        VISUALIZAR
        ===================================================== */
 
-    function visualizarMensagem(id) {
+    function visualizarMensagem(
+      id
+    ) {
 
-      const envio =
-        encontrarEnvio(id);
-
-      if (!envio) {
-        return;
-      }
-
-      envioSelecionado =
-        envio;
-
-      document.getElementById(
-        "mensagemPreview"
-      ).textContent =
-        montarMensagemWhatsapp(
-          envio.nf
-        );
-
-      document.getElementById(
-        "modalWhatsapp"
-      ).classList.add(
-        "aberto"
+      prepararWhatsApp(
+        id
       );
 
     }
 
-    /* =====================================================
-       ABRIR WHATSAPP
-       
-       Primeiro tenta o aplicativo:
-       whatsapp://send
 
-       Se o computador não tiver o aplicativo,
-       cai para WhatsApp Web.
+    /* =====================================================
+       ABRIR WHATSAPP APP
        ===================================================== */
 
-    function abrirWhatsApp() {
+    function abrirWhatsAppApp() {
 
       if (!envioSelecionado) {
 
@@ -2286,15 +2570,21 @@
 
       }
 
+
       const telefone =
-        obterTelefone(
-          envioSelecionado
+        normalizarTelefoneWhatsApp(
+          obterTelefone(
+            envioSelecionado
+          )
         );
+
 
       if (!telefone) {
 
+        fecharModal();
+
         mostrarMensagem(
-          "TELEFONE NAO CADASTRADO.",
+          "ESTE ENVIO NÃO POSSUI UM TELEFONE VÁLIDO. CLIQUE EM EDITAR E INFORME O NÚMERO.",
           "erro"
         );
 
@@ -2302,161 +2592,56 @@
 
       }
 
-      const numero =
-        limparTelefone(
-          telefone
-        );
-
-      if (!numero) {
-
-        mostrarMensagem(
-          "NUMERO DE TELEFONE INVALIDO.",
-          "erro"
-        );
-
-        return;
-
-      }
 
       const mensagem =
         montarMensagemWhatsapp(
-          envioSelecionado.nf
+          envioSelecionado
         );
 
-      const texto =
+
+      const url =
+        "whatsapp://send?phone=" +
+        telefone +
+        "&text=" +
         encodeURIComponent(
           mensagem
         );
 
-      const appURL =
-        "whatsapp://send?phone=" +
-        numero +
-        "&text=" +
-        texto;
 
-      const webURL =
-        "https://web.whatsapp.com/send?phone=" +
-        numero +
-        "&text=" +
-        texto;
+      /*
+       * Não usamos window.open().
+       *
+       * O navegador tenta entregar o link
+       * diretamente ao aplicativo WhatsApp.
+       */
+
+      window.location.href =
+        url;
+
 
       fecharModal();
 
-      /*
-       * Tenta chamar o aplicativo.
-       */
-      window.location.href =
-        appURL;
 
-      /*
-       * Se o aplicativo não responder,
-       * abre o WhatsApp Web na mesma aba.
-       */
-      setTimeout(
-        function() {
-
-          if (
-            !document.hidden
-          ) {
-
-            window.location.href =
-              webURL;
-
-          }
-
-        },
-        1800
+      mostrarMensagem(
+        "ABRINDO O WHATSAPP PARA A NF " +
+        String(
+          envioSelecionado.nf ||
+          ""
+        ) +
+        "...",
+        "sucesso"
       );
 
     }
 
-    /* =====================================================
-       EDITAR ENVIO
-       ===================================================== */
-
-    function editarEnvio(id) {
-
-      const envio =
-        encontrarEnvio(id);
-
-      if (!envio) {
-
-        mostrarMensagem(
-          "ENVIO NAO ENCONTRADO.",
-          "erro"
-        );
-
-        return;
-
-      }
-
-      envioEditando =
-        envio;
-
-      document.getElementById(
-        "editarNF"
-      ).value =
-        envio.nf || "";
-
-      document.getElementById(
-        "editarTelefone"
-      ).value =
-        obterTelefone(envio);
-
-      document.getElementById(
-        "editarCliente"
-      ).value =
-        envio.cliente || "";
-
-      document.getElementById(
-        "editarCidade"
-      ).value =
-        envio.cidade || "";
-
-      document.getElementById(
-        "editarUF"
-      ).value =
-        envio.uf || "";
-
-      document.getElementById(
-        "editarTransportadora"
-      ).value =
-        envio.transportadora || "";
-
-      document.getElementById(
-        "editarStatus"
-      ).value =
-        normalizarTexto(
-          envio.status
-        ) || "EM TRANSITO";
-
-      document.getElementById(
-        "editarPrevisao"
-      ).value =
-        converterDataParaInput(
-          envio.previsao
-        );
-
-      document.getElementById(
-        "editarObservacao"
-      ).value =
-        envio.observacao || "";
-
-      document.getElementById(
-        "modalEditar"
-      ).classList.add(
-        "aberto"
-      );
-
-    }
 
     /* =====================================================
-       SALVAR EDIÇÃO
+       WHATSAPP WEB
        ===================================================== */
 
-    async function salvarEdicao() {
+    function abrirWhatsAppWeb() {
 
-      if (!envioEditando) {
+      if (!envioSelecionado) {
 
         mostrarMensagem(
           "NENHUM ENVIO FOI SELECIONADO.",
@@ -2467,55 +2652,21 @@
 
       }
 
-      const botao =
-        document.getElementById(
-          "btnSalvarEdicao"
-        );
 
       const telefone =
-        document.getElementById(
-          "editarTelefone"
-        ).value.trim();
+        normalizarTelefoneWhatsApp(
+          obterTelefone(
+            envioSelecionado
+          )
+        );
 
-      const cliente =
-        document.getElementById(
-          "editarCliente"
-        ).value.trim();
-
-      const cidade =
-        document.getElementById(
-          "editarCidade"
-        ).value.trim();
-
-      const uf =
-        document.getElementById(
-          "editarUF"
-        ).value.trim().toUpperCase();
-
-      const transportadora =
-        document.getElementById(
-          "editarTransportadora"
-        ).value.trim();
-
-      const status =
-        document.getElementById(
-          "editarStatus"
-        ).value;
-
-      const previsao =
-        document.getElementById(
-          "editarPrevisao"
-        ).value;
-
-      const observacao =
-        document.getElementById(
-          "editarObservacao"
-        ).value.trim();
 
       if (!telefone) {
 
+        fecharModal();
+
         mostrarMensagem(
-          "INFORME O TELEFONE DO CLIENTE.",
+          "ESTE ENVIO NÃO POSSUI UM TELEFONE VÁLIDO. CLIQUE EM EDITAR E INFORME O NÚMERO.",
           "erro"
         );
 
@@ -2523,122 +2674,283 @@
 
       }
 
-      botao.disabled = true;
+
+      const mensagem =
+        montarMensagemWhatsapp(
+          envioSelecionado
+        );
+
+
+      const url =
+        "https://wa.me/" +
+        telefone +
+        "?text=" +
+        encodeURIComponent(
+          mensagem
+        );
+
+
+      window.location.href =
+        url;
+
+    }
+
+
+    /* =====================================================
+       EDITAR ENVIO
+       ===================================================== */
+
+    function editarEnvio(
+      id
+    ) {
+
+      const envio =
+        encontrarEnvio(
+          id
+        );
+
+
+      if (!envio) {
+
+        mostrarMensagem(
+          "ENVIO NÃO ENCONTRADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      envioEditando =
+        envio;
+
+
+      document.getElementById(
+        "editarNF"
+      ).value =
+        envio.nf ||
+        "";
+
+
+      document.getElementById(
+        "editarCliente"
+      ).value =
+        envio.cliente ||
+        "";
+
+
+      document.getElementById(
+        "editarTelefone"
+      ).value =
+        obterTelefone(
+          envio
+        );
+
+
+      document.getElementById(
+        "editarCidade"
+      ).value =
+        envio.cidade ||
+        "";
+
+
+      document.getElementById(
+        "editarUF"
+      ).value =
+        envio.uf ||
+        "";
+
+
+      document.getElementById(
+        "editarStatus"
+      ).value =
+        normalizarTexto(
+          envio.status
+        );
+
+
+      document.getElementById(
+        "modalEditar"
+      ).classList.add(
+        "aberto"
+      );
+
+    }
+
+
+    /* =====================================================
+       SALVAR EDIÇÃO
+       ===================================================== */
+
+    async function salvarEdicao() {
+
+      if (!envioEditando) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO FOI SELECIONADO PARA ALTERAÇÃO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const campoTelefone =
+        obterCampoTelefone(
+          envioEditando
+        );
+
+
+      if (!campoTelefone) {
+
+        mostrarMensagem(
+          "A TABELA ENVIOS NÃO POSSUI UM CAMPO DE TELEFONE RECONHECIDO. PRECISAMOS IDENTIFICAR O NOME EXATO DA COLUNA.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSalvarEdicao"
+        );
+
+
+      const telefone =
+        document.getElementById(
+          "editarTelefone"
+        ).value.trim();
+
+
+      if (
+        telefone &&
+        normalizarTelefoneWhatsApp(
+          telefone
+        ).length < 12
+      ) {
+
+        mostrarMensagem(
+          "INFORME UM TELEFONE VÁLIDO COM DDD.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const dadosAtualizacao = {
+
+        cliente:
+          document.getElementById(
+            "editarCliente"
+          ).value.trim(),
+
+        cidade:
+          document.getElementById(
+            "editarCidade"
+          ).value.trim(),
+
+        uf:
+          document.getElementById(
+            "editarUF"
+          ).value.trim().toUpperCase(),
+
+        status:
+          document.getElementById(
+            "editarStatus"
+          ).value,
+
+      };
+
+
+      dadosAtualizacao[
+        campoTelefone
+      ] =
+        telefone;
+
+
+      botao.disabled =
+        true;
+
 
       botao.textContent =
         "SALVANDO...";
 
+
       mostrarLoading(
-        "SALVANDO ALTERACOES..."
+        "SALVANDO ALTERAÇÕES..."
       );
+
 
       try {
 
-        /*
-         * Detecta automaticamente qual campo
-         * de telefone existe no registro.
-         */
-
-        const campoTelefone =
-          descobrirCampoTelefone(
-            envioEditando
-          );
-
-        const dadosAtualizacao = {
-
-          cliente:
-            cliente,
-
-          cidade:
-            cidade,
-
-          uf:
-            uf,
-
-          transportadora:
-            transportadora,
-
-          status:
-            status,
-
-          previsao:
-            previsao ||
-            null,
-
-          observacao:
-            observacao
-
-        };
-
-        /*
-         * Se existir um campo de telefone,
-         * atualiza esse campo.
-         */
-
-        if (campoTelefone) {
-
-          dadosAtualizacao[
-            campoTelefone
-          ] =
-            telefone;
-
-        }
-
-        else {
-
-          /*
-           * Se não existir nenhuma coluna conhecida,
-           * tenta usar "telefone".
-           *
-           * Caso a tabela não tenha essa coluna,
-           * o Supabase retornará o erro e avisará.
-           */
-
-          dadosAtualizacao.telefone =
-            telefone;
-
-        }
-
         const resultado =
           await supabaseClient
-
             .from("envios")
-
             .update(
               dadosAtualizacao
             )
-
             .eq(
               "id",
               envioEditando.id
             );
 
-        if (resultado.error) {
+
+        if (
+          resultado.error
+        ) {
 
           throw resultado.error;
 
         }
 
-        fecharEditar();
+
+        /*
+         * Atualiza o objeto local imediatamente.
+         */
+
+        Object.assign(
+          envioEditando,
+          dadosAtualizacao
+        );
+
 
         mostrarMensagem(
-          "ENVIO ALTERADO COM SUCESSO.",
+          "ENVIO ATUALIZADO COM SUCESSO.",
           "sucesso"
         );
 
-        await carregarEnvios();
+
+        fecharEditar();
+
+
+        atualizarCards(
+          todosEnvios
+        );
+
+
+        filtrarEnvios();
 
       }
 
       catch (erro) {
 
         console.error(
-          "Erro ao alterar envio:",
+          "Erro ao salvar edição:",
           erro
         );
 
+
         mostrarMensagem(
-          obterMensagemErro(erro),
+          obterMensagemErro(
+            erro
+          ),
           "erro"
         );
 
@@ -2648,149 +2960,24 @@
 
         esconderLoading();
 
-        botao.disabled = false;
+        botao.disabled =
+          false;
 
         botao.textContent =
-          "SALVAR ALTERACOES";
+          "💾 SALVAR ALTERAÇÕES";
 
       }
 
     }
 
-    /* =====================================================
-       DESCOBRIR CAMPO TELEFONE
-       ===================================================== */
-
-    function descobrirCampoTelefone(envio) {
-
-      const possibilidades = [
-
-        "telefone",
-        "celular",
-        "whatsapp",
-        "telefone_cliente",
-        "celular_cliente"
-
-      ];
-
-      for (
-        let i = 0;
-        i < possibilidades.length;
-        i++
-      ) {
-
-        const campo =
-          possibilidades[i];
-
-        if (
-          Object.prototype.hasOwnProperty.call(
-            envio,
-            campo
-          )
-        ) {
-
-          return campo;
-
-        }
-
-      }
-
-      return null;
-
-    }
-
-    /* =====================================================
-       LIMPAR TELEFONE
-       ===================================================== */
-
-    function limparTelefone(
-      telefone
-    ) {
-
-      let numero =
-        String(
-          telefone || ""
-        ).replace(
-          /\D/g,
-          ""
-        );
-
-      /*
-       * Brasil:
-       * adiciona 55 caso o usuário
-       * tenha cadastrado somente DDD + número.
-       */
-
-      if (
-        numero.length === 10 ||
-        numero.length === 11
-      ) {
-
-        numero =
-          "55" +
-          numero;
-
-      }
-
-      return numero;
-
-    }
-
-    /* =====================================================
-       FORMATAR TELEFONE
-       ===================================================== */
-
-    function formatarTelefone(
-      telefone
-    ) {
-
-      const numero =
-        String(
-          telefone || ""
-        ).replace(
-          /\D/g,
-          ""
-        );
-
-      if (!numero) {
-        return "-";
-      }
-
-      if (numero.length === 11) {
-
-        return (
-          "(" +
-          numero.substring(0,2) +
-          ") " +
-          numero.substring(2,7) +
-          "-" +
-          numero.substring(7)
-        );
-
-      }
-
-      if (numero.length === 10) {
-
-        return (
-          "(" +
-          numero.substring(0,2) +
-          ") " +
-          numero.substring(2,6) +
-          "-" +
-          numero.substring(6)
-        );
-
-      }
-
-      return numero;
-
-    }
 
     /* =====================================================
        ENCONTRAR ENVIO
        ===================================================== */
 
-    function encontrarEnvio(id) {
+    function encontrarEnvio(
+      id
+    ) {
 
       return todosEnvios.find(
         function(envio) {
@@ -2798,15 +2985,18 @@
           return String(
             envio.id
           ) ===
-          String(id);
+          String(
+            id
+          );
 
         }
       );
 
     }
 
+
     /* =====================================================
-       MODAL WHATSAPP
+       FECHAR MODAL WHATSAPP
        ===================================================== */
 
     function fecharModal() {
@@ -2822,8 +3012,9 @@
 
     }
 
+
     /* =====================================================
-       MODAL EDITAR
+       FECHAR MODAL EDITAR
        ===================================================== */
 
     function fecharEditar() {
@@ -2839,6 +3030,7 @@
 
     }
 
+
     /* =====================================================
        LIMPAR FILTROS
        ===================================================== */
@@ -2847,25 +3039,155 @@
 
       document.getElementById(
         "filtroTexto"
-      ).value = "";
+      ).value =
+        "";
 
       document.getElementById(
         "filtroStatus"
-      ).value = "";
+      ).value =
+        "";
 
       document.getElementById(
         "filtroUF"
-      ).value = "";
+      ).value =
+        "";
 
       filtrarEnvios();
 
     }
 
+
+    /* =====================================================
+       TELEFONE
+       ===================================================== */
+
+    function normalizarTelefoneWhatsApp(
+      telefone
+    ) {
+
+      let numero =
+        String(
+          telefone ||
+          ""
+        ).replace(
+          /\D/g,
+          ""
+        );
+
+
+      if (!numero) {
+
+        return "";
+
+      }
+
+
+      /*
+       * Se já estiver com 55,
+       * mantém.
+       */
+
+      if (
+        numero.startsWith("55")
+      ) {
+
+        return numero;
+
+      }
+
+
+      /*
+       * Telefones brasileiros
+       * recebem o código 55.
+       */
+
+      return "55" + numero;
+
+    }
+
+
+    function formatarTelefone(
+      telefone
+    ) {
+
+      const numero =
+        String(
+          telefone ||
+          ""
+        ).replace(
+          /\D/g,
+          ""
+        );
+
+
+      if (!numero) {
+
+        return "";
+
+      }
+
+
+      let local =
+        numero;
+
+
+      if (
+        local.startsWith("55") &&
+        local.length >= 12
+      ) {
+
+        local =
+          local.substring(
+            2
+          );
+
+      }
+
+
+      if (
+        local.length === 11
+      ) {
+
+        return (
+          "(" +
+          local.substring(0,2) +
+          ") " +
+          local.substring(2,7) +
+          "-" +
+          local.substring(7)
+        );
+
+      }
+
+
+      if (
+        local.length === 10
+      ) {
+
+        return (
+          "(" +
+          local.substring(0,2) +
+          ") " +
+          local.substring(2,6) +
+          "-" +
+          local.substring(6)
+        );
+
+      }
+
+
+      return telefone;
+
+    }
+
+
     /* =====================================================
        NAVEGAÇÃO
        ===================================================== */
 
-    function irPara(pagina) {
+    function irPara(
+      pagina
+    ) {
 
       if (!pagina) {
         return;
@@ -2876,6 +3198,7 @@
 
     }
 
+
     function irParaPesquisarNF() {
 
       window.location.href =
@@ -2883,6 +3206,7 @@
         "/Birilog-V3/pesquisar-nf.html";
 
     }
+
 
     /* =====================================================
        SAIR
@@ -2895,14 +3219,17 @@
           "DESEJA REALMENTE SAIR DO BIRILOG?"
         );
 
+
       if (!confirmar) {
         return;
       }
+
 
       const botao =
         document.getElementById(
           "botaoSair"
         );
+
 
       if (botao) {
 
@@ -2913,6 +3240,7 @@
           "SAINDO...";
 
       }
+
 
       try {
 
@@ -2929,11 +3257,13 @@
 
       }
 
+
       window.location.replace(
         "index.html"
       );
 
     }
+
 
     /* =====================================================
        REDIRECIONAR LOGIN
@@ -2947,21 +3277,26 @@
 
     }
 
+
     /* =====================================================
        LOADING
        ===================================================== */
 
-    function mostrarLoading(texto) {
+    function mostrarLoading(
+      texto
+    ) {
 
       const elemento =
         document.getElementById(
           "loadingTela"
         );
 
+
       const textoElemento =
         document.getElementById(
           "loadingText"
         );
+
 
       if (textoElemento) {
 
@@ -2970,6 +3305,7 @@
           "CARREGANDO...";
 
       }
+
 
       if (elemento) {
 
@@ -2980,12 +3316,14 @@
 
     }
 
+
     function esconderLoading() {
 
       const elemento =
         document.getElementById(
           "loadingTela"
         );
+
 
       if (elemento) {
 
@@ -2996,8 +3334,9 @@
 
     }
 
+
     /* =====================================================
-       MENSAGEM
+       MENSAGEM DO SISTEMA
        ===================================================== */
 
     function mostrarMensagem(
@@ -3010,23 +3349,29 @@
           "mensagem"
         );
 
+
       if (!elemento) {
         return;
       }
 
+
       elemento.textContent =
         texto;
+
 
       elemento.className =
         "mensagem " +
         tipo;
 
+
       elemento.style.display =
         "block";
+
 
       clearTimeout(
         window.timerMensagem
       );
+
 
       window.timerMensagem =
         setTimeout(
@@ -3041,66 +3386,132 @@
 
     }
 
+
     /* =====================================================
        STATUS
        ===================================================== */
 
-    function obterClasseStatus(status) {
+    function obterClasseStatus(
+      status
+    ) {
 
-      if (status === "ENTREGUE") {
+      if (
+        status ===
+        "ENTREGUE"
+      ) {
+
         return "status-entregue";
+
       }
 
-      if (status === "EM TRANSITO") {
+
+      if (
+        status ===
+        "EM TRANSITO"
+      ) {
+
         return "status-transito";
+
       }
 
-      if (status === "ATRASADO") {
+
+      if (
+        status ===
+        "ATRASADO"
+      ) {
+
         return "status-atrasado";
+
       }
 
-      if (status === "COLETADO") {
+
+      if (
+        status ===
+        "COLETADO"
+      ) {
+
         return "status-coletado";
+
       }
+
 
       return "status-outro";
 
     }
 
-    function obterTextoStatus(status) {
 
-      if (status === "ENTREGUE") {
-        return "ENTREGUE";
+    function obterTextoStatus(
+      status
+    ) {
+
+      if (
+        status ===
+        "ENTREGUE"
+      ) {
+
+        return "&#x2705; ENTREGUE";
+
       }
 
-      if (status === "EM TRANSITO") {
-        return "EM TRANSITO";
+
+      if (
+        status ===
+        "EM TRANSITO"
+      ) {
+
+        return "&#x1F69A; EM TRÂNSITO";
+
       }
 
-      if (status === "ATRASADO") {
-        return "ATRASADO";
+
+      if (
+        status ===
+        "ATRASADO"
+      ) {
+
+        return "&#x26A0;&#xFE0F; ATRASADO";
+
       }
 
-      if (status === "COLETADO") {
-        return "COLETADO";
+
+      if (
+        status ===
+        "COLETADO"
+      ) {
+
+        return "&#x1F4E6; COLETADO";
+
       }
 
-      return status || "SEM STATUS";
+
+      return (
+        escapeHTML(
+          status ||
+          "SEM STATUS"
+        )
+      );
 
     }
+
 
     /* =====================================================
        DATA
        ===================================================== */
 
-    function formatarData(valor) {
+    function formatarData(
+      valor
+    ) {
 
       if (!valor) {
         return "-";
       }
 
+
       const data =
-        new Date(valor);
+        new Date(
+          valor
+        );
+
 
       if (
         Number.isNaN(
@@ -3108,9 +3519,12 @@
         )
       ) {
 
-        return escapeHTML(valor);
+        return escapeHTML(
+          valor
+        );
 
       }
+
 
       return data.toLocaleDateString(
         "pt-BR"
@@ -3118,62 +3532,18 @@
 
     }
 
-    function converterDataParaInput(valor) {
-
-      if (!valor) {
-        return "";
-      }
-
-      const data =
-        new Date(valor);
-
-      if (
-        Number.isNaN(
-          data.getTime()
-        )
-      ) {
-
-        return "";
-
-      }
-
-      const ano =
-        data.getFullYear();
-
-      const mes =
-        String(
-          data.getMonth() + 1
-        ).padStart(
-          2,
-          "0"
-        );
-
-      const dia =
-        String(
-          data.getDate()
-        ).padStart(
-          2,
-          "0"
-        );
-
-      return (
-        ano +
-        "-" +
-        mes +
-        "-" +
-        dia
-      );
-
-    }
 
     /* =====================================================
        TEXTO
        ===================================================== */
 
-    function normalizarTexto(valor) {
+    function normalizarTexto(
+      valor
+    ) {
 
       return String(
-        valor || ""
+        valor ||
+        ""
       )
         .normalize("NFD")
         .replace(
@@ -3185,14 +3555,18 @@
 
     }
 
+
     /* =====================================================
        SEGURANÇA
        ===================================================== */
 
-    function escapeHTML(valor) {
+    function escapeHTML(
+      valor
+    ) {
 
       return String(
-        valor ?? ""
+        valor ??
+        ""
       )
         .replace(
           /&/g,
@@ -3217,10 +3591,14 @@
 
     }
 
-    function escapeJS(valor) {
+
+    function escapeJS(
+      valor
+    ) {
 
       return String(
-        valor ?? ""
+        valor ??
+        ""
       )
         .replace(
           /\\/g,
@@ -3241,11 +3619,14 @@
 
     }
 
+
     /* =====================================================
        ERROS
        ===================================================== */
 
-    function obterMensagemErro(erro) {
+    function obterMensagemErro(
+      erro
+    ) {
 
       if (
         erro &&
@@ -3257,8 +3638,10 @@
             erro.message
           );
 
+
         const texto =
           mensagem.toLowerCase();
+
 
         if (
           texto.includes(
@@ -3270,20 +3653,23 @@
         ) {
 
           return (
-            "VOCE NAO POSSUI PERMISSAO PARA REALIZAR ESTA OPERACAO."
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA REALIZAR ESTA OPERAÇÃO."
           );
 
         }
+
 
         return mensagem.toUpperCase();
 
       }
 
+
       return (
-        "NAO FOI POSSIVEL CONCLUIR A OPERACAO."
+        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
       );
 
     }
+
 
     /* =====================================================
        CLIQUE FORA DOS MODAIS
@@ -3298,7 +3684,8 @@
         function(evento) {
 
           if (
-            evento.target === this
+            evento.target ===
+            this
           ) {
 
             fecharModal();
@@ -3307,6 +3694,7 @@
 
         }
       );
+
 
     document
       .getElementById(
@@ -3317,7 +3705,8 @@
         function(evento) {
 
           if (
-            evento.target === this
+            evento.target ===
+            this
           ) {
 
             fecharEditar();
@@ -3326,6 +3715,7 @@
 
         }
       );
+
 
     /* =====================================================
        ESC FECHA MODAIS
@@ -3336,7 +3726,8 @@
       function(evento) {
 
         if (
-          evento.key === "Escape"
+          evento.key ===
+          "Escape"
         ) {
 
           fecharModal();
@@ -3347,6 +3738,7 @@
 
       }
     );
+
 
     /* =====================================================
        ENTER NA PESQUISA
@@ -3361,7 +3753,8 @@
         function(evento) {
 
           if (
-            evento.key === "Enter"
+            evento.key ===
+            "Enter"
           ) {
 
             evento.preventDefault();
@@ -3372,6 +3765,7 @@
 
         }
       );
+
 
     /* =====================================================
        MONITORAR SESSÃO
@@ -3384,7 +3778,8 @@
       ) {
 
         if (
-          evento === "SIGNED_OUT"
+          evento ===
+          "SIGNED_OUT"
         ) {
 
           window.location.replace(
@@ -3401,4 +3796,3 @@
 </body>
 
 </html>
-```
