@@ -1,0 +1,3710 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>BiriLog V3 - Importar Clientes</title>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- SHEETJS - LEITURA DE XLS/XLSX -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+       ===================================================== */
+
+    .sidebar {
+
+      width: 250px;
+      height: 100vh;
+
+      position: fixed;
+
+      left: 0;
+      top: 0;
+      bottom: 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #0f172a,
+          #172554
+        );
+
+      color: white;
+
+      display: flex;
+      flex-direction: column;
+
+      z-index: 100;
+
+      box-shadow:
+        5px 0 20px rgba(0,0,0,0.10);
+
+      overflow: hidden;
+    }
+
+
+    .logo-area {
+
+      padding: 28px 22px;
+
+      text-align: center;
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.08);
+
+      flex-shrink: 0;
+    }
+
+
+    .logo-icon {
+
+      width: 58px;
+      height: 58px;
+
+      margin:
+        0 auto 12px;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #0d47a1
+        );
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 28px;
+
+      box-shadow:
+        0 8px 20px
+        rgba(25,118,210,0.30);
+    }
+
+
+    .logo-title {
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+
+    .logo-title span {
+
+      color: #60a5fa;
+    }
+
+
+    .logo-version {
+
+      margin-top: 5px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+
+      letter-spacing: 1px;
+    }
+
+
+    .menu {
+
+      padding: 20px 12px;
+
+      flex: 1;
+
+      min-height: 0;
+
+      overflow-y: auto;
+    }
+
+
+    .menu-title {
+
+      padding:
+        0 12px 10px;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      color: #64748b;
+
+      letter-spacing: 1px;
+    }
+
+
+    .menu-item {
+
+      width: 100%;
+
+      border: none;
+
+      background: transparent;
+
+      color: #cbd5e1;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 13px 14px;
+
+      margin-bottom: 4px;
+
+      border-radius: 9px;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      text-align: left;
+
+      transition: 0.2s;
+    }
+
+
+    .menu-item:hover {
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: white;
+    }
+
+
+    .menu-item.active {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 15px
+        rgba(37,99,235,0.25);
+    }
+
+
+    .menu-icon {
+
+      width: 22px;
+
+      text-align: center;
+
+      font-size: 17px;
+
+      flex-shrink: 0;
+    }
+
+
+    .user-area {
+
+      padding: 15px;
+
+      border-top:
+        1px solid rgba(255,255,255,0.08);
+
+      background:
+        rgba(0,0,0,0.08);
+
+      flex-shrink: 0;
+    }
+
+
+    .user-card {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border-radius: 10px;
+
+      padding: 12px;
+    }
+
+
+    .user-name {
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      color: white;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    .user-email {
+
+      margin-top: 3px;
+
+      font-size: 9px;
+
+      color: #94a3b8;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+    }
+
+
+    .user-profile {
+
+      margin-top: 6px;
+
+      font-size: 10px;
+
+      color: #60a5fa;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+    }
+
+
+    .logout {
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      border:
+        1px solid rgba(255,255,255,0.15);
+
+      background:
+        rgba(255,255,255,0.06);
+
+      color: #e2e8f0;
+
+      padding: 11px 10px;
+
+      min-height: 38px;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      transition: 0.2s;
+    }
+
+
+    .logout:hover {
+
+      background: #dc2626;
+
+      border-color: #dc2626;
+
+      color: white;
+    }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
+
+    .main {
+
+      margin-left: 250px;
+
+      width:
+        calc(100% - 250px);
+
+      min-height: 100vh;
+    }
+
+
+    .header {
+
+      height: 75px;
+
+      background: white;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      padding: 0 30px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 50;
+    }
+
+
+    .header-title {
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+
+    .header-subtitle {
+
+      margin-top: 3px;
+
+      font-size: 11px;
+
+      color: #64748b;
+    }
+
+
+    .status-online {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 7px 12px;
+
+      border-radius: 20px;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+
+    .status-dot {
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+    }
+
+
+    .content {
+
+      padding: 30px;
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    .mensagem {
+
+      display: none;
+
+      margin-bottom: 20px;
+
+      padding: 13px 16px;
+
+      border-radius: 9px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      text-align: center;
+    }
+
+
+    .mensagem.sucesso {
+
+      display: block;
+
+      background: #f0fdf4;
+
+      color: #15803d;
+
+      border:
+        1px solid #bbf7d0;
+    }
+
+
+    .mensagem.erro {
+
+      display: block;
+
+      background: #fef2f2;
+
+      color: #b91c1c;
+
+      border:
+        1px solid #fecaca;
+    }
+
+
+    .mensagem.aviso {
+
+      display: block;
+
+      background: #fffbeb;
+
+      color: #92400e;
+
+      border:
+        1px solid #fde68a;
+    }
+
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 18px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .card {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 20px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+    }
+
+
+    .card-label {
+
+      font-size: 10px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+    }
+
+
+    .card-value {
+
+      margin-top: 8px;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+
+    /* =====================================================
+       PAINEL
+       ===================================================== */
+
+    .panel {
+
+      background: white;
+
+      border:
+        1px solid #e2e8f0;
+
+      border-radius: 14px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 4px 15px
+        rgba(15,23,42,0.04);
+
+      margin-bottom: 20px;
+    }
+
+
+    .panel-header {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+
+    .panel-title {
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+
+    .panel-subtitle {
+
+      margin-top: 4px;
+
+      font-size: 10px;
+
+      color: #94a3b8;
+    }
+
+
+    /* =====================================================
+       UPLOAD
+       ===================================================== */
+
+    .upload-area {
+
+      border:
+        2px dashed #cbd5e1;
+
+      border-radius: 12px;
+
+      padding: 35px 20px;
+
+      text-align: center;
+
+      background: #f8fafc;
+
+      transition: 0.2s;
+    }
+
+
+    .upload-area:hover {
+
+      border-color: #1976d2;
+
+      background: #eff6ff;
+    }
+
+
+    .upload-icon {
+
+      font-size: 42px;
+
+      margin-bottom: 12px;
+    }
+
+
+    .upload-title {
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+
+      margin-bottom: 6px;
+    }
+
+
+    .upload-text {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      margin-bottom: 18px;
+    }
+
+
+    input[type="file"] {
+
+      display: none;
+    }
+
+
+    .btn {
+
+      border: none;
+
+      border-radius: 8px;
+
+      padding: 11px 17px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      transition: 0.2s;
+    }
+
+
+    .btn:hover {
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .btn:disabled {
+
+      opacity: .6;
+
+      cursor: wait;
+
+      transform: none;
+    }
+
+
+    .btn-primary {
+
+      background:
+        linear-gradient(
+          135deg,
+          #1976d2,
+          #2563eb
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 14px
+        rgba(37,99,235,0.20);
+    }
+
+
+    .btn-secondary {
+
+      background: #f1f5f9;
+
+      color: #475569;
+
+      border:
+        1px solid #e2e8f0;
+    }
+
+
+    .btn-success {
+
+      background:
+        linear-gradient(
+          135deg,
+          #16a34a,
+          #15803d
+        );
+
+      color: white;
+
+      box-shadow:
+        0 5px 14px
+        rgba(22,163,74,0.20);
+    }
+
+
+    /* =====================================================
+       ARQUIVO
+       ===================================================== */
+
+    .arquivo-info {
+
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 13px;
+
+      border-radius: 8px;
+
+      background: #eff6ff;
+
+      border:
+        1px solid #bfdbfe;
+
+      font-size: 11px;
+
+      color: #1e40af;
+    }
+
+
+    .arquivo-info strong {
+
+      display: block;
+
+      margin-bottom: 4px;
+    }
+
+
+    /* =====================================================
+       TABELA
+       ===================================================== */
+
+    .table-wrapper {
+
+      width: 100%;
+
+      overflow-x: auto;
+    }
+
+
+    table {
+
+      width: 100%;
+
+      min-width: 800px;
+
+      border-collapse: collapse;
+    }
+
+
+    th {
+
+      padding: 11px 8px;
+
+      text-align: left;
+
+      border-bottom:
+        1px solid #e2e8f0;
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+
+      white-space: nowrap;
+    }
+
+
+    td {
+
+      padding: 10px 8px;
+
+      border-bottom:
+        1px solid #f1f5f9;
+
+      font-size: 10px;
+
+      color: #334155;
+
+      white-space: nowrap;
+    }
+
+
+    tbody tr:hover td {
+
+      background: #f8fafc;
+    }
+
+
+    .codigo {
+
+      font-weight: 800;
+
+      color: #1976d2;
+    }
+
+
+    .cliente-nome {
+
+      font-weight: 700;
+
+      color: #0f172a;
+    }
+
+
+    /* =====================================================
+       PROGRESSO
+       ===================================================== */
+
+    .progresso-area {
+
+      display: none;
+
+      margin-top: 20px;
+    }
+
+
+    .progresso-texto {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      margin-bottom: 8px;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      color: #475569;
+    }
+
+
+    .barra {
+
+      width: 100%;
+
+      height: 12px;
+
+      background: #e2e8f0;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+
+    .barra-interna {
+
+      width: 0%;
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #1976d2,
+          #2563eb
+        );
+
+      border-radius: 20px;
+
+      transition: width .2s;
+    }
+
+
+    .resultado-importacao {
+
+      display: none;
+
+      margin-top: 20px;
+
+      padding: 18px;
+
+      border-radius: 10px;
+
+      background: #f8fafc;
+
+      border:
+        1px solid #e2e8f0;
+    }
+
+
+    .resultado-importacao h3 {
+
+      font-size: 13px;
+
+      margin-bottom: 12px;
+
+      color: #0f172a;
+    }
+
+
+    .resultado-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 10px;
+    }
+
+
+    .resultado-item {
+
+      background: white;
+
+      padding: 12px;
+
+      border-radius: 8px;
+
+      border:
+        1px solid #e2e8f0;
+
+      text-align: center;
+    }
+
+
+    .resultado-numero {
+
+      font-size: 22px;
+
+      font-weight: 800;
+
+      color: #0f172a;
+    }
+
+
+    .resultado-label {
+
+      margin-top: 4px;
+
+      font-size: 9px;
+
+      color: #64748b;
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    .loading {
+
+      position: fixed;
+
+      inset: 0;
+
+      background:
+        rgba(248,250,252,0.88);
+
+      display: none;
+
+      align-items: center;
+
+      justify-content: center;
+
+      z-index: 9999;
+
+      backdrop-filter:
+        blur(2px);
+    }
+
+
+    .loading-box {
+
+      background: white;
+
+      border-radius: 14px;
+
+      padding: 25px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 50px
+        rgba(15,23,42,0.18);
+    }
+
+
+    .spinner {
+
+      width: 35px;
+
+      height: 35px;
+
+      margin:
+        0 auto 12px;
+
+      border:
+        3px solid #dbeafe;
+
+      border-top-color:
+        #1976d2;
+
+      border-radius: 50%;
+
+      animation:
+        girar .8s linear infinite;
+    }
+
+
+    .loading-text {
+
+      font-size: 11px;
+
+      color: #64748b;
+
+      font-weight: 700;
+    }
+
+
+    @keyframes girar {
+
+      to {
+        transform:
+          rotate(360deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+
+    @media (max-width: 1000px) {
+
+      .cards {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .resultado-grid {
+
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .sidebar {
+
+        width: 70px;
+      }
+
+      .logo-title,
+      .logo-version,
+      .menu-title,
+      .menu-item span:not(.menu-icon),
+      .user-card {
+
+        display: none;
+      }
+
+      .logo-area {
+
+        padding: 18px 8px;
+      }
+
+      .logo-icon {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 20px;
+      }
+
+      .menu {
+
+        padding: 15px 8px;
+      }
+
+      .menu-item {
+
+        justify-content: center;
+
+        padding: 13px 5px;
+      }
+
+      .user-area {
+
+        padding: 10px 8px;
+      }
+
+      .logout {
+
+        font-size: 0;
+
+        padding: 12px 5px;
+
+        min-height: 42px;
+      }
+
+      .logout::before {
+
+        content: "🚪";
+
+        font-size: 17px;
+      }
+
+      .main {
+
+        margin-left: 70px;
+
+        width:
+          calc(100% - 70px);
+      }
+
+      .header {
+
+        padding: 0 18px;
+      }
+
+      .header-title {
+
+        font-size: 17px;
+      }
+
+      .status-online {
+
+        font-size: 0;
+
+        padding: 9px;
+      }
+
+      .status-dot {
+
+        width: 8px;
+        height: 8px;
+      }
+
+      .content {
+
+        padding: 18px;
+      }
+
+      .cards {
+
+        grid-template-columns: 1fr;
+      }
+
+      .resultado-grid {
+
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       LOADING
+       ===================================================== -->
+
+  <div
+    id="loadingTela"
+    class="loading"
+  >
+
+    <div class="loading-box">
+
+      <div class="spinner"></div>
+
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SIDEBAR
+       ===================================================== -->
+
+  <aside class="sidebar">
+
+    <div class="logo-area">
+
+      <div class="logo-icon">
+        🚚
+      </div>
+
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
+
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
+
+    </div>
+
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+
+        <span class="menu-icon">
+          📊
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+
+        <span class="menu-icon">
+          📦
+        </span>
+
+        <span>
+          Envios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('pesquisar-nf.html')"
+      >
+
+        <span class="menu-icon">
+          🔎
+        </span>
+
+        <span>
+          Pesquisar NF
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          👥
+        </span>
+
+        <span>
+          Importar Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+
+        <span class="menu-icon">
+          📋
+        </span>
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+
+        <span class="menu-icon">
+          🚛
+        </span>
+
+        <span>
+          Transportadoras
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('pos-entrega.html')"
+      >
+
+        <span class="menu-icon">
+          📱
+        </span>
+
+        <span>
+          Pós Entrega
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+    </nav>
+
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
+        </div>
+
+        <div
+          id="usuarioEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+        🚪 SAIR DO SISTEMA
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main class="main">
+
+
+    <header class="header">
+
+      <div>
+
+        <div class="header-title">
+          Importar Clientes
+        </div>
+
+        <div class="header-subtitle">
+          Importação de clientes do RADinfo para o BiriLog
+        </div>
+
+      </div>
+
+
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+
+      <div
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+
+      <!-- =================================================
+           CARDS
+           ================================================= -->
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="card-label">
+            Clientes no arquivo
+          </div>
+
+          <div
+            id="cardArquivo"
+            class="card-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Cadastrados
+          </div>
+
+          <div
+            id="cardInseridos"
+            class="card-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Atualizados
+          </div>
+
+          <div
+            id="cardAtualizados"
+            class="card-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-label">
+            Ignorados
+          </div>
+
+          <div
+            id="cardIgnorados"
+            class="card-value"
+          >
+            0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           UPLOAD
+           ================================================= -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              📂 ARQUIVO DO RADinfo
+            </div>
+
+            <div class="panel-subtitle">
+              Selecione o arquivo cliente 2026.xls
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="upload-area">
+
+          <div class="upload-icon">
+            📊
+          </div>
+
+          <div class="upload-title">
+            SELECIONE O ARQUIVO EXCEL
+          </div>
+
+          <div class="upload-text">
+            Aceita arquivos .XLS e .XLSX
+          </div>
+
+
+          <label
+            for="arquivoExcel"
+            class="btn btn-primary"
+          >
+            📁 SELECIONAR ARQUIVO
+          </label>
+
+
+          <input
+            type="file"
+            id="arquivoExcel"
+            accept=".xls,.xlsx"
+          >
+
+
+          <div
+            id="arquivoInfo"
+            class="arquivo-info"
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           PRÉVIA
+           ================================================= -->
+
+      <div
+        id="painelPrevia"
+        class="panel"
+        style="display:none;"
+      >
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              👀 PRÉVIA DA IMPORTAÇÃO
+            </div>
+
+            <div class="panel-subtitle">
+              Confira os primeiros registros antes de importar.
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="limparArquivo()"
+            >
+              🧹 LIMPAR
+            </button>
+
+
+            <button
+              type="button"
+              class="btn btn-success"
+              id="btnImportar"
+              onclick="iniciarImportacao()"
+            >
+              🚀 IMPORTAR CLIENTES
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  CÓDIGO
+                </th>
+
+                <th>
+                  CLIENTE
+                </th>
+
+                <th>
+                  CIDADE
+                </th>
+
+                <th>
+                  UF
+                </th>
+
+                <th>
+                  TELEFONE
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="tabelaPrevia">
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- PROGRESSO -->
+
+        <div
+          id="progressoArea"
+          class="progresso-area"
+        >
+
+          <div class="progresso-texto">
+
+            <span id="progressoTexto">
+              PREPARANDO...
+            </span>
+
+            <span id="progressoPorcentagem">
+              0%
+            </span>
+
+          </div>
+
+
+          <div class="barra">
+
+            <div
+              id="barraInterna"
+              class="barra-interna"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- RESULTADO -->
+
+        <div
+          id="resultadoImportacao"
+          class="resultado-importacao"
+        >
+
+          <h3>
+            ✅ RESULTADO DA IMPORTAÇÃO
+          </h3>
+
+
+          <div class="resultado-grid">
+
+            <div class="resultado-item">
+
+              <div
+                id="resultadoTotal"
+                class="resultado-numero"
+              >
+                0
+              </div>
+
+              <div class="resultado-label">
+                Processados
+              </div>
+
+            </div>
+
+
+            <div class="resultado-item">
+
+              <div
+                id="resultadoInseridos"
+                class="resultado-numero"
+              >
+                0
+              </div>
+
+              <div class="resultado-label">
+                Cadastrados
+              </div>
+
+            </div>
+
+
+            <div class="resultado-item">
+
+              <div
+                id="resultadoAtualizados"
+                class="resultado-numero"
+              >
+                0
+              </div>
+
+              <div class="resultado-label">
+                Atualizados
+              </div>
+
+            </div>
+
+
+            <div class="resultado-item">
+
+              <div
+                id="resultadoIgnorados"
+                class="resultado-numero"
+              >
+                0
+              </div>
+
+              <div class="resultado-label">
+                Ignorados
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+
+    /* =====================================================
+       SUPABASE
+       ===================================================== */
+
+    const SUPABASE_URL =
+      "https://sjfwjwwkomrcalahqanw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_WpXZ79UY0pOqbbpFmJDcdQ_wkYQZLZC";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================================
+       VARIÁVEIS
+       ===================================================== */
+
+    let usuarioAtual = null;
+
+    let clientesExcel = [];
+
+    let importacaoExecutando = false;
+
+
+    /* =====================================================
+       INICIALIZAÇÃO
+       ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      iniciar
+    );
+
+
+    async function iniciar() {
+
+      try {
+
+        mostrarLoading(
+          "VERIFICANDO SESSÃO..."
+        );
+
+
+        const resultadoSessao =
+          await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (resultadoSessao.error) {
+
+          throw resultadoSessao.error;
+
+        }
+
+
+        const session =
+          resultadoSessao.data &&
+          resultadoSessao.data.session;
+
+
+        if (!session) {
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        const authUser =
+          session.user;
+
+
+        const consulta =
+          await supabaseClient
+            .from("usuarios")
+            .select(
+              "id,nome,email,perfil,ativo"
+            )
+            .eq(
+              "auth_id",
+              authUser.id
+            )
+            .maybeSingle();
+
+
+        if (consulta.error) {
+
+          throw consulta.error;
+
+        }
+
+
+        if (!consulta.data) {
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        if (
+          consulta.data.ativo === false
+        ) {
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+          redirecionarLogin();
+
+          return;
+
+        }
+
+
+        usuarioAtual =
+          consulta.data;
+
+
+        preencherUsuario();
+
+        esconderLoading();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao iniciar:",
+          erro
+        );
+
+        esconderLoading();
+
+        mostrarMensagem(
+          "NÃO FOI POSSÍVEL CARREGAR A IMPORTAÇÃO.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       USUÁRIO
+       ===================================================== */
+
+    function preencherUsuario() {
+
+      if (!usuarioAtual) {
+        return;
+      }
+
+
+      document.getElementById(
+        "usuarioNome"
+      ).textContent =
+        String(
+          usuarioAtual.nome ||
+          usuarioAtual.email ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+
+      document.getElementById(
+        "usuarioEmail"
+      ).textContent =
+        usuarioAtual.email ||
+        "-";
+
+
+      document.getElementById(
+        "usuarioPerfil"
+      ).textContent =
+        String(
+          usuarioAtual.perfil ||
+          "USUÁRIO"
+        ).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       ARQUIVO
+       ===================================================== */
+
+    document
+      .getElementById(
+        "arquivoExcel"
+      )
+      .addEventListener(
+        "change",
+        lerArquivoExcel
+      );
+
+
+    async function lerArquivoExcel(evento) {
+
+      const arquivo =
+        evento.target.files &&
+        evento.target.files[0];
+
+
+      if (!arquivo) {
+        return;
+      }
+
+
+      try {
+
+        mostrarLoading(
+          "LENDO ARQUIVO EXCEL..."
+        );
+
+
+        const nomeArquivo =
+          arquivo.name.toLowerCase();
+
+
+        if (
+          !nomeArquivo.endsWith(".xls") &&
+          !nomeArquivo.endsWith(".xlsx")
+        ) {
+
+          throw new Error(
+            "SELECIONE UM ARQUIVO XLS OU XLSX."
+          );
+
+        }
+
+
+        const buffer =
+          await arquivo.arrayBuffer();
+
+
+        const workbook =
+          XLSX.read(
+            buffer,
+            {
+              type: "array"
+            }
+          );
+
+
+        if (
+          !workbook.SheetNames ||
+          !workbook.SheetNames.length
+        ) {
+
+          throw new Error(
+            "NENHUMA PLANILHA FOI ENCONTRADA NO ARQUIVO."
+          );
+
+        }
+
+
+        const nomePlanilha =
+          workbook.SheetNames[0];
+
+
+        const planilha =
+          workbook.Sheets[
+            nomePlanilha
+          ];
+
+
+        const dados =
+          XLSX.utils.sheet_to_json(
+            planilha,
+            {
+              defval: "",
+              raw: false
+            }
+          );
+
+
+        if (!dados.length) {
+
+          throw new Error(
+            "A PLANILHA ESTÁ VAZIA."
+          );
+
+        }
+
+
+        clientesExcel =
+          prepararClientes(dados);
+
+
+        if (!clientesExcel.length) {
+
+          throw new Error(
+            "NENHUM CLIENTE VÁLIDO FOI ENCONTRADO."
+          );
+
+        }
+
+
+        document.getElementById(
+          "cardArquivo"
+        ).textContent =
+          clientesExcel.length.toLocaleString(
+            "pt-BR"
+          );
+
+
+        document.getElementById(
+          "arquivoInfo"
+        ).innerHTML =
+          "<strong>📄 " +
+          escapeHTML(
+            arquivo.name
+          ) +
+          "</strong>" +
+          "PLANILHA: " +
+          escapeHTML(
+            nomePlanilha
+          ) +
+          "<br>" +
+          "REGISTROS VÁLIDOS: " +
+          clientesExcel.length.toLocaleString(
+            "pt-BR"
+          );
+
+
+        document.getElementById(
+          "arquivoInfo"
+        ).style.display =
+          "block";
+
+
+        mostrarPrevia();
+
+
+        esconderLoading();
+
+
+        mostrarMensagem(
+          "ARQUIVO CARREGADO COM SUCESSO. CONFIRA A PRÉVIA ANTES DE IMPORTAR.",
+          "sucesso"
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao ler Excel:",
+          erro
+        );
+
+        clientesExcel = [];
+
+        esconderLoading();
+
+        mostrarMensagem(
+          erro.message ||
+          "NÃO FOI POSSÍVEL LER O ARQUIVO.",
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       PREPARAR CLIENTES
+       ===================================================== */
+
+    function prepararClientes(dados) {
+
+      const resultado = [];
+
+      const codigos = new Set();
+
+
+      dados.forEach(
+        function(linha) {
+
+          const codigo =
+            obterValor(
+              linha,
+              [
+                "CodCliente",
+                "CODCLIENTE",
+                "COD_CLIENTE",
+                "Código",
+                "Codigo",
+                "CODIGO"
+              ]
+            );
+
+
+          const nome =
+            obterValor(
+              linha,
+              [
+                "NomeCliente",
+                "NOMECLIENTE",
+                "Nome Cliente",
+                "NOME CLIENTE",
+                "Nome",
+                "NOME"
+              ]
+            );
+
+
+          const cidade =
+            obterValor(
+              linha,
+              [
+                "Cidade",
+                "CIDADE"
+              ]
+            );
+
+
+          const uf =
+            obterValor(
+              linha,
+              [
+                "UF",
+                "Uf",
+                "Estado"
+              ]
+            );
+
+
+          const telefone =
+            obterValor(
+              linha,
+              [
+                "FONE1",
+                "Fone1",
+                "Telefone",
+                "TELEFONE"
+              ]
+            );
+
+
+          const codigoLimpo =
+            normalizarCodigo(
+              codigo
+            );
+
+
+          const nomeLimpo =
+            normalizarTexto(
+              nome
+            );
+
+
+          const cidadeLimpa =
+            normalizarTexto(
+              cidade
+            );
+
+
+          const ufLimpa =
+            normalizarUF(
+              uf
+            );
+
+
+          const telefoneLimpo =
+            normalizarTelefone(
+              telefone
+            );
+
+
+          /*
+             O código é obrigatório porque ele será
+             utilizado para identificar o cliente do RADinfo.
+          */
+
+          if (!codigoLimpo) {
+            return;
+          }
+
+
+          if (!nomeLimpo) {
+            return;
+          }
+
+
+          /*
+             Evita duplicação dentro do próprio Excel.
+          */
+
+          const chave =
+            codigoLimpo;
+
+
+          if (
+            codigos.has(chave)
+          ) {
+            return;
+          }
+
+
+          codigos.add(chave);
+
+
+          resultado.push({
+
+            codigo:
+              codigoLimpo,
+
+            nome:
+              nomeLimpo,
+
+            cidade:
+              cidadeLimpa,
+
+            uf:
+              ufLimpa,
+
+            telefone:
+              telefoneLimpo
+
+          });
+
+        }
+      );
+
+
+      return resultado;
+
+    }
+
+
+    /* =====================================================
+       OBTENER VALOR
+       ===================================================== */
+
+    function obterValor(
+      objeto,
+      nomes
+    ) {
+
+      for (
+        let i = 0;
+        i < nomes.length;
+        i++
+      ) {
+
+        const nome =
+          nomes[i];
+
+
+        if (
+          Object.prototype
+            .hasOwnProperty
+            .call(
+              objeto,
+              nome
+            )
+        ) {
+
+          return objeto[nome];
+
+        }
+
+      }
+
+
+      /*
+         Procura também ignorando diferenças
+         de maiúsculas/minúsculas.
+      */
+
+      const chaves =
+        Object.keys(
+          objeto
+        );
+
+
+      for (
+        let i = 0;
+        i < chaves.length;
+        i++
+      ) {
+
+        const chave =
+          chaves[i]
+            .toString()
+            .trim()
+            .toUpperCase();
+
+
+        for (
+          let j = 0;
+          j < nomes.length;
+          j++
+        ) {
+
+          if (
+            chave ===
+            nomes[j]
+              .toString()
+              .trim()
+              .toUpperCase()
+          ) {
+
+            return objeto[
+              chaves[i]
+            ];
+
+          }
+
+        }
+
+      }
+
+
+      return "";
+
+    }
+
+
+    /* =====================================================
+       NORMALIZAÇÕES
+       ===================================================== */
+
+    function normalizarCodigo(
+      valor
+    ) {
+
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
+        return "";
+
+      }
+
+
+      let texto =
+        String(valor)
+          .trim();
+
+
+      /*
+         Excel às vezes transforma códigos
+         numéricos em 1234.0
+      */
+
+      if (
+        /^\d+\.0$/.test(texto)
+      ) {
+
+        texto =
+          texto.replace(
+            /\.0$/,
+            ""
+          );
+
+      }
+
+
+      return texto
+        .toUpperCase();
+
+    }
+
+
+    function normalizarTexto(
+      valor
+    ) {
+
+      return String(
+        valor ||
+        ""
+      )
+        .normalize("NFD")
+        .replace(
+          /[\u0300-\u036f]/g,
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    function normalizarUF(
+      valor
+    ) {
+
+      let uf =
+        String(
+          valor ||
+          ""
+        )
+          .normalize("NFD")
+          .replace(
+            /[\u0300-\u036f]/g,
+            ""
+          )
+          .trim()
+          .toUpperCase();
+
+
+      /*
+         Caso o Excel traga o estado por extenso.
+      */
+
+      const mapa = {
+
+        "TOCANTINS":
+          "TO",
+
+        "PARA":
+          "PA",
+
+        "MARANHAO":
+          "MA",
+
+        "GOIAS":
+          "GO",
+
+        "MATO GROSSO":
+          "MT",
+
+        "BAHIA":
+          "BA",
+
+        "PIAUI":
+          "PI",
+
+        "MINAS GERAIS":
+          "MG",
+
+        "SAO PAULO":
+          "SP",
+
+        "RIO DE JANEIRO":
+          "RJ",
+
+        "DISTRITO FEDERAL":
+          "DF"
+
+      };
+
+
+      if (
+        mapa[uf]
+      ) {
+
+        uf =
+          mapa[uf];
+
+      }
+
+
+      return uf;
+
+    }
+
+
+    function normalizarTelefone(
+      valor
+    ) {
+
+      if (
+        valor === null ||
+        valor === undefined
+      ) {
+
+        return "";
+
+      }
+
+
+      return String(
+        valor
+      )
+        .trim();
+
+    }
+
+
+    /* =====================================================
+       PRÉVIA
+       ===================================================== */
+
+    function mostrarPrevia() {
+
+      const painel =
+        document.getElementById(
+          "painelPrevia"
+        );
+
+
+      const tabela =
+        document.getElementById(
+          "tabelaPrevia"
+        );
+
+
+      tabela.innerHTML =
+        "";
+
+
+      /*
+         Mostra no máximo 20 clientes
+         para não deixar a página pesada.
+      */
+
+      const limite =
+        Math.min(
+          20,
+          clientesExcel.length
+        );
+
+
+      for (
+        let i = 0;
+        i < limite;
+        i++
+      ) {
+
+        const cliente =
+          clientesExcel[i];
+
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        tr.innerHTML =
+
+          "<td class='codigo'>" +
+          escapeHTML(
+            cliente.codigo
+          ) +
+          "</td>" +
+
+          "<td class='cliente-nome'>" +
+          escapeHTML(
+            cliente.nome
+          ) +
+          "</td>" +
+
+          "<td>" +
+          escapeHTML(
+            cliente.cidade
+          ) +
+          "</td>" +
+
+          "<td>" +
+          escapeHTML(
+            cliente.uf
+          ) +
+          "</td>" +
+
+          "<td>" +
+          escapeHTML(
+            cliente.telefone
+          ) +
+          "</td>";
+
+
+        tabela.appendChild(
+          tr
+        );
+
+      }
+
+
+      painel.style.display =
+        "block";
+
+
+      document.getElementById(
+        "resultadoImportacao"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "progressoArea"
+      ).style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+       IMPORTAÇÃO
+       ===================================================== */
+
+    async function iniciarImportacao() {
+
+      if (
+        importacaoExecutando
+      ) {
+        return;
+      }
+
+
+      if (
+        !clientesExcel.length
+      ) {
+
+        mostrarMensagem(
+          "NENHUM CLIENTE FOI CARREGADO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const confirmar =
+        window.confirm(
+          "VOCÊ ESTÁ PRESTES A IMPORTAR " +
+          clientesExcel.length.toLocaleString(
+            "pt-BR"
+          ) +
+          " CLIENTES.\n\n" +
+          "CLIENTES COM O MESMO CÓDIGO SERÃO ATUALIZADOS.\n\n" +
+          "DESEJA CONTINUAR?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      importacaoExecutando =
+        true;
+
+
+      const botao =
+        document.getElementById(
+          "btnImportar"
+        );
+
+
+      botao.disabled =
+        true;
+
+
+      botao.textContent =
+        "⏳ IMPORTANDO...";
+
+
+      document.getElementById(
+        "progressoArea"
+      ).style.display =
+        "block";
+
+
+      document.getElementById(
+        "resultadoImportacao"
+      ).style.display =
+        "none";
+
+
+      let inseridos = 0;
+
+      let atualizados = 0;
+
+      let ignorados = 0;
+
+      let processados = 0;
+
+
+      try {
+
+        /*
+           Primeiro buscamos os códigos já existentes.
+           Isso permite mostrar quantos serão inseridos
+           e quantos serão atualizados.
+        */
+
+        mostrarProgresso(
+          0,
+          "VERIFICANDO CLIENTES EXISTENTES..."
+        );
+
+
+        const codigos =
+          clientesExcel.map(
+            function(cliente) {
+              return cliente.codigo;
+            }
+          );
+
+
+        const existentes =
+          new Set();
+
+
+        /*
+           Supabase/PostgREST pode limitar a quantidade
+           de valores no IN. Por isso dividimos em blocos.
+        */
+
+        const tamanhoConsulta =
+          500;
+
+
+        for (
+          let inicio = 0;
+          inicio < codigos.length;
+          inicio += tamanhoConsulta
+        ) {
+
+          const bloco =
+            codigos.slice(
+              inicio,
+              inicio +
+              tamanhoConsulta
+            );
+
+
+          const consulta =
+            await supabaseClient
+              .from("clientes")
+              .select("codigo")
+              .in(
+                "codigo",
+                bloco
+              );
+
+
+          if (consulta.error) {
+
+            throw consulta.error;
+
+          }
+
+
+          (
+            consulta.data ||
+            []
+          ).forEach(
+            function(item) {
+
+              if (
+                item &&
+                item.codigo !== null &&
+                item.codigo !== undefined
+              ) {
+
+                existentes.add(
+                  String(
+                    item.codigo
+                  )
+                );
+
+              }
+
+            }
+          );
+
+        }
+
+
+        /*
+           Importação em lotes.
+        */
+
+        const tamanhoLote =
+          100;
+
+
+        for (
+          let inicio = 0;
+          inicio < clientesExcel.length;
+          inicio += tamanhoLote
+        ) {
+
+          const lote =
+            clientesExcel.slice(
+              inicio,
+              inicio +
+              tamanhoLote
+            );
+
+
+          const dados =
+            lote.map(
+              function(cliente) {
+
+                return {
+
+                  codigo:
+                    cliente.codigo,
+
+                  nome:
+                    cliente.nome,
+
+                  cidade:
+                    cliente.cidade,
+
+                  uf:
+                    cliente.uf,
+
+                  telefone:
+                    cliente.telefone ||
+                    null,
+
+                  ativo:
+                    true
+
+                };
+
+              }
+            );
+
+
+          /*
+             UPSERT:
+             - código existente = atualiza
+             - código novo = cadastra
+          */
+
+          const resultado =
+            await supabaseClient
+              .from("clientes")
+              .upsert(
+                dados,
+                {
+                  onConflict:
+                    "codigo"
+                }
+              );
+
+
+          if (
+            resultado.error
+          ) {
+
+            throw resultado.error;
+
+          }
+
+
+          lote.forEach(
+            function(cliente) {
+
+              if (
+                existentes.has(
+                  cliente.codigo
+                )
+              ) {
+
+                atualizados++;
+
+              }
+              else {
+
+                inseridos++;
+
+              }
+
+              processados++;
+
+            }
+          );
+
+
+          const porcentagem =
+            Math.round(
+              (
+                processados /
+                clientesExcel.length
+              ) *
+              100
+            );
+
+
+          mostrarProgresso(
+            porcentagem,
+            "IMPORTANDO CLIENTES..."
+          );
+
+
+          atualizarCardsImportacao(
+            inseridos,
+            atualizados,
+            ignorados
+          );
+
+
+          /*
+             Pequena pausa para manter
+             o navegador responsivo.
+          */
+
+          await esperar(100);
+
+        }
+
+
+        mostrarProgresso(
+          100,
+          "IMPORTAÇÃO CONCLUÍDA!"
+        );
+
+
+        document.getElementById(
+          "resultadoImportacao"
+        ).style.display =
+        "block";
+
+
+        document.getElementById(
+          "resultadoTotal"
+        ).textContent =
+          processados.toLocaleString(
+            "pt-BR"
+          );
+
+
+        document.getElementById(
+          "resultadoInseridos"
+        ).textContent =
+          inseridos.toLocaleString(
+            "pt-BR"
+          );
+
+
+        document.getElementById(
+          "resultadoAtualizados"
+        ).textContent =
+          atualizados.toLocaleString(
+            "pt-BR"
+          );
+
+
+        document.getElementById(
+          "resultadoIgnorados"
+        ).textContent =
+          ignorados.toLocaleString(
+            "pt-BR"
+          );
+
+
+        atualizarCardsImportacao(
+          inseridos,
+          atualizados,
+          ignorados
+        );
+
+
+        mostrarMensagem(
+          "IMPORTAÇÃO CONCLUÍDA COM SUCESSO! " +
+          processados.toLocaleString(
+            "pt-BR"
+          ) +
+          " CLIENTES PROCESSADOS.",
+          "sucesso"
+        );
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro durante importação:",
+          erro
+        );
+
+
+        mostrarMensagem(
+          obterMensagemErro(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+      finally {
+
+        importacaoExecutando =
+          false;
+
+
+        botao.disabled =
+          false;
+
+
+        botao.textContent =
+          "🚀 IMPORTAR CLIENTES";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       PROGRESSO
+       ===================================================== */
+
+    function mostrarProgresso(
+      porcentagem,
+      texto
+    ) {
+
+      document.getElementById(
+        "barraInterna"
+      ).style.width =
+        porcentagem +
+        "%";
+
+
+      document.getElementById(
+        "progressoPorcentagem"
+      ).textContent =
+        porcentagem +
+        "%";
+
+
+      document.getElementById(
+        "progressoTexto"
+      ).textContent =
+        texto;
+
+    }
+
+
+    function atualizarCardsImportacao(
+      inseridos,
+      atualizados,
+      ignorados
+    ) {
+
+      document.getElementById(
+        "cardInseridos"
+      ).textContent =
+        inseridos.toLocaleString(
+          "pt-BR"
+        );
+
+
+      document.getElementById(
+        "cardAtualizados"
+      ).textContent =
+        atualizados.toLocaleString(
+          "pt-BR"
+        );
+
+
+      document.getElementById(
+        "cardIgnorados"
+      ).textContent =
+        ignorados.toLocaleString(
+          "pt-BR"
+        );
+
+    }
+
+
+    /* =====================================================
+       LIMPAR ARQUIVO
+       ===================================================== */
+
+    function limparArquivo() {
+
+      if (
+        importacaoExecutando
+      ) {
+        return;
+      }
+
+
+      clientesExcel = [];
+
+
+      document.getElementById(
+        "arquivoExcel"
+      ).value =
+        "";
+
+
+      document.getElementById(
+        "arquivoInfo"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "painelPrevia"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "progressoArea"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "resultadoImportacao"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "cardArquivo"
+      ).textContent =
+        "0";
+
+
+      atualizarCardsImportacao(
+        0,
+        0,
+        0
+      );
+
+
+      mostrarMensagem(
+        "ARQUIVO REMOVIDO. VOCÊ PODE SELECIONAR OUTRO.",
+        "aviso"
+      );
+
+    }
+
+
+    /* =====================================================
+       UTILITÁRIOS
+       ===================================================== */
+
+    function esperar(
+      milissegundos
+    ) {
+
+      return new Promise(
+        function(resolve) {
+
+          setTimeout(
+            resolve,
+            milissegundos
+          );
+
+        }
+      );
+
+    }
+
+
+    function escapeHTML(
+      valor
+    ) {
+
+      return String(
+        valor ??
+        ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    function obterMensagemErro(
+      erro
+    ) {
+
+      if (
+        erro &&
+        erro.message
+      ) {
+
+        const mensagem =
+          String(
+            erro.message
+          );
+
+
+        const texto =
+          mensagem.toLowerCase();
+
+
+        if (
+          texto.includes(
+            "row-level security"
+          ) ||
+          texto.includes(
+            "permission denied"
+          )
+        ) {
+
+          return (
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA IMPORTAR CLIENTES NO SUPABASE."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "duplicate"
+          ) ||
+          texto.includes(
+            "unique"
+          )
+        ) {
+
+          return (
+            "EXISTEM CÓDIGOS DUPLICADOS NA TABELA CLIENTES."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "on conflict"
+          )
+        ) {
+
+          return (
+            "A COLUNA CÓDIGO PRECISA ESTAR CONFIGURADA COMO ÚNICA NO SUPABASE."
+          );
+
+        }
+
+
+        return mensagem.toUpperCase();
+
+      }
+
+
+      return (
+        "NÃO FOI POSSÍVEL CONCLUIR A IMPORTAÇÃO."
+      );
+
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+       ===================================================== */
+
+    function irPara(
+      pagina
+    ) {
+
+      if (!pagina) {
+        return;
+      }
+
+
+      window.location.href =
+        pagina;
+
+    }
+
+
+    function redirecionarLogin() {
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       SAIR
+       ===================================================== */
+
+    async function sair() {
+
+      const confirmar =
+        window.confirm(
+          "DESEJA REALMENTE SAIR DO BIRILOG?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      const botao =
+        document.getElementById(
+          "botaoSair"
+        );
+
+
+      if (botao) {
+
+        botao.disabled =
+          true;
+
+        botao.textContent =
+          "SAINDO...";
+
+      }
+
+
+      try {
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao sair:",
+          erro
+        );
+
+      }
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+
+    /* =====================================================
+       LOADING
+       ===================================================== */
+
+    function mostrarLoading(
+      texto
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      const textoElemento =
+        document.getElementById(
+          "loadingText"
+        );
+
+
+      if (textoElemento) {
+
+        textoElemento.textContent =
+          texto ||
+          "CARREGANDO...";
+
+      }
+
+
+      if (elemento) {
+
+        elemento.style.display =
+          "flex";
+
+      }
+
+    }
+
+
+    function esconderLoading() {
+
+      const elemento =
+        document.getElementById(
+          "loadingTela"
+        );
+
+
+      if (elemento) {
+
+        elemento.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       MENSAGEM
+       ===================================================== */
+
+    function mostrarMensagem(
+      texto,
+      tipo
+    ) {
+
+      const elemento =
+        document.getElementById(
+          "mensagem"
+        );
+
+
+      if (!elemento) {
+        return;
+      }
+
+
+      elemento.textContent =
+        texto;
+
+
+      elemento.className =
+        "mensagem " +
+        tipo;
+
+
+      elemento.style.display =
+        "block";
+
+
+      clearTimeout(
+        window.timerMensagem
+      );
+
+
+      window.timerMensagem =
+        setTimeout(
+          function() {
+
+            elemento.style.display =
+              "none";
+
+          },
+          7000
+        );
+
+    }
+
+
+    /* =====================================================
+       MONITORAR SESSÃO
+       ===================================================== */
+
+    supabaseClient
+      .auth
+      .onAuthStateChange(
+        function(
+          evento
+        ) {
+
+          if (
+            evento ===
+            "SIGNED_OUT"
+          ) {
+
+            window.location.replace(
+              "index.html"
+            );
+
+          }
+
+        }
+      );
+
+  </script>
+
+</body>
+
+</html>
+```
