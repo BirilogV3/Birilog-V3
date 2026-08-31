@@ -947,6 +947,10 @@ content="width=device-width, initial-scale=1.0"
     }
 
 
+    /* =====================================================
+       RESULTADO
+       ===================================================== */
+
     .resultado-importacao {
 
       display: none;
@@ -1751,34 +1755,22 @@ content="width=device-width, initial-scale=1.0"
 
           <tr>
 
-            <th>
-              CÓDIGO
-            </th>
+            <th>CÓDIGO</th>
 
-            <th>
-              CLIENTE
-            </th>
+            <th>CLIENTE</th>
 
-            <th>
-              CIDADE
-            </th>
+            <th>CIDADE</th>
 
-            <th>
-              UF
-            </th>
+            <th>UF</th>
 
-            <th>
-              TELEFONE
-            </th>
+            <th>TELEFONE</th>
 
           </tr>
 
         </thead>
 
 
-        <tbody id="tabelaPrevia">
-
-        </tbody>
+        <tbody id="tabelaPrevia"></tbody>
 
       </table>
 
@@ -1908,7 +1900,6 @@ content="width=device-width, initial-scale=1.0"
 
   <script>
 
-
     /* =====================================================
        SUPABASE
        ===================================================== */
@@ -1937,19 +1928,6 @@ content="width=device-width, initial-scale=1.0"
     let clientesExcel = [];
 
     let importacaoExecutando = false;
-
-
-    /*
-       Configurações de segurança da importação.
-    */
-
-    const TAMANHO_CONSULTA = 200;
-
-    const TAMANHO_LOTE = 50;
-
-    const MAX_TENTATIVAS = 3;
-
-    const TEMPO_LIMITE_REQUISICAO = 30000;
 
 
     /* =====================================================
@@ -2269,7 +2247,6 @@ content="width=device-width, initial-scale=1.0"
 
         mostrarPrevia();
 
-
         esconderLoading();
 
 
@@ -2417,18 +2394,20 @@ content="width=device-width, initial-scale=1.0"
           }
 
 
-          const chave =
-            codigoLimpo;
-
-
           if (
-            codigos.has(chave)
+            codigos.has(
+              codigoLimpo
+            )
           ) {
+
             return;
+
           }
 
 
-          codigos.add(chave);
+          codigos.add(
+            codigoLimpo
+          );
 
 
           resultado.push({
@@ -2660,9 +2639,7 @@ content="width=device-width, initial-scale=1.0"
       };
 
 
-      if (
-        mapa[uf]
-      ) {
+      if (mapa[uf]) {
 
         uf =
           mapa[uf];
@@ -2802,6 +2779,11 @@ content="width=device-width, initial-scale=1.0"
 
     /* =====================================================
        IMPORTAÇÃO
+       
+       IMPORTANTE:
+       NÃO USA UPSERT.
+       ASSIM NÃO PRECISA QUE "codigo"
+       SEJA UNIQUE NO SUPABASE.
        ===================================================== */
 
     async function iniciarImportacao() {
@@ -2834,7 +2816,7 @@ content="width=device-width, initial-scale=1.0"
             "pt-BR"
           ) +
           " CLIENTES.\n\n" +
-          "CLIENTES COM O MESMO CÓDIGO SERÃO ATUALIZADOS.\n\n" +
+          "CLIENTES QUE JÁ EXISTEM SERÃO ATUALIZADOS.\n\n" +
           "DESEJA CONTINUAR?"
         );
 
@@ -2864,12 +2846,12 @@ content="width=device-width, initial-scale=1.0"
         true;
 
 
-      botao.textContent =
-        "⏳ IMPORTANDO...";
-
-
       botaoLimpar.disabled =
         true;
+
+
+      botao.textContent =
+        "⏳ IMPORTANDO...";
 
 
       document.getElementById(
@@ -2897,7 +2879,7 @@ content="width=device-width, initial-scale=1.0"
 
         /* =================================================
            ETAPA 1
-           VERIFICAR CLIENTES EXISTENTES
+           BUSCAR CLIENTES EXISTENTES
            ================================================= */
 
         mostrarProgresso(
@@ -2906,88 +2888,56 @@ content="width=device-width, initial-scale=1.0"
         );
 
 
-        const codigos =
-          clientesExcel.map(
-            function(cliente) {
-              return cliente.codigo;
-            }
-          );
-
-
         const existentes =
           new Set();
 
 
+        const tamanhoConsulta =
+          500;
+
+
         const totalConsultas =
           Math.ceil(
-            codigos.length /
-            TAMANHO_CONSULTA
+            clientesExcel.length /
+            tamanhoConsulta
           );
 
 
         for (
           let inicio = 0;
-          inicio < codigos.length;
-          inicio += TAMANHO_CONSULTA
+          inicio < clientesExcel.length;
+          inicio += tamanhoConsulta
         ) {
 
           const bloco =
-            codigos.slice(
+            clientesExcel.slice(
               inicio,
               inicio +
-              TAMANHO_CONSULTA
+              tamanhoConsulta
             );
 
 
-          const numeroConsulta =
-            Math.floor(
-              inicio /
-              TAMANHO_CONSULTA
-            ) + 1;
+          const codigos =
+            bloco.map(
+              function(cliente) {
 
+                return cliente.codigo;
 
-          const percentualVerificacao =
-            Math.round(
-              (
-                numeroConsulta /
-                totalConsultas
-              ) *
-              10
+              }
             );
-
-
-          mostrarProgresso(
-            Math.min(
-              percentualVerificacao,
-              10
-            ),
-            "VERIFICANDO CLIENTES EXISTENTES... " +
-            numeroConsulta +
-            "/" +
-            totalConsultas
-          );
 
 
           const consulta =
-            await executarComTentativas(
-              async function() {
-
-                return await supabaseClient
-                  .from("clientes")
-                  .select("codigo")
-                  .in(
-                    "codigo",
-                    bloco
-                  );
-
-              },
-              "VERIFICAÇÃO DOS CLIENTES"
-            );
+            await supabaseClient
+              .from("clientes")
+              .select("codigo")
+              .in(
+                "codigo",
+                codigos
+              );
 
 
-          if (
-            consulta.error
-          ) {
+          if (consulta.error) {
 
             throw consulta.error;
 
@@ -3007,7 +2957,7 @@ content="width=device-width, initial-scale=1.0"
               ) {
 
                 existentes.add(
-                  String(
+                  normalizarCodigo(
                     item.codigo
                   )
                 );
@@ -3018,46 +2968,110 @@ content="width=device-width, initial-scale=1.0"
           );
 
 
-          /*
-             Pequena pausa para o navegador.
-          */
+          const consultaAtual =
+            Math.min(
+              inicio +
+              tamanhoConsulta,
+              clientesExcel.length
+            );
 
-          await esperar(50);
+
+          const porcentagemConsulta =
+            Math.round(
+              (
+                consultaAtual /
+                clientesExcel.length
+              ) *
+              20
+            );
+
+
+          mostrarProgresso(
+            porcentagemConsulta,
+            "VERIFICANDO CLIENTES EXISTENTES..."
+          );
+
+
+          await esperar(20);
 
         }
 
 
+        /*
+           Agora sabemos quais clientes já existem.
+        */
+
+        clientesExcel.forEach(
+          function(cliente) {
+
+            if (
+              existentes.has(
+                cliente.codigo
+              )
+            ) {
+
+              atualizados++;
+
+            }
+            else {
+
+              inseridos++;
+
+            }
+
+          }
+        );
+
+
+        /*
+           Resetamos os contadores porque a gravação
+           ainda não aconteceu.
+        */
+
+        inseridos = 0;
+        atualizados = 0;
+
+
+        atualizarCardsImportacao(
+          0,
+          0,
+          0
+        );
+
+
         /* =================================================
            ETAPA 2
-           IMPORTAR CLIENTES
+           CADASTRAR CLIENTES NOVOS
            ================================================= */
 
-        const totalLotes =
-          Math.ceil(
-            clientesExcel.length /
-            TAMANHO_LOTE
+        const clientesNovos =
+          clientesExcel.filter(
+            function(cliente) {
+
+              return !existentes.has(
+                cliente.codigo
+              );
+
+            }
           );
+
+
+        const tamanhoLoteNovos =
+          100;
 
 
         for (
           let inicio = 0;
-          inicio < clientesExcel.length;
-          inicio += TAMANHO_LOTE
+          inicio < clientesNovos.length;
+          inicio += tamanhoLoteNovos
         ) {
 
           const lote =
-            clientesExcel.slice(
+            clientesNovos.slice(
               inicio,
               inicio +
-              TAMANHO_LOTE
+              tamanhoLoteNovos
             );
-
-
-          const numeroLote =
-            Math.floor(
-              inicio /
-              TAMANHO_LOTE
-            ) + 1;
 
 
           const dados =
@@ -3091,98 +3105,72 @@ content="width=device-width, initial-scale=1.0"
             );
 
 
-          /*
-             De 10% até 100%.
-          */
-
-          const percentualAntes =
-            Math.round(
-              10 +
-              (
-                processados /
-                clientesExcel.length
-              ) *
-              90
-            );
-
-
-          mostrarProgresso(
-            Math.min(
-              percentualAntes,
-              99
-            ),
-            "IMPORTANDO LOTE " +
-            numeroLote +
-            " DE " +
-            totalLotes +
-            "..."
-          );
-
-
-          let resultado;
-
-
-          try {
-
-            resultado =
-              await executarComTentativas(
-                async function() {
-
-                  return await supabaseClient
-                    .from("clientes")
-                    .upsert(
-                      dados,
-                      {
-                        onConflict:
-                          "codigo"
-                      }
-                    );
-
-                },
-                "IMPORTAÇÃO DO LOTE " +
-                numeroLote
+          const resultado =
+            await supabaseClient
+              .from("clientes")
+              .insert(
+                dados
               );
-
-          }
-
-          catch (erroLote) {
-
-            throw new Error(
-              "ERRO NO LOTE " +
-              numeroLote +
-              " DE " +
-              totalLotes +
-              ". " +
-              (
-                erroLote.message ||
-                "NÃO FOI POSSÍVEL GRAVAR OS CLIENTES."
-              )
-            );
-
-          }
 
 
           if (
             resultado.error
           ) {
 
-            throw resultado.error;
+            /*
+               Se algum lote falhar, tentamos
+               individualmente para descobrir
+               quais registros realmente deram erro.
+            */
 
-          }
+            for (
+              let i = 0;
+              i < lote.length;
+              i++
+            ) {
+
+              const cliente =
+                lote[i];
 
 
-          lote.forEach(
-            function(cliente) {
+              const individual =
+                await supabaseClient
+                  .from("clientes")
+                  .insert({
+
+                    codigo:
+                      cliente.codigo,
+
+                    nome:
+                      cliente.nome,
+
+                    cidade:
+                      cliente.cidade,
+
+                    uf:
+                      cliente.uf,
+
+                    telefone:
+                      cliente.telefone ||
+                      null,
+
+                    ativo:
+                      true
+
+                  });
+
 
               if (
-                existentes.has(
-                  String(
-                    cliente.codigo
-                  )
-                )
+                individual.error
               ) {
 
-                atualizados++;
+                console.error(
+                  "Cliente ignorado:",
+                  cliente,
+                  individual.error
+                );
+
+                ignorados++;
 
               }
               else {
@@ -3191,6 +3179,194 @@ content="width=device-width, initial-scale=1.0"
 
               }
 
+
+              processados++;
+
+
+              const porcentagem =
+                20 +
+                Math.round(
+                  (
+                    processados /
+                    clientesExcel.length
+                  ) *
+                  40
+                );
+
+
+              mostrarProgresso(
+                Math.min(
+                  porcentagem,
+                  60
+                ),
+                "CADASTRANDO CLIENTES..."
+              );
+
+
+              atualizarCardsImportacao(
+                inseridos,
+                atualizados,
+                ignorados
+              );
+
+            }
+
+          }
+          else {
+
+            inseridos +=
+              lote.length;
+
+            processados +=
+              lote.length;
+
+
+            const porcentagem =
+              20 +
+              Math.round(
+                (
+                  processados /
+                  clientesExcel.length
+                ) *
+                40
+              );
+
+
+            mostrarProgresso(
+              Math.min(
+                porcentagem,
+                60
+              ),
+              "CADASTRANDO CLIENTES..."
+            );
+
+
+            atualizarCardsImportacao(
+              inseridos,
+              atualizados,
+              ignorados
+            );
+
+          }
+
+
+          await esperar(50);
+
+        }
+
+
+        /* =================================================
+           ETAPA 3
+           ATUALIZAR CLIENTES EXISTENTES
+           
+           Fazemos as atualizações em pequenos grupos
+           para não sobrecarregar o navegador.
+           ================================================= */
+
+        const clientesExistentes =
+          clientesExcel.filter(
+            function(cliente) {
+
+              return existentes.has(
+                cliente.codigo
+              );
+
+            }
+          );
+
+
+        const tamanhoGrupoAtualizacao =
+          10;
+
+
+        for (
+          let inicio = 0;
+          inicio < clientesExistentes.length;
+          inicio += tamanhoGrupoAtualizacao
+        ) {
+
+          const grupo =
+            clientesExistentes.slice(
+              inicio,
+              inicio +
+              tamanhoGrupoAtualizacao
+            );
+
+
+          /*
+             Atualizações em paralelo,
+             porém limitadas a 10 por vez.
+          */
+
+          const resultados =
+            await Promise.all(
+              grupo.map(
+                async function(cliente) {
+
+                  const resultado =
+                    await supabaseClient
+                      .from("clientes")
+                      .update({
+
+                        nome:
+                          cliente.nome,
+
+                        cidade:
+                          cliente.cidade,
+
+                        uf:
+                          cliente.uf,
+
+                        telefone:
+                          cliente.telefone ||
+                          null,
+
+                        ativo:
+                          true
+
+                      })
+                      .eq(
+                        "codigo",
+                        cliente.codigo
+                      );
+
+
+                  return {
+                    cliente:
+                      cliente,
+
+                    resultado:
+                      resultado
+                  };
+
+                }
+              )
+            );
+
+
+          resultados.forEach(
+            function(item) {
+
+              if (
+                item.resultado.error
+              ) {
+
+                console.error(
+                  "Erro ao atualizar:",
+                  item.cliente,
+                  item.resultado.error
+                );
+
+                ignorados++;
+
+              }
+              else {
+
+                atualizados++;
+
+              }
+
+
               processados++;
 
             }
@@ -3198,13 +3374,19 @@ content="width=device-width, initial-scale=1.0"
 
 
           const porcentagem =
+            60 +
             Math.round(
-              10 +
               (
-                processados /
-                clientesExcel.length
+                (
+                  inicio +
+                  grupo.length
+                ) /
+                Math.max(
+                  clientesExistentes.length,
+                  1
+                )
               ) *
-              90
+              40
             );
 
 
@@ -3213,14 +3395,7 @@ content="width=device-width, initial-scale=1.0"
               porcentagem,
               100
             ),
-            "IMPORTANDO CLIENTES... " +
-            processados.toLocaleString(
-              "pt-BR"
-            ) +
-            " DE " +
-            clientesExcel.length.toLocaleString(
-              "pt-BR"
-            )
+            "ATUALIZANDO CLIENTES EXISTENTES..."
           );
 
 
@@ -3231,17 +3406,13 @@ content="width=device-width, initial-scale=1.0"
           );
 
 
-          /*
-             Pausa maior entre lotes.
-          */
-
-          await esperar(120);
+          await esperar(30);
 
         }
 
 
         /* =================================================
-           CONCLUÍDO
+           FINAL
            ================================================= */
 
         mostrarProgresso(
@@ -3333,228 +3504,14 @@ content="width=device-width, initial-scale=1.0"
           false;
 
 
-        botao.textContent =
-          "🚀 IMPORTAR CLIENTES";
-
-
         botaoLimpar.disabled =
           false;
 
-      }
 
-    }
-
-
-    /* =====================================================
-       REQUISIÇÃO COM TENTATIVAS
-       ===================================================== */
-
-    async function executarComTentativas(
-      funcao,
-      descricao
-    ) {
-
-      let ultimoErro = null;
-
-
-      for (
-        let tentativa = 1;
-        tentativa <= MAX_TENTATIVAS;
-        tentativa++
-      ) {
-
-        try {
-
-          const resultado =
-            await executarComTimeout(
-              funcao(),
-              TEMPO_LIMITE_REQUISICAO
-            );
-
-
-          /*
-             Se o Supabase retornou erro,
-             permitimos nova tentativa.
-          */
-
-          if (
-            resultado &&
-            resultado.error
-          ) {
-
-            ultimoErro =
-              resultado.error;
-
-
-            if (
-              tentativa <
-              MAX_TENTATIVAS
-            ) {
-
-              mostrarProgresso(
-                obterPorcentagemAtual(),
-                descricao +
-                " - TENTANDO NOVAMENTE (" +
-                (
-                  tentativa + 1
-                ) +
-                "/" +
-                MAX_TENTATIVAS +
-                ")..."
-              );
-
-
-              await esperar(
-                tentativa * 1000
-              );
-
-
-              continue;
-
-            }
-
-
-            return resultado;
-
-          }
-
-
-          return resultado;
-
-        }
-
-        catch (erro) {
-
-          ultimoErro =
-            erro;
-
-
-          console.warn(
-            descricao +
-            " - tentativa " +
-            tentativa +
-            ":",
-            erro
-          );
-
-
-          if (
-            tentativa <
-            MAX_TENTATIVAS
-          ) {
-
-            mostrarProgresso(
-              obterPorcentagemAtual(),
-              descricao +
-              " - TENTANDO NOVAMENTE (" +
-              (
-                tentativa + 1
-              ) +
-              "/" +
-              MAX_TENTATIVAS +
-              ")..."
-            );
-
-
-            await esperar(
-              tentativa * 1000
-            );
-
-          }
-
-        }
+        botao.textContent =
+          "🚀 IMPORTAR CLIENTES";
 
       }
-
-
-      throw (
-        ultimoErro ||
-        new Error(
-          descricao +
-          " FALHOU."
-        )
-      );
-
-    }
-
-
-    /* =====================================================
-       TIMEOUT
-       ===================================================== */
-
-    function executarComTimeout(
-      promessa,
-      tempo
-    ) {
-
-      return Promise.race([
-
-        promessa,
-
-        new Promise(
-          function(
-            resolve,
-            reject
-          ) {
-
-            setTimeout(
-              function() {
-
-                reject(
-                  new Error(
-                    "A REQUISIÇÃO AO SUPABASE DEMOROU MAIS DE " +
-                    (
-                      tempo / 1000
-                    ) +
-                    " SEGUNDOS."
-                  )
-                );
-
-              },
-              tempo
-            );
-
-          }
-        )
-
-      ]);
-
-    }
-
-
-    /* =====================================================
-       PORCENTAGEM ATUAL
-       ===================================================== */
-
-    function obterPorcentagemAtual() {
-
-      const elemento =
-        document.getElementById(
-          "barraInterna"
-        );
-
-
-      if (!elemento) {
-        return 0;
-      }
-
-
-      const largura =
-        parseFloat(
-          elemento.style.width
-        );
-
-
-      if (
-        isNaN(largura)
-      ) {
-
-        return 0;
-
-      }
-
-
-      return largura;
 
     }
 
@@ -3568,61 +3525,36 @@ content="width=device-width, initial-scale=1.0"
       texto
     ) {
 
-      const barra =
-        document.getElementById(
-          "barraInterna"
-        );
-
-
-      const porcentagemElemento =
-        document.getElementById(
-          "progressoPorcentagem"
-        );
-
-
-      const textoElemento =
-        document.getElementById(
-          "progressoTexto"
-        );
-
-
-      if (barra) {
-
-        barra.style.width =
-          Math.max(
-            0,
-            Math.min(
-              100,
+      porcentagem =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            Number(
               porcentagem
-            )
-          ) +
-          "%";
-
-      }
+            ) || 0
+          )
+        );
 
 
-      if (
-        porcentagemElemento
-      ) {
-
-        porcentagemElemento.textContent =
-          Math.round(
-            porcentagem
-          ) +
-          "%";
-
-      }
+      document.getElementById(
+        "barraInterna"
+      ).style.width =
+        porcentagem +
+        "%";
 
 
-      if (
-        textoElemento
-      ) {
+      document.getElementById(
+        "progressoPorcentagem"
+      ).textContent =
+        porcentagem +
+        "%";
 
-        textoElemento.textContent =
-          texto ||
-          "PROCESSANDO...";
 
-      }
+      document.getElementById(
+        "progressoTexto"
+      ).textContent =
+        texto;
 
     }
 
@@ -3833,55 +3765,7 @@ content="width=device-width, initial-scale=1.0"
         ) {
 
           return (
-            "EXISTEM CÓDIGOS DUPLICADOS OU A COLUNA CÓDIGO NÃO ESTÁ CONFIGURADA COMO ÚNICA."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "on conflict"
-          )
-        ) {
-
-          return (
-            "A COLUNA CÓDIGO PRECISA ESTAR CONFIGURADA COMO ÚNICA NO SUPABASE."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "timeout"
-          ) ||
-          texto.includes(
-            "demorou mais"
-          )
-        ) {
-
-          return (
-            "O SUPABASE NÃO RESPONDEU A TEMPO. A IMPORTAÇÃO FOI INTERROMPIDA COM SEGURANÇA."
-          );
-
-        }
-
-
-        if (
-          texto.includes(
-            "failed to fetch"
-          ) ||
-          texto.includes(
-            "network"
-          ) ||
-          texto.includes(
-            "fetch"
-          )
-        ) {
-
-          return (
-            "HOUVE UMA FALHA DE COMUNICAÇÃO COM O SUPABASE. VERIFIQUE A CONEXÃO E TENTE NOVAMENTE."
+            "O SUPABASE ENCONTROU UM CLIENTE DUPLICADO. A IMPORTAÇÃO FOI INTERROMPIDA."
           );
 
         }
@@ -4089,7 +3973,7 @@ content="width=device-width, initial-scale=1.0"
               "none";
 
           },
-          10000
+          7000
         );
 
     }
