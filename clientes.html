@@ -1,18 +1,26 @@
+```html
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BiriLog V3 - Clientes</title>
+
+  <!-- =====================================================
+       FAVICON PROVISÓRIO DO BIRILOG
+       ===================================================== -->
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E🚚%3C/text%3E%3C/svg%3E"
+  >
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -742,327 +750,613 @@ content="width=device-width, initial-scale=1.0"
 
   <div id="loadingTela" class="loading">
 
-```
-<div class="loading-box">
+    <div class="loading-box">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div id="loadingText" class="loading-text">
-    CARREGANDO...
-  </div>
+      <div id="loadingText" class="loading-text">
+        CARREGANDO...
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
+    <div class="logo-area">
 
-  <div class="logo-icon">
-    🚚
-  </div>
+      <div class="logo-icon">
+        🚚
+      </div>
 
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
 
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
 
-</div>
-
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('dashboard.html')"
-  >
-    <span class="menu-icon">📊</span>
-    <span>Dashboard</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('envios.html')"
-  >
-    <span class="menu-icon">📦</span>
-    <span>Envios</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irParaPesquisarNF()"
-  >
-    <span class="menu-icon">🔎</span>
-    <span>Pesquisar NF</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item active"
-  >
-    <span class="menu-icon">👥</span>
-    <span>Clientes</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('transportadoras.html')"
-  >
-    <span class="menu-icon">🚛</span>
-    <span>Transportadoras</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('relatorios.html')"
-  >
-    <span class="menu-icon">📄</span>
-    <span>Relatórios</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('pos-entrega.html')"
-  >
-    <span class="menu-icon">📱</span>
-    <span>Pós Entrega</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('usuarios.html')"
-  >
-    <span class="menu-icon">🔐</span>
-    <span>Usuários</span>
-  </button>
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('configuracoes.html')"
-  >
-    <span class="menu-icon">⚙️</span>
-    <span>Configurações</span>
-  </button>
-
-</nav>
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div id="usuarioNome" class="user-name">
-      USUÁRIO
     </div>
 
-    <div id="usuarioEmail" class="user-email">
-      -
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+        <span class="menu-icon">📊</span>
+        <span>Dashboard</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+        <span class="menu-icon">📦</span>
+        <span>Envios</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irParaPesquisarNF()"
+      >
+        <span class="menu-icon">🔎</span>
+        <span>Pesquisar NF</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+        <span class="menu-icon">👥</span>
+        <span>Clientes</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+        <span class="menu-icon">🚛</span>
+        <span>Transportadoras</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+        <span class="menu-icon">📄</span>
+        <span>Relatórios</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('pos-entrega.html')"
+      >
+        <span class="menu-icon">📱</span>
+        <span>Pós Entrega</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+        <span class="menu-icon">🔐</span>
+        <span>Usuários</span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+        <span class="menu-icon">⚙️</span>
+        <span>Configurações</span>
+      </button>
+
+    </nav>
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div id="usuarioNome" class="user-name">
+          USUÁRIO
+        </div>
+
+        <div id="usuarioEmail" class="user-email">
+          -
+        </div>
+
+        <div id="usuarioPerfil" class="user-profile">
+          PERFIL
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+        🚪 SAIR DO SISTEMA
+      </button>
+
     </div>
-
-    <div id="usuarioPerfil" class="user-profile">
-      PERFIL
-    </div>
-
-  </div>
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-    🚪 SAIR DO SISTEMA
-  </button>
-
-</div>
-```
 
   </aside>
 
   <main class="main">
 
-```
-<header class="header">
-
-  <div>
-
-    <div class="header-title">
-      Clientes
-    </div>
-
-    <div class="header-subtitle">
-      Cadastro e gerenciamento de clientes
-    </div>
-
-  </div>
-
-  <div class="status-online">
-
-    <span class="status-dot"></span>
-
-    SISTEMA ONLINE
-
-  </div>
-
-</header>
-
-<section class="content">
-
-  <div id="mensagem" class="mensagem"></div>
-
-  <div class="cards">
-
-    <div class="card">
-
-      <div class="card-label">
-        Total de Clientes
-      </div>
-
-      <div id="cardTotal" class="card-value">
-        0
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <div class="card-label">
-        Estados Cadastrados
-      </div>
-
-      <div id="cardEstados" class="card-value">
-        0
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <div class="card-label">
-        Última Atualização
-      </div>
-
-      <div
-        id="cardAtualizacao"
-        class="card-value"
-        style="font-size:17px;"
-      >
-        -
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="panel">
-
-    <div class="panel-header">
+    <header class="header">
 
       <div>
 
-        <div class="panel-title">
-          👥 NOVO CLIENTE
+        <div class="header-title">
+          Clientes
         </div>
 
-        <div class="panel-subtitle">
-          Cadastre um novo cliente no BiriLog.
+        <div class="header-subtitle">
+          Cadastro e gerenciamento de clientes
         </div>
 
       </div>
 
-    </div>
+      <div class="status-online">
 
-    <form
-      id="formCliente"
-      onsubmit="salvarCliente(event)"
-    >
+        <span class="status-dot"></span>
 
-      <div class="form-grid">
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+    <section class="content">
+
+      <div id="mensagem" class="mensagem"></div>
+
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="card-label">
+            Total de Clientes
+          </div>
+
+          <div id="cardTotal" class="card-value">
+            0
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-label">
+            Estados Cadastrados
+          </div>
+
+          <div id="cardEstados" class="card-value">
+            0
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-label">
+            Última Atualização
+          </div>
+
+          <div
+            id="cardAtualizacao"
+            class="card-value"
+            style="font-size:17px;"
+          >
+            -
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              👥 NOVO CLIENTE
+            </div>
+
+            <div class="panel-subtitle">
+              Cadastre um novo cliente no BiriLog.
+            </div>
+
+          </div>
+
+        </div>
+
+        <form
+          id="formCliente"
+          onsubmit="salvarCliente(event)"
+        >
+
+          <div class="form-grid">
+
+            <div class="campo">
+
+              <label for="codigo">
+                Código
+              </label>
+
+              <input
+                type="text"
+                id="codigo"
+                placeholder="CÓDIGO"
+                autocomplete="off"
+              >
+
+            </div>
+
+            <div class="campo">
+
+              <label for="nome">
+                Nome do Cliente *
+              </label>
+
+              <input
+                type="text"
+                id="nome"
+                placeholder="NOME DO CLIENTE"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+            <div class="campo">
+
+              <label for="uf">
+                UF *
+              </label>
+
+              <select id="uf" required>
+
+                <option value="">
+                  SELECIONE
+                </option>
+
+                <option value="TO">TOCANTINS - TO</option>
+                <option value="PA">PARÁ - PA</option>
+                <option value="MA">MARANHÃO - MA</option>
+                <option value="GO">GOIÁS - GO</option>
+                <option value="MT">MATO GROSSO - MT</option>
+                <option value="BA">BAHIA - BA</option>
+                <option value="PI">PIAUÍ - PI</option>
+                <option value="MG">MINAS GERAIS - MG</option>
+                <option value="SP">SÃO PAULO - SP</option>
+                <option value="RJ">RIO DE JANEIRO - RJ</option>
+                <option value="DF">DISTRITO FEDERAL - DF</option>
+
+              </select>
+
+            </div>
+
+            <div class="campo">
+
+              <label for="telefone">
+                Telefone / WhatsApp
+              </label>
+
+              <input
+                type="tel"
+                id="telefone"
+                placeholder="(63) 99999-9999"
+                autocomplete="off"
+                inputmode="tel"
+                maxlength="15"
+              >
+
+            </div>
+
+            <div
+              class="campo"
+              style="grid-column: span 2;"
+            >
+
+              <label for="cidade">
+                Cidade *
+              </label>
+
+              <input
+                type="text"
+                id="cidade"
+                placeholder="CIDADE"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+          </div>
+
+          <div class="form-acoes">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="limparFormulario()"
+            >
+              🧹 LIMPAR
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="btnSalvar"
+            >
+              💾 SALVAR CLIENTE
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+
+            <div class="panel-title">
+              📋 CLIENTES CADASTRADOS
+            </div>
+
+            <div class="panel-subtitle">
+              Consulte, edite e exclua clientes.
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="carregarClientes()"
+          >
+            🔄 ATUALIZAR
+          </button>
+
+        </div>
+
+        <div class="filtros">
+
+          <input
+            type="text"
+            id="filtroTexto"
+            class="filtro"
+            placeholder="🔎 CÓDIGO, NOME, CIDADE OU TELEFONE"
+            autocomplete="off"
+            oninput="filtrarClientes()"
+          >
+
+          <select
+            id="filtroUF"
+            class="filtro"
+            onchange="filtrarClientes()"
+          >
+
+            <option value="">
+              TODAS AS UFs
+            </option>
+
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="MA">MA</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="BA">BA</option>
+            <option value="PI">PI</option>
+            <option value="MG">MG</option>
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="DF">DF</option>
+
+          </select>
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="limparFiltros()"
+          >
+            LIMPAR FILTROS
+          </button>
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>CÓDIGO</th>
+                <th>CLIENTE</th>
+                <th>CIDADE</th>
+                <th>UF</th>
+                <th>TELEFONE / WHATSAPP</th>
+                <th>AÇÕES</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="tabelaClientes">
+
+              <tr>
+
+                <td
+                  colspan="6"
+                  style="
+                    text-align:center;
+                    padding:30px;
+                    color:#94a3b8;
+                  "
+                >
+                  CARREGANDO CLIENTES...
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="modalEditar" class="modal">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <div class="modal-title">
+          ✏️ EDITAR CLIENTE
+        </div>
+
+        <button
+          type="button"
+          class="fechar"
+          onclick="fecharModal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        id="formEditar"
+        onsubmit="atualizarCliente(event)"
+      >
+
+        <input
+          type="hidden"
+          id="editarId"
+        >
 
         <div class="campo">
 
-          <label for="codigo">
+          <label for="editarCodigo">
             Código
           </label>
 
           <input
             type="text"
-            id="codigo"
-            placeholder="CÓDIGO"
+            id="editarCodigo"
             autocomplete="off"
           >
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="nome">
+          <label for="editarNome">
             Nome do Cliente *
           </label>
 
           <input
             type="text"
-            id="nome"
-            placeholder="NOME DO CLIENTE"
-            autocomplete="off"
+            id="editarNome"
             required
+            autocomplete="off"
           >
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="uf">
+          <label for="editarCidade">
+            Cidade *
+          </label>
+
+          <input
+            type="text"
+            id="editarCidade"
+            required
+            autocomplete="off"
+          >
+
+        </div>
+
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
+
+          <label for="editarUF">
             UF *
           </label>
 
-          <select id="uf" required>
+          <select id="editarUF" required>
 
-            <option value="">
-              SELECIONE
-            </option>
-
-            <option value="TO">TOCANTINS - TO</option>
-            <option value="PA">PARÁ - PA</option>
-            <option value="MA">MARANHÃO - MA</option>
-            <option value="GO">GOIÁS - GO</option>
-            <option value="MT">MATO GROSSO - MT</option>
-            <option value="BA">BAHIA - BA</option>
-            <option value="PI">PIAUÍ - PI</option>
-            <option value="MG">MINAS GERAIS - MG</option>
-            <option value="SP">SÃO PAULO - SP</option>
-            <option value="RJ">RIO DE JANEIRO - RJ</option>
-            <option value="DF">DISTRITO FEDERAL - DF</option>
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="MA">MA</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="BA">BA</option>
+            <option value="PI">PI</option>
+            <option value="MG">MG</option>
+            <option value="SP">SP</option>
+            <option value="RJ">RJ</option>
+            <option value="DF">DF</option>
 
           </select>
 
         </div>
 
-        <div class="campo">
+        <div
+          class="campo"
+          style="margin-top:15px;"
+        >
 
-          <label for="telefone">
+          <label for="editarTelefone">
             Telefone / WhatsApp
           </label>
 
           <input
             type="tel"
-            id="telefone"
+            id="editarTelefone"
             placeholder="(63) 99999-9999"
             autocomplete="off"
             inputmode="tel"
@@ -1071,323 +1365,29 @@ content="width=device-width, initial-scale=1.0"
 
         </div>
 
-        <div
-          class="campo"
-          style="grid-column: span 2;"
-        >
+        <div class="form-acoes">
 
-          <label for="cidade">
-            Cidade *
-          </label>
-
-          <input
-            type="text"
-            id="cidade"
-            placeholder="CIDADE"
-            autocomplete="off"
-            required
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="fecharModal()"
           >
+            CANCELAR
+          </button>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="btnAtualizar"
+          >
+            💾 SALVAR ALTERAÇÕES
+          </button>
 
         </div>
 
-      </div>
-
-      <div class="form-acoes">
-
-        <button
-          type="button"
-          class="btn btn-secondary"
-          onclick="limparFormulario()"
-        >
-          🧹 LIMPAR
-        </button>
-
-        <button
-          type="submit"
-          class="btn btn-primary"
-          id="btnSalvar"
-        >
-          💾 SALVAR CLIENTE
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-  <div class="panel">
-
-    <div class="panel-header">
-
-      <div>
-
-        <div class="panel-title">
-          📋 CLIENTES CADASTRADOS
-        </div>
-
-        <div class="panel-subtitle">
-          Consulte, edite e exclua clientes.
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="carregarClientes()"
-      >
-        🔄 ATUALIZAR
-      </button>
+      </form>
 
     </div>
-
-    <div class="filtros">
-
-      <input
-        type="text"
-        id="filtroTexto"
-        class="filtro"
-        placeholder="🔎 CÓDIGO, NOME, CIDADE OU TELEFONE"
-        autocomplete="off"
-        oninput="filtrarClientes()"
-      >
-
-      <select
-        id="filtroUF"
-        class="filtro"
-        onchange="filtrarClientes()"
-      >
-
-        <option value="">
-          TODAS AS UFs
-        </option>
-
-        <option value="TO">TO</option>
-        <option value="PA">PA</option>
-        <option value="MA">MA</option>
-        <option value="GO">GO</option>
-        <option value="MT">MT</option>
-        <option value="BA">BA</option>
-        <option value="PI">PI</option>
-        <option value="MG">MG</option>
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="DF">DF</option>
-
-      </select>
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="limparFiltros()"
-      >
-        LIMPAR FILTROS
-      </button>
-
-    </div>
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>CÓDIGO</th>
-            <th>CLIENTE</th>
-            <th>CIDADE</th>
-            <th>UF</th>
-            <th>TELEFONE / WHATSAPP</th>
-            <th>AÇÕES</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody id="tabelaClientes">
-
-          <tr>
-
-            <td
-              colspan="6"
-              style="
-                text-align:center;
-                padding:30px;
-                color:#94a3b8;
-              "
-            >
-              CARREGANDO CLIENTES...
-            </td>
-
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  </div>
-
-</section>
-```
-
-  </main>
-
-  <div id="modalEditar" class="modal">
-
-```
-<div class="modal-box">
-
-  <div class="modal-header">
-
-    <div class="modal-title">
-      ✏️ EDITAR CLIENTE
-    </div>
-
-    <button
-      type="button"
-      class="fechar"
-      onclick="fecharModal()"
-    >
-      ×
-    </button>
-
-  </div>
-
-  <form
-    id="formEditar"
-    onsubmit="atualizarCliente(event)"
-  >
-
-    <input
-      type="hidden"
-      id="editarId"
-    >
-
-    <div class="campo">
-
-      <label for="editarCodigo">
-        Código
-      </label>
-
-      <input
-        type="text"
-        id="editarCodigo"
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarNome">
-        Nome do Cliente *
-      </label>
-
-      <input
-        type="text"
-        id="editarNome"
-        required
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarCidade">
-        Cidade *
-      </label>
-
-      <input
-        type="text"
-        id="editarCidade"
-        required
-        autocomplete="off"
-      >
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarUF">
-        UF *
-      </label>
-
-      <select id="editarUF" required>
-
-        <option value="TO">TO</option>
-        <option value="PA">PA</option>
-        <option value="MA">MA</option>
-        <option value="GO">GO</option>
-        <option value="MT">MT</option>
-        <option value="BA">BA</option>
-        <option value="PI">PI</option>
-        <option value="MG">MG</option>
-        <option value="SP">SP</option>
-        <option value="RJ">RJ</option>
-        <option value="DF">DF</option>
-
-      </select>
-
-    </div>
-
-    <div
-      class="campo"
-      style="margin-top:15px;"
-    >
-
-      <label for="editarTelefone">
-        Telefone / WhatsApp
-      </label>
-
-      <input
-        type="tel"
-        id="editarTelefone"
-        placeholder="(63) 99999-9999"
-        autocomplete="off"
-        inputmode="tel"
-        maxlength="15"
-      >
-
-    </div>
-
-    <div class="form-acoes">
-
-      <button
-        type="button"
-        class="btn btn-secondary"
-        onclick="fecharModal()"
-      >
-        CANCELAR
-      </button>
-
-      <button
-        type="submit"
-        class="btn btn-primary"
-        id="btnAtualizar"
-      >
-        💾 SALVAR ALTERAÇÕES
-      </button>
-
-    </div>
-
-  </form>
-
-</div>
-```
 
   </div>
 
@@ -1558,13 +1558,6 @@ content="width=device-width, initial-scale=1.0"
 
     /* =====================================================
        CARREGAR CLIENTES
-       
-       CORREÇÃO:
-       O SUPABASE NORMALMENTE LIMITA A CONSULTA A 1000
-       REGISTROS.
-
-       AGORA BUSCAMOS EM LOTES DE 1000 ATÉ CARREGAR
-       TODOS OS CLIENTES ATIVOS.
        ===================================================== */
 
     async function carregarClientes() {
@@ -1575,65 +1568,27 @@ content="width=device-width, initial-scale=1.0"
 
       try {
 
-        const TAMANHO_LOTE = 1000;
-
-        let offset = 0;
-
-        let clientesCarregados = [];
-
-        while (true) {
-
-          const resultado =
-            await supabaseClient
-              .from("clientes")
-              .select("*")
-              .eq(
-                "ativo",
-                true
-              )
-              .order(
-                "nome",
-                {
-                  ascending: true
-                }
-              )
-              .range(
-                offset,
-                offset + TAMANHO_LOTE - 1
-              );
-
-          if (resultado.error) {
-            throw resultado.error;
-          }
-
-          const lote =
-            resultado.data || [];
-
-          clientesCarregados =
-            clientesCarregados.concat(
-              lote
+        const resultado =
+          await supabaseClient
+            .from("clientes")
+            .select("*")
+            .eq(
+              "ativo",
+              true
+            )
+            .order(
+              "nome",
+              {
+                ascending: true
+              }
             );
 
-          atualizarTextoLoading(
-            "CARREGANDO CLIENTES... " +
-            clientesCarregados.length
-          );
-
-          if (
-            lote.length <
-            TAMANHO_LOTE
-          ) {
-
-            break;
-
-          }
-
-          offset += TAMANHO_LOTE;
-
+        if (resultado.error) {
+          throw resultado.error;
         }
 
         todosClientes =
-          clientesCarregados;
+          resultado.data || [];
 
         atualizarCards(
           todosClientes
@@ -1668,27 +1623,6 @@ content="width=device-width, initial-scale=1.0"
       finally {
 
         esconderLoading();
-
-      }
-
-    }
-
-    /* =====================================================
-       ATUALIZAR TEXTO DO LOADING
-       ===================================================== */
-
-    function atualizarTextoLoading(texto) {
-
-      const elemento =
-        document.getElementById(
-          "loadingText"
-        );
-
-      if (elemento) {
-
-        elemento.textContent =
-          texto ||
-          "CARREGANDO...";
 
       }
 
@@ -3102,3 +3036,4 @@ content="width=device-width, initial-scale=1.0"
 </body>
 
 </html>
+```
