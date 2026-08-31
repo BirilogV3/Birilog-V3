@@ -13,13 +13,10 @@
 
   <title>BiriLog V3 - Clientes</title>
 
-  <!-- =====================================================
-       FAVICON PROVISÓRIO DO BIRILOG
-       ===================================================== -->
-
+  <!-- FAVICON PROVISÓRIO BiriLog -->
   <link
     rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='85'%3E🚚%3C/text%3E%3C/svg%3E"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231976d2'/%3E%3Ctext x='50' y='72' font-size='58' text-anchor='middle'%3E🚚%3C/text%3E%3C/svg%3E"
   >
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1557,16 +1554,22 @@
     }
 
     /* =====================================================
-       CARREGAR CLIENTES
+       CARREGAR TODOS OS CLIENTES
+       CORREÇÃO DO LIMITE DE 1.000 REGISTROS
        ===================================================== */
 
-    async function carregarClientes() {
+    async function carregarTodosClientes() {
 
-      mostrarLoading(
-        "CARREGANDO CLIENTES..."
-      );
+      const limite =
+        1000;
 
-      try {
+      let inicio =
+        0;
+
+      let clientes =
+        [];
+
+      while (true) {
 
         const resultado =
           await supabaseClient
@@ -1581,14 +1584,56 @@
               {
                 ascending: true
               }
+            )
+            .range(
+              inicio,
+              inicio + limite - 1
             );
 
         if (resultado.error) {
           throw resultado.error;
         }
 
-        todosClientes =
+        const lote =
           resultado.data || [];
+
+        clientes =
+          clientes.concat(
+            lote
+          );
+
+        if (
+          lote.length <
+          limite
+        ) {
+
+          break;
+
+        }
+
+        inicio +=
+          limite;
+
+      }
+
+      return clientes;
+
+    }
+
+    /* =====================================================
+       CARREGAR CLIENTES
+       ===================================================== */
+
+    async function carregarClientes() {
+
+      mostrarLoading(
+        "CARREGANDO CLIENTES..."
+      );
+
+      try {
+
+        todosClientes =
+          await carregarTodosClientes();
 
         atualizarCards(
           todosClientes
@@ -1661,7 +1706,9 @@
       document.getElementById(
         "cardTotal"
       ).textContent =
-        total;
+        total.toLocaleString(
+          "pt-BR"
+        );
 
       document.getElementById(
         "cardEstados"
