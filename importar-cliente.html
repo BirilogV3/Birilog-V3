@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,7 +15,7 @@
   <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- SHEETJS - LEITURA DE XLS/XLSX -->
+  <!-- SHEETJS -->
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 
@@ -1720,6 +1719,7 @@
             <button
               type="button"
               class="btn btn-secondary"
+              id="btnLimpar"
               onclick="limparArquivo()"
             >
               🧹 LIMPAR
@@ -2391,11 +2391,6 @@
             );
 
 
-          /*
-             O código é obrigatório porque ele será
-             utilizado para identificar o cliente do RADinfo.
-          */
-
           if (!codigoLimpo) {
             return;
           }
@@ -2405,10 +2400,6 @@
             return;
           }
 
-
-          /*
-             Evita duplicação dentro do próprio Excel.
-          */
 
           const chave =
             codigoLimpo;
@@ -2453,7 +2444,7 @@
 
 
     /* =====================================================
-       OBTENER VALOR
+       OBTER VALOR
        ===================================================== */
 
     function obterValor(
@@ -2486,11 +2477,6 @@
 
       }
 
-
-      /*
-         Procura também ignorando diferenças
-         de maiúsculas/minúsculas.
-      */
 
       const chaves =
         Object.keys(
@@ -2564,11 +2550,6 @@
           .trim();
 
 
-      /*
-         Excel às vezes transforma códigos
-         numéricos em 1234.0
-      */
-
       if (
         /^\d+\.0$/.test(texto)
       ) {
@@ -2624,10 +2605,6 @@
           .trim()
           .toUpperCase();
 
-
-      /*
-         Caso o Excel traga o estado por extenso.
-      */
 
       const mapa = {
 
@@ -2726,11 +2703,6 @@
         "";
 
 
-      /*
-         Mostra no máximo 20 clientes
-         para não deixar a página pesada.
-      */
-
       const limite =
         Math.min(
           20,
@@ -2809,6 +2781,12 @@
       ).style.display =
         "none";
 
+
+      mostrarProgresso(
+        0,
+        "AGUARDANDO IMPORTAÇÃO..."
+      );
+
     }
 
 
@@ -2866,7 +2844,17 @@
         );
 
 
+      const botaoLimpar =
+        document.getElementById(
+          "btnLimpar"
+        );
+
+
       botao.disabled =
+        true;
+
+
+      botaoLimpar.disabled =
         true;
 
 
@@ -2898,16 +2886,11 @@
       try {
 
         /*
-           Primeiro buscamos os códigos já existentes.
-           Isso permite mostrar quantos serão inseridos
-           e quantos serão atualizados.
+         =====================================================
+         ETAPA 1
+         VERIFICAR CLIENTES EXISTENTES
+         =====================================================
         */
-
-        mostrarProgresso(
-          0,
-          "VERIFICANDO CLIENTES EXISTENTES..."
-        );
-
 
         const codigos =
           clientesExcel.map(
@@ -2922,12 +2905,20 @@
 
 
         /*
-           Supabase/PostgREST pode limitar a quantidade
-           de valores no IN. Por isso dividimos em blocos.
+         Agora usamos blocos de 1000.
+         A porcentagem também é atualizada
+         durante esta etapa.
         */
 
         const tamanhoConsulta =
-          500;
+          1000;
+
+
+        const totalConsultas =
+          Math.ceil(
+            codigos.length /
+            tamanhoConsulta
+          );
 
 
         for (
@@ -2944,6 +2935,18 @@
             );
 
 
+          mostrarProgresso(
+            Math.round(
+              (
+                inicio /
+                codigos.length
+              ) *
+              20
+            ),
+            "VERIFICANDO CLIENTES EXISTENTES..."
+          );
+
+
           const consulta =
             await supabaseClient
               .from("clientes")
@@ -2954,7 +2957,9 @@
               );
 
 
-          if (consulta.error) {
+          if (
+            consulta.error
+          ) {
 
             throw consulta.error;
 
@@ -2984,15 +2989,50 @@
             }
           );
 
+
+          const verificadas =
+            Math.min(
+              inicio +
+              bloco.length,
+              codigos.length
+            );
+
+
+          const progressoVerificacao =
+            Math.round(
+              (
+                verificadas /
+                codigos.length
+              ) *
+              20
+            );
+
+
+          mostrarProgresso(
+            progressoVerificacao,
+            "VERIFICANDO CLIENTES EXISTENTES..."
+          );
+
+
+          /*
+             Pequena pausa para atualizar
+             visualmente a interface.
+          */
+
+          await esperar(50);
+
         }
 
 
         /*
-           Importação em lotes.
+         =====================================================
+         ETAPA 2
+         IMPORTAR / ATUALIZAR
+         =====================================================
         */
 
         const tamanhoLote =
-          100;
+          250;
 
 
         for (
@@ -3042,8 +3082,8 @@
 
           /*
              UPSERT:
-             - código existente = atualiza
-             - código novo = cadastra
+             código existente = atualiza
+             código novo = cadastra
           */
 
           const resultado =
@@ -3091,18 +3131,26 @@
           );
 
 
-          const porcentagem =
+          /*
+             A importação ocupa de 20% até 100%.
+          */
+
+          const porcentagemImportacao =
+            20 +
             Math.round(
               (
                 processados /
                 clientesExcel.length
               ) *
-              100
+              80
             );
 
 
           mostrarProgresso(
-            porcentagem,
+            Math.min(
+              100,
+              porcentagemImportacao
+            ),
             "IMPORTANDO CLIENTES..."
           );
 
@@ -3114,15 +3162,16 @@
           );
 
 
-          /*
-             Pequena pausa para manter
-             o navegador responsivo.
-          */
-
-          await esperar(100);
+          await esperar(50);
 
         }
 
+
+        /*
+         =====================================================
+         FINALIZAÇÃO
+         =====================================================
+        */
 
         mostrarProgresso(
           100,
@@ -3133,7 +3182,7 @@
         document.getElementById(
           "resultadoImportacao"
         ).style.display =
-        "block";
+          "block";
 
 
         document.getElementById(
@@ -3213,6 +3262,10 @@
           false;
 
 
+        botaoLimpar.disabled =
+          false;
+
+
         botao.textContent =
           "🚀 IMPORTAR CLIENTES";
 
@@ -3230,27 +3283,44 @@
       texto
     ) {
 
+      const valor =
+        Math.max(
+          0,
+          Math.min(
+            100,
+            Number(
+              porcentagem
+            ) || 0
+          )
+        );
+
+
       document.getElementById(
         "barraInterna"
       ).style.width =
-        porcentagem +
+        valor +
         "%";
 
 
       document.getElementById(
         "progressoPorcentagem"
       ).textContent =
-        porcentagem +
+        valor +
         "%";
 
 
       document.getElementById(
         "progressoTexto"
       ).textContent =
-        texto;
+        texto ||
+        "PROCESSANDO...";
 
     }
 
+
+    /* =====================================================
+       CARDS
+       ===================================================== */
 
     function atualizarCardsImportacao(
       inseridos,
@@ -3405,6 +3475,10 @@
     }
 
 
+    /* =====================================================
+       MENSAGEM DE ERRO
+       ===================================================== */
+
     function obterMensagemErro(
       erro
     ) {
@@ -3450,7 +3524,7 @@
         ) {
 
           return (
-            "EXISTEM CÓDIGOS DUPLICADOS NA TABELA CLIENTES."
+            "EXISTEM CÓDIGOS DUPLICADOS OU A COLUNA CÓDIGO NÃO ESTÁ CONFIGURADA COMO ÚNICA."
           );
 
         }
@@ -3464,6 +3538,19 @@
 
           return (
             "A COLUNA CÓDIGO PRECISA ESTAR CONFIGURADA COMO ÚNICA NO SUPABASE."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "timeout"
+          )
+        ) {
+
+          return (
+            "A IMPORTAÇÃO DEMOROU MAIS QUE O PERMITIDO. TENTE NOVAMENTE."
           );
 
         }
@@ -3707,4 +3794,3 @@
 </body>
 
 </html>
-```
