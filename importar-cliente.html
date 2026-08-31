@@ -1,23 +1,26 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Importar Clientes</title>
 
   <!-- SUPABASE -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <!-- SHEETJS -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
   <style>
 
@@ -1240,9 +1243,7 @@
 
 </head>
 
-
 <body>
-
 
   <!-- =====================================================
        LOADING
@@ -1253,21 +1254,22 @@
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
-      </div>
-
-    </div>
-
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
   </div>
 
+</div>
+```
+
+  </div>
 
   <!-- =====================================================
        SIDEBAR
@@ -1275,242 +1277,243 @@
 
   <aside class="sidebar">
 
-    <div class="logo-area">
+```
+<div class="logo-area">
 
-      <div class="logo-icon">
-        🚚
-      </div>
+  <div class="logo-icon">
+    🚚
+  </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
-      </div>
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
-      </div>
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
 
+</div>
+
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+
+    <span class="menu-icon">
+      📊
+    </span>
+
+    <span>
+      Dashboard
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('envios.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Envios
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pesquisar-nf.html')"
+  >
+
+    <span class="menu-icon">
+      🔎
+    </span>
+
+    <span>
+      Pesquisar NF
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item active"
+  >
+
+    <span class="menu-icon">
+      👥
+    </span>
+
+    <span>
+      Importar Clientes
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+
+    <span class="menu-icon">
+      📋
+    </span>
+
+    <span>
+      Clientes
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+
+    <span class="menu-icon">
+      🚛
+    </span>
+
+    <span>
+      Transportadoras
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+
+    <span class="menu-icon">
+      📄
+    </span>
+
+    <span>
+      Relatórios
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+
+    <span class="menu-icon">
+      📱
+    </span>
+
+    <span>
+      Pós Entrega
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+
+    <span class="menu-icon">
+      🔐
+    </span>
+
+    <span>
+      Usuários
+    </span>
+
+  </button>
+
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+
+    <span class="menu-icon">
+      ⚙️
+    </span>
+
+    <span>
+      Configurações
+    </span>
+
+  </button>
+
+</nav>
+
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
     </div>
 
-
-    <nav class="menu">
-
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
-
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('envios.html')"
-      >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pesquisar-nf.html')"
-      >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item active"
-      >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Importar Clientes
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-
-        <span class="menu-icon">
-          📋
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pos-entrega.html')"
-      >
-
-        <span class="menu-icon">
-          📱
-        </span>
-
-        <span>
-          Pós Entrega
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
-      </button>
-
-    </nav>
-
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
-        >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
-
-      </div>
-
-
-      <button
-        type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
-      >
-        🚪 SAIR DO SISTEMA
-      </button>
-
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
     </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+    🚪 SAIR DO SISTEMA
+  </button>
+
+</div>
+```
 
   </aside>
-
 
   <!-- =====================================================
        MAIN
@@ -1518,390 +1521,390 @@
 
   <main class="main">
 
+```
+<header class="header">
 
-    <header class="header">
+  <div>
+
+    <div class="header-title">
+      Importar Clientes
+    </div>
+
+    <div class="header-subtitle">
+      Importação de clientes do RADinfo para o BiriLog
+    </div>
+
+  </div>
+
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+
+<section class="content">
+
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+
+  <!-- =================================================
+       CARDS
+       ================================================= -->
+
+  <div class="cards">
+
+    <div class="card">
+
+      <div class="card-label">
+        Clientes no arquivo
+      </div>
+
+      <div
+        id="cardArquivo"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-label">
+        Cadastrados
+      </div>
+
+      <div
+        id="cardInseridos"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-label">
+        Atualizados
+      </div>
+
+      <div
+        id="cardAtualizados"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-label">
+        Ignorados
+      </div>
+
+      <div
+        id="cardIgnorados"
+        class="card-value"
+      >
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =================================================
+       UPLOAD
+       ================================================= -->
+
+  <div class="panel">
+
+    <div class="panel-header">
 
       <div>
 
-        <div class="header-title">
-          Importar Clientes
+        <div class="panel-title">
+          📂 ARQUIVO DO RADinfo
         </div>
 
-        <div class="header-subtitle">
-          Importação de clientes do RADinfo para o BiriLog
+        <div class="panel-subtitle">
+          Selecione o arquivo cliente 2026.xls
         </div>
 
       </div>
 
+    </div>
 
-      <div class="status-online">
 
-        <span class="status-dot"></span>
+    <div class="upload-area">
 
-        SISTEMA ONLINE
-
+      <div class="upload-icon">
+        📊
       </div>
 
-    </header>
+      <div class="upload-title">
+        SELECIONE O ARQUIVO EXCEL
+      </div>
+
+      <div class="upload-text">
+        Aceita arquivos .XLS e .XLSX
+      </div>
 
 
-    <section class="content">
+      <label
+        for="arquivoExcel"
+        class="btn btn-primary"
+      >
+        📁 SELECIONAR ARQUIVO
+      </label>
+
+
+      <input
+        type="file"
+        id="arquivoExcel"
+        accept=".xls,.xlsx"
+      >
 
 
       <div
-        id="mensagem"
-        class="mensagem"
+        id="arquivoInfo"
+        class="arquivo-info"
       ></div>
 
+    </div>
 
-      <!-- =================================================
-           CARDS
-           ================================================= -->
+  </div>
 
-      <div class="cards">
 
-        <div class="card">
+  <!-- =================================================
+       PRÉVIA
+       ================================================= -->
 
-          <div class="card-label">
-            Clientes no arquivo
-          </div>
+  <div
+    id="painelPrevia"
+    class="panel"
+    style="display:none;"
+  >
+
+    <div class="panel-header">
+
+      <div>
+
+        <div class="panel-title">
+          👀 PRÉVIA DA IMPORTAÇÃO
+        </div>
+
+        <div class="panel-subtitle">
+          Confira os primeiros registros antes de importar.
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          id="btnLimpar"
+          onclick="limparArquivo()"
+        >
+          🧹 LIMPAR
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-success"
+          id="btnImportar"
+          onclick="iniciarImportacao()"
+        >
+          🚀 IMPORTAR CLIENTES
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              CÓDIGO
+            </th>
+
+            <th>
+              CLIENTE
+            </th>
+
+            <th>
+              CIDADE
+            </th>
+
+            <th>
+              UF
+            </th>
+
+            <th>
+              TELEFONE
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody id="tabelaPrevia">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- PROGRESSO -->
+
+    <div
+      id="progressoArea"
+      class="progresso-area"
+    >
+
+      <div class="progresso-texto">
+
+        <span id="progressoTexto">
+          PREPARANDO...
+        </span>
+
+        <span id="progressoPorcentagem">
+          0%
+        </span>
+
+      </div>
+
+
+      <div class="barra">
+
+        <div
+          id="barraInterna"
+          class="barra-interna"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESULTADO -->
+
+    <div
+      id="resultadoImportacao"
+      class="resultado-importacao"
+    >
+
+      <h3>
+        ✅ RESULTADO DA IMPORTAÇÃO
+      </h3>
+
+
+      <div class="resultado-grid">
+
+        <div class="resultado-item">
 
           <div
-            id="cardArquivo"
-            class="card-value"
+            id="resultadoTotal"
+            class="resultado-numero"
           >
             0
           </div>
 
+          <div class="resultado-label">
+            Processados
+          </div>
+
         </div>
 
 
-        <div class="card">
+        <div class="resultado-item">
 
-          <div class="card-label">
+          <div
+            id="resultadoInseridos"
+            class="resultado-numero"
+          >
+            0
+          </div>
+
+          <div class="resultado-label">
             Cadastrados
           </div>
 
+        </div>
+
+
+        <div class="resultado-item">
+
           <div
-            id="cardInseridos"
-            class="card-value"
+            id="resultadoAtualizados"
+            class="resultado-numero"
           >
             0
           </div>
 
-        </div>
-
-
-        <div class="card">
-
-          <div class="card-label">
+          <div class="resultado-label">
             Atualizados
           </div>
 
+        </div>
+
+
+        <div class="resultado-item">
+
           <div
-            id="cardAtualizados"
-            class="card-value"
+            id="resultadoIgnorados"
+            class="resultado-numero"
           >
             0
           </div>
 
-        </div>
-
-
-        <div class="card">
-
-          <div class="card-label">
+          <div class="resultado-label">
             Ignorados
           </div>
 
-          <div
-            id="cardIgnorados"
-            class="card-value"
-          >
-            0
-          </div>
-
         </div>
 
       </div>
 
+    </div>
 
-      <!-- =================================================
-           UPLOAD
-           ================================================= -->
+  </div>
 
-      <div class="panel">
 
-        <div class="panel-header">
-
-          <div>
-
-            <div class="panel-title">
-              📂 ARQUIVO DO RADinfo
-            </div>
-
-            <div class="panel-subtitle">
-              Selecione o arquivo cliente 2026.xls
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="upload-area">
-
-          <div class="upload-icon">
-            📊
-          </div>
-
-          <div class="upload-title">
-            SELECIONE O ARQUIVO EXCEL
-          </div>
-
-          <div class="upload-text">
-            Aceita arquivos .XLS e .XLSX
-          </div>
-
-
-          <label
-            for="arquivoExcel"
-            class="btn btn-primary"
-          >
-            📁 SELECIONAR ARQUIVO
-          </label>
-
-
-          <input
-            type="file"
-            id="arquivoExcel"
-            accept=".xls,.xlsx"
-          >
-
-
-          <div
-            id="arquivoInfo"
-            class="arquivo-info"
-          ></div>
-
-        </div>
-
-      </div>
-
-
-      <!-- =================================================
-           PRÉVIA
-           ================================================= -->
-
-      <div
-        id="painelPrevia"
-        class="panel"
-        style="display:none;"
-      >
-
-        <div class="panel-header">
-
-          <div>
-
-            <div class="panel-title">
-              👀 PRÉVIA DA IMPORTAÇÃO
-            </div>
-
-            <div class="panel-subtitle">
-              Confira os primeiros registros antes de importar.
-            </div>
-
-          </div>
-
-
-          <div>
-
-            <button
-              type="button"
-              class="btn btn-secondary"
-              id="btnLimpar"
-              onclick="limparArquivo()"
-            >
-              🧹 LIMPAR
-            </button>
-
-
-            <button
-              type="button"
-              class="btn btn-success"
-              id="btnImportar"
-              onclick="iniciarImportacao()"
-            >
-              🚀 IMPORTAR CLIENTES
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <div class="table-wrapper">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  CÓDIGO
-                </th>
-
-                <th>
-                  CLIENTE
-                </th>
-
-                <th>
-                  CIDADE
-                </th>
-
-                <th>
-                  UF
-                </th>
-
-                <th>
-                  TELEFONE
-                </th>
-
-              </tr>
-
-            </thead>
-
-
-            <tbody id="tabelaPrevia">
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-
-        <!-- PROGRESSO -->
-
-        <div
-          id="progressoArea"
-          class="progresso-area"
-        >
-
-          <div class="progresso-texto">
-
-            <span id="progressoTexto">
-              PREPARANDO...
-            </span>
-
-            <span id="progressoPorcentagem">
-              0%
-            </span>
-
-          </div>
-
-
-          <div class="barra">
-
-            <div
-              id="barraInterna"
-              class="barra-interna"
-            ></div>
-
-          </div>
-
-        </div>
-
-
-        <!-- RESULTADO -->
-
-        <div
-          id="resultadoImportacao"
-          class="resultado-importacao"
-        >
-
-          <h3>
-            ✅ RESULTADO DA IMPORTAÇÃO
-          </h3>
-
-
-          <div class="resultado-grid">
-
-            <div class="resultado-item">
-
-              <div
-                id="resultadoTotal"
-                class="resultado-numero"
-              >
-                0
-              </div>
-
-              <div class="resultado-label">
-                Processados
-              </div>
-
-            </div>
-
-
-            <div class="resultado-item">
-
-              <div
-                id="resultadoInseridos"
-                class="resultado-numero"
-              >
-                0
-              </div>
-
-              <div class="resultado-label">
-                Cadastrados
-              </div>
-
-            </div>
-
-
-            <div class="resultado-item">
-
-              <div
-                id="resultadoAtualizados"
-                class="resultado-numero"
-              >
-                0
-              </div>
-
-              <div class="resultado-label">
-                Atualizados
-              </div>
-
-            </div>
-
-
-            <div class="resultado-item">
-
-              <div
-                id="resultadoIgnorados"
-                class="resultado-numero"
-              >
-                0
-              </div>
-
-              <div class="resultado-label">
-                Ignorados
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </section>
+</section>
+```
 
   </main>
-
 
   <script>
 
@@ -1934,6 +1937,19 @@
     let clientesExcel = [];
 
     let importacaoExecutando = false;
+
+
+    /*
+       Configurações de segurança da importação.
+    */
+
+    const TAMANHO_CONSULTA = 200;
+
+    const TAMANHO_LOTE = 50;
+
+    const MAX_TENTATIVAS = 3;
+
+    const TEMPO_LIMITE_REQUISICAO = 30000;
 
 
     /* =====================================================
@@ -2781,12 +2797,6 @@
       ).style.display =
         "none";
 
-
-      mostrarProgresso(
-        0,
-        "AGUARDANDO IMPORTAÇÃO..."
-      );
-
     }
 
 
@@ -2854,12 +2864,12 @@
         true;
 
 
-      botaoLimpar.disabled =
-        true;
-
-
       botao.textContent =
         "⏳ IMPORTANDO...";
+
+
+      botaoLimpar.disabled =
+        true;
 
 
       document.getElementById(
@@ -2885,12 +2895,16 @@
 
       try {
 
-        /*
-         =====================================================
-         ETAPA 1
-         VERIFICAR CLIENTES EXISTENTES
-         =====================================================
-        */
+        /* =================================================
+           ETAPA 1
+           VERIFICAR CLIENTES EXISTENTES
+           ================================================= */
+
+        mostrarProgresso(
+          0,
+          "VERIFICANDO CLIENTES EXISTENTES..."
+        );
+
 
         const codigos =
           clientesExcel.map(
@@ -2904,57 +2918,71 @@
           new Set();
 
 
-        /*
-         Agora usamos blocos de 1000.
-         A porcentagem também é atualizada
-         durante esta etapa.
-        */
-
-        const tamanhoConsulta =
-          1000;
-
-
         const totalConsultas =
           Math.ceil(
             codigos.length /
-            tamanhoConsulta
+            TAMANHO_CONSULTA
           );
 
 
         for (
           let inicio = 0;
           inicio < codigos.length;
-          inicio += tamanhoConsulta
+          inicio += TAMANHO_CONSULTA
         ) {
 
           const bloco =
             codigos.slice(
               inicio,
               inicio +
-              tamanhoConsulta
+              TAMANHO_CONSULTA
+            );
+
+
+          const numeroConsulta =
+            Math.floor(
+              inicio /
+              TAMANHO_CONSULTA
+            ) + 1;
+
+
+          const percentualVerificacao =
+            Math.round(
+              (
+                numeroConsulta /
+                totalConsultas
+              ) *
+              10
             );
 
 
           mostrarProgresso(
-            Math.round(
-              (
-                inicio /
-                codigos.length
-              ) *
-              20
+            Math.min(
+              percentualVerificacao,
+              10
             ),
-            "VERIFICANDO CLIENTES EXISTENTES..."
+            "VERIFICANDO CLIENTES EXISTENTES... " +
+            numeroConsulta +
+            "/" +
+            totalConsultas
           );
 
 
           const consulta =
-            await supabaseClient
-              .from("clientes")
-              .select("codigo")
-              .in(
-                "codigo",
-                bloco
-              );
+            await executarComTentativas(
+              async function() {
+
+                return await supabaseClient
+                  .from("clientes")
+                  .select("codigo")
+                  .in(
+                    "codigo",
+                    bloco
+                  );
+
+              },
+              "VERIFICAÇÃO DOS CLIENTES"
+            );
 
 
           if (
@@ -2990,33 +3018,8 @@
           );
 
 
-          const verificadas =
-            Math.min(
-              inicio +
-              bloco.length,
-              codigos.length
-            );
-
-
-          const progressoVerificacao =
-            Math.round(
-              (
-                verificadas /
-                codigos.length
-              ) *
-              20
-            );
-
-
-          mostrarProgresso(
-            progressoVerificacao,
-            "VERIFICANDO CLIENTES EXISTENTES..."
-          );
-
-
           /*
-             Pequena pausa para atualizar
-             visualmente a interface.
+             Pequena pausa para o navegador.
           */
 
           await esperar(50);
@@ -3024,29 +3027,37 @@
         }
 
 
-        /*
-         =====================================================
-         ETAPA 2
-         IMPORTAR / ATUALIZAR
-         =====================================================
-        */
+        /* =================================================
+           ETAPA 2
+           IMPORTAR CLIENTES
+           ================================================= */
 
-        const tamanhoLote =
-          250;
+        const totalLotes =
+          Math.ceil(
+            clientesExcel.length /
+            TAMANHO_LOTE
+          );
 
 
         for (
           let inicio = 0;
           inicio < clientesExcel.length;
-          inicio += tamanhoLote
+          inicio += TAMANHO_LOTE
         ) {
 
           const lote =
             clientesExcel.slice(
               inicio,
               inicio +
-              tamanhoLote
+              TAMANHO_LOTE
             );
+
+
+          const numeroLote =
+            Math.floor(
+              inicio /
+              TAMANHO_LOTE
+            ) + 1;
 
 
           const dados =
@@ -3081,21 +3092,74 @@
 
 
           /*
-             UPSERT:
-             código existente = atualiza
-             código novo = cadastra
+             De 10% até 100%.
           */
 
-          const resultado =
-            await supabaseClient
-              .from("clientes")
-              .upsert(
-                dados,
-                {
-                  onConflict:
-                    "codigo"
-                }
+          const percentualAntes =
+            Math.round(
+              10 +
+              (
+                processados /
+                clientesExcel.length
+              ) *
+              90
+            );
+
+
+          mostrarProgresso(
+            Math.min(
+              percentualAntes,
+              99
+            ),
+            "IMPORTANDO LOTE " +
+            numeroLote +
+            " DE " +
+            totalLotes +
+            "..."
+          );
+
+
+          let resultado;
+
+
+          try {
+
+            resultado =
+              await executarComTentativas(
+                async function() {
+
+                  return await supabaseClient
+                    .from("clientes")
+                    .upsert(
+                      dados,
+                      {
+                        onConflict:
+                          "codigo"
+                      }
+                    );
+
+                },
+                "IMPORTAÇÃO DO LOTE " +
+                numeroLote
               );
+
+          }
+
+          catch (erroLote) {
+
+            throw new Error(
+              "ERRO NO LOTE " +
+              numeroLote +
+              " DE " +
+              totalLotes +
+              ". " +
+              (
+                erroLote.message ||
+                "NÃO FOI POSSÍVEL GRAVAR OS CLIENTES."
+              )
+            );
+
+          }
 
 
           if (
@@ -3112,7 +3176,9 @@
 
               if (
                 existentes.has(
-                  cliente.codigo
+                  String(
+                    cliente.codigo
+                  )
                 )
               ) {
 
@@ -3131,27 +3197,30 @@
           );
 
 
-          /*
-             A importação ocupa de 20% até 100%.
-          */
-
-          const porcentagemImportacao =
-            20 +
+          const porcentagem =
             Math.round(
+              10 +
               (
                 processados /
                 clientesExcel.length
               ) *
-              80
+              90
             );
 
 
           mostrarProgresso(
             Math.min(
-              100,
-              porcentagemImportacao
+              porcentagem,
+              100
             ),
-            "IMPORTANDO CLIENTES..."
+            "IMPORTANDO CLIENTES... " +
+            processados.toLocaleString(
+              "pt-BR"
+            ) +
+            " DE " +
+            clientesExcel.length.toLocaleString(
+              "pt-BR"
+            )
           );
 
 
@@ -3162,16 +3231,18 @@
           );
 
 
-          await esperar(50);
+          /*
+             Pausa maior entre lotes.
+          */
+
+          await esperar(120);
 
         }
 
 
-        /*
-         =====================================================
-         FINALIZAÇÃO
-         =====================================================
-        */
+        /* =================================================
+           CONCLUÍDO
+           ================================================= */
 
         mostrarProgresso(
           100,
@@ -3262,14 +3333,228 @@
           false;
 
 
-        botaoLimpar.disabled =
-          false;
-
-
         botao.textContent =
           "🚀 IMPORTAR CLIENTES";
 
+
+        botaoLimpar.disabled =
+          false;
+
       }
+
+    }
+
+
+    /* =====================================================
+       REQUISIÇÃO COM TENTATIVAS
+       ===================================================== */
+
+    async function executarComTentativas(
+      funcao,
+      descricao
+    ) {
+
+      let ultimoErro = null;
+
+
+      for (
+        let tentativa = 1;
+        tentativa <= MAX_TENTATIVAS;
+        tentativa++
+      ) {
+
+        try {
+
+          const resultado =
+            await executarComTimeout(
+              funcao(),
+              TEMPO_LIMITE_REQUISICAO
+            );
+
+
+          /*
+             Se o Supabase retornou erro,
+             permitimos nova tentativa.
+          */
+
+          if (
+            resultado &&
+            resultado.error
+          ) {
+
+            ultimoErro =
+              resultado.error;
+
+
+            if (
+              tentativa <
+              MAX_TENTATIVAS
+            ) {
+
+              mostrarProgresso(
+                obterPorcentagemAtual(),
+                descricao +
+                " - TENTANDO NOVAMENTE (" +
+                (
+                  tentativa + 1
+                ) +
+                "/" +
+                MAX_TENTATIVAS +
+                ")..."
+              );
+
+
+              await esperar(
+                tentativa * 1000
+              );
+
+
+              continue;
+
+            }
+
+
+            return resultado;
+
+          }
+
+
+          return resultado;
+
+        }
+
+        catch (erro) {
+
+          ultimoErro =
+            erro;
+
+
+          console.warn(
+            descricao +
+            " - tentativa " +
+            tentativa +
+            ":",
+            erro
+          );
+
+
+          if (
+            tentativa <
+            MAX_TENTATIVAS
+          ) {
+
+            mostrarProgresso(
+              obterPorcentagemAtual(),
+              descricao +
+              " - TENTANDO NOVAMENTE (" +
+              (
+                tentativa + 1
+              ) +
+              "/" +
+              MAX_TENTATIVAS +
+              ")..."
+            );
+
+
+            await esperar(
+              tentativa * 1000
+            );
+
+          }
+
+        }
+
+      }
+
+
+      throw (
+        ultimoErro ||
+        new Error(
+          descricao +
+          " FALHOU."
+        )
+      );
+
+    }
+
+
+    /* =====================================================
+       TIMEOUT
+       ===================================================== */
+
+    function executarComTimeout(
+      promessa,
+      tempo
+    ) {
+
+      return Promise.race([
+
+        promessa,
+
+        new Promise(
+          function(
+            resolve,
+            reject
+          ) {
+
+            setTimeout(
+              function() {
+
+                reject(
+                  new Error(
+                    "A REQUISIÇÃO AO SUPABASE DEMOROU MAIS DE " +
+                    (
+                      tempo / 1000
+                    ) +
+                    " SEGUNDOS."
+                  )
+                );
+
+              },
+              tempo
+            );
+
+          }
+        )
+
+      ]);
+
+    }
+
+
+    /* =====================================================
+       PORCENTAGEM ATUAL
+       ===================================================== */
+
+    function obterPorcentagemAtual() {
+
+      const elemento =
+        document.getElementById(
+          "barraInterna"
+        );
+
+
+      if (!elemento) {
+        return 0;
+      }
+
+
+      const largura =
+        parseFloat(
+          elemento.style.width
+        );
+
+
+      if (
+        isNaN(largura)
+      ) {
+
+        return 0;
+
+      }
+
+
+      return largura;
 
     }
 
@@ -3283,37 +3568,61 @@
       texto
     ) {
 
-      const valor =
-        Math.max(
-          0,
-          Math.min(
-            100,
-            Number(
-              porcentagem
-            ) || 0
-          )
+      const barra =
+        document.getElementById(
+          "barraInterna"
         );
 
 
-      document.getElementById(
-        "barraInterna"
-      ).style.width =
-        valor +
-        "%";
+      const porcentagemElemento =
+        document.getElementById(
+          "progressoPorcentagem"
+        );
 
 
-      document.getElementById(
-        "progressoPorcentagem"
-      ).textContent =
-        valor +
-        "%";
+      const textoElemento =
+        document.getElementById(
+          "progressoTexto"
+        );
 
 
-      document.getElementById(
-        "progressoTexto"
-      ).textContent =
-        texto ||
-        "PROCESSANDO...";
+      if (barra) {
+
+        barra.style.width =
+          Math.max(
+            0,
+            Math.min(
+              100,
+              porcentagem
+            )
+          ) +
+          "%";
+
+      }
+
+
+      if (
+        porcentagemElemento
+      ) {
+
+        porcentagemElemento.textContent =
+          Math.round(
+            porcentagem
+          ) +
+          "%";
+
+      }
+
+
+      if (
+        textoElemento
+      ) {
+
+        textoElemento.textContent =
+          texto ||
+          "PROCESSANDO...";
+
+      }
 
     }
 
@@ -3546,11 +3855,33 @@
         if (
           texto.includes(
             "timeout"
+          ) ||
+          texto.includes(
+            "demorou mais"
           )
         ) {
 
           return (
-            "A IMPORTAÇÃO DEMOROU MAIS QUE O PERMITIDO. TENTE NOVAMENTE."
+            "O SUPABASE NÃO RESPONDEU A TEMPO. A IMPORTAÇÃO FOI INTERROMPIDA COM SEGURANÇA."
+          );
+
+        }
+
+
+        if (
+          texto.includes(
+            "failed to fetch"
+          ) ||
+          texto.includes(
+            "network"
+          ) ||
+          texto.includes(
+            "fetch"
+          )
+        ) {
+
+          return (
+            "HOUVE UMA FALHA DE COMUNICAÇÃO COM O SUPABASE. VERIFIQUE A CONEXÃO E TENTE NOVAMENTE."
           );
 
         }
@@ -3758,7 +4089,7 @@
               "none";
 
           },
-          7000
+          10000
         );
 
     }
