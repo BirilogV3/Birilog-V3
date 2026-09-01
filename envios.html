@@ -193,8 +193,7 @@ content="width=device-width, initial-scale=1.0"
       color:
         #94a3b8;
 
-      letter-spacing:
-        1px;
+      letter-spacing: 1px;
 
     }
 
@@ -225,8 +224,7 @@ content="width=device-width, initial-scale=1.0"
       color:
         #64748b;
 
-      letter-spacing:
-        1px;
+      letter-spacing: 1px;
 
     }
 
@@ -828,13 +826,6 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-    .linha:last-child {
-
-      margin-bottom:
-        0;
-
-    }
-
     .campo {
 
       display:
@@ -1051,7 +1042,7 @@ content="width=device-width, initial-scale=1.0"
         rgba(15,23,42,.12);
 
       max-height:
-        260px;
+        220px;
 
       overflow-y:
         auto;
@@ -1114,25 +1105,6 @@ content="width=device-width, initial-scale=1.0"
 
       color:
         #94a3b8;
-
-      font-weight:
-        500;
-
-    }
-
-    .cliente-cidade {
-
-      display:
-        block;
-
-      margin-top:
-        3px;
-
-      font-size:
-        9px;
-
-      color:
-        #64748b;
 
       font-weight:
         500;
@@ -1267,6 +1239,38 @@ content="width=device-width, initial-scale=1.0"
       box-shadow:
         0 5px 14px
         rgba(25,118,210,.20);
+
+    }
+
+    .btn-excluir {
+
+      background:
+        linear-gradient(
+          135deg,
+          #dc2626,
+          #b91c1c
+        );
+
+      color:
+        white;
+
+      min-width:
+        170px;
+
+      box-shadow:
+        0 5px 14px
+        rgba(220,38,38,.18);
+
+    }
+
+    .btn-excluir:hover {
+
+      background:
+        linear-gradient(
+          135deg,
+          #b91c1c,
+          #991b1b
+        );
 
     }
 
@@ -2223,6 +2227,17 @@ content="width=device-width, initial-scale=1.0"
 
       <button
         type="button"
+        id="btnExcluir"
+        class="btn btn-excluir"
+        onclick="excluirEnvio()"
+      >
+
+        🗑️ EXCLUIR ENVIO
+
+      </button>
+
+      <button
+        type="button"
         id="btnSalvar"
         class="btn btn-salvar"
         onclick="salvarEnvio()"
@@ -2269,9 +2284,6 @@ content="width=device-width, initial-scale=1.0"
 
     let transportadoraSelecionadaAtual =
       null;
-
-    let carregamentoClientesConcluido =
-      false;
 
     document.addEventListener(
       "DOMContentLoaded",
@@ -2414,190 +2426,66 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-      const nome =
-        document.getElementById(
-          "usuarioNome"
-        );
-
-      const email =
-        document.getElementById(
-          "usuarioEmail"
-        );
-
-      const perfil =
-        document.getElementById(
-          "usuarioPerfil"
-        );
-
-      if (nome) {
-
-        nome.textContent =
-          String(
-            usuarioAtual.nome ||
-            usuarioAtual.email ||
-            "USUÁRIO"
-          ).toUpperCase();
-
-      }
-
-      if (email) {
-
-        email.textContent =
+      document.getElementById(
+        "usuarioNome"
+      ).textContent =
+        String(
+          usuarioAtual.nome ||
           usuarioAtual.email ||
-          "-";
+          "USUÁRIO"
+        ).toUpperCase();
 
-      }
+      document.getElementById(
+        "usuarioEmail"
+      ).textContent =
+        usuarioAtual.email ||
+        "-";
 
-      if (perfil) {
-
-        perfil.textContent =
-          String(
-            usuarioAtual.perfil ||
-            "USUÁRIO"
-          ).toUpperCase();
-
-      }
+      document.getElementById(
+        "usuarioPerfil"
+      ).textContent =
+        String(
+          usuarioAtual.perfil ||
+          "USUÁRIO"
+        ).toUpperCase();
 
     }
 
-    /*
-     * =====================================================
-     * CARREGAMENTO DOS CLIENTES
-     * =====================================================
-     *
-     * O Supabase pode retornar no máximo 1.000 registros
-     * por consulta padrão.
-     *
-     * Por isso os clientes são carregados em páginas
-     * de 1.000 registros até que todos sejam obtidos.
-     */
-
     async function carregarClientes() {
 
-      try {
-
-        mostrarLoading(
-          "CARREGANDO CLIENTES..."
-        );
-
-        clientes = [];
-
-        const tamanhoPagina =
-          1000;
-
-        let inicio =
-          0;
-
-        let continuar =
-          true;
-
-        while (continuar) {
-
-          const fim =
-            inicio +
-            tamanhoPagina -
-            1;
-
-          const resultado =
-            await supabaseClient
-              .from("clientes")
-              .select(
-                "id,codigo,nome,cidade,uf"
-              )
-              .order(
-                "nome",
-                {
-                  ascending:
-                    true
-                }
-              )
-              .range(
-                inicio,
-                fim
-              );
-
-          if (
-            resultado.error
-          ) {
-
-            throw resultado.error;
-
-          }
-
-          const dados =
-            resultado.data ||
-            [];
-
-          if (
-            dados.length === 0
-          ) {
-
-            continuar =
-              false;
-
-            break;
-
-          }
-
-          clientes =
-            clientes.concat(
-              dados
-            );
-
-          if (
-            dados.length <
-            tamanhoPagina
-          ) {
-
-            continuar =
-              false;
-
-          }
-          else {
-
-            inicio +=
-              tamanhoPagina;
-
-          }
-
-        }
-
-        carregamentoClientesConcluido =
-          true;
-
-        console.log(
-          "CLIENTES CARREGADOS:",
-          clientes.length
-        );
-
-        if (
-          clientes.length === 0
-        ) {
-
-          console.warn(
-            "Nenhum cliente foi encontrado."
+      const resultado =
+        await supabaseClient
+          .from("clientes")
+          .select(
+            "id,codigo,nome,cidade,uf"
+          )
+          .order(
+            "nome",
+            {
+              ascending:
+                true
+            }
           );
 
-        }
-
-      }
-
-      catch (erro) {
+      if (
+        resultado.error
+      ) {
 
         console.error(
           "Erro ao carregar clientes:",
-          erro
+          resultado.error
         );
 
         clientes =
           [];
 
-        carregamentoClientesConcluido =
-          false;
-
-        throw erro;
+        return;
 
       }
+
+      clientes =
+        resultado.data ||
+        [];
 
     }
 
@@ -2611,207 +2499,139 @@ content="width=device-width, initial-scale=1.0"
         "resultadosClientes"
       );
 
-    if (campoCliente) {
+    campoCliente.addEventListener(
+      "input",
+      function() {
 
-      campoCliente.addEventListener(
-        "input",
-        function() {
+        const texto =
+          normalizarTexto(
+            campoCliente.value
+          );
 
-          const texto =
-            normalizarTexto(
-              campoCliente.value
-            );
+        clienteSelecionadoAtual =
+          null;
 
-          clienteSelecionadoAtual =
-            null;
+        document.getElementById(
+          "clienteSelecionado"
+        ).style.display =
+          "none";
 
-          const clienteSelecionado =
-            document.getElementById(
-              "clienteSelecionado"
-            );
+        resultadosClientes.innerHTML =
+          "";
 
-          if (clienteSelecionado) {
+        if (!texto) {
 
-            clienteSelecionado.style.display =
-              "none";
+          resultadosClientes.style.display =
+            "none";
 
-            clienteSelecionado.textContent =
-              "";
+          return;
 
-          }
+        }
+
+        const encontrados =
+          clientes.filter(
+            function(cliente) {
+
+              const nome =
+                normalizarTexto(
+                  cliente.nome
+                );
+
+              const codigo =
+                normalizarTexto(
+                  cliente.codigo
+                );
+
+              return (
+                nome.includes(texto) ||
+                codigo.includes(texto)
+              );
+
+            }
+          );
+
+        if (
+          encontrados.length === 0
+        ) {
 
           resultadosClientes.innerHTML =
-            "";
-
-          if (!texto) {
-
-            resultadosClientes.style.display =
-              "none";
-
-            return;
-
-          }
-
-          if (
-            !carregamentoClientesConcluido
-          ) {
-
-            resultadosClientes.innerHTML =
-              `
-                <div class="cliente-item">
-                  CARREGANDO CLIENTES...
-                </div>
-              `;
-
-            resultadosClientes.style.display =
-              "block";
-
-            return;
-
-          }
-
-          const encontrados =
-            clientes.filter(
-              function(cliente) {
-
-                const nome =
-                  normalizarTexto(
-                    cliente.nome
-                  );
-
-                const codigo =
-                  normalizarTexto(
-                    cliente.codigo
-                  );
-
-                const cidade =
-                  normalizarTexto(
-                    cliente.cidade
-                  );
-
-                return (
-                  nome.includes(texto) ||
-                  codigo.includes(texto) ||
-                  cidade.includes(texto)
-                );
-
-              }
-            );
-
-          if (
-            encontrados.length === 0
-          ) {
-
-            resultadosClientes.innerHTML =
-              `
-                <div class="cliente-item">
-                  NENHUM CLIENTE ENCONTRADO
-                </div>
-              `;
-
-            resultadosClientes.style.display =
-              "block";
-
-            return;
-
-          }
-
-          encontrados
-            .slice(0, 30)
-            .forEach(
-              function(cliente) {
-
-                const item =
-                  document.createElement(
-                    "div"
-                  );
-
-                item.className =
-                  "cliente-item";
-
-                const nome =
-                  String(
-                    cliente.nome ||
-                    ""
-                  )
-                  .trim()
-                  .toUpperCase();
-
-                const codigo =
-                  String(
-                    cliente.codigo ||
-                    ""
-                  )
-                  .trim()
-                  .toUpperCase();
-
-                const cidade =
-                  String(
-                    cliente.cidade ||
-                    ""
-                  )
-                  .trim()
-                  .toUpperCase();
-
-                const uf =
-                  String(
-                    cliente.uf ||
-                    ""
-                  )
-                  .trim()
-                  .toUpperCase();
-
-                item.innerHTML =
-                  `
-                    ${escapeHTML(nome)}
-
-                    <span
-                      class="cliente-codigo"
-                    >
-                      CÓDIGO:
-                      ${escapeHTML(
-                        codigo || "-"
-                      )}
-                    </span>
-
-                    <span
-                      class="cliente-cidade"
-                    >
-                      ${escapeHTML(
-                        cidade || "-"
-                      )}
-                      ${uf
-                        ? " - " +
-                          escapeHTML(uf)
-                        : ""}
-                    </span>
-                  `;
-
-                item.addEventListener(
-                  "click",
-                  function() {
-
-                    selecionarCliente(
-                      cliente
-                    );
-
-                  }
-                );
-
-                resultadosClientes.appendChild(
-                  item
-                );
-
-              }
-            );
+            `
+              <div class="cliente-item">
+                NENHUM CLIENTE ENCONTRADO
+              </div>
+            `;
 
           resultadosClientes.style.display =
             "block";
 
-        }
-      );
+          return;
 
-    }
+        }
+
+        encontrados
+          .slice(0, 20)
+          .forEach(
+            function(cliente) {
+
+              const item =
+                document.createElement(
+                  "div"
+                );
+
+              item.className =
+                "cliente-item";
+
+              const nome =
+                String(
+                  cliente.nome ||
+                  ""
+                )
+                .trim()
+                .toUpperCase();
+
+              const codigo =
+                String(
+                  cliente.codigo ||
+                  ""
+                )
+                .trim()
+                .toUpperCase();
+
+              item.innerHTML =
+                `
+                  ${escapeHTML(nome)}
+
+                  <span
+                    class="cliente-codigo"
+                  >
+                    CÓDIGO:
+                    ${escapeHTML(codigo)}
+                  </span>
+                `;
+
+              item.addEventListener(
+                "click",
+                function() {
+
+                  selecionarCliente(
+                    cliente
+                  );
+
+                }
+              );
+
+              resultadosClientes.appendChild(
+                item
+              );
+
+            }
+          );
+
+        resultadosClientes.style.display =
+          "block";
+
+      }
+    );
 
     function selecionarCliente(
       cliente
@@ -2834,12 +2654,8 @@ content="width=device-width, initial-scale=1.0"
         .trim()
         .toUpperCase();
 
-      if (campoCliente) {
-
-        campoCliente.value =
-          nome;
-
-      }
+      campoCliente.value =
+        nome;
 
       resultadosClientes.style.display =
         "none";
@@ -2849,16 +2665,12 @@ content="width=device-width, initial-scale=1.0"
           "clienteSelecionado"
         );
 
-      if (info) {
+      info.textContent =
+        "✅ CLIENTE SELECIONADO: " +
+        nome;
 
-        info.textContent =
-          "✅ CLIENTE SELECIONADO: " +
-          nome;
-
-        info.style.display =
-          "block";
-
-      }
+      info.style.display =
+        "block";
 
       if (
         cliente.uf
@@ -2869,9 +2681,7 @@ content="width=device-width, initial-scale=1.0"
         ).value =
           String(
             cliente.uf
-          )
-          .trim()
-          .toUpperCase();
+          ).toUpperCase();
 
       }
 
@@ -2884,9 +2694,7 @@ content="width=device-width, initial-scale=1.0"
         ).value =
           String(
             cliente.cidade
-          )
-          .trim()
-          .toUpperCase();
+          ).toUpperCase();
 
       }
 
@@ -2899,95 +2707,32 @@ content="width=device-width, initial-scale=1.0"
           "transportadora"
         );
 
-      try {
+      const resultado =
+        await supabaseClient
+          .from("transportadoras")
+          .select(
+            "id,nome"
+          )
+          .eq(
+            "ativo",
+            true
+          )
+          .order(
+            "nome",
+            {
+              ascending:
+                true
+            }
+          );
 
-        mostrarLoading(
-          "CARREGANDO TRANSPORTADORAS..."
-        );
-
-        const resultado =
-          await supabaseClient
-            .from("transportadoras")
-            .select(
-              "id,nome"
-            )
-            .eq(
-              "ativo",
-              true
-            )
-            .order(
-              "nome",
-              {
-                ascending:
-                  true
-              }
-            );
-
-        if (
-          resultado.error
-        ) {
-
-          throw resultado.error;
-
-        }
-
-        transportadoras =
-          resultado.data ||
-          [];
-
-        select.innerHTML =
-          '<option value="">SELECIONE</option>';
-
-        transportadoras.forEach(
-          function(transportadora) {
-
-            const option =
-              document.createElement(
-                "option"
-              );
-
-            option.value =
-              transportadora.id;
-
-            option.textContent =
-              String(
-                transportadora.nome ||
-                ""
-              )
-              .trim()
-              .toUpperCase();
-
-            select.appendChild(
-              option
-            );
-
-          }
-        );
-
-        if (
-          transportadoras.length === 0
-        ) {
-
-          select.innerHTML =
-            `
-              <option value="">
-                NENHUMA TRANSPORTADORA ATIVA
-              </option>
-            `;
-
-        }
-
-      }
-
-      catch (erro) {
+      if (
+        resultado.error
+      ) {
 
         console.error(
           "Erro ao carregar transportadoras:",
-          erro
+          resultado.error
         );
-
-        transportadoras =
-          [];
 
         select.innerHTML =
           `
@@ -2996,9 +2741,42 @@ content="width=device-width, initial-scale=1.0"
             </option>
           `;
 
-        throw erro;
+        return;
 
       }
+
+      transportadoras =
+        resultado.data ||
+        [];
+
+      select.innerHTML =
+        '<option value="">SELECIONE</option>';
+
+      transportadoras.forEach(
+        function(transportadora) {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+          option.value =
+            transportadora.id;
+
+          option.textContent =
+            String(
+              transportadora.nome ||
+              ""
+            )
+            .trim()
+            .toUpperCase();
+
+          select.appendChild(
+            option
+          );
+
+        }
+      );
 
     }
 
@@ -3033,14 +2811,6 @@ content="width=device-width, initial-scale=1.0"
         document.getElementById(
           "btnSalvar"
         );
-
-      if (
-        btn.disabled
-      ) {
-
-        return;
-
-      }
 
       const nf =
         String(
@@ -3200,12 +2970,6 @@ content="width=device-width, initial-scale=1.0"
           "erro"
         );
 
-        document
-          .getElementById(
-            "uf"
-          )
-          .focus();
-
         return;
 
       }
@@ -3217,12 +2981,6 @@ content="width=device-width, initial-scale=1.0"
           "erro"
         );
 
-        document
-          .getElementById(
-            "cidade"
-          )
-          .focus();
-
         return;
 
       }
@@ -3233,12 +2991,6 @@ content="width=device-width, initial-scale=1.0"
           "SELECIONE A TRANSPORTADORA.",
           "erro"
         );
-
-        document
-          .getElementById(
-            "transportadora"
-          )
-          .focus();
 
         return;
 
@@ -3260,8 +3012,7 @@ content="width=device-width, initial-scale=1.0"
           : 1;
 
       if (
-        Number.isNaN(valor) ||
-        valor < 0
+        Number.isNaN(valor)
       ) {
 
         mostrarMensagem(
@@ -3274,8 +3025,7 @@ content="width=device-width, initial-scale=1.0"
       }
 
       if (
-        Number.isNaN(peso) ||
-        peso < 0
+        Number.isNaN(peso)
       ) {
 
         mostrarMensagem(
@@ -3466,6 +3216,163 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
+    async function excluirEnvio() {
+
+      const btn =
+        document.getElementById(
+          "btnExcluir"
+        );
+
+      const nf =
+        String(
+          document.getElementById(
+            "nf"
+          ).value ||
+          ""
+        )
+        .trim()
+        .toUpperCase();
+
+      if (!nf) {
+
+        mostrarMensagem(
+          "INFORME O NÚMERO DA NF QUE DESEJA EXCLUIR.",
+          "erro"
+        );
+
+        document
+          .getElementById("nf")
+          .focus();
+
+        return;
+
+      }
+
+      const confirmar =
+        window.confirm(
+          "ATENÇÃO!\n\n" +
+          "DESEJA REALMENTE EXCLUIR O ENVIO DA NF " +
+          nf +
+          "?\n\n" +
+          "ESSA AÇÃO NÃO PODERÁ SER DESFEITA."
+        );
+
+      if (!confirmar) {
+
+        return;
+
+      }
+
+      btn.disabled =
+        true;
+
+      btn.textContent =
+        "🔄 EXCLUINDO...";
+
+      mostrarMensagem(
+        "EXCLUINDO ENVIO DA NF " +
+        nf +
+        "...",
+        "info"
+      );
+
+      try {
+
+        const consulta =
+          await supabaseClient
+            .from("envios")
+            .select(
+              "id,nf"
+            )
+            .eq(
+              "nf",
+              nf
+            )
+            .limit(
+              1
+            );
+
+        if (
+          consulta.error
+        ) {
+
+          throw consulta.error;
+
+        }
+
+        if (
+          !consulta.data ||
+          consulta.data.length === 0
+        ) {
+
+          mostrarMensagem(
+            "A NF " +
+            nf +
+            " NÃO FOI ENCONTRADA.",
+            "erro"
+          );
+
+          return;
+
+        }
+
+        const idEnvio =
+          consulta.data[0].id;
+
+        const exclusao =
+          await supabaseClient
+            .from("envios")
+            .delete()
+            .eq(
+              "id",
+              idEnvio
+            );
+
+        if (
+          exclusao.error
+        ) {
+
+          throw exclusao.error;
+
+        }
+
+        mostrarMensagem(
+          "🗑️ ENVIO DA NF " +
+          nf +
+          " EXCLUÍDO COM SUCESSO.",
+          "sucesso"
+        );
+
+        limparCampos(false);
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao excluir envio:",
+          erro
+        );
+
+        mostrarMensagem(
+          obterMensagemErroExclusao(erro),
+          "erro"
+        );
+
+      }
+
+      finally {
+
+        btn.disabled =
+          false;
+
+        btn.textContent =
+          "🗑️ EXCLUIR ENVIO";
+
+      }
+
+    }
+
     function limparCampos(
       esconder = true
     ) {
@@ -3592,21 +3499,14 @@ content="width=device-width, initial-scale=1.0"
           "0"
         );
 
-      const campo =
-        document.getElementById(
-          "dataEnvio"
-        );
-
-      if (campo) {
-
-        campo.value =
-          ano +
-          "-" +
-          mes +
-          "-" +
-          dia;
-
-      }
+      document.getElementById(
+        "dataEnvio"
+      ).value =
+        ano +
+        "-" +
+        mes +
+        "-" +
+        dia;
 
     }
 
@@ -3872,6 +3772,51 @@ content="width=device-width, initial-scale=1.0"
 
         }
 
+        return mensagem.toUpperCase();
+
+      }
+
+      return (
+        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+      );
+
+    }
+
+    function obterMensagemErroExclusao(
+      erro
+    ) {
+
+      if (
+        erro &&
+        erro.message
+      ) {
+
+        const mensagem =
+          String(
+            erro.message
+          );
+
+        const texto =
+          mensagem.toLowerCase();
+
+        if (
+          texto.includes(
+            "row-level security"
+          ) ||
+          texto.includes(
+            "permission denied"
+          ) ||
+          texto.includes(
+            "not allowed"
+          )
+        ) {
+
+          return (
+            "VOCÊ NÃO POSSUI PERMISSÃO PARA EXCLUIR ENVIOS."
+          );
+
+        }
+
         if (
           texto.includes(
             "foreign key"
@@ -3879,7 +3824,20 @@ content="width=device-width, initial-scale=1.0"
         ) {
 
           return (
-            "O CLIENTE OU A TRANSPORTADORA INFORMADA NÃO FOI ENCONTRADO NO BANCO DE DADOS."
+            "NÃO FOI POSSÍVEL EXCLUIR ESTE ENVIO PORQUE EXISTEM DADOS RELACIONADOS A ELE."
+          );
+
+        }
+
+        if (
+          texto.includes(
+            "does not exist"
+          )
+        ) {
+
+          return (
+            "A ESTRUTURA DO BANCO DE DADOS NÃO PERMITE ESTA EXCLUSÃO: " +
+            mensagem.toUpperCase()
           );
 
         }
@@ -3889,7 +3847,7 @@ content="width=device-width, initial-scale=1.0"
       }
 
       return (
-        "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
+        "NÃO FOI POSSÍVEL EXCLUIR O ENVIO."
       );
 
     }
