@@ -1,16 +1,15 @@
+```html
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
 
   <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BiriLog V3 - Pesquisar NF</title>
 
@@ -705,6 +704,20 @@ content="width=device-width, initial-scale=1.0"
       border: 1px solid #cbd5e1;
     }
 
+    /* =====================================================
+       BOTÃO EXCLUIR
+       ===================================================== */
+
+    .btn-excluir {
+      background: linear-gradient(135deg, #b91c1c, #dc2626);
+      color: white;
+      box-shadow: 0 5px 14px rgba(220,38,38,0.20);
+    }
+
+    .btn-excluir:hover {
+      background: linear-gradient(135deg, #991b1b, #b91c1c);
+    }
+
     .modo-edicao {
       display: none;
     }
@@ -954,22 +967,21 @@ content="width=device-width, initial-scale=1.0"
     class="loading"
   >
 
-```
-<div class="loading-box">
+    <div class="loading-box">
 
-  <div class="spinner"></div>
+      <div class="spinner"></div>
 
-  <div
-    id="loadingText"
-    class="loading-text"
-  >
-    CARREGANDO...
-  </div>
+      <div
+        id="loadingText"
+        class="loading-text"
+      >
+        CARREGANDO...
+      </div>
 
-</div>
-```
+    </div>
 
   </div>
+
 
   <!-- =====================================================
        SIDEBAR
@@ -977,228 +989,227 @@ content="width=device-width, initial-scale=1.0"
 
   <aside class="sidebar">
 
-```
-<div class="logo-area">
+    <div class="logo-area">
 
-  <div class="logo-icon">
-    🚚
-  </div>
+      <div class="logo-icon">
+        🚚
+      </div>
 
-  <div class="logo-title">
-    Biri<span>Log</span>
-  </div>
+      <div class="logo-title">
+        Biri<span>Log</span>
+      </div>
 
-  <div class="logo-version">
-    SISTEMA V3.0
-  </div>
+      <div class="logo-version">
+        SISTEMA V3.0
+      </div>
 
-</div>
-
-
-<nav class="menu">
-
-  <div class="menu-title">
-    MENU PRINCIPAL
-  </div>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('dashboard.html')"
-  >
-
-    <span class="menu-icon">
-      📊
-    </span>
-
-    <span>
-      Dashboard
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('envios.html')"
-  >
-
-    <span class="menu-icon">
-      📦
-    </span>
-
-    <span>
-      Envios
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item active"
-  >
-
-    <span class="menu-icon">
-      🔎
-    </span>
-
-    <span>
-      Pesquisar NF
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('clientes.html')"
-  >
-
-    <span class="menu-icon">
-      👥
-    </span>
-
-    <span>
-      Clientes
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('transportadoras.html')"
-  >
-
-    <span class="menu-icon">
-      🚛
-    </span>
-
-    <span>
-      Transportadoras
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('relatorios.html')"
-  >
-
-    <span class="menu-icon">
-      📄
-    </span>
-
-    <span>
-      Relatórios
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('pos-entrega.html')"
-  >
-
-    <span class="menu-icon">
-      📱
-    </span>
-
-    <span>
-      Pós-Entrega
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('usuarios.html')"
-  >
-
-    <span class="menu-icon">
-      🔐
-    </span>
-
-    <span>
-      Usuários
-    </span>
-
-  </button>
-
-
-  <button
-    type="button"
-    class="menu-item"
-    onclick="irPara('configuracoes.html')"
-  >
-
-    <span class="menu-icon">
-      ⚙️
-    </span>
-
-    <span>
-      Configurações
-    </span>
-
-  </button>
-
-</nav>
-
-
-<div class="user-area">
-
-  <div class="user-card">
-
-    <div
-      id="usuarioNome"
-      class="user-name"
-    >
-      USUÁRIO
     </div>
 
-    <div
-      id="usuarioEmail"
-      class="user-email"
-    >
-      -
+
+    <nav class="menu">
+
+      <div class="menu-title">
+        MENU PRINCIPAL
+      </div>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('dashboard.html')"
+      >
+
+        <span class="menu-icon">
+          📊
+        </span>
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('envios.html')"
+      >
+
+        <span class="menu-icon">
+          📦
+        </span>
+
+        <span>
+          Envios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item active"
+      >
+
+        <span class="menu-icon">
+          🔎
+        </span>
+
+        <span>
+          Pesquisar NF
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('clientes.html')"
+      >
+
+        <span class="menu-icon">
+          👥
+        </span>
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('transportadoras.html')"
+      >
+
+        <span class="menu-icon">
+          🚛
+        </span>
+
+        <span>
+          Transportadoras
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('relatorios.html')"
+      >
+
+        <span class="menu-icon">
+          📄
+        </span>
+
+        <span>
+          Relatórios
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('pos-entrega.html')"
+      >
+
+        <span class="menu-icon">
+          📱
+        </span>
+
+        <span>
+          Pós-Entrega
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('usuarios.html')"
+      >
+
+        <span class="menu-icon">
+          🔐
+        </span>
+
+        <span>
+          Usuários
+        </span>
+
+      </button>
+
+
+      <button
+        type="button"
+        class="menu-item"
+        onclick="irPara('configuracoes.html')"
+      >
+
+        <span class="menu-icon">
+          ⚙️
+        </span>
+
+        <span>
+          Configurações
+        </span>
+
+      </button>
+
+    </nav>
+
+
+    <div class="user-area">
+
+      <div class="user-card">
+
+        <div
+          id="usuarioNome"
+          class="user-name"
+        >
+          USUÁRIO
+        </div>
+
+        <div
+          id="usuarioEmail"
+          class="user-email"
+        >
+          -
+        </div>
+
+        <div
+          id="usuarioPerfil"
+          class="user-profile"
+        >
+          PERFIL
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="logout"
+        id="botaoSair"
+        onclick="sair()"
+      >
+
+        🚪 SAIR DO SISTEMA
+
+      </button>
+
     </div>
-
-    <div
-      id="usuarioPerfil"
-      class="user-profile"
-    >
-      PERFIL
-    </div>
-
-  </div>
-
-
-  <button
-    type="button"
-    class="logout"
-    id="botaoSair"
-    onclick="sair()"
-  >
-
-    🚪 SAIR DO SISTEMA
-
-  </button>
-
-</div>
-```
 
   </aside>
+
 
   <!-- =====================================================
        MAIN
@@ -1206,263 +1217,95 @@ content="width=device-width, initial-scale=1.0"
 
   <main class="main">
 
-```
-<header class="header">
+    <header class="header">
 
-  <div>
+      <div>
 
-    <div class="header-title">
-      Pesquisar NF
-    </div>
-
-    <div class="header-subtitle">
-      Consulte e altere os dados completos de um envio
-    </div>
-
-  </div>
-
-
-  <div class="status-online">
-
-    <span class="status-dot"></span>
-
-    SISTEMA ONLINE
-
-  </div>
-
-</header>
-
-
-<section class="content">
-
-  <div
-    id="mensagem"
-    class="mensagem"
-  ></div>
-
-
-  <div class="page-title">
-
-    <h1>
-      🔎 PESQUISA DE NOTA FISCAL
-    </h1>
-
-    <p>
-      Informe a NF para consultar ou editar os dados completos do envio.
-    </p>
-
-  </div>
-
-
-  <!-- =================================================
-       PESQUISA
-       ================================================= -->
-
-  <div class="panel">
-
-    <div class="panel-title">
-      Consultar Nota Fiscal
-    </div>
-
-    <div class="panel-subtitle">
-      A pesquisa é feita diretamente no banco de dados do BiriLog.
-    </div>
-
-
-    <div class="pesquisa-area">
-
-      <div class="campo-pesquisa">
-
-        <span class="icone-pesquisa">
-          🔎
-        </span>
-
-        <input
-          type="text"
-          id="campoNF"
-          placeholder="DIGITE O NÚMERO DA NF"
-          autocomplete="off"
-          inputmode="numeric"
-        >
-
-      </div>
-
-
-      <button
-        type="button"
-        class="btn-pesquisar"
-        id="btnPesquisar"
-        onclick="pesquisarNF()"
-      >
-
-        🔎 PESQUISAR NF
-
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- =================================================
-       RESULTADO
-       ================================================= -->
-
-  <div
-    id="resultado"
-    class="resultado"
-  >
-
-    <div class="panel">
-
-      <div class="resultado-header">
-
-        <div>
-
-          <div
-            id="resultadoTitulo"
-            class="resultado-titulo"
-          >
-            ENVIO ENCONTRADO
-          </div>
-
-          <div
-            id="resultadoNF"
-            class="resultado-nf"
-          >
-            NF -
-          </div>
-
+        <div class="header-title">
+          Pesquisar NF
         </div>
 
-
-        <div
-          id="resultadoStatus"
-          class="status status-padrao"
-        >
-          SEM STATUS
+        <div class="header-subtitle">
+          Consulte, altere ou exclua os dados completos de um envio
         </div>
 
       </div>
 
 
-      <!-- =============================================
-           AVISO EDIÇÃO
-           ============================================= -->
+      <div class="status-online">
+
+        <span class="status-dot"></span>
+
+        SISTEMA ONLINE
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
 
       <div
-        id="avisoEdicao"
-        class="aviso-edicao"
-      >
-        ✏️ MODO DE EDIÇÃO ATIVADO. ALTERE OS CAMPOS NECESSÁRIOS E CLIQUE EM SALVAR ALTERAÇÕES.
+        id="mensagem"
+        class="mensagem"
+      ></div>
+
+
+      <div class="page-title">
+
+        <h1>
+          🔎 PESQUISA DE NOTA FISCAL
+        </h1>
+
+        <p>
+          Informe a NF para consultar, editar ou excluir os dados completos do envio.
+        </p>
+
       </div>
 
 
-      <!-- =============================================
-           MODO CONSULTA
-           ============================================= -->
+      <!-- =================================================
+           PESQUISA
+           ================================================= -->
 
-      <div
-        id="modoConsulta"
-        class="modo-consulta"
-      >
+      <div class="panel">
 
-        <div class="info-grid">
+        <div class="panel-title">
+          Consultar Nota Fiscal
+        </div>
 
-          <div class="info-box">
-            <div class="info-label">Cliente</div>
-            <div id="infoCliente" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Cidade</div>
-            <div id="infoCidade" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">UF</div>
-            <div id="infoUF" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Transportadora</div>
-            <div id="infoTransportadora" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Valor da NF</div>
-            <div id="infoValor" class="info-value">R$ 0,00</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Volumes</div>
-            <div id="infoVolumes" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Peso</div>
-            <div id="infoPeso" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Data de Envio</div>
-            <div id="infoDataEnvio" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Previsão</div>
-            <div id="infoPrevisao" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Data de Entrega</div>
-            <div id="infoDataEntrega" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">Última Atualização</div>
-            <div id="infoAtualizacao" class="info-value">-</div>
-          </div>
-
-          <div class="info-box">
-            <div class="info-label">ID do Registro</div>
-            <div id="infoID" class="info-value">-</div>
-          </div>
-
+        <div class="panel-subtitle">
+          A pesquisa é feita diretamente no banco de dados do BiriLog.
         </div>
 
 
-        <div
-          id="alertaEntrega"
-          class="alerta-entrega"
-        ></div>
+        <div class="pesquisa-area">
 
+          <div class="campo-pesquisa">
 
-        <div class="observacao-box">
+            <span class="icone-pesquisa">
+              🔎
+            </span>
 
-          <div class="observacao-label">
-            Observação
+            <input
+              type="text"
+              id="campoNF"
+              placeholder="DIGITE O NÚMERO DA NF"
+              autocomplete="off"
+              inputmode="numeric"
+            >
+
           </div>
 
-          <div
-            id="infoObservacao"
-            class="observacao-texto"
-          >
-            -
-          </div>
-
-        </div>
-
-
-        <div class="acoes-envio">
 
           <button
             type="button"
-            class="btn btn-editar"
-            onclick="ativarEdicao()"
+            class="btn-pesquisar"
+            id="btnPesquisar"
+            onclick="pesquisarNF()"
           >
 
-            ✏️ EDITAR ENVIO
+            🔎 PESQUISAR NF
 
           </button>
 
@@ -1471,397 +1314,541 @@ content="width=device-width, initial-scale=1.0"
       </div>
 
 
-      <!-- =============================================
-           MODO EDIÇÃO
-           ============================================= -->
+      <!-- =================================================
+           RESULTADO
+           ================================================= -->
 
       <div
-        id="modoEdicao"
-        class="modo-edicao"
+        id="resultado"
+        class="resultado"
       >
 
-        <div class="info-grid">
+        <div class="panel">
 
-          <!-- NF -->
+          <div class="resultado-header">
 
-          <div class="info-box">
+            <div>
 
-            <div class="info-label">
-              Número da NF
+              <div
+                id="resultadoTitulo"
+                class="resultado-titulo"
+              >
+                ENVIO ENCONTRADO
+              </div>
+
+              <div
+                id="resultadoNF"
+                class="resultado-nf"
+              >
+                NF -
+              </div>
+
             </div>
 
-            <input
-              type="text"
-              id="editNF"
-              class="campo-edicao"
-              autocomplete="off"
+
+            <div
+              id="resultadoStatus"
+              class="status status-padrao"
             >
-
-          </div>
-
-
-          <!-- CLIENTE -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Cliente
+              SEM STATUS
             </div>
 
-            <select
-              id="editCliente"
-              class="campo-edicao"
-            >
-
-              <option value="">
-                CARREGANDO CLIENTES...
-              </option>
-
-            </select>
-
           </div>
 
 
-          <!-- CIDADE -->
+          <!-- =============================================
+               AVISO EDIÇÃO
+               ============================================= -->
 
-          <div class="info-box">
-
-            <div class="info-label">
-              Cidade
-            </div>
-
-            <input
-              type="text"
-              id="editCidade"
-              class="campo-edicao"
-              autocomplete="off"
-            >
-
+          <div
+            id="avisoEdicao"
+            class="aviso-edicao"
+          >
+            ✏️ MODO DE EDIÇÃO ATIVADO. ALTERE OS CAMPOS NECESSÁRIOS E CLIQUE EM SALVAR ALTERAÇÕES.
           </div>
 
 
-          <!-- UF -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              UF
-            </div>
-
-            <input
-              type="text"
-              id="editUF"
-              class="campo-edicao"
-              maxlength="2"
-              autocomplete="off"
-            >
-
-          </div>
-
-
-          <!-- TRANSPORTADORA -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Transportadora
-            </div>
-
-            <select
-              id="editTransportadora"
-              class="campo-edicao"
-            >
-
-              <option value="">
-                CARREGANDO TRANSPORTADORAS...
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <!-- VALOR -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Valor da NF
-            </div>
-
-            <input
-              type="number"
-              id="editValor"
-              class="campo-edicao"
-              step="0.01"
-              min="0"
-            >
-
-          </div>
-
-
-          <!-- VOLUMES -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Volumes
-            </div>
-
-            <input
-              type="number"
-              id="editVolumes"
-              class="campo-edicao"
-              min="1"
-              step="1"
-            >
-
-          </div>
-
-
-          <!-- PESO -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Peso
-            </div>
-
-            <input
-              type="number"
-              id="editPeso"
-              class="campo-edicao"
-              min="0"
-              step="0.01"
-            >
-
-          </div>
-
-
-          <!-- DATA ENVIO -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Data de Envio
-            </div>
-
-            <input
-              type="date"
-              id="editDataEnvio"
-              class="campo-edicao"
-            >
-
-          </div>
-
-
-          <!-- PREVISÃO -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Previsão
-            </div>
-
-            <input
-              type="date"
-              id="editPrevisao"
-              class="campo-edicao"
-            >
-
-          </div>
-
-
-          <!-- STATUS -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Status
-            </div>
-
-            <select
-              id="editStatus"
-              class="campo-edicao"
-            >
-
-              <option value="COLETADO">
-                📦 COLETADO
-              </option>
-
-              <option value="EM TRANSITO">
-                🚚 EM TRÂNSITO
-              </option>
-
-              <option value="ENTREGUE">
-                ✅ ENTREGUE
-              </option>
-
-              <option value="ATRASADO">
-                ⚠️ ATRASADO
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <!-- DATA ENTREGA -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Data de Entrega
-            </div>
-
-            <input
-              type="date"
-              id="editDataEntrega"
-              class="campo-edicao"
-            >
-
-          </div>
-
-
-          <!-- CONFIRMAÇÃO -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Confirmação de Entrega
-            </div>
-
-            <input
-              type="text"
-              id="editConfirmacao"
-              class="campo-edicao"
-              autocomplete="off"
-            >
-
-          </div>
-
-
-          <!-- DATA CONTATO -->
-
-          <div class="info-box">
-
-            <div class="info-label">
-              Data de Contato
-            </div>
-
-            <input
-              type="datetime-local"
-              id="editDataContato"
-              class="campo-edicao"
-            >
-
-          </div>
-
-
-        </div>
-
-
-        <!-- OBSERVAÇÃO -->
-
-        <div class="observacao-box">
-
-          <div class="observacao-label">
-            Observação
-          </div>
-
-          <textarea
-            id="editObservacao"
-            class="campo-edicao"
-            placeholder="DIGITE UMA OBSERVAÇÃO..."
-          ></textarea>
-
-        </div>
-
-
-        <!-- OBSERVAÇÃO CONTATO -->
-
-        <div class="observacao-box">
-
-          <div class="observacao-label">
-            Observação do Contato
-          </div>
-
-          <textarea
-            id="editObservacaoContato"
-            class="campo-edicao"
-            placeholder="DIGITE UMA OBSERVAÇÃO SOBRE O CONTATO..."
-          ></textarea>
-
-        </div>
-
-
-        <!-- AÇÕES -->
-
-        <div class="acoes-envio">
-
-          <button
-            type="button"
-            class="btn btn-cancelar"
-            id="btnCancelar"
-            onclick="cancelarEdicao()"
+          <!-- =============================================
+               MODO CONSULTA
+               ============================================= -->
+
+          <div
+            id="modoConsulta"
+            class="modo-consulta"
           >
 
-            ↩️ CANCELAR
+            <div class="info-grid">
 
-          </button>
+              <div class="info-box">
+                <div class="info-label">Cliente</div>
+                <div id="infoCliente" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Cidade</div>
+                <div id="infoCidade" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">UF</div>
+                <div id="infoUF" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Transportadora</div>
+                <div id="infoTransportadora" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Valor da NF</div>
+                <div id="infoValor" class="info-value">R$ 0,00</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Volumes</div>
+                <div id="infoVolumes" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Peso</div>
+                <div id="infoPeso" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Data de Envio</div>
+                <div id="infoDataEnvio" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Previsão</div>
+                <div id="infoPrevisao" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Data de Entrega</div>
+                <div id="infoDataEntrega" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">Última Atualização</div>
+                <div id="infoAtualizacao" class="info-value">-</div>
+              </div>
+
+              <div class="info-box">
+                <div class="info-label">ID do Registro</div>
+                <div id="infoID" class="info-value">-</div>
+              </div>
+
+            </div>
 
 
-          <button
-            type="button"
-            class="btn btn-salvar"
-            id="btnSalvar"
-            onclick="salvarAlteracoes()"
+            <div
+              id="alertaEntrega"
+              class="alerta-entrega"
+            ></div>
+
+
+            <div class="observacao-box">
+
+              <div class="observacao-label">
+                Observação
+              </div>
+
+              <div
+                id="infoObservacao"
+                class="observacao-texto"
+              >
+                -
+              </div>
+
+            </div>
+
+
+            <div class="acoes-envio">
+
+              <button
+                type="button"
+                class="btn btn-editar"
+                onclick="ativarEdicao()"
+              >
+
+                ✏️ EDITAR ENVIO
+
+              </button>
+
+
+              <button
+                type="button"
+                class="btn btn-excluir"
+                id="btnExcluir"
+                onclick="excluirEnvio()"
+              >
+
+                🗑️ EXCLUIR ENVIO
+
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- =============================================
+               MODO EDIÇÃO
+               ============================================= -->
+
+          <div
+            id="modoEdicao"
+            class="modo-edicao"
           >
 
-            💾 SALVAR ALTERAÇÕES
+            <div class="info-grid">
 
-          </button>
+              <div class="info-box">
+
+                <div class="info-label">
+                  Número da NF
+                </div>
+
+                <input
+                  type="text"
+                  id="editNF"
+                  class="campo-edicao"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Cliente
+                </div>
+
+                <select
+                  id="editCliente"
+                  class="campo-edicao"
+                >
+
+                  <option value="">
+                    CARREGANDO CLIENTES...
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Cidade
+                </div>
+
+                <input
+                  type="text"
+                  id="editCidade"
+                  class="campo-edicao"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  UF
+                </div>
+
+                <input
+                  type="text"
+                  id="editUF"
+                  class="campo-edicao"
+                  maxlength="2"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Transportadora
+                </div>
+
+                <select
+                  id="editTransportadora"
+                  class="campo-edicao"
+                >
+
+                  <option value="">
+                    CARREGANDO TRANSPORTADORAS...
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Valor da NF
+                </div>
+
+                <input
+                  type="number"
+                  id="editValor"
+                  class="campo-edicao"
+                  step="0.01"
+                  min="0"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Volumes
+                </div>
+
+                <input
+                  type="number"
+                  id="editVolumes"
+                  class="campo-edicao"
+                  min="1"
+                  step="1"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Peso
+                </div>
+
+                <input
+                  type="number"
+                  id="editPeso"
+                  class="campo-edicao"
+                  min="0"
+                  step="0.01"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Data de Envio
+                </div>
+
+                <input
+                  type="date"
+                  id="editDataEnvio"
+                  class="campo-edicao"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Previsão
+                </div>
+
+                <input
+                  type="date"
+                  id="editPrevisao"
+                  class="campo-edicao"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Status
+                </div>
+
+                <select
+                  id="editStatus"
+                  class="campo-edicao"
+                >
+
+                  <option value="COLETADO">
+                    📦 COLETADO
+                  </option>
+
+                  <option value="EM TRANSITO">
+                    🚚 EM TRÂNSITO
+                  </option>
+
+                  <option value="ENTREGUE">
+                    ✅ ENTREGUE
+                  </option>
+
+                  <option value="ATRASADO">
+                    ⚠️ ATRASADO
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Data de Entrega
+                </div>
+
+                <input
+                  type="date"
+                  id="editDataEntrega"
+                  class="campo-edicao"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Confirmação de Entrega
+                </div>
+
+                <input
+                  type="text"
+                  id="editConfirmacao"
+                  class="campo-edicao"
+                  autocomplete="off"
+                >
+
+              </div>
+
+
+              <div class="info-box">
+
+                <div class="info-label">
+                  Data de Contato
+                </div>
+
+                <input
+                  type="datetime-local"
+                  id="editDataContato"
+                  class="campo-edicao"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="observacao-box">
+
+              <div class="observacao-label">
+                Observação
+              </div>
+
+              <textarea
+                id="editObservacao"
+                class="campo-edicao"
+                placeholder="DIGITE UMA OBSERVAÇÃO..."
+              ></textarea>
+
+            </div>
+
+
+            <div class="observacao-box">
+
+              <div class="observacao-label">
+                Observação do Contato
+              </div>
+
+              <textarea
+                id="editObservacaoContato"
+                class="campo-edicao"
+                placeholder="DIGITE UMA OBSERVAÇÃO SOBRE O CONTATO..."
+              ></textarea>
+
+            </div>
+
+
+            <div class="acoes-envio">
+
+              <button
+                type="button"
+                class="btn btn-cancelar"
+                id="btnCancelar"
+                onclick="cancelarEdicao()"
+              >
+
+                ↩️ CANCELAR
+
+              </button>
+
+
+              <button
+                type="button"
+                class="btn btn-salvar"
+                id="btnSalvar"
+                onclick="salvarAlteracoes()"
+              >
+
+                💾 SALVAR ALTERAÇÕES
+
+              </button>
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
 
-    </div>
 
-  </div>
+      <!-- =================================================
+           SEM RESULTADO
+           ================================================= -->
 
+      <div
+        id="semResultado"
+        class="panel"
+      >
 
-  <!-- =================================================
-       SEM RESULTADO
-       ================================================= -->
+        <div class="sem-resultado">
 
-  <div
-    id="semResultado"
-    class="panel"
-  >
+          <div class="sem-resultado-icon">
+            🔎
+          </div>
 
-    <div class="sem-resultado">
+          <div class="sem-resultado-titulo">
+            CONSULTE UMA NOTA FISCAL
+          </div>
 
-      <div class="sem-resultado-icon">
-        🔎
+          <div class="sem-resultado-texto">
+            Digite a NF acima para visualizar os dados do envio.
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="sem-resultado-titulo">
-        CONSULTE UMA NOTA FISCAL
-      </div>
-
-      <div class="sem-resultado-texto">
-        Digite a NF acima para visualizar os dados do envio.
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-```
+    </section>
 
   </main>
+
 
   <!-- =====================================================
        JAVASCRIPT
@@ -2348,11 +2335,6 @@ content="width=device-width, initial-scale=1.0"
             ? consulta.data[0]
             : null;
 
-
-        /*
-         * Mantém a busca alternativa para casos
-         * em que o tipo/formato da NF esteja diferente.
-         */
 
         if (!envio) {
 
@@ -3427,10 +3409,6 @@ content="width=device-width, initial-scale=1.0"
           atualizacao.data;
 
 
-        /*
-         * Registra alteração de status no histórico.
-         */
-
         if (houveMudancaStatus) {
 
           const registroHistorico = {
@@ -3528,6 +3506,189 @@ content="width=device-width, initial-scale=1.0"
 
         mostrarMensagem(
           obterMensagemErroSalvar(
+            erro
+          ),
+          "erro"
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       EXCLUIR ENVIO
+       ===================================================== */
+
+    async function excluirEnvio() {
+
+      if (!envioAtual || !envioAtual.id) {
+
+        mostrarMensagem(
+          "NENHUM ENVIO FOI SELECIONADO PARA EXCLUSÃO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const nf =
+        String(
+          envioAtual.nf || ""
+        ).trim();
+
+
+      const confirmar =
+        window.confirm(
+          "ATENÇÃO!\n\n" +
+          "VOCÊ ESTÁ PRESTES A EXCLUIR O ENVIO DA NF " +
+          nf +
+          ".\n\n" +
+          "ESTA AÇÃO NÃO PODERÁ SER DESFEITA.\n\n" +
+          "DESEJA REALMENTE EXCLUIR ESTE ENVIO?"
+        );
+
+
+      if (!confirmar) {
+        return;
+      }
+
+
+      const confirmarFinal =
+        window.confirm(
+          "ÚLTIMA CONFIRMAÇÃO!\n\n" +
+          "CONFIRMA A EXCLUSÃO DEFINITIVA DA NF " +
+          nf +
+          "?"
+        );
+
+
+      if (!confirmarFinal) {
+        return;
+      }
+
+
+      const botao =
+        document.getElementById(
+          "btnExcluir"
+        );
+
+
+      try {
+
+        if (botao) {
+
+          botao.disabled =
+            true;
+
+          botao.textContent =
+            "🗑️ EXCLUINDO...";
+
+        }
+
+
+        mostrarLoading(
+          "EXCLUINDO NF " +
+          nf +
+          "..."
+        );
+
+
+        const exclusao =
+          await supabaseClient
+            .from("envios")
+            .delete()
+            .eq(
+              "id",
+              envioAtual.id
+            );
+
+
+        if (exclusao.error) {
+          throw exclusao.error;
+        }
+
+
+        esconderLoading();
+
+
+        envioAtual =
+          null;
+
+
+        document.getElementById(
+          "resultado"
+        ).classList.remove(
+          "aberto"
+        );
+
+
+        document.getElementById(
+          "semResultado"
+        ).style.display =
+          "block";
+
+
+        document.getElementById(
+          "campoNF"
+        ).value =
+          "";
+
+
+        cancelarEdicaoInterna();
+
+
+        mostrarMensagem(
+          "ENVIO DA NF " +
+          nf +
+          " EXCLUÍDO COM SUCESSO.",
+          "sucesso"
+        );
+
+
+        document.getElementById(
+          "campoNF"
+        ).focus();
+
+
+        if (botao) {
+
+          botao.disabled =
+            false;
+
+          botao.textContent =
+            "🗑️ EXCLUIR ENVIO";
+
+        }
+
+      }
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao excluir envio:",
+          erro
+        );
+
+
+        esconderLoading();
+
+
+        if (botao) {
+
+          botao.disabled =
+            false;
+
+          botao.textContent =
+            "🗑️ EXCLUIR ENVIO";
+
+        }
+
+
+        mostrarMensagem(
+          obterMensagemErroExcluir(
             erro
           ),
           "erro"
@@ -4224,6 +4385,50 @@ content="width=device-width, initial-scale=1.0"
     }
 
 
+    function obterMensagemErroExcluir(
+      erro
+    ) {
+
+      if (!erro) {
+
+        return "OCORREU UM ERRO AO EXCLUIR O ENVIO.";
+
+      }
+
+
+      if (erro.code === "23503") {
+
+        return (
+          "NÃO FOI POSSÍVEL EXCLUIR O ENVIO PORQUE EXISTEM REGISTROS RELACIONADOS A ELE."
+        );
+
+      }
+
+
+      if (erro.code === "42501") {
+
+        return (
+          "VOCÊ NÃO POSSUI PERMISSÃO PARA EXCLUIR ESTE ENVIO."
+        );
+
+      }
+
+
+      if (erro.message) {
+
+        return (
+          "ERRO AO EXCLUIR: " +
+          erro.message
+        ).toUpperCase();
+
+      }
+
+
+      return "OCORREU UM ERRO AO EXCLUIR O ENVIO.";
+
+    }
+
+
     /* =====================================================
        LOADING
        ===================================================== */
@@ -4459,7 +4664,6 @@ content="width=device-width, initial-scale=1.0"
 
     /* =====================================================
        ATUALIZAÇÃO AUTOMÁTICA DA CIDADE/UF
-       AO SELECIONAR CLIENTE
        ===================================================== */
 
     document
@@ -4601,3 +4805,4 @@ content="width=device-width, initial-scale=1.0"
 </body>
 
 </html>
+```
