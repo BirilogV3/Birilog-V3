@@ -828,6 +828,13 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
+    .linha:last-child {
+
+      margin-bottom:
+        0;
+
+    }
+
     .campo {
 
       display:
@@ -1044,7 +1051,7 @@ content="width=device-width, initial-scale=1.0"
         rgba(15,23,42,.12);
 
       max-height:
-        220px;
+        260px;
 
       overflow-y:
         auto;
@@ -1107,6 +1114,25 @@ content="width=device-width, initial-scale=1.0"
 
       color:
         #94a3b8;
+
+      font-weight:
+        500;
+
+    }
+
+    .cliente-cidade {
+
+      display:
+        block;
+
+      margin-top:
+        3px;
+
+      font-size:
+        9px;
+
+      color:
+        #64748b;
 
       font-weight:
         500;
@@ -1673,10 +1699,6 @@ content="width=device-width, initial-scale=1.0"
     </span>
 
   </button>
-
-  <!-- =================================================
-       PÓS-ENTREGA
-       ================================================= -->
 
   <button
     type="button"
@@ -2248,6 +2270,9 @@ content="width=device-width, initial-scale=1.0"
     let transportadoraSelecionadaAtual =
       null;
 
+    let carregamentoClientesConcluido =
+      false;
+
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
@@ -2389,66 +2414,190 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-      document.getElementById(
-        "usuarioNome"
-      ).textContent =
-        String(
-          usuarioAtual.nome ||
+      const nome =
+        document.getElementById(
+          "usuarioNome"
+        );
+
+      const email =
+        document.getElementById(
+          "usuarioEmail"
+        );
+
+      const perfil =
+        document.getElementById(
+          "usuarioPerfil"
+        );
+
+      if (nome) {
+
+        nome.textContent =
+          String(
+            usuarioAtual.nome ||
+            usuarioAtual.email ||
+            "USUÁRIO"
+          ).toUpperCase();
+
+      }
+
+      if (email) {
+
+        email.textContent =
           usuarioAtual.email ||
-          "USUÁRIO"
-        ).toUpperCase();
+          "-";
 
-      document.getElementById(
-        "usuarioEmail"
-      ).textContent =
-        usuarioAtual.email ||
-        "-";
+      }
 
-      document.getElementById(
-        "usuarioPerfil"
-      ).textContent =
-        String(
-          usuarioAtual.perfil ||
-          "USUÁRIO"
-        ).toUpperCase();
+      if (perfil) {
+
+        perfil.textContent =
+          String(
+            usuarioAtual.perfil ||
+            "USUÁRIO"
+          ).toUpperCase();
+
+      }
 
     }
 
+    /*
+     * =====================================================
+     * CARREGAMENTO DOS CLIENTES
+     * =====================================================
+     *
+     * O Supabase pode retornar no máximo 1.000 registros
+     * por consulta padrão.
+     *
+     * Por isso os clientes são carregados em páginas
+     * de 1.000 registros até que todos sejam obtidos.
+     */
+
     async function carregarClientes() {
 
-      const resultado =
-        await supabaseClient
-          .from("clientes")
-          .select(
-            "id,codigo,nome,cidade,uf"
-          )
-          .order(
-            "nome",
-            {
-              ascending:
-                true
-            }
+      try {
+
+        mostrarLoading(
+          "CARREGANDO CLIENTES..."
+        );
+
+        clientes = [];
+
+        const tamanhoPagina =
+          1000;
+
+        let inicio =
+          0;
+
+        let continuar =
+          true;
+
+        while (continuar) {
+
+          const fim =
+            inicio +
+            tamanhoPagina -
+            1;
+
+          const resultado =
+            await supabaseClient
+              .from("clientes")
+              .select(
+                "id,codigo,nome,cidade,uf"
+              )
+              .order(
+                "nome",
+                {
+                  ascending:
+                    true
+                }
+              )
+              .range(
+                inicio,
+                fim
+              );
+
+          if (
+            resultado.error
+          ) {
+
+            throw resultado.error;
+
+          }
+
+          const dados =
+            resultado.data ||
+            [];
+
+          if (
+            dados.length === 0
+          ) {
+
+            continuar =
+              false;
+
+            break;
+
+          }
+
+          clientes =
+            clientes.concat(
+              dados
+            );
+
+          if (
+            dados.length <
+            tamanhoPagina
+          ) {
+
+            continuar =
+              false;
+
+          }
+          else {
+
+            inicio +=
+              tamanhoPagina;
+
+          }
+
+        }
+
+        carregamentoClientesConcluido =
+          true;
+
+        console.log(
+          "CLIENTES CARREGADOS:",
+          clientes.length
+        );
+
+        if (
+          clientes.length === 0
+        ) {
+
+          console.warn(
+            "Nenhum cliente foi encontrado."
           );
 
-      if (
-        resultado.error
-      ) {
+        }
+
+      }
+
+      catch (erro) {
 
         console.error(
           "Erro ao carregar clientes:",
-          resultado.error
+          erro
         );
 
         clientes =
           [];
 
-        return;
+        carregamentoClientesConcluido =
+          false;
+
+        throw erro;
 
       }
-
-      clientes =
-        resultado.data ||
-        [];
 
     }
 
@@ -2462,139 +2611,207 @@ content="width=device-width, initial-scale=1.0"
         "resultadosClientes"
       );
 
-    campoCliente.addEventListener(
-      "input",
-      function() {
+    if (campoCliente) {
 
-        const texto =
-          normalizarTexto(
-            campoCliente.value
-          );
+      campoCliente.addEventListener(
+        "input",
+        function() {
 
-        clienteSelecionadoAtual =
-          null;
+          const texto =
+            normalizarTexto(
+              campoCliente.value
+            );
 
-        document.getElementById(
-          "clienteSelecionado"
-        ).style.display =
-          "none";
+          clienteSelecionadoAtual =
+            null;
 
-        resultadosClientes.innerHTML =
-          "";
+          const clienteSelecionado =
+            document.getElementById(
+              "clienteSelecionado"
+            );
 
-        if (!texto) {
+          if (clienteSelecionado) {
 
-          resultadosClientes.style.display =
-            "none";
+            clienteSelecionado.style.display =
+              "none";
 
-          return;
+            clienteSelecionado.textContent =
+              "";
 
-        }
-
-        const encontrados =
-          clientes.filter(
-            function(cliente) {
-
-              const nome =
-                normalizarTexto(
-                  cliente.nome
-                );
-
-              const codigo =
-                normalizarTexto(
-                  cliente.codigo
-                );
-
-              return (
-                nome.includes(texto) ||
-                codigo.includes(texto)
-              );
-
-            }
-          );
-
-        if (
-          encontrados.length === 0
-        ) {
+          }
 
           resultadosClientes.innerHTML =
-            `
-              <div class="cliente-item">
-                NENHUM CLIENTE ENCONTRADO
-              </div>
-            `;
+            "";
+
+          if (!texto) {
+
+            resultadosClientes.style.display =
+              "none";
+
+            return;
+
+          }
+
+          if (
+            !carregamentoClientesConcluido
+          ) {
+
+            resultadosClientes.innerHTML =
+              `
+                <div class="cliente-item">
+                  CARREGANDO CLIENTES...
+                </div>
+              `;
+
+            resultadosClientes.style.display =
+              "block";
+
+            return;
+
+          }
+
+          const encontrados =
+            clientes.filter(
+              function(cliente) {
+
+                const nome =
+                  normalizarTexto(
+                    cliente.nome
+                  );
+
+                const codigo =
+                  normalizarTexto(
+                    cliente.codigo
+                  );
+
+                const cidade =
+                  normalizarTexto(
+                    cliente.cidade
+                  );
+
+                return (
+                  nome.includes(texto) ||
+                  codigo.includes(texto) ||
+                  cidade.includes(texto)
+                );
+
+              }
+            );
+
+          if (
+            encontrados.length === 0
+          ) {
+
+            resultadosClientes.innerHTML =
+              `
+                <div class="cliente-item">
+                  NENHUM CLIENTE ENCONTRADO
+                </div>
+              `;
+
+            resultadosClientes.style.display =
+              "block";
+
+            return;
+
+          }
+
+          encontrados
+            .slice(0, 30)
+            .forEach(
+              function(cliente) {
+
+                const item =
+                  document.createElement(
+                    "div"
+                  );
+
+                item.className =
+                  "cliente-item";
+
+                const nome =
+                  String(
+                    cliente.nome ||
+                    ""
+                  )
+                  .trim()
+                  .toUpperCase();
+
+                const codigo =
+                  String(
+                    cliente.codigo ||
+                    ""
+                  )
+                  .trim()
+                  .toUpperCase();
+
+                const cidade =
+                  String(
+                    cliente.cidade ||
+                    ""
+                  )
+                  .trim()
+                  .toUpperCase();
+
+                const uf =
+                  String(
+                    cliente.uf ||
+                    ""
+                  )
+                  .trim()
+                  .toUpperCase();
+
+                item.innerHTML =
+                  `
+                    ${escapeHTML(nome)}
+
+                    <span
+                      class="cliente-codigo"
+                    >
+                      CÓDIGO:
+                      ${escapeHTML(
+                        codigo || "-"
+                      )}
+                    </span>
+
+                    <span
+                      class="cliente-cidade"
+                    >
+                      ${escapeHTML(
+                        cidade || "-"
+                      )}
+                      ${uf
+                        ? " - " +
+                          escapeHTML(uf)
+                        : ""}
+                    </span>
+                  `;
+
+                item.addEventListener(
+                  "click",
+                  function() {
+
+                    selecionarCliente(
+                      cliente
+                    );
+
+                  }
+                );
+
+                resultadosClientes.appendChild(
+                  item
+                );
+
+              }
+            );
 
           resultadosClientes.style.display =
             "block";
 
-          return;
-
         }
+      );
 
-        encontrados
-          .slice(0, 20)
-          .forEach(
-            function(cliente) {
-
-              const item =
-                document.createElement(
-                  "div"
-                );
-
-              item.className =
-                "cliente-item";
-
-              const nome =
-                String(
-                  cliente.nome ||
-                  ""
-                )
-                .trim()
-                .toUpperCase();
-
-              const codigo =
-                String(
-                  cliente.codigo ||
-                  ""
-                )
-                .trim()
-                .toUpperCase();
-
-              item.innerHTML =
-                `
-                  ${escapeHTML(nome)}
-
-                  <span
-                    class="cliente-codigo"
-                  >
-                    CÓDIGO:
-                    ${escapeHTML(codigo)}
-                  </span>
-                `;
-
-              item.addEventListener(
-                "click",
-                function() {
-
-                  selecionarCliente(
-                    cliente
-                  );
-
-                }
-              );
-
-              resultadosClientes.appendChild(
-                item
-              );
-
-            }
-          );
-
-        resultadosClientes.style.display =
-          "block";
-
-      }
-    );
+    }
 
     function selecionarCliente(
       cliente
@@ -2617,8 +2834,12 @@ content="width=device-width, initial-scale=1.0"
         .trim()
         .toUpperCase();
 
-      campoCliente.value =
-        nome;
+      if (campoCliente) {
+
+        campoCliente.value =
+          nome;
+
+      }
 
       resultadosClientes.style.display =
         "none";
@@ -2628,12 +2849,16 @@ content="width=device-width, initial-scale=1.0"
           "clienteSelecionado"
         );
 
-      info.textContent =
-        "✅ CLIENTE SELECIONADO: " +
-        nome;
+      if (info) {
 
-      info.style.display =
-        "block";
+        info.textContent =
+          "✅ CLIENTE SELECIONADO: " +
+          nome;
+
+        info.style.display =
+          "block";
+
+      }
 
       if (
         cliente.uf
@@ -2644,7 +2869,9 @@ content="width=device-width, initial-scale=1.0"
         ).value =
           String(
             cliente.uf
-          ).toUpperCase();
+          )
+          .trim()
+          .toUpperCase();
 
       }
 
@@ -2657,7 +2884,9 @@ content="width=device-width, initial-scale=1.0"
         ).value =
           String(
             cliente.cidade
-          ).toUpperCase();
+          )
+          .trim()
+          .toUpperCase();
 
       }
 
@@ -2670,32 +2899,95 @@ content="width=device-width, initial-scale=1.0"
           "transportadora"
         );
 
-      const resultado =
-        await supabaseClient
-          .from("transportadoras")
-          .select(
-            "id,nome"
-          )
-          .eq(
-            "ativo",
-            true
-          )
-          .order(
-            "nome",
-            {
-              ascending:
-                true
-            }
-          );
+      try {
 
-      if (
-        resultado.error
-      ) {
+        mostrarLoading(
+          "CARREGANDO TRANSPORTADORAS..."
+        );
+
+        const resultado =
+          await supabaseClient
+            .from("transportadoras")
+            .select(
+              "id,nome"
+            )
+            .eq(
+              "ativo",
+              true
+            )
+            .order(
+              "nome",
+              {
+                ascending:
+                  true
+              }
+            );
+
+        if (
+          resultado.error
+        ) {
+
+          throw resultado.error;
+
+        }
+
+        transportadoras =
+          resultado.data ||
+          [];
+
+        select.innerHTML =
+          '<option value="">SELECIONE</option>';
+
+        transportadoras.forEach(
+          function(transportadora) {
+
+            const option =
+              document.createElement(
+                "option"
+              );
+
+            option.value =
+              transportadora.id;
+
+            option.textContent =
+              String(
+                transportadora.nome ||
+                ""
+              )
+              .trim()
+              .toUpperCase();
+
+            select.appendChild(
+              option
+            );
+
+          }
+        );
+
+        if (
+          transportadoras.length === 0
+        ) {
+
+          select.innerHTML =
+            `
+              <option value="">
+                NENHUMA TRANSPORTADORA ATIVA
+              </option>
+            `;
+
+        }
+
+      }
+
+      catch (erro) {
 
         console.error(
           "Erro ao carregar transportadoras:",
-          resultado.error
+          erro
         );
+
+        transportadoras =
+          [];
 
         select.innerHTML =
           `
@@ -2704,42 +2996,9 @@ content="width=device-width, initial-scale=1.0"
             </option>
           `;
 
-        return;
+        throw erro;
 
       }
-
-      transportadoras =
-        resultado.data ||
-        [];
-
-      select.innerHTML =
-        '<option value="">SELECIONE</option>';
-
-      transportadoras.forEach(
-        function(transportadora) {
-
-          const option =
-            document.createElement(
-              "option"
-            );
-
-          option.value =
-            transportadora.id;
-
-          option.textContent =
-            String(
-              transportadora.nome ||
-              ""
-            )
-            .trim()
-            .toUpperCase();
-
-          select.appendChild(
-            option
-          );
-
-        }
-      );
 
     }
 
@@ -2774,6 +3033,14 @@ content="width=device-width, initial-scale=1.0"
         document.getElementById(
           "btnSalvar"
         );
+
+      if (
+        btn.disabled
+      ) {
+
+        return;
+
+      }
 
       const nf =
         String(
@@ -2933,6 +3200,12 @@ content="width=device-width, initial-scale=1.0"
           "erro"
         );
 
+        document
+          .getElementById(
+            "uf"
+          )
+          .focus();
+
         return;
 
       }
@@ -2944,6 +3217,12 @@ content="width=device-width, initial-scale=1.0"
           "erro"
         );
 
+        document
+          .getElementById(
+            "cidade"
+          )
+          .focus();
+
         return;
 
       }
@@ -2954,6 +3233,12 @@ content="width=device-width, initial-scale=1.0"
           "SELECIONE A TRANSPORTADORA.",
           "erro"
         );
+
+        document
+          .getElementById(
+            "transportadora"
+          )
+          .focus();
 
         return;
 
@@ -2975,7 +3260,8 @@ content="width=device-width, initial-scale=1.0"
           : 1;
 
       if (
-        Number.isNaN(valor)
+        Number.isNaN(valor) ||
+        valor < 0
       ) {
 
         mostrarMensagem(
@@ -2988,7 +3274,8 @@ content="width=device-width, initial-scale=1.0"
       }
 
       if (
-        Number.isNaN(peso)
+        Number.isNaN(peso) ||
+        peso < 0
       ) {
 
         mostrarMensagem(
@@ -3305,14 +3592,21 @@ content="width=device-width, initial-scale=1.0"
           "0"
         );
 
-      document.getElementById(
-        "dataEnvio"
-      ).value =
-        ano +
-        "-" +
-        mes +
-        "-" +
-        dia;
+      const campo =
+        document.getElementById(
+          "dataEnvio"
+        );
+
+      if (campo) {
+
+        campo.value =
+          ano +
+          "-" +
+          mes +
+          "-" +
+          dia;
+
+      }
 
     }
 
@@ -3574,6 +3868,18 @@ content="width=device-width, initial-scale=1.0"
 
           return (
             'A TABELA "ENVIOS" NÃO FOI ENCONTRADA NO SUPABASE.'
+          );
+
+        }
+
+        if (
+          texto.includes(
+            "foreign key"
+          )
+        ) {
+
+          return (
+            "O CLIENTE OU A TRANSPORTADORA INFORMADA NÃO FOI ENCONTRADO NO BANCO DE DADOS."
           );
 
         }
