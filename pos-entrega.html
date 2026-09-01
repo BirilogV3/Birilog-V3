@@ -1205,14 +1205,20 @@
 
             <br>
 
-            O sistema busca automaticamente o telefone cadastrado
-            no envio ou no cadastro do cliente.
+            O sistema busca automaticamente o telefone
+            atualizado no cadastro do cliente.
 
             <br><br>
 
             Antes de enviar, você pode clicar em
             <strong>EDITAR</strong>
             para corrigir o telefone.
+
+            <br><br>
+
+            O telefone informado no cadastro do cliente
+            tem prioridade sobre um telefone antigo gravado
+            no envio.
 
             <br><br>
 
@@ -1513,7 +1519,7 @@
 
         <div class="ajuda-telefone">
           Informe o número com DDD.
-          O sistema acrescentará o código do Brasil automaticamente.
+          O sistema aceitará números com ou sem formatação.
         </div>
 
       </div>
@@ -1858,28 +1864,88 @@
     }
 
 
+    /* =====================================================
+       TELEFONE
+       ===================================================== */
+
+    function limparTelefone(
+      telefone
+    ) {
+
+      return String(
+        telefone || ""
+      )
+        .replace(
+          /\D/g,
+          ""
+        );
+
+    }
+
+
+    function telefonesCorrespondem(
+      telefoneA,
+      telefoneB
+    ) {
+
+      const a =
+        limparTelefone(
+          telefoneA
+        );
+
+      const b =
+        limparTelefone(
+          telefoneB
+        );
+
+
+      if (!a || !b) {
+        return false;
+      }
+
+
+      if (a === b) {
+        return true;
+      }
+
+
+      const aSem55 =
+        a.startsWith("55")
+          ? a.substring(2)
+          : a;
+
+
+      const bSem55 =
+        b.startsWith("55")
+          ? b.substring(2)
+          : b;
+
+
+      return (
+        aSem55 ===
+        bSem55
+      );
+
+    }
+
+
     /*
-     * NOVO:
-     * Primeiro procura o telefone no próprio envio.
-     * Se não encontrar, procura no cadastro de clientes.
+     * IMPORTANTE:
+     *
+     * O telefone do cadastro do cliente tem prioridade.
+     *
+     * Isso evita que um telefone antigo gravado em
+     * "envios" continue aparecendo quando o cadastro
+     * do cliente já foi atualizado.
      */
 
     function obterTelefone(envio) {
 
-      const telefoneDireto =
-        obterTelefoneDireto(envio);
-
-      if (
-        telefoneDireto &&
-        String(telefoneDireto).trim() !== ""
-      ) {
-
-        return telefoneDireto;
-
-      }
-
       const cliente =
-        encontrarClienteDoEnvio(envio);
+        encontrarClienteDoEnvio(
+          envio
+        );
+
 
       if (cliente) {
 
@@ -1889,9 +1955,12 @@
             CAMPOS_CLIENTE.telefone
           );
 
+
         if (
           telefoneCliente &&
-          String(telefoneCliente).trim() !== ""
+          limparTelefone(
+            telefoneCliente
+          )
         ) {
 
           return telefoneCliente;
@@ -1899,6 +1968,25 @@
         }
 
       }
+
+
+      const telefoneDireto =
+        obterTelefoneDireto(
+          envio
+        );
+
+
+      if (
+        telefoneDireto &&
+        limparTelefone(
+          telefoneDireto
+        )
+      ) {
+
+        return telefoneDireto;
+
+      }
+
 
       return "";
 
@@ -1956,7 +2044,7 @@
 
 
     /* =====================================================
-       NORMALIZAR NOME PARA COMPARAÇÃO
+       NORMALIZAR NOME
        ===================================================== */
 
     function normalizarNomeComparacao(
@@ -1975,6 +2063,23 @@
           /\s+/g,
           " "
         )
+        .trim()
+        .toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       NORMALIZAR CÓDIGO
+       ===================================================== */
+
+    function normalizarCodigo(
+      valor
+    ) {
+
+      return String(
+        valor ?? ""
+      )
         .trim()
         .toUpperCase();
 
@@ -2001,39 +2106,61 @@
 
 
       /*
-       * 1. Tenta pelo ID/código do cliente
+       * 1. ID / código do cliente
        */
 
       const clienteId =
-        obterClienteId(envio);
+        obterClienteId(
+          envio
+        );
 
-      if (clienteId) {
+
+      if (clienteId !== "") {
+
+        const idNormalizado =
+          normalizarCodigo(
+            clienteId
+          );
+
 
         const clientePorId =
           todosClientes.find(
             function(cliente) {
 
               const idCliente =
-                obterValorCampo(
-                  cliente,
-                  CAMPOS_CLIENTE.id
+                normalizarCodigo(
+                  obterValorCampo(
+                    cliente,
+                    CAMPOS_CLIENTE.id
+                  )
                 );
+
 
               const codigoCliente =
-                obterValorCampo(
-                  cliente,
-                  CAMPOS_CLIENTE.codigo
+                normalizarCodigo(
+                  obterValorCampo(
+                    cliente,
+                    CAMPOS_CLIENTE.codigo
+                  )
                 );
 
+
               return (
-                String(idCliente) ===
-                  String(clienteId) ||
-                String(codigoCliente) ===
-                  String(clienteId)
+                (
+                  idCliente &&
+                  idCliente ===
+                  idNormalizado
+                ) ||
+                (
+                  codigoCliente &&
+                  codigoCliente ===
+                  idNormalizado
+                )
               );
 
             }
           );
+
 
         if (clientePorId) {
 
@@ -2045,13 +2172,14 @@
 
 
       /*
-       * 2. Tenta pelo nome do cliente
+       * 2. Nome do cliente
        */
 
       const nomeEnvio =
         normalizarNomeComparacao(
           obterCliente(envio)
         );
+
 
       if (!nomeEnvio) {
 
@@ -2071,6 +2199,7 @@
                   CAMPOS_CLIENTE.nome
                 )
               );
+
 
             return (
               nomeCliente ===
@@ -2317,17 +2446,45 @@
 
 
     /* =====================================================
-       CARREGAR CLIENTES
+       CARREGAR TODOS OS CLIENTES
        ===================================================== */
 
     async function carregarClientes() {
 
-      try {
+      todosClientes = [];
+
+
+      const TAMANHO_PAGINA =
+        1000;
+
+
+      let inicio =
+        0;
+
+
+      let pagina =
+        0;
+
+
+      while (true) {
+
+        const fim =
+          inicio +
+          TAMANHO_PAGINA -
+          1;
+
+
+        pagina++;
+
 
         const resultado =
           await supabaseClient
             .from("clientes")
-            .select("*");
+            .select("*")
+            .range(
+              inicio,
+              fim
+            );
 
 
         if (resultado.error) {
@@ -2337,35 +2494,55 @@
             resultado.error
           );
 
+
           todosClientes = [];
+
 
           return;
 
         }
 
 
-        todosClientes =
+        const dados =
           resultado.data || [];
 
 
+        todosClientes =
+          todosClientes.concat(
+            dados
+          );
+
+
         console.log(
-          "CLIENTES CARREGADOS:",
+          "CLIENTES - PÁGINA:",
+          pagina,
+          "| CARREGADOS:",
+          dados.length,
+          "| TOTAL:",
           todosClientes.length
         );
 
 
+        if (
+          dados.length <
+          TAMANHO_PAGINA
+        ) {
+
+          break;
+
+        }
+
+
+        inicio +=
+          TAMANHO_PAGINA;
+
       }
 
-      catch (erro) {
 
-        console.warn(
-          "Erro ao carregar clientes:",
-          erro
-        );
-
-        todosClientes = [];
-
-      }
+      console.log(
+        "TOTAL FINAL DE CLIENTES CARREGADOS:",
+        todosClientes.length
+      );
 
     }
 
@@ -2377,16 +2554,16 @@
     async function carregarEnvios() {
 
       mostrarLoading(
-        "CARREGANDO CLIENTES E ENVIOS..."
+        "CARREGANDO TODOS OS CLIENTES E ENVIOS..."
       );
 
 
       try {
 
         /*
-         * Carrega os clientes primeiro.
-         * Isso permite encontrar o telefone
-         * quando ele não está gravado em envios.
+         * Agora carrega TODOS os clientes.
+         * Isso é importante porque o Supabase limita
+         * uma consulta comum a 1.000 registros.
          */
 
         await carregarClientes();
@@ -2456,7 +2633,7 @@
 
         console.log(
           "ENVIOS CARREGADOS:",
-          todosEnvios
+          todosEnvios.length
         );
 
 
@@ -2467,11 +2644,19 @@
         todosEnvios.forEach(
           function(envio) {
 
+            const cliente =
+              encontrarClienteDoEnvio(
+                envio
+              );
+
+
             console.log(
               "NF:",
               obterNF(envio),
               "| CLIENTE:",
               obterCliente(envio),
+              "| CLIENTE ENCONTRADO:",
+              cliente ? "SIM" : "NÃO",
               "| TELEFONE:",
               obterTelefone(envio)
             );
@@ -2959,7 +3144,9 @@
 
 
       const telefone =
-        obterTelefone(envio);
+        obterTelefone(
+          envio
+        );
 
 
       const mensagem =
@@ -3191,9 +3378,8 @@
 
 
       /*
-       * IMPORTANTE:
-       * Aqui também mostra o telefone encontrado
-       * no cadastro de clientes.
+       * Busca o telefone atualizado no cadastro
+       * do cliente.
        */
 
       document.getElementById(
@@ -3261,11 +3447,18 @@
         ).value.trim();
 
 
-      if (
-        telefone &&
+      const telefoneNormalizado =
         normalizarTelefoneWhatsApp(
           telefone
-        ).length < 12
+        );
+
+
+      if (
+        telefone &&
+        (
+          telefoneNormalizado.length < 12 ||
+          telefoneNormalizado.length > 13
+        )
       ) {
 
         mostrarMensagem(
@@ -3327,8 +3520,8 @@
 
 
       /*
-       * Se o envio já possui campo de telefone,
-       * atualiza normalmente.
+       * Se existe telefone em envios,
+       * atualiza o telefone do envio.
        */
 
       if (campoTelefone) {
@@ -3370,37 +3563,46 @@
 
 
       /*
-       * Se o envio não possui campo de telefone,
-       * tenta atualizar o cadastro do cliente.
+       * Procura sempre o cliente relacionado.
+       *
+       * Se o envio não tiver telefone próprio,
+       * o cadastro do cliente será atualizado.
+       *
+       * Se o envio tiver telefone próprio e o cliente
+       * também existir, atualizamos os dois para manter
+       * os dados sincronizados.
        */
 
-      let atualizarCliente = false;
+      const clienteParaAtualizar =
+        encontrarClienteDoEnvio(
+          envioEditando
+        );
 
-      let clienteParaAtualizar = null;
+
+      let atualizarCliente =
+        false;
 
 
-      if (!campoTelefone) {
+      let campoTelefoneCliente =
+        null;
 
-        clienteParaAtualizar =
-          encontrarClienteDoEnvio(
-            envioEditando
+
+      if (clienteParaAtualizar) {
+
+        campoTelefoneCliente =
+          encontrarCampoExistente(
+            clienteParaAtualizar,
+            CAMPOS_CLIENTE.telefone
           );
 
 
-        if (clienteParaAtualizar) {
+        if (
+          campoTelefoneCliente &&
+          telefone
+        ) {
 
-          const campoTelefoneCliente =
-            encontrarCampoExistente(
-              clienteParaAtualizar,
-              CAMPOS_CLIENTE.telefone
-            );
-
-
-          if (campoTelefoneCliente) {
-
-            atualizarCliente = true;
-
-          }
+          atualizarCliente =
+            true;
 
         }
 
@@ -3440,8 +3642,7 @@
       try {
 
         /*
-         * Atualiza o envio quando existem
-         * campos próprios para isso.
+         * 1. Atualiza o envio.
          */
 
         if (
@@ -3478,28 +3679,22 @@
 
 
         /*
-         * Atualiza o telefone do cadastro do cliente
-         * quando o telefone não existe em envios.
+         * 2. Atualiza o cliente.
          */
 
         if (
           atualizarCliente &&
-          clienteParaAtualizar
+          clienteParaAtualizar &&
+          campoTelefoneCliente
         ) {
-
-          const campoTelefoneCliente =
-            encontrarCampoExistente(
-              clienteParaAtualizar,
-              CAMPOS_CLIENTE.telefone
-            );
-
 
           const dadosCliente = {};
 
 
           dadosCliente[
             campoTelefoneCliente
-          ] = telefone;
+          ] =
+            telefone;
 
 
           const idCliente =
@@ -3546,11 +3741,65 @@
 
 
         /*
-         * Atualiza o cache local.
+         * 3. Atualiza o telefone localmente,
+         * garantindo que a tabela mostre o número
+         * novo imediatamente.
          */
 
+        if (telefone) {
+
+          if (clienteParaAtualizar) {
+
+            if (
+              campoTelefoneCliente
+            ) {
+
+              clienteParaAtualizar[
+                campoTelefoneCliente
+              ] =
+                telefone;
+
+            }
+
+          }
+
+
+          if (campoTelefone) {
+
+            envioEditando[
+              campoTelefone
+            ] =
+              telefone;
+
+          }
+
+        }
+
+
+        /*
+         * 4. Atualiza cliente e envio novamente no
+         * cache para garantir que o telefone correto
+         * seja usado pelo WhatsApp.
+         */
+
+        if (
+          envioSelecionado &&
+          String(
+            envioSelecionado.id
+          ) ===
+          String(
+            envioEditando.id
+          )
+        ) {
+
+          envioSelecionado =
+            envioEditando;
+
+        }
+
+
         mostrarMensagem(
-          "ENVIO ATUALIZADO COM SUCESSO.",
+          "ENVIO E TELEFONE ATUALIZADOS COM SUCESSO.",
           "sucesso"
         );
 
@@ -3723,7 +3972,7 @@
 
 
     /* =====================================================
-       TELEFONE
+       NORMALIZAR TELEFONE PARA WHATSAPP
        ===================================================== */
 
     function normalizarTelefoneWhatsApp(
@@ -3731,11 +3980,8 @@
     ) {
 
       let numero =
-        String(
-          telefone || ""
-        ).replace(
-          /\D/g,
-          ""
+        limparTelefone(
+          telefone
         );
 
 
@@ -3746,30 +3992,96 @@
       }
 
 
+      /*
+       * Remove 00 internacional, caso venha
+       * nesse formato.
+       */
+
       if (
-        numero.startsWith("55")
+        numero.startsWith("00")
       ) {
 
-        return numero;
+        numero =
+          numero.substring(2);
 
       }
 
 
-      return "55" + numero;
+      /*
+       * Já possui Brasil.
+       */
+
+      if (
+        numero.startsWith("55")
+      ) {
+
+        /*
+         * Evita aceitar apenas 55 ou números
+         * claramente incompletos.
+         */
+
+        const restante =
+          numero.substring(2);
+
+
+        if (
+          restante.length >= 10
+        ) {
+
+          return numero;
+
+        }
+
+      }
+
+
+      /*
+       * Número nacional com DDD.
+       */
+
+      if (
+        numero.length === 10 ||
+        numero.length === 11
+      ) {
+
+        return "55" + numero;
+
+      }
+
+
+      /*
+       * Caso venha com mais caracteres,
+       * mantém somente números e acrescenta
+       * 55 quando necessário.
+       */
+
+      if (
+        numero.length > 11
+      ) {
+
+        return numero.startsWith("55")
+          ? numero
+          : "55" + numero;
+
+      }
+
+
+      return "";
 
     }
 
+
+    /* =====================================================
+       FORMATAR TELEFONE
+       ===================================================== */
 
     function formatarTelefone(
       telefone
     ) {
 
       const numero =
-        String(
-          telefone || ""
-        ).replace(
-          /\D/g,
-          ""
+        limparTelefone(
+          telefone
         );
 
 
@@ -3827,7 +4139,9 @@
       }
 
 
-      return telefone;
+      return String(
+        telefone || ""
+      );
 
     }
 
