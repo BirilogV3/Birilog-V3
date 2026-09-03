@@ -2560,12 +2560,6 @@
 
       try {
 
-        /*
-         * Agora carrega TODOS os clientes.
-         * Isso é importante porque o Supabase limita
-         * uma consulta comum a 1.000 registros.
-         */
-
         await carregarClientes();
 
 
@@ -2636,10 +2630,6 @@
           todosEnvios.length
         );
 
-
-        /*
-         * TESTE DE TELEFONE
-         */
 
         todosEnvios.forEach(
           function(envio) {
@@ -3377,11 +3367,6 @@
         obterCliente(envio) || "";
 
 
-      /*
-       * Busca o telefone atualizado no cadastro
-       * do cliente.
-       */
-
       document.getElementById(
         "editarTelefone"
       ).value =
@@ -3519,11 +3504,6 @@
       }
 
 
-      /*
-       * Se existe telefone em envios,
-       * atualiza o telefone do envio.
-       */
-
       if (campoTelefone) {
 
         dadosAtualizacao[campoTelefone] =
@@ -3561,17 +3541,6 @@
 
       }
 
-
-      /*
-       * Procura sempre o cliente relacionado.
-       *
-       * Se o envio não tiver telefone próprio,
-       * o cadastro do cliente será atualizado.
-       *
-       * Se o envio tiver telefone próprio e o cliente
-       * também existir, atualizamos os dois para manter
-       * os dados sincronizados.
-       */
 
       const clienteParaAtualizar =
         encontrarClienteDoEnvio(
@@ -3641,10 +3610,6 @@
 
       try {
 
-        /*
-         * 1. Atualiza o envio.
-         */
-
         if (
           Object.keys(
             dadosAtualizacao
@@ -3677,10 +3642,6 @@
 
         }
 
-
-        /*
-         * 2. Atualiza o cliente.
-         */
 
         if (
           atualizarCliente &&
@@ -3740,12 +3701,6 @@
         }
 
 
-        /*
-         * 3. Atualiza o telefone localmente,
-         * garantindo que a tabela mostre o número
-         * novo imediatamente.
-         */
-
         if (telefone) {
 
           if (clienteParaAtualizar) {
@@ -3775,12 +3730,6 @@
 
         }
 
-
-        /*
-         * 4. Atualiza cliente e envio novamente no
-         * cache para garantir que o telefone correto
-         * seja usado pelo WhatsApp.
-         */
 
         if (
           envioSelecionado &&
@@ -3992,11 +3941,6 @@
       }
 
 
-      /*
-       * Remove 00 internacional, caso venha
-       * nesse formato.
-       */
-
       if (
         numero.startsWith("00")
       ) {
@@ -4007,18 +3951,9 @@
       }
 
 
-      /*
-       * Já possui Brasil.
-       */
-
       if (
         numero.startsWith("55")
       ) {
-
-        /*
-         * Evita aceitar apenas 55 ou números
-         * claramente incompletos.
-         */
 
         const restante =
           numero.substring(2);
@@ -4035,10 +3970,6 @@
       }
 
 
-      /*
-       * Número nacional com DDD.
-       */
-
       if (
         numero.length === 10 ||
         numero.length === 11
@@ -4048,12 +3979,6 @@
 
       }
 
-
-      /*
-       * Caso venha com mais caracteres,
-       * mantém somente números e acrescenta
-       * 55 quando necessário.
-       */
 
       if (
         numero.length > 11
@@ -4465,6 +4390,11 @@
       valor
     ) {
 
+      /*
+       * Se não existir previsão,
+       * mostra apenas um traço.
+       */
+
       if (!valor) {
 
         return "-";
@@ -4472,8 +4402,80 @@
       }
 
 
+      /*
+       * Converte o valor para texto.
+       */
+
+      const texto =
+        String(
+          valor
+        ).trim();
+
+
+      /*
+       * =================================================
+       * CORREÇÃO PRINCIPAL
+       * =================================================
+       *
+       * O Supabase pode retornar:
+       *
+       * 2026-09-03
+       *
+       * ou:
+       *
+       * 2026-09-03T00:00:00
+       *
+       * ou ainda:
+       *
+       * 2026-09-03T00:00:00+00:00
+       *
+       * Não usamos new Date() nesses casos porque
+       * o JavaScript pode interpretar a data em UTC
+       * e alterar o dia por causa do fuso horário.
+       *
+       * Pegamos diretamente ano, mês e dia.
+       */
+
+      const dataSomente =
+        texto.match(
+          /^(\d{4})-(\d{2})-(\d{2})(?:T|$)/
+        );
+
+
+      if (dataSomente) {
+
+        const ano =
+          dataSomente[1];
+
+
+        const mes =
+          dataSomente[2];
+
+
+        const dia =
+          dataSomente[3];
+
+
+        return (
+          dia +
+          "/" +
+          mes +
+          "/" +
+          ano
+        );
+
+      }
+
+
+      /*
+       * Caso seja algum outro formato de data,
+       * mantém o tratamento anterior como fallback.
+       */
+
       const data =
-        new Date(valor);
+        new Date(
+          texto
+        );
 
 
       if (
@@ -4483,7 +4485,7 @@
       ) {
 
         return escapeHTML(
-          valor
+          texto
         );
 
       }
