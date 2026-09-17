@@ -501,8 +501,9 @@
 
     .item {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 78px minmax(0, 1fr) auto;
       gap: 10px;
+      align-items: center;
       padding: 10px 12px;
       border: 1px solid #edf2f7;
       border-radius: 9px;
@@ -510,12 +511,87 @@
       font-size: 0.75rem;
     }
 
-    .item strong {
+    .item-foto,
+    .item-sem-foto {
+      width: 78px;
+      height: 68px;
+      display: block;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .item-foto {
+      object-fit: contain;
+      border: 1px solid #e2e8f0;
+    }
+
+    .item-sem-foto {
+      display: grid;
+      place-items: center;
+      color: #94a3b8;
+      font-size: 1.7rem;
+    }
+
+    .item-detalhes {
+      min-width: 0;
+    }
+
+    .item-detalhes strong {
+      display: block;
       font-size: 0.78rem;
     }
 
-    .item span {
+    .item-codigo {
+      display: block;
+      margin-top: 3px;
       color: var(--suave);
+      font-size: 0.65rem;
+    }
+
+    .item-metricas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .item-metrica {
+      padding: 4px 6px;
+      border-radius: 6px;
+      color: #475569;
+      background: #e2e8f0;
+      font-size: 0.58rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .item-metrica.disponivel {
+      color: #166534;
+      background: #dcfce7;
+    }
+
+    .item-metrica.em-uso {
+      color: #9a3412;
+      background: #ffedd5;
+    }
+
+    .item-previsao {
+      margin-top: 7px;
+      color: var(--laranja);
+      font-size: 0.62rem;
+      font-weight: 800;
+    }
+
+    .item-quantidade {
+      align-self: center;
+      min-width: 73px;
+      padding: 8px 7px;
+      border-radius: 8px;
+      color: #1d4ed8;
+      background: #dbeafe;
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 800;
     }
 
     .solicitacao-rodape {
@@ -783,6 +859,30 @@
       line-height: 1.25;
     }
 
+    .material-estoque {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .material-estoque span {
+      padding: 4px 2px;
+      border-radius: 5px;
+      color: #64748b;
+      background: #f1f5f9;
+      text-align: center;
+      font-size: 0.52rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .material-estoque strong {
+      display: block;
+      color: #1e293b;
+      font-size: 0.7rem;
+    }
+
     .material-card.indisponivel .material-status {
       color: var(--vermelho);
     }
@@ -1015,6 +1115,21 @@
 
       .item-form > div:first-child {
         grid-column: 1 / -1;
+      }
+
+      .item {
+        grid-template-columns: 58px minmax(0, 1fr);
+      }
+
+      .item-foto,
+      .item-sem-foto {
+        width: 58px;
+        height: 58px;
+      }
+
+      .item-quantidade {
+        grid-column: 2;
+        justify-self: start;
       }
 
       .modal-fundo {
@@ -1453,11 +1568,55 @@
         : valor;
     }
 
-    function statusMaterial(material) {
-      const disponivel = numero(
-        material.quantidade_disponivel ??
-        material.disponivel
+    function quantidadeDisponivel(material) {
+      return numero(
+        material?.quantidade_disponivel ??
+        material?.disponivel
       );
+    }
+
+    function quantidadeTotal(material) {
+      const total =
+        material?.quantidade_total ??
+        material?.total;
+
+      return total === undefined || total === null
+        ? quantidadeDisponivel(material)
+        : numero(total);
+    }
+
+    function quantidadeEmUso(material) {
+      const informada =
+        material?.quantidade_em_uso ??
+        material?.quantidade_emprestada;
+
+      if (
+        informada !== undefined &&
+        informada !== null
+      ) {
+        return numero(informada);
+      }
+
+      return Math.max(
+        quantidadeTotal(material) -
+        quantidadeDisponivel(material),
+        0
+      );
+    }
+
+    function materialDoItem(item) {
+      const atual = materiais.find(
+        material => material.id === item.material_id
+      );
+
+      return {
+        ...(item.materiais || {}),
+        ...(atual || {})
+      };
+    }
+
+    function statusMaterial(material) {
+      const disponivel = quantidadeDisponivel(material);
 
       if (
         disponivel > 0 &&
@@ -1557,7 +1716,7 @@
         const nomes = (
           solicitacao.solicitacao_reserva_itens || []
         )
-          .map(item => item.materiais?.nome || "")
+          .map(item => materialDoItem(item).nome || "")
           .join(" ");
 
         const texto = `
@@ -1665,31 +1824,54 @@
 
             <div class="itens">
               ${
-                itens.map(item => `
-                  <div class="item">
-                    <div>
-                      <strong>
-                        ${esc(
-                          item.materiais?.nome ||
-                          "MATERIAL"
-                        )}
+                itens.map(item => {
+                  const material = materialDoItem(item);
+                  const total = quantidadeTotal(material);
+                  const disponivel = quantidadeDisponivel(material);
+                  const emUso = quantidadeEmUso(material);
+                  const previsao = material.proxima_disponibilidade;
+
+                  return `
+                    <div class="item">
+                      ${imagemItemMaterial(material)}
+
+                      <div class="item-detalhes">
+                        <strong>
+                          ${esc(material.nome || "MATERIAL")}
+                        </strong>
+
+                        <span class="item-codigo">
+                          ${esc(material.codigo || "SEM CÓDIGO")}
+                        </span>
+
+                        <div class="item-metricas">
+                          <span class="item-metrica">
+                            ${total} TOTAL
+                          </span>
+
+                          <span class="item-metrica disponivel">
+                            ${disponivel} DISPONÍVEL(IS)
+                          </span>
+
+                          <span class="item-metrica em-uso">
+                            ${emUso} EM USO
+                          </span>
+                        </div>
+
+                        ${previsao ? `
+                          <div class="item-previsao">
+                            ↩ PREVISÃO DE DISPONIBILIDADE:
+                            ${data(previsao)}
+                          </div>
+                        ` : ""}
+                      </div>
+
+                      <strong class="item-quantidade">
+                        ${numero(item.quantidade)} UN.
                       </strong>
-
-                      <br>
-
-                      <span>
-                        ${esc(
-                          item.materiais?.codigo ||
-                          "SEM CÓDIGO"
-                        )}
-                      </span>
                     </div>
-
-                    <strong>
-                      ${numero(item.quantidade)} UN.
-                    </strong>
-                  </div>
-                `).join("")
+                  `;
+                }).join("")
               || `
                 <div class="sem-itens">
                   NENHUM MATERIAL INFORMADO.
@@ -1737,6 +1919,35 @@
         >
           ▣
         </div>
+        `;
+    }
+
+    function imagemItemMaterial(material) {
+      if (!material?.foto_url) {
+        return `
+          <div class="item-sem-foto">
+            ▣
+          </div>
+        `;
+      }
+
+      return `
+        <img
+          class="item-foto"
+          src="${esc(material.foto_url)}"
+          alt="${esc(material.nome || "MATERIAL")}"
+          onerror="
+            this.style.display='none';
+            this.nextElementSibling.style.display='grid';
+          "
+        >
+
+        <div
+          class="item-sem-foto"
+          style="display:none;"
+        >
+          ▣
+        </div>
       `;
     }
 
@@ -1758,7 +1969,7 @@
       $("listaMateriaisSelecao").innerHTML =
         lista.map(material => {
           const indisponivel =
-            numero(material.quantidade_disponivel) <= 0;
+            quantidadeDisponivel(material) <= 0;
 
           const classe =
             indisponivel
@@ -1787,6 +1998,23 @@
                 ${esc(material.codigo || "SEM CÓDIGO")}
               </span>
 
+              <div class="material-estoque">
+                <span>
+                  <strong>${quantidadeTotal(material)}</strong>
+                  TOTAL
+                </span>
+
+                <span>
+                  <strong>${quantidadeDisponivel(material)}</strong>
+                  DISP.
+                </span>
+
+                <span>
+                  <strong>${quantidadeEmUso(material)}</strong>
+                  EM USO
+                </span>
+              </div>
+
               <span class="material-status">
                 ${esc(statusMaterial(material))}
               </span>
@@ -1802,7 +2030,7 @@
 
       if (
         !material ||
-        numero(material.quantidade_disponivel) <= 0
+        quantidadeDisponivel(material) <= 0
       ) {
         return;
       }
@@ -1951,11 +2179,11 @@
 
       if (
         total >
-        numero(material.quantidade_disponivel)
+        quantidadeDisponivel(material)
       ) {
         alert(
           `SOMENTE ${
-            material.quantidade_disponivel
+            quantidadeDisponivel(material)
           } UNIDADE(S) ESTÁ(ÃO) DISPONÍVEL(IS).`
         );
 
@@ -1970,7 +2198,7 @@
           nome: material.nome,
           codigo: material.codigo,
           disponivel:
-            material.quantidade_disponivel,
+            quantidadeDisponivel(material),
           proxima_disponibilidade:
             material.proxima_disponibilidade,
           quantidade
@@ -2351,7 +2579,7 @@
         db
           .from("materiais")
           .select(
-            "id,codigo,nome,foto_url,quantidade_disponivel,ativo"
+            "id,codigo,nome,foto_url,quantidade_total,quantidade_disponivel,quantidade_em_uso,ativo"
           )
           .eq("ativo", true)
           .order("nome"),
@@ -2369,7 +2597,10 @@
                 id,
                 nome,
                 codigo,
-                quantidade_disponivel
+                foto_url,
+                quantidade_total,
+                quantidade_disponivel,
+                quantidade_em_uso
               )
             )
           `)
