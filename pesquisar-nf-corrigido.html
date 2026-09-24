@@ -2521,9 +2521,12 @@
 
       campo.addEventListener("focus", function() {
 
-        if (!select.value) {
-          pesquisarClientesParaEdicao(campo.value, true);
+        if (select.value) {
+          campo.select();
+          return;
         }
+
+        pesquisarClientesParaEdicao(campo.value, true);
 
       });
 
