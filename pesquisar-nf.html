@@ -529,6 +529,11 @@
       background: #f8fafc;
     }
 
+    .info-box-cliente {
+      position: relative;
+      z-index: 20;
+    }
+
     .info-label {
       font-size: 9px;
       font-weight: 800;
@@ -565,6 +570,68 @@
     .campo-edicao:focus {
       border-color: #1976d2;
       box-shadow: 0 0 0 3px rgba(25,118,210,0.10);
+    }
+
+    .cliente-autocomplete {
+      position: relative;
+      margin-top: 6px;
+    }
+
+    .cliente-autocomplete .campo-edicao {
+      margin-top: 0;
+    }
+
+    .lista-sugestoes-clientes {
+      display: none;
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 1000;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.18);
+    }
+
+    .cliente-sugestao {
+      display: block;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      border-bottom: 1px solid #f1f5f9;
+      background: #ffffff;
+      color: #0f172a;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .cliente-sugestao:hover,
+    .cliente-sugestao:focus {
+      background: #eff6ff;
+      color: #0d47a1;
+      outline: none;
+    }
+
+    .cliente-sugestao-mensagem {
+      padding: 12px;
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .contador-clientes {
+      margin-top: 6px;
+      color: #64748b;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
     .campo-edicao:disabled {
@@ -1520,22 +1587,51 @@
               </div>
 
 
-              <div class="info-box">
+              <div class="info-box info-box-cliente">
 
                 <div class="info-label">
                   Cliente
                 </div>
 
-                <select
-                  id="editCliente"
-                  class="campo-edicao"
-                >
+                <div class="cliente-autocomplete" id="clienteAutocomplete">
 
-                  <option value="">
+                  <input
+                    type="text"
+                    id="editClientePesquisa"
+                    class="campo-edicao"
+                    placeholder="PESQUISE PELO CÓDIGO OU NOME"
+                    autocomplete="off"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-controls="editClienteSugestoes"
+                  >
+
+                  <div
+                    id="editClienteSugestoes"
+                    class="lista-sugestoes-clientes"
+                    role="listbox"
+                  ></div>
+
+                  <div
+                    id="editClienteContagem"
+                    class="contador-clientes"
+                  >
                     CARREGANDO CLIENTES...
-                  </option>
+                  </div>
 
-                </select>
+                  <select
+                    id="editCliente"
+                    hidden
+                    aria-hidden="true"
+                    tabindex="-1"
+                  >
+                    <option value="">
+                      SELECIONE O CLIENTE
+                    </option>
+                  </select>
+
+                </div>
 
               </div>
 
@@ -1892,6 +1988,8 @@
 
       try {
 
+        configurarBuscaClientes();
+
         mostrarLoading(
           "VERIFICANDO SESSÃO..."
         );
@@ -2035,23 +2133,56 @@
        CARREGAR CLIENTES E TRANSPORTADORAS
        ===================================================== */
 
+    async function carregarTodosClientes() {
+
+      const clientes = [];
+      const tamanhoLote = 1000;
+      let inicio = 0;
+
+      while (true) {
+
+        const resultado =
+          await supabaseClient
+            .from("clientes")
+            .select("id, codigo, nome, cidade, uf, ativo")
+            .order("nome", {
+              ascending: true
+            })
+            .order("id", {
+              ascending: true
+            })
+            .range(
+              inicio,
+              inicio + tamanhoLote - 1
+            );
+
+        if (resultado.error) {
+          throw resultado.error;
+        }
+
+        const lote =
+          resultado.data || [];
+
+        if (lote.length === 0) {
+          break;
+        }
+
+        clientes.push(...lote);
+        inicio += lote.length;
+
+      }
+
+      return clientes;
+
+    }
+
+
     async function carregarListas() {
 
       try {
 
         const resultadoClientes =
-          await supabaseClient
-            .from("clientes")
-            .select("id, codigo, nome, cidade, uf, ativo")
-            .eq("ativo", true)
-            .order("nome", {
-              ascending: true
-            });
-
-
-        if (resultadoClientes.error) {
-          throw resultadoClientes.error;
-        }
+          await carregarTodosClientes();
 
 
         const resultadoTransportadoras =
@@ -2070,7 +2201,7 @@
 
 
         window.listaClientes =
-          resultadoClientes.data || [];
+          resultadoClientes;
 
 
         window.listaTransportadoras =
@@ -2099,86 +2230,336 @@
 
     }
 
+    function obterRotuloCliente(cliente) {
+
+      const codigo =
+        String(cliente.codigo || "").trim();
+
+      const nome =
+        String(cliente.nome || "").trim();
+
+      let rotulo =
+        codigo
+          ? codigo + " - " + nome
+          : nome;
+
+      if (cliente.ativo === false) {
+        rotulo += " — INATIVO";
+      }
+
+      return rotulo;
+
+    }
+
+
+    function normalizarBuscaCliente(valor) {
+
+      return String(valor || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase()
+        .trim();
+
+    }
+
 
     function preencherSelectClientes() {
 
       const select =
-        document.getElementById(
-          "editCliente"
-        );
+        document.getElementById("editCliente");
 
+      const lista =
+        window.listaClientes || [];
 
       if (!select) {
         return;
       }
 
+      select.innerHTML = "";
 
-      select.innerHTML =
-        "";
+      const opcaoInicial =
+        document.createElement("option");
+
+      opcaoInicial.value = "";
+      opcaoInicial.textContent = "SELECIONE O CLIENTE";
+      select.appendChild(opcaoInicial);
+
+      lista.forEach(function(cliente) {
+
+        const option =
+          document.createElement("option");
+
+        option.value = cliente.id;
+        option.textContent = obterRotuloCliente(cliente);
+        option.dataset.nome = cliente.nome || "";
+        option.dataset.cidade = cliente.cidade || "";
+        option.dataset.uf = cliente.uf || "";
+
+        select.appendChild(option);
+
+      });
+
+      const contador =
+        document.getElementById("editClienteContagem");
+
+      if (contador) {
+        contador.textContent =
+          lista.length.toLocaleString("pt-BR") +
+          " CLIENTES CARREGADOS — PESQUISE PELO CÓDIGO OU NOME.";
+      }
+
+    }
 
 
-      const opcao =
-        document.createElement(
-          "option"
-        );
-
-
-      opcao.value =
-        "";
-
-
-      opcao.textContent =
-        "SELECIONE O CLIENTE";
-
-
-      select.appendChild(
-        opcao
-      );
-
+    function fecharSugestoesClientes() {
 
       const lista =
-        window.listaClientes || [];
+        document.getElementById("editClienteSugestoes");
+
+      const campo =
+        document.getElementById("editClientePesquisa");
+
+      if (lista) {
+        lista.style.display = "none";
+        lista.innerHTML = "";
+      }
+
+      if (campo) {
+        campo.setAttribute("aria-expanded", "false");
+      }
+
+    }
 
 
-      lista.forEach(
-        function(cliente) {
+    function mostrarMensagemSugestoesClientes(texto) {
 
-          const option =
-            document.createElement(
-              "option"
+      const lista =
+        document.getElementById("editClienteSugestoes");
+
+      const campo =
+        document.getElementById("editClientePesquisa");
+
+      if (!lista) {
+        return;
+      }
+
+      lista.innerHTML = "";
+
+      const mensagem =
+        document.createElement("div");
+
+      mensagem.className =
+        "cliente-sugestao-mensagem";
+
+      mensagem.textContent = texto;
+      lista.appendChild(mensagem);
+      lista.style.display = "block";
+
+      if (campo) {
+        campo.setAttribute("aria-expanded", "true");
+      }
+
+    }
+
+
+    function pesquisarClientesParaEdicao(texto, mostrarInstrucao) {
+
+      const campo =
+        document.getElementById("editClientePesquisa");
+
+      const painel =
+        document.getElementById("editClienteSugestoes");
+
+      const termo =
+        normalizarBuscaCliente(texto);
+
+      if (!campo || !painel) {
+        return;
+      }
+
+      if (!termo) {
+
+        if (mostrarInstrucao) {
+          mostrarMensagemSugestoesClientes(
+            "DIGITE O CÓDIGO OU O NOME DO CLIENTE."
+          );
+        } else {
+          fecharSugestoesClientes();
+        }
+
+        return;
+
+      }
+
+      const correspondencias =
+        (window.listaClientes || []).filter(function(cliente) {
+
+          const codigo =
+            normalizarBuscaCliente(cliente.codigo);
+
+          const nome =
+            normalizarBuscaCliente(cliente.nome);
+
+          return codigo.includes(termo) || nome.includes(termo);
+
+        });
+
+      painel.innerHTML = "";
+
+      if (correspondencias.length === 0) {
+
+        mostrarMensagemSugestoesClientes(
+          "NENHUM CLIENTE ENCONTRADO PARA ESSA BUSCA."
+        );
+
+        return;
+
+      }
+
+      const limiteExibicao = 30;
+
+      correspondencias
+        .slice(0, limiteExibicao)
+        .forEach(function(cliente) {
+
+          const botao =
+            document.createElement("button");
+
+          botao.type = "button";
+          botao.className = "cliente-sugestao";
+          botao.setAttribute("role", "option");
+          botao.textContent = obterRotuloCliente(cliente);
+
+          botao.addEventListener("click", function() {
+            selecionarClientePorId(cliente.id);
+          });
+
+          painel.appendChild(botao);
+
+        });
+
+      if (correspondencias.length > limiteExibicao) {
+
+        const aviso =
+          document.createElement("div");
+
+        aviso.className =
+          "cliente-sugestao-mensagem";
+
+        aviso.textContent =
+          "EXIBINDO OS 30 PRIMEIROS DE " +
+          correspondencias.length.toLocaleString("pt-BR") +
+          " RESULTADOS. DIGITE MAIS PARA REFINAR.";
+
+        painel.appendChild(aviso);
+
+      }
+
+      painel.style.display = "block";
+      campo.setAttribute("aria-expanded", "true");
+
+    }
+
+
+    function selecionarClientePorId(clienteId, atualizarLocalizacao = true) {
+
+      const cliente =
+        (window.listaClientes || []).find(function(item) {
+          return String(item.id) === String(clienteId);
+        });
+
+      const select =
+        document.getElementById("editCliente");
+
+      const campo =
+        document.getElementById("editClientePesquisa");
+
+      if (!cliente || !select || !campo) {
+        return;
+      }
+
+      select.value = String(cliente.id);
+      campo.value = obterRotuloCliente(cliente);
+      campo.dataset.clienteId = String(cliente.id);
+
+      fecharSugestoesClientes();
+
+      if (atualizarLocalizacao) {
+        select.dispatchEvent(
+          new Event("change", { bubbles: true })
+        );
+      }
+
+    }
+
+
+    function configurarBuscaClientes() {
+
+      const campo =
+        document.getElementById("editClientePesquisa");
+
+      const select =
+        document.getElementById("editCliente");
+
+      const area =
+        document.getElementById("clienteAutocomplete");
+
+      if (!campo || !select || !area || campo.dataset.configurado === "true") {
+        return;
+      }
+
+      campo.dataset.configurado = "true";
+
+      campo.addEventListener("input", function() {
+
+        select.value = "";
+        delete campo.dataset.clienteId;
+
+        pesquisarClientesParaEdicao(campo.value, false);
+
+      });
+
+      campo.addEventListener("focus", function() {
+
+        if (select.value) {
+          campo.select();
+          return;
+        }
+
+        pesquisarClientesParaEdicao(campo.value, true);
+
+      });
+
+      campo.addEventListener("keydown", function(evento) {
+
+        if (evento.key === "Escape") {
+          fecharSugestoesClientes();
+          return;
+        }
+
+        if (evento.key === "Enter") {
+
+          const primeiro =
+            document.querySelector(
+              "#editClienteSugestoes .cliente-sugestao"
             );
 
-
-          option.value =
-            cliente.id;
-
-
-          option.textContent =
-            cliente.codigo
-              ? cliente.codigo +
-                " - " +
-                cliente.nome
-              : cliente.nome;
-
-
-          option.dataset.nome =
-            cliente.nome || "";
-
-
-          option.dataset.cidade =
-            cliente.cidade || "";
-
-
-          option.dataset.uf =
-            cliente.uf || "";
-
-
-          select.appendChild(
-            option
-          );
+          if (primeiro) {
+            evento.preventDefault();
+            primeiro.click();
+          }
 
         }
-      );
+
+      });
+
+      document.addEventListener("click", function(evento) {
+
+        if (!area.contains(evento.target)) {
+          fecharSugestoesClientes();
+        }
+
+      });
 
     }
 
@@ -2729,55 +3110,46 @@
     ) {
 
       const select =
-        document.getElementById(
-          "editCliente"
-        );
+        document.getElementById("editCliente");
 
+      const campo =
+        document.getElementById("editClientePesquisa");
 
-      if (!select) {
+      if (!select || !campo) {
         return;
       }
 
+      let encontrado = null;
 
       if (clienteId) {
 
-        select.value =
-          clienteId;
-
-        return;
+        encontrado =
+          (window.listaClientes || []).find(function(cliente) {
+            return String(cliente.id) === String(clienteId);
+          }) || null;
 
       }
 
+      if (!encontrado && clienteNome) {
 
-      const lista =
-        window.listaClientes || [];
+        const nomeBuscado =
+          normalizarBuscaCliente(clienteNome);
 
+        encontrado =
+          (window.listaClientes || []).find(function(cliente) {
+            return normalizarBuscaCliente(cliente.nome) === nomeBuscado;
+          }) || null;
 
-      const encontrado =
-        lista.find(
-          function(cliente) {
-
-            return String(
-              cliente.nome || ""
-            )
-            .trim()
-            .toUpperCase() ===
-            String(
-              clienteNome || ""
-            )
-            .trim()
-            .toUpperCase();
-
-          }
-        );
-
+      }
 
       if (encontrado) {
-
-        select.value =
-          encontrado.id;
-
+        selecionarClientePorId(encontrado.id, false);
+        return;
       }
+
+      select.value = "";
+      campo.value = clienteNome || "";
+      delete campo.dataset.clienteId;
 
     }
 
@@ -3090,7 +3462,7 @@
       if (!clienteId) {
 
         mostrarMensagem(
-          "SELECIONE UM CLIENTE.",
+          "PESQUISE E SELECIONE UM CLIENTE PELO CÓDIGO OU NOME.",
           "erro"
         );
 
