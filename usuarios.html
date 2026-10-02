@@ -678,6 +678,18 @@
 
     }
 
+    .panel-actions {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      flex-shrink: 0;
+
+    }
+
     .panel-title {
 
       font-size: 15px;
@@ -746,6 +758,14 @@
     .btn-secondary:hover {
 
       background: #cbd5e1;
+
+    }
+
+    .btn:disabled {
+
+      opacity: 0.65;
+
+      cursor: not-allowed;
 
     }
 
@@ -1174,6 +1194,26 @@
 
     }
 
+    .campo input[type="password"] {
+
+      text-transform: none;
+
+    }
+
+    .campo-ajuda {
+
+      margin-top: 6px;
+
+      color: #64748b;
+
+      font-size: 10px;
+
+      line-height: 1.5;
+
+      text-transform: uppercase;
+
+    }
+
     .modal-acoes {
 
       display: flex;
@@ -1438,6 +1478,26 @@
       .modal-acoes .btn {
 
         width: 100%;
+
+      }
+
+      .panel-header {
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+      }
+
+      .panel-actions {
+
+        width: 100%;
+
+      }
+
+      .panel-actions .btn {
+
+        flex: 1;
 
       }
 
@@ -1867,15 +1927,30 @@
           </div>
 
 
-          <button
-            type="button"
-            class="btn btn-secondary"
-            onclick="carregarUsuarios()"
-          >
+          <div class="panel-actions">
 
-            🔄 ATUALIZAR
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="abrirModalNovo()"
+            >
 
-          </button>
+              ➕ NOVO USUÁRIO
+
+            </button>
+
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="carregarUsuarios()"
+            >
+
+              🔄 ATUALIZAR
+
+            </button>
+
+          </div>
 
         </div>
 
@@ -2156,6 +2231,189 @@
   </div>
 
 
+  <!-- =====================================================
+       MODAL NOVO USUÁRIO
+       ===================================================== -->
+
+  <div
+    id="modalNovo"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tituloModalNovo"
+  >
+
+    <div class="modal-box">
+
+
+      <div class="modal-header">
+
+        <div
+          class="modal-title"
+          id="tituloModalNovo"
+        >
+          ➕ CADASTRAR USUÁRIO
+        </div>
+
+
+        <button
+          type="button"
+          class="fechar"
+          aria-label="Fechar cadastro"
+          onclick="fecharModalNovo()"
+        >
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <form
+        id="formNovo"
+        onsubmit="criarUsuario(event)"
+      >
+
+
+        <div class="campo">
+
+          <label for="novoNome">
+            Nome completo
+          </label>
+
+          <input
+            type="text"
+            id="novoNome"
+            maxlength="120"
+            autocomplete="name"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="novoEmail">
+            E-mail de acesso
+          </label>
+
+          <input
+            type="email"
+            id="novoEmail"
+            maxlength="254"
+            autocomplete="email"
+            required
+          >
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="novoPerfil">
+            Perfil de acesso
+          </label>
+
+          <select
+            id="novoPerfil"
+            required
+          >
+
+            <option value="OPERADOR">
+              OPERADOR
+            </option>
+
+            <option value="CONSULTA">
+              CONSULTA
+            </option>
+
+            <option value="ADMINISTRADOR">
+              ADMINISTRADOR
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="novaSenha">
+            Senha inicial
+          </label>
+
+          <input
+            type="password"
+            id="novaSenha"
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+            required
+          >
+
+          <div class="campo-ajuda">
+            A senha será usada no primeiro acesso. Informe-a ao operador com segurança.
+          </div>
+
+        </div>
+
+
+        <div class="campo">
+
+          <label for="confirmarSenha">
+            Confirmar senha inicial
+          </label>
+
+          <input
+            type="password"
+            id="confirmarSenha"
+            minlength="8"
+            maxlength="128"
+            autocomplete="new-password"
+            required
+          >
+
+        </div>
+
+
+        <div class="modal-acoes">
+
+
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="fecharModalNovo()"
+          >
+
+            CANCELAR
+
+          </button>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="btnCriarUsuario"
+          >
+
+            ✅ CRIAR USUÁRIO
+
+          </button>
+
+
+        </div>
+
+
+      </form>
+
+
+    </div>
+
+  </div>
+
+
   <script>
 
 
@@ -2407,6 +2665,292 @@
           usuarioAtual.perfil ||
           "USUÁRIO"
         ).toUpperCase();
+
+    }
+
+
+    /* =====================================================
+       NOVO USUÁRIO
+       ===================================================== */
+
+    function abrirModalNovo() {
+
+      if (
+        !usuarioAtual ||
+        normalizarPerfil(usuarioAtual.perfil) !== "ADMINISTRADOR"
+      ) {
+
+        mostrarMensagem(
+          "SOMENTE ADMINISTRADORES PODEM CADASTRAR USUÁRIOS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      document
+        .getElementById("formNovo")
+        .reset();
+
+
+      document.getElementById(
+        "novoPerfil"
+      ).value = "OPERADOR";
+
+
+      document
+        .getElementById("modalNovo")
+        .classList.add("aberto");
+
+    }
+
+
+    function fecharModalNovo() {
+
+      document
+        .getElementById("modalNovo")
+        .classList.remove("aberto");
+
+    }
+
+
+    async function criarUsuario(evento) {
+
+      evento.preventDefault();
+
+
+      if (
+        !usuarioAtual ||
+        normalizarPerfil(usuarioAtual.perfil) !== "ADMINISTRADOR"
+      ) {
+
+        mostrarMensagem(
+          "SOMENTE ADMINISTRADORES PODEM CADASTRAR USUÁRIOS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      const nome =
+        document.getElementById("novoNome").value.trim();
+
+      const email =
+        document.getElementById("novoEmail").value.trim().toLowerCase();
+
+      const perfil =
+        normalizarPerfil(
+          document.getElementById("novoPerfil").value
+        );
+
+      const senha =
+        document.getElementById("novaSenha").value;
+
+      const confirmarSenha =
+        document.getElementById("confirmarSenha").value;
+
+      const botao =
+        document.getElementById("btnCriarUsuario");
+
+
+      if (!nome || !email) {
+
+        mostrarMensagem(
+          "INFORME O NOME E O E-MAIL DO USUÁRIO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (
+        perfil !== "ADMINISTRADOR" &&
+        perfil !== "OPERADOR" &&
+        perfil !== "CONSULTA"
+      ) {
+
+        mostrarMensagem(
+          "SELECIONE UM PERFIL DE ACESSO VÁLIDO.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (senha.length < 8) {
+
+        mostrarMensagem(
+          "A SENHA INICIAL PRECISA TER PELO MENOS 8 CARACTERES.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      if (senha !== confirmarSenha) {
+
+        mostrarMensagem(
+          "AS SENHAS INFORMADAS NÃO SÃO IGUAIS.",
+          "erro"
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        botao.disabled = true;
+
+        botao.textContent = "CRIANDO...";
+
+        mostrarLoading("CRIANDO USUÁRIO...");
+
+
+        const resultado =
+          await supabaseClient.functions.invoke(
+            "admin-create-user",
+            {
+              body: {
+                nome: nome.toUpperCase(),
+                email: email,
+                perfil: perfil,
+                senha: senha
+              }
+            }
+          );
+
+
+        if (resultado.error) {
+
+          const mensagemErro =
+            await obterMensagemErroFuncao(resultado.error);
+
+          throw new Error(mensagemErro);
+
+        }
+
+
+        if (
+          !resultado.data ||
+          resultado.data.ok !== true
+        ) {
+
+          throw new Error(
+            resultado.data && resultado.data.message
+              ? resultado.data.message
+              : "NÃO FOI POSSÍVEL CRIAR O USUÁRIO."
+          );
+
+        }
+
+
+        document
+          .getElementById("formNovo")
+          .reset();
+
+
+        document.getElementById(
+          "novoPerfil"
+        ).value = "OPERADOR";
+
+
+        fecharModalNovo();
+
+
+        await carregarUsuarios();
+
+
+        mostrarMensagem(
+          "USUÁRIO CRIADO COM SUCESSO! ELE JÁ PODE ENTRAR COM O E-MAIL E A SENHA INICIAL.",
+          "sucesso"
+        );
+
+      }
+
+
+      catch (erro) {
+
+        console.error(
+          "Erro ao criar usuário:",
+          erro
+        );
+
+
+        mostrarMensagem(
+          obterMensagemErro(erro),
+          "erro"
+        );
+
+      }
+
+
+      finally {
+
+        esconderLoading();
+
+        botao.disabled = false;
+
+        botao.textContent = "✅ CRIAR USUÁRIO";
+
+      }
+
+    }
+
+
+    async function obterMensagemErroFuncao(erro) {
+
+      try {
+
+        const contexto =
+          erro && erro.context;
+
+
+        if (
+          contexto &&
+          typeof contexto.clone === "function"
+        ) {
+
+          const resposta =
+            await contexto.clone().json();
+
+
+          if (resposta && resposta.message) {
+
+            return String(resposta.message);
+
+          }
+
+        }
+
+      }
+
+      catch (erroLeitura) {
+
+        console.warn(
+          "Não foi possível ler a resposta da função:",
+          erroLeitura
+        );
+
+      }
+
+
+      return (
+        erro && erro.message
+          ? String(erro.message)
+          : "NÃO FOI POSSÍVEL CRIAR O USUÁRIO."
+      );
 
     }
 
@@ -3820,6 +4364,27 @@
       );
 
 
+    document
+      .getElementById(
+        "modalNovo"
+      )
+      .addEventListener(
+        "click",
+        function(evento) {
+
+          if (
+            evento.target ===
+            this
+          ) {
+
+            fecharModalNovo();
+
+          }
+
+        }
+      );
+
+
     /* =====================================================
        ESC FECHA MODAL
        ===================================================== */
@@ -3834,6 +4399,8 @@
         ) {
 
           fecharModal();
+
+          fecharModalNovo();
 
         }
 
