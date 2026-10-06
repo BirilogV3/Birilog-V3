@@ -6,10 +6,11 @@
 
   <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
   <title>BiriLog V3 - Novo Envio</title>
 
@@ -192,7 +193,8 @@
       color:
         #94a3b8;
 
-      letter-spacing: 1px;
+      letter-spacing:
+        1px;
 
     }
 
@@ -223,7 +225,8 @@
       color:
         #64748b;
 
-      letter-spacing: 1px;
+      letter-spacing:
+        1px;
 
     }
 
@@ -857,6 +860,58 @@
 
     }
 
+    .campo-whatsapp-autorizacao {
+
+      display: flex;
+      align-items: center;
+
+    }
+
+    .checkbox-whatsapp {
+
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+      min-height: 43px;
+      padding: 11px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      cursor: pointer;
+
+    }
+
+    .checkbox-whatsapp input {
+
+      flex: 0 0 18px;
+      width: 18px;
+      min-height: 18px;
+      height: 18px;
+      margin: 1px 0 0;
+      padding: 0;
+      accent-color: #16a34a;
+
+    }
+
+    .checkbox-whatsapp span {
+
+      font-size: 10px;
+      font-weight: 800;
+      line-height: 1.5;
+      color: #475569;
+
+    }
+
+    .ajuda-whatsapp {
+
+      margin-top: 5px;
+      color: #64748b;
+      font-size: 10px;
+      line-height: 1.4;
+
+    }
+
     .obrigatorio {
 
       color:
@@ -1241,38 +1296,6 @@
 
     }
 
-    .btn-excluir {
-
-      background:
-        linear-gradient(
-          135deg,
-          #dc2626,
-          #b91c1c
-        );
-
-      color:
-        white;
-
-      min-width:
-        170px;
-
-      box-shadow:
-        0 5px 14px
-        rgba(220,38,38,.18);
-
-    }
-
-    .btn-excluir:hover {
-
-      background:
-        linear-gradient(
-          135deg,
-          #b91c1c,
-          #991b1b
-        );
-
-    }
-
     .loading {
 
       position:
@@ -1565,687 +1588,735 @@
     class="loading"
   >
 
-    <div class="loading-box">
+```
+<div class="loading-box">
 
-      <div class="spinner"></div>
+  <div class="spinner"></div>
 
-      <div
-        id="loadingText"
-        class="loading-text"
-      >
-        CARREGANDO...
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    CARREGANDO...
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <aside class="sidebar">
+
+```
+<div class="logo-area">
+
+  <div class="logo-icon">
+    🚚
+  </div>
+
+  <div class="logo-title">
+    Biri<span>Log</span>
+  </div>
+
+  <div class="logo-version">
+    SISTEMA V3.0
+  </div>
+
+</div>
+
+<nav class="menu">
+
+  <div class="menu-title">
+    MENU PRINCIPAL
+  </div>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('dashboard.html')"
+  >
+
+    <span class="menu-icon">
+      📊
+    </span>
+
+    <span>
+      Dashboard
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item active"
+    onclick="irPara('envios.html')"
+  >
+
+    <span class="menu-icon">
+      📦
+    </span>
+
+    <span>
+      Envios
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pesquisar-nf.html')"
+  >
+
+    <span class="menu-icon">
+      🔎
+    </span>
+
+    <span>
+      Pesquisar NF
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('clientes.html')"
+  >
+
+    <span class="menu-icon">
+      👥
+    </span>
+
+    <span>
+      Clientes
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('transportadoras.html')"
+  >
+
+    <span class="menu-icon">
+      🚛
+    </span>
+
+    <span>
+      Transportadoras
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('relatorios.html')"
+  >
+
+    <span class="menu-icon">
+      📄
+    </span>
+
+    <span>
+      Relatórios
+    </span>
+
+  </button>
+
+  <!-- =================================================
+       PÓS-ENTREGA
+       ================================================= -->
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('pos-entrega.html')"
+  >
+
+    <span class="menu-icon">
+      📱
+    </span>
+
+    <span>
+      Pós-Entrega
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('usuarios.html')"
+  >
+
+    <span class="menu-icon">
+      🔐
+    </span>
+
+    <span>
+      Usuários
+    </span>
+
+  </button>
+
+  <button
+    type="button"
+    class="menu-item"
+    onclick="irPara('configuracoes.html')"
+  >
+
+    <span class="menu-icon">
+      ⚙️
+    </span>
+
+    <span>
+      Configurações
+    </span>
+
+  </button>
+
+</nav>
+
+<div class="user-area">
+
+  <div class="user-card">
+
+    <div
+      id="usuarioNome"
+      class="user-name"
+    >
+      USUÁRIO
+    </div>
+
+    <div
+      id="usuarioEmail"
+      class="user-email"
+    >
+      -
+    </div>
+
+    <div
+      id="usuarioPerfil"
+      class="user-profile"
+    >
+      PERFIL
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    class="logout"
+    id="botaoSair"
+    onclick="sair()"
+  >
+
+    🚪 SAIR DO SISTEMA
+
+  </button>
+
+</div>
+```
+
+  </aside>
+
+  <main class="main">
+
+```
+<header class="header">
+
+  <div>
+
+    <div class="header-title">
+      Novo Envio
+    </div>
+
+    <div class="header-subtitle">
+      Cadastro e controle de notas fiscais
+    </div>
+
+  </div>
+
+  <div class="status-online">
+
+    <span class="status-dot"></span>
+
+    SISTEMA ONLINE
+
+  </div>
+
+</header>
+
+<section class="content">
+
+  <div class="page-header">
+
+    <div class="page-title">
+      📦 NOVO ENVIO
+    </div>
+
+    <div class="page-subtitle">
+      CADASTRO E CONTROLE DE ENVIO DE NOTAS FISCAIS
+    </div>
+
+  </div>
+
+  <div
+    id="mensagem"
+    class="mensagem"
+  ></div>
+
+  <button
+    type="button"
+    id="btnReenviarWhatsApp"
+    class="btn btn-limpar"
+    style="display:none; margin: 0 0 16px;"
+    onclick="reenviarWhatsAppsPendentes()"
+  >
+    🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES
+  </button>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📋
+      </div>
+
+      DADOS DO ENVIO
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo campo-nf">
+
+        <label for="nf">
+
+          NÚMERO DA NF
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <input
+          type="text"
+          id="nf"
+          placeholder="DIGITE O NÚMERO DA NF"
+          autocomplete="off"
+          maxlength="50"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="clientePesquisa">
+
+          CLIENTE
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <div class="cliente-wrapper">
+
+          <div class="cliente-pesquisa">
+
+            <span class="cliente-icone">
+              🔎
+            </span>
+
+            <input
+              type="text"
+              id="clientePesquisa"
+              placeholder="DIGITE O NOME DO CLIENTE"
+              autocomplete="off"
+            >
+
+          </div>
+
+          <div
+            id="resultadosClientes"
+            class="resultados-clientes"
+          ></div>
+
+          <div
+            id="clienteSelecionado"
+            class="cliente-selecionado"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="telefoneCliente">
+          TELEFONE / WHATSAPP DO CLIENTE
+        </label>
+
+        <input
+          type="tel"
+          id="telefoneCliente"
+          placeholder="(63) 99999-9999"
+          autocomplete="off"
+          inputmode="tel"
+          maxlength="20"
+        >
+
+      </div>
+
+      <div class="campo campo-whatsapp-autorizacao">
+
+        <label class="checkbox-whatsapp" for="whatsappAutorizado">
+          <input
+            type="checkbox"
+            id="whatsappAutorizado"
+          >
+          <span>
+            O CLIENTE AUTORIZOU A BIRIVET A ENVIAR ATUALIZAÇÕES DE PEDIDOS POR WHATSAPP.
+          </span>
+        </label>
+
+        <small class="ajuda-whatsapp">
+          MARQUE SOMENTE SE O CLIENTE AUTORIZOU O RECEBIMENTO DE AVISOS.
+        </small>
+
+      </div>
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="uf">
+
+          UF
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="uf">
+
+          <option value="">
+            SELECIONE
+          </option>
+
+          <option value="TO">
+            TOCANTINS
+          </option>
+
+          <option value="PA">
+            PARÁ
+          </option>
+
+          <option value="MA">
+            MARANHÃO
+          </option>
+
+          <option value="GO">
+            GOIÁS
+          </option>
+
+          <option value="BA">
+            BAHIA
+          </option>
+
+          <option value="PI">
+            PIAUÍ
+          </option>
+
+          <option value="MT">
+            MATO GROSSO
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="cidade">
+
+          CIDADE
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <input
+          type="text"
+          id="cidade"
+          placeholder="DIGITE A CIDADE"
+          autocomplete="off"
+        >
+
+      </div>
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="transportadora">
+
+          TRANSPORTADORA
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="transportadora">
+
+          <option value="">
+            CARREGANDO...
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="status">
+
+          STATUS
+
+          <span class="obrigatorio">
+            *
+          </span>
+
+        </label>
+
+        <select id="status">
+
+          <option value="COLETADO">
+            📦 COLETADO
+          </option>
+
+          <option value="EM TRANSITO">
+            🚚 EM TRÂNSITO
+          </option>
+
+          <option value="ENTREGUE">
+            ✅ ENTREGUE
+          </option>
+
+          <option value="ATRASADO">
+            ⚠️ ATRASADO
+          </option>
+
+        </select>
+
       </div>
 
     </div>
 
   </div>
 
-  <aside class="sidebar">
+  <div class="card">
 
-    <div class="logo-area">
+    <div class="card-title">
 
-      <div class="logo-icon">
-        🚚
+      <div class="card-icon">
+        📦
       </div>
 
-      <div class="logo-title">
-        Biri<span>Log</span>
+      DADOS DA CARGA
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="valor">
+          VALOR DA CARGA
+        </label>
+
+        <input
+          type="number"
+          id="valor"
+          step="0.01"
+          min="0"
+          placeholder="0,00"
+        >
+
       </div>
 
-      <div class="logo-version">
-        SISTEMA V3.0
+      <div class="campo">
+
+        <label for="peso">
+          PESO (KG)
+        </label>
+
+        <input
+          type="number"
+          id="peso"
+          step="0.01"
+          min="0"
+          placeholder="0,00"
+        >
+
       </div>
 
     </div>
 
-    <nav class="menu">
+    <div class="linha">
 
-      <div class="menu-title">
-        MENU PRINCIPAL
-      </div>
+      <div class="campo">
 
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('dashboard.html')"
-      >
+        <label for="volumes">
+          VOLUMES
+        </label>
 
-        <span class="menu-icon">
-          📊
-        </span>
-
-        <span>
-          Dashboard
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item active"
-        onclick="irPara('envios.html')"
-      >
-
-        <span class="menu-icon">
-          📦
-        </span>
-
-        <span>
-          Envios
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pesquisar-nf.html')"
-      >
-
-        <span class="menu-icon">
-          🔎
-        </span>
-
-        <span>
-          Pesquisar NF
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('clientes.html')"
-      >
-
-        <span class="menu-icon">
-          👥
-        </span>
-
-        <span>
-          Clientes
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('transportadoras.html')"
-      >
-
-        <span class="menu-icon">
-          🚛
-        </span>
-
-        <span>
-          Transportadoras
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('relatorios.html')"
-      >
-
-        <span class="menu-icon">
-          📄
-        </span>
-
-        <span>
-          Relatórios
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('pos-entrega.html')"
-      >
-
-        <span class="menu-icon">
-          📱
-        </span>
-
-        <span>
-          Pós-Entrega
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('usuarios.html')"
-      >
-
-        <span class="menu-icon">
-          🔐
-        </span>
-
-        <span>
-          Usuários
-        </span>
-
-      </button>
-
-      <button
-        type="button"
-        class="menu-item"
-        onclick="irPara('configuracoes.html')"
-      >
-
-        <span class="menu-icon">
-          ⚙️
-        </span>
-
-        <span>
-          Configurações
-        </span>
-
-      </button>
-
-    </nav>
-
-    <div class="user-area">
-
-      <div class="user-card">
-
-        <div
-          id="usuarioNome"
-          class="user-name"
+        <input
+          type="number"
+          id="volumes"
+          min="1"
+          step="1"
+          value="1"
         >
-          USUÁRIO
-        </div>
-
-        <div
-          id="usuarioEmail"
-          class="user-email"
-        >
-          -
-        </div>
-
-        <div
-          id="usuarioPerfil"
-          class="user-profile"
-        >
-          PERFIL
-        </div>
 
       </div>
 
+      <div class="campo">
+
+        <label for="dataEnvio">
+          DATA DE ENVIO
+        </label>
+
+        <input
+          type="date"
+          id="dataEnvio"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📅
+      </div>
+
+      PRAZOS E ENTREGA
+
+    </div>
+
+    <div class="linha">
+
+      <div class="campo">
+
+        <label for="previsao">
+          PREVISÃO DE ENTREGA
+        </label>
+
+        <input
+          type="date"
+          id="previsao"
+        >
+
+      </div>
+
+      <div class="campo">
+
+        <label for="dataEntrega">
+          DATA DE ENTREGA
+        </label>
+
+        <input
+          type="date"
+          id="dataEntrega"
+        >
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+
+      <div class="card-icon">
+        📝
+      </div>
+
+      OBSERVAÇÕES
+
+    </div>
+
+    <div class="campo">
+
+      <label for="observacao">
+        OBSERVAÇÃO
+      </label>
+
+      <textarea
+        id="observacao"
+        placeholder="DIGITE UMA OBSERVAÇÃO, SE NECESSÁRIO..."
+      ></textarea>
+
+    </div>
+
+    <div class="acoes">
+
       <button
         type="button"
-        class="logout"
-        id="botaoSair"
-        onclick="sair()"
+        class="btn btn-limpar"
+        onclick="limparCampos()"
       >
 
-        🚪 SAIR DO SISTEMA
+        🧹 LIMPAR
+
+      </button>
+
+      <button
+        type="button"
+        id="btnSalvar"
+        class="btn btn-salvar"
+        onclick="salvarEnvio()"
+      >
+
+        💾 SALVAR ENVIO
 
       </button>
 
     </div>
 
-  </aside>
+  </div>
 
-  <main class="main">
-
-    <header class="header">
-
-      <div>
-
-        <div class="header-title">
-          Novo Envio
-        </div>
-
-        <div class="header-subtitle">
-          Cadastro e controle de notas fiscais
-        </div>
-
-      </div>
-
-      <div class="status-online">
-
-        <span class="status-dot"></span>
-
-        SISTEMA ONLINE
-
-      </div>
-
-    </header>
-
-    <section class="content">
-
-      <div class="page-header">
-
-        <div class="page-title">
-          📦 NOVO ENVIO
-        </div>
-
-        <div class="page-subtitle">
-          CADASTRO E CONTROLE DE ENVIO DE NOTAS FISCAIS
-        </div>
-
-      </div>
-
-      <div
-        id="mensagem"
-        class="mensagem"
-      ></div>
-
-      <div class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📋
-          </div>
-
-          DADOS DO ENVIO
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo campo-nf">
-
-            <label for="nf">
-
-              NÚMERO DA NF
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <input
-              type="text"
-              id="nf"
-              placeholder="DIGITE O NÚMERO DA NF"
-              autocomplete="off"
-              maxlength="50"
-            >
-
-          </div>
-
-          <div class="campo">
-
-            <label for="clientePesquisa">
-
-              CLIENTE
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <div class="cliente-wrapper">
-
-              <div class="cliente-pesquisa">
-
-                <span class="cliente-icone">
-                  🔎
-                </span>
-
-                <input
-                  type="text"
-                  id="clientePesquisa"
-                  placeholder="DIGITE O NOME DO CLIENTE"
-                  autocomplete="off"
-                >
-
-              </div>
-
-              <div
-                id="resultadosClientes"
-                class="resultados-clientes"
-              ></div>
-
-              <div
-                id="clienteSelecionado"
-                class="cliente-selecionado"
-              ></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo">
-
-            <label for="uf">
-
-              UF
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <select id="uf">
-
-              <option value="">
-                SELECIONE
-              </option>
-
-              <option value="TO">
-                TOCANTINS
-              </option>
-
-              <option value="PA">
-                PARÁ
-              </option>
-
-              <option value="MA">
-                MARANHÃO
-              </option>
-
-              <option value="GO">
-                GOIÁS
-              </option>
-
-              <option value="BA">
-                BAHIA
-              </option>
-
-              <option value="PI">
-                PIAUÍ
-              </option>
-
-              <option value="MT">
-                MATO GROSSO
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="campo">
-
-            <label for="cidade">
-
-              CIDADE
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <input
-              type="text"
-              id="cidade"
-              placeholder="DIGITE A CIDADE"
-              autocomplete="off"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo">
-
-            <label for="transportadora">
-
-              TRANSPORTADORA
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <select id="transportadora">
-
-              <option value="">
-                CARREGANDO...
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="campo">
-
-            <label for="status">
-
-              STATUS
-
-              <span class="obrigatorio">
-                *
-              </span>
-
-            </label>
-
-            <select id="status">
-
-              <option value="COLETADO">
-                📦 COLETADO
-              </option>
-
-              <option value="EM TRANSITO">
-                🚚 EM TRÂNSITO
-              </option>
-
-              <option value="ENTREGUE">
-                ✅ ENTREGUE
-              </option>
-
-              <option value="ATRASADO">
-                ⚠️ ATRASADO
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📦
-          </div>
-
-          DADOS DA CARGA
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo">
-
-            <label for="valor">
-              VALOR DA CARGA
-            </label>
-
-            <input
-              type="number"
-              id="valor"
-              step="0.01"
-              min="0"
-              placeholder="0,00"
-            >
-
-          </div>
-
-          <div class="campo">
-
-            <label for="peso">
-              PESO (KG)
-            </label>
-
-            <input
-              type="number"
-              id="peso"
-              step="0.01"
-              min="0"
-              placeholder="0,00"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo">
-
-            <label for="volumes">
-              VOLUMES
-            </label>
-
-            <input
-              type="number"
-              id="volumes"
-              min="1"
-              step="1"
-              value="1"
-            >
-
-          </div>
-
-          <div class="campo">
-
-            <label for="dataEnvio">
-              DATA DE ENVIO
-            </label>
-
-            <input
-              type="date"
-              id="dataEnvio"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📅
-          </div>
-
-          PRAZOS E ENTREGA
-
-        </div>
-
-        <div class="linha">
-
-          <div class="campo">
-
-            <label for="previsao">
-              PREVISÃO DE ENTREGA
-            </label>
-
-            <input
-              type="date"
-              id="previsao"
-            >
-
-          </div>
-
-          <div class="campo">
-
-            <label for="dataEntrega">
-              DATA DE ENTREGA
-            </label>
-
-            <input
-              type="date"
-              id="dataEntrega"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="card">
-
-        <div class="card-title">
-
-          <div class="card-icon">
-            📝
-          </div>
-
-          OBSERVAÇÕES
-
-        </div>
-
-        <div class="campo">
-
-          <label for="observacao">
-            OBSERVAÇÃO
-          </label>
-
-          <textarea
-            id="observacao"
-            placeholder="DIGITE UMA OBSERVAÇÃO, SE NECESSÁRIO..."
-          ></textarea>
-
-        </div>
-
-        <div class="acoes">
-
-          <button
-            type="button"
-            class="btn btn-limpar"
-            onclick="limparCampos()"
-          >
-
-            🧹 LIMPAR
-
-          </button>
-
-          <button
-            type="button"
-            id="btnExcluir"
-            class="btn btn-excluir"
-            onclick="excluirEnvio()"
-          >
-
-            🗑️ EXCLUIR ENVIO
-
-          </button>
-
-          <button
-            type="button"
-            id="btnSalvar"
-            class="btn btn-salvar"
-            onclick="salvarEnvio()"
-          >
-
-            💾 SALVAR ENVIO
-
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
+</section>
+```
 
   </main>
 
@@ -2276,6 +2347,9 @@
       null;
 
     let transportadoraSelecionadaAtual =
+      null;
+
+    let chavePendenciasWhatsApp =
       null;
 
     document.addEventListener(
@@ -2316,6 +2390,10 @@
 
         const authUser =
           session.user;
+
+        chavePendenciasWhatsApp =
+          "birilog_whatsapp_pendentes_" +
+          String(authUser.id || "usuario");
 
         const consultaUsuario =
           await supabaseClient
@@ -2389,6 +2467,8 @@
           carregarTransportadoras()
         ]);
 
+        atualizarBotaoWhatsAppPendentes();
+
         esconderLoading();
 
       }
@@ -2444,29 +2524,11 @@
 
     }
 
-    /*
-      ============================================================
-      CARREGAMENTO CORRIGIDO DOS CLIENTES
-      ============================================================
-
-      O Supabase normalmente limita uma consulta a 1.000 registros.
-
-      Como o BiriLog possui milhares de clientes, esta função
-      busca os clientes em blocos de 1.000 até carregar todos.
-
-      Assim, clientes novos também ficam disponíveis no Novo Envio.
-    */
-
     async function carregarClientes() {
 
-      const limite =
-        1000;
-
-      let inicio =
-        0;
-
-      const clientesCarregados =
-        [];
+      const limite = 1000;
+      let inicio = 0;
+      const clientesCarregados = [];
 
       try {
 
@@ -2475,83 +2537,41 @@
           const resultado =
             await supabaseClient
               .from("clientes")
-              .select(
-                "id,codigo,nome,cidade,uf"
-              )
-              .order(
-                "nome",
-                {
-                  ascending:
-                    true
-                }
-              )
-              .range(
-                inicio,
-                inicio + limite - 1
-              );
+              .select("id,codigo,nome,cidade,uf,telefone")
+              .order("nome", { ascending: true })
+              .range(inicio, inicio + limite - 1);
 
-          if (
-            resultado.error
-          ) {
-
+          if (resultado.error) {
             throw resultado.error;
-
           }
 
-          const lote =
-            resultado.data ||
-            [];
+          const lote = resultado.data || [];
+          clientesCarregados.push(...lote);
 
-          clientesCarregados.push(
-            ...lote
-          );
-
-          console.log(
-            "LOTE DE CLIENTES CARREGADO:",
-            inicio,
-            "ATÉ",
-            inicio + limite - 1,
-            "| QUANTIDADE:",
-            lote.length
-          );
-
-          if (
-            lote.length < limite
-          ) {
-
+          if (lote.length < limite) {
             break;
-
           }
 
-          inicio +=
-            limite;
-
+          inicio += limite;
         }
 
-        clientes =
-          clientesCarregados;
+        clientes = clientesCarregados;
 
         console.log(
-          "TOTAL DE CLIENTES CARREGADOS NO NOVO ENVIO:",
+          "CLIENTES CARREGADOS NO NOVO ENVIO:",
           clientes.length
         );
 
-      }
-
-      catch (erro) {
+      } catch (erro) {
 
         console.error(
           "Erro ao carregar clientes:",
           erro
         );
 
-        clientes =
-          [];
-
+        clientes = [];
         throw erro;
-
       }
-
     }
 
     const campoCliente =
@@ -2575,6 +2595,16 @@
 
         clienteSelecionadoAtual =
           null;
+
+        document.getElementById(
+          "telefoneCliente"
+        ).value =
+          "";
+
+        document.getElementById(
+          "whatsappAutorizado"
+        ).checked =
+          false;
 
         document.getElementById(
           "clienteSelecionado"
@@ -2721,6 +2751,17 @@
 
       campoCliente.value =
         nome;
+
+      document.getElementById(
+        "telefoneCliente"
+      ).value =
+        cliente.telefone ||
+        "";
+
+      document.getElementById(
+        "whatsappAutorizado"
+      ).checked =
+        false;
 
       resultadosClientes.style.display =
         "none";
@@ -2870,6 +2911,228 @@
         }
       );
 
+    function obterPendenciasWhatsApp() {
+
+      if (!chavePendenciasWhatsApp) {
+        return [];
+      }
+
+      try {
+        const itens = JSON.parse(
+          localStorage.getItem(chavePendenciasWhatsApp) || "[]"
+        );
+
+        return Array.isArray(itens)
+          ? itens.map(String).filter(Boolean)
+          : [];
+      }
+      catch (erro) {
+        console.warn("Não foi possível ler os avisos pendentes:", erro);
+        return [];
+      }
+    }
+
+    function guardarPendenteWhatsApp(envioId) {
+
+      const id = String(envioId || "").trim();
+      if (!id || !chavePendenciasWhatsApp) {
+        return;
+      }
+
+      const pendencias = obterPendenciasWhatsApp();
+      if (!pendencias.includes(id)) {
+        pendencias.push(id);
+      }
+
+      try {
+        localStorage.setItem(
+          chavePendenciasWhatsApp,
+          JSON.stringify(pendencias)
+        );
+      }
+      catch (erro) {
+        console.warn("Não foi possível guardar o aviso pendente:", erro);
+      }
+
+      atualizarBotaoWhatsAppPendentes();
+    }
+
+    function removerPendenteWhatsApp(envioId) {
+
+      const id = String(envioId || "").trim();
+      const pendencias = obterPendenciasWhatsApp()
+        .filter(function(item) { return item !== id; });
+
+      try {
+        if (chavePendenciasWhatsApp) {
+          localStorage.setItem(
+            chavePendenciasWhatsApp,
+            JSON.stringify(pendencias)
+          );
+        }
+      }
+      catch (erro) {
+        console.warn("Não foi possível atualizar os avisos pendentes:", erro);
+      }
+
+      atualizarBotaoWhatsAppPendentes();
+    }
+
+    function atualizarBotaoWhatsAppPendentes() {
+
+      const botao = document.getElementById("btnReenviarWhatsApp");
+      if (!botao) {
+        return;
+      }
+
+      const total = obterPendenciasWhatsApp().length;
+      botao.style.display = total ? "block" : "none";
+      botao.textContent = total
+        ? "🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES (" + total + ")"
+        : "🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES";
+    }
+
+    async function chamarNotificacaoWhatsApp(envioId) {
+
+      const { data, error } = await supabaseClient.functions.invoke(
+        "whatsapp-notificar-envio",
+        { body: { envioId: String(envioId) } }
+      );
+
+      if (error) {
+        let mensagem = error.message || "NÃO FOI POSSÍVEL ACIONAR O WHATSAPP.";
+
+        try {
+          if (error.context && typeof error.context.json === "function") {
+            const detalhe = await error.context.json();
+            mensagem = detalhe.message || mensagem;
+          }
+        }
+        catch (_) {
+          // Mantém a mensagem padrão do erro de comunicação.
+        }
+
+        throw new Error(mensagem);
+      }
+
+      if (!data || data.ok !== true) {
+        throw new Error(
+          data && data.message
+            ? data.message
+            : "O WHATSAPP NÃO CONFIRMOU O ENVIO DA MENSAGEM."
+        );
+      }
+
+      return data;
+    }
+
+    function textoResultadoWhatsApp(resultado, nf, clienteNome) {
+
+      if (resultado.status === "sent") {
+        return "✅ NF " + nf + " SALVA. AVISO ENVIADO AO WHATSAPP DE " + clienteNome + ".";
+      }
+
+      if (resultado.status === "already_sent") {
+        return "✅ NF " + nf + " SALVA. O AVISO DE WHATSAPP JÁ HAVIA SIDO ENVIADO.";
+      }
+
+      const motivos = {
+        "sem_cliente": "O CLIENTE NÃO ESTÁ VINCULADO A UM CADASTRO.",
+        "sem_telefone": "INFORME O TELEFONE / WHATSAPP DO CLIENTE.",
+        "sem_autorizacao": "MARQUE A AUTORIZAÇÃO DO CLIENTE PARA AVISOS POR WHATSAPP.",
+        "telefone_invalido": "O NÚMERO INFORMADO NÃO É VÁLIDO PARA WHATSAPP.",
+        "em_processamento": "O AVISO JÁ ESTÁ SENDO PROCESSADO."
+      };
+
+      const motivo = motivos[resultado.reason || resultado.status] ||
+        resultado.message || "NÃO FOI POSSÍVEL ENVIAR O AVISO.";
+
+      const orientacao =
+        resultado.reason === "em_processamento"
+          ? " AGUARDE ALGUNS SEGUNDOS E USE O BOTÃO DE REENVIO SE NECESSÁRIO."
+          : " CORRIJA O TELEFONE OU A AUTORIZAÇÃO NO REGISTRO ANTES DE UMA NOVA TENTATIVA.";
+
+      return "⚠️ NF " + nf + " SALVA, MAS O WHATSAPP NÃO FOI ENVIADO: " +
+        motivo + orientacao;
+    }
+
+    async function reenviarWhatsAppsPendentes() {
+
+      const botao = document.getElementById("btnReenviarWhatsApp");
+      const pendencias = obterPendenciasWhatsApp();
+
+      if (!pendencias.length) {
+        atualizarBotaoWhatsAppPendentes();
+        return;
+      }
+
+      botao.disabled = true;
+      botao.textContent = "🔄 TENTANDO ENVIAR AVISOS...";
+      mostrarMensagem("TENTANDO ENVIAR OS AVISOS DE WHATSAPP PENDENTES...", "info");
+
+      let enviados = 0;
+      let ignorados = 0;
+      let continuamPendentes = [];
+
+      for (const envioId of pendencias) {
+        try {
+          const resultado = await chamarNotificacaoWhatsApp(envioId);
+
+          if (["sent", "already_sent"].includes(resultado.status)) {
+            enviados += 1;
+          }
+          else if (
+            resultado.status === "skipped" &&
+            resultado.reason !== "em_processamento"
+          ) {
+            ignorados += 1;
+          }
+          else {
+            continuamPendentes.push(envioId);
+          }
+        }
+        catch (erro) {
+          console.error("Erro ao reenviar aviso WhatsApp:", erro);
+          continuamPendentes.push(envioId);
+        }
+      }
+
+      try {
+        localStorage.setItem(
+          chavePendenciasWhatsApp,
+          JSON.stringify(continuamPendentes)
+        );
+      }
+      catch (erro) {
+        console.warn("Não foi possível atualizar os avisos pendentes:", erro);
+      }
+
+      atualizarBotaoWhatsAppPendentes();
+      botao.disabled = false;
+
+      if (continuamPendentes.length) {
+        mostrarMensagem(
+          "" + enviados + " AVISO(S) ENVIADO(S). " +
+          ignorados + " NÃO ENVIADO(S) POR TELEFONE/AUTORIZAÇÃO. " +
+          continuamPendentes.length + " CONTINUAM PENDENTES POR ERRO OU PROCESSAMENTO.",
+          "info"
+        );
+      }
+      else if (ignorados) {
+        mostrarMensagem(
+          "" + enviados + " AVISO(S) ENVIADO(S). " + ignorados +
+          " NÃO ENVIADO(S): CORRIJA O TELEFONE OU A AUTORIZAÇÃO NO REGISTRO.",
+          "info"
+        );
+      }
+      else {
+        mostrarMensagem(
+          "✅ TODOS OS AVISOS PENDENTES FORAM ENVIADOS OU JÁ ESTAVAM REGISTRADOS COMO ENVIADOS.",
+          "sucesso"
+        );
+      }
+    }
+
     async function salvarEnvio() {
 
       const btn =
@@ -2910,6 +3173,19 @@
         clienteSelecionadoAtual
           ? clienteSelecionadoAtual.id
           : null;
+
+      const clienteTelefone =
+        String(
+          document.getElementById(
+            "telefoneCliente"
+          ).value ||
+          ""
+        ).trim();
+
+      const whatsappAutorizado =
+        document.getElementById(
+          "whatsappAutorizado"
+        ).checked;
 
       const cidade =
         String(
@@ -3116,6 +3392,25 @@
 
       }
 
+      if (whatsappAutorizado) {
+        const digitosTelefone =
+          clienteTelefone.replace(/\D/g, "").replace(/^00/, "");
+
+        const telefoneNacional =
+          digitosTelefone.startsWith("55")
+            ? digitosTelefone.slice(2)
+            : digitosTelefone;
+
+        if (![10, 11].includes(telefoneNacional.length)) {
+          mostrarMensagem(
+            "INFORME UM TELEFONE VÁLIDO ANTES DE MARCAR A AUTORIZAÇÃO DO WHATSAPP.",
+            "erro"
+          );
+          document.getElementById("telefoneCliente").focus();
+          return;
+        }
+      }
+
       btn.disabled =
         true;
 
@@ -3175,6 +3470,18 @@
           cliente_nome:
             clienteNome,
 
+          cliente_telefone:
+            clienteTelefone ||
+            null,
+
+          whatsapp_autorizado:
+            whatsappAutorizado,
+
+          whatsapp_autorizado_em:
+            whatsappAutorizado
+              ? new Date().toISOString()
+              : null,
+
           cidade:
             cidade,
 
@@ -3224,17 +3531,14 @@
 
         };
 
-        console.log(
-          "DADOS DO ENVIO:",
-          dadosEnvio
-        );
-
         const resultado =
           await supabaseClient
             .from("envios")
             .insert(
               dadosEnvio
-            );
+            )
+            .select("id")
+            .single();
 
         if (
           resultado.error
@@ -3244,14 +3548,54 @@
 
         }
 
-        mostrarMensagem(
-          "✅ ENVIO DA NF " +
-          nf +
-          " SALVO COM SUCESSO.",
-          "sucesso"
-        );
+        const envioIdSalvo =
+          resultado.data &&
+          resultado.data.id;
 
         limparCampos(false);
+
+        if (!envioIdSalvo) {
+          mostrarMensagem(
+            "✅ ENVIO DA NF " + nf + " SALVO. NÃO FOI POSSÍVEL OBTER O ID PARA DISPARAR O WHATSAPP.",
+            "info"
+          );
+          return;
+        }
+
+        try {
+          const notificacao =
+            await chamarNotificacaoWhatsApp(envioIdSalvo);
+
+          if (["sent", "already_sent"].includes(notificacao.status)) {
+            removerPendenteWhatsApp(envioIdSalvo);
+          }
+          else if (
+            notificacao.status === "skipped" &&
+            notificacao.reason !== "em_processamento"
+          ) {
+            removerPendenteWhatsApp(envioIdSalvo);
+          }
+          else {
+            guardarPendenteWhatsApp(envioIdSalvo);
+          }
+
+          mostrarMensagem(
+            textoResultadoWhatsApp(notificacao, nf, clienteNome),
+            ["sent", "already_sent"].includes(notificacao.status)
+              ? "sucesso"
+              : "info"
+          );
+        }
+        catch (erroWhatsApp) {
+          console.error("Envio salvo, mas o aviso WhatsApp falhou:", erroWhatsApp);
+          guardarPendenteWhatsApp(envioIdSalvo);
+          mostrarMensagem(
+            "✅ NF " + nf + " SALVA. ⚠️ NÃO FOI POSSÍVEL ENVIAR O AVISO PELO WHATSAPP: " +
+              String(erroWhatsApp.message || "ERRO DE COMUNICAÇÃO").toUpperCase() +
+              " USE O BOTÃO DE REENVIO APÓS CORRIGIR A CONFIGURAÇÃO.",
+            "info"
+          );
+        }
 
       }
 
@@ -3281,163 +3625,6 @@
 
     }
 
-    async function excluirEnvio() {
-
-      const btn =
-        document.getElementById(
-          "btnExcluir"
-        );
-
-      const nf =
-        String(
-          document.getElementById(
-            "nf"
-          ).value ||
-          ""
-        )
-        .trim()
-        .toUpperCase();
-
-      if (!nf) {
-
-        mostrarMensagem(
-          "INFORME O NÚMERO DA NF QUE DESEJA EXCLUIR.",
-          "erro"
-        );
-
-        document
-          .getElementById("nf")
-          .focus();
-
-        return;
-
-      }
-
-      const confirmar =
-        window.confirm(
-          "ATENÇÃO!\n\n" +
-          "DESEJA REALMENTE EXCLUIR O ENVIO DA NF " +
-          nf +
-          "?\n\n" +
-          "ESSA AÇÃO NÃO PODERÁ SER DESFEITA."
-        );
-
-      if (!confirmar) {
-
-        return;
-
-      }
-
-      btn.disabled =
-        true;
-
-      btn.textContent =
-        "🔄 EXCLUINDO...";
-
-      mostrarMensagem(
-        "EXCLUINDO ENVIO DA NF " +
-        nf +
-        "...",
-        "info"
-      );
-
-      try {
-
-        const consulta =
-          await supabaseClient
-            .from("envios")
-            .select(
-              "id,nf"
-            )
-            .eq(
-              "nf",
-              nf
-            )
-            .limit(
-              1
-            );
-
-        if (
-          consulta.error
-        ) {
-
-          throw consulta.error;
-
-        }
-
-        if (
-          !consulta.data ||
-          consulta.data.length === 0
-        ) {
-
-          mostrarMensagem(
-            "A NF " +
-            nf +
-            " NÃO FOI ENCONTRADA.",
-            "erro"
-          );
-
-          return;
-
-        }
-
-        const idEnvio =
-          consulta.data[0].id;
-
-        const exclusao =
-          await supabaseClient
-            .from("envios")
-            .delete()
-            .eq(
-              "id",
-              idEnvio
-            );
-
-        if (
-          exclusao.error
-        ) {
-
-          throw exclusao.error;
-
-        }
-
-        mostrarMensagem(
-          "🗑️ ENVIO DA NF " +
-          nf +
-          " EXCLUÍDO COM SUCESSO.",
-          "sucesso"
-        );
-
-        limparCampos(false);
-
-      }
-
-      catch (erro) {
-
-        console.error(
-          "Erro ao excluir envio:",
-          erro
-        );
-
-        mostrarMensagem(
-          obterMensagemErroExclusao(erro),
-          "erro"
-        );
-
-      }
-
-      finally {
-
-        btn.disabled =
-          false;
-
-        btn.textContent =
-          "🗑️ EXCLUIR ENVIO";
-
-      }
-
-    }
-
     function limparCampos(
       esconder = true
     ) {
@@ -3451,6 +3638,16 @@
         "clientePesquisa"
       ).value =
         "";
+
+      document.getElementById(
+        "telefoneCliente"
+      ).value =
+        "";
+
+      document.getElementById(
+        "whatsappAutorizado"
+      ).checked =
+        false;
 
       document.getElementById(
         "resultadosClientes"
@@ -3843,76 +4040,6 @@
 
       return (
         "NÃO FOI POSSÍVEL CONCLUIR A OPERAÇÃO."
-      );
-
-    }
-
-    function obterMensagemErroExclusao(
-      erro
-    ) {
-
-      if (
-        erro &&
-        erro.message
-      ) {
-
-        const mensagem =
-          String(
-            erro.message
-          );
-
-        const texto =
-          mensagem.toLowerCase();
-
-        if (
-          texto.includes(
-            "row-level security"
-          ) ||
-          texto.includes(
-            "permission denied"
-          ) ||
-          texto.includes(
-            "not allowed"
-          )
-        ) {
-
-          return (
-            "VOCÊ NÃO POSSUI PERMISSÃO PARA EXCLUIR ENVIOS."
-          );
-
-        }
-
-        if (
-          texto.includes(
-            "foreign key"
-          )
-        ) {
-
-          return (
-            "NÃO FOI POSSÍVEL EXCLUIR ESTE ENVIO PORQUE EXISTEM DADOS RELACIONADOS A ELE."
-          );
-
-        }
-
-        if (
-          texto.includes(
-            "does not exist"
-          )
-        ) {
-
-          return (
-            "A ESTRUTURA DO BANCO DE DADOS NÃO PERMITE ESTA EXCLUSÃO: " +
-            mensagem.toUpperCase()
-          );
-
-        }
-
-        return mensagem.toUpperCase();
-
-      }
-
-      return (
-        "NÃO FOI POSSÍVEL EXCLUIR O ENVIO."
       );
 
     }
