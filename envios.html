@@ -3191,12 +3191,12 @@ content="width=device-width, initial-scale=1.0"
 
       const mensagemWhatsApp =
         "Olá, " + clienteNome +
-        "! Seu pedido referente à NF " + nf +
-        " foi enviado para entrega pela " +
+        ". Informamos que o pedido referente à Nota Fiscal nº " + nf +
+        " foi encaminhado para entrega pela transportadora " +
         (transportadoraNome || "transportadora") +
-        ". Previsão de entrega: " +
+        ". A previsão de entrega é " +
         formatarDataMensagem(previsao) +
-        ". Se precisar de ajuda, responda esta mensagem. — Birivet.";
+        ". Permanecemos à disposição para quaisquer esclarecimentos. Atenciosamente, Equipe BIRIVET.";
 
       const urlWhatsApp = telefoneWhatsApp
         ? criarLinkWhatsApp(telefoneWhatsApp, mensagemWhatsApp)
