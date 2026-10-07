@@ -860,55 +860,23 @@ content="width=device-width, initial-scale=1.0"
 
     }
 
-    .campo-whatsapp-autorizacao {
-
-      display: flex;
-      align-items: center;
-
-    }
-
-    .checkbox-whatsapp {
-
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      width: 100%;
-      min-height: 43px;
-      padding: 11px 12px;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      background: #f8fafc;
-      cursor: pointer;
-
-    }
-
-    .checkbox-whatsapp input {
-
-      flex: 0 0 18px;
-      width: 18px;
-      min-height: 18px;
-      height: 18px;
-      margin: 1px 0 0;
-      padding: 0;
-      accent-color: #16a34a;
-
-    }
-
-    .checkbox-whatsapp span {
-
-      font-size: 10px;
-      font-weight: 800;
-      line-height: 1.5;
-      color: #475569;
-
-    }
-
     .ajuda-whatsapp {
 
       margin-top: 5px;
       color: #64748b;
       font-size: 10px;
       line-height: 1.4;
+
+    }
+
+    .btn-whatsapp-link {
+
+      display: none;
+      width: fit-content;
+      margin: 0 0 16px;
+      background: #16a34a;
+      color: #fff;
+      text-decoration: none;
 
     }
 
@@ -1869,15 +1837,13 @@ content="width=device-width, initial-scale=1.0"
     class="mensagem"
   ></div>
 
-  <button
-    type="button"
-    id="btnReenviarWhatsApp"
-    class="btn btn-limpar"
-    style="display:none; margin: 0 0 16px;"
-    onclick="reenviarWhatsAppsPendentes()"
+  <a
+    id="btnAbrirWhatsApp"
+    class="btn btn-whatsapp-link"
+    href="#"
   >
-    🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES
-  </button>
+    📲 ABRIR NO APLICATIVO WHATSAPP
+  </a>
 
   <div class="card">
 
@@ -1979,20 +1945,10 @@ content="width=device-width, initial-scale=1.0"
 
       </div>
 
-      <div class="campo campo-whatsapp-autorizacao">
-
-        <label class="checkbox-whatsapp" for="whatsappAutorizado">
-          <input
-            type="checkbox"
-            id="whatsappAutorizado"
-          >
-          <span>
-            O CLIENTE AUTORIZOU A BIRIVET A ENVIAR ATUALIZAÇÕES DE PEDIDOS POR WHATSAPP.
-          </span>
-        </label>
+      <div class="campo">
 
         <small class="ajuda-whatsapp">
-          MARQUE SOMENTE SE O CLIENTE AUTORIZOU O RECEBIMENTO DE AVISOS.
+          APÓS SALVAR, O WHATSAPP ABRIRÁ COM A MENSAGEM PRONTA. TOQUE EM ENVIAR NO APLICATIVO.
         </small>
 
       </div>
@@ -2349,9 +2305,6 @@ content="width=device-width, initial-scale=1.0"
     let transportadoraSelecionadaAtual =
       null;
 
-    let chavePendenciasWhatsApp =
-      null;
-
     document.addEventListener(
       "DOMContentLoaded",
       iniciar
@@ -2390,10 +2343,6 @@ content="width=device-width, initial-scale=1.0"
 
         const authUser =
           session.user;
-
-        chavePendenciasWhatsApp =
-          "birilog_whatsapp_pendentes_" +
-          String(authUser.id || "usuario");
 
         const consultaUsuario =
           await supabaseClient
@@ -2466,8 +2415,6 @@ content="width=device-width, initial-scale=1.0"
           carregarClientes(),
           carregarTransportadoras()
         ]);
-
-        atualizarBotaoWhatsAppPendentes();
 
         esconderLoading();
 
@@ -2600,11 +2547,6 @@ content="width=device-width, initial-scale=1.0"
           "telefoneCliente"
         ).value =
           "";
-
-        document.getElementById(
-          "whatsappAutorizado"
-        ).checked =
-          false;
 
         document.getElementById(
           "clienteSelecionado"
@@ -2758,11 +2700,6 @@ content="width=device-width, initial-scale=1.0"
         cliente.telefone ||
         "";
 
-      document.getElementById(
-        "whatsappAutorizado"
-      ).checked =
-        false;
-
       resultadosClientes.style.display =
         "none";
 
@@ -2911,226 +2848,59 @@ content="width=device-width, initial-scale=1.0"
         }
       );
 
-    function obterPendenciasWhatsApp() {
+    function normalizarTelefoneWhatsApp(telefone) {
 
-      if (!chavePendenciasWhatsApp) {
-        return [];
+      let digitos = String(telefone || "").replace(/\D/g, "");
+
+      if (digitos.startsWith("00")) {
+        digitos = digitos.slice(2);
       }
 
-      try {
-        const itens = JSON.parse(
-          localStorage.getItem(chavePendenciasWhatsApp) || "[]"
-        );
-
-        return Array.isArray(itens)
-          ? itens.map(String).filter(Boolean)
-          : [];
+      if (digitos.startsWith("0") && [10, 11, 12].includes(digitos.length)) {
+        digitos = digitos.slice(1);
       }
-      catch (erro) {
-        console.warn("Não foi possível ler os avisos pendentes:", erro);
-        return [];
-      }
-    }
-
-    function guardarPendenteWhatsApp(envioId) {
-
-      const id = String(envioId || "").trim();
-      if (!id || !chavePendenciasWhatsApp) {
-        return;
+      else if (digitos.startsWith("0") && [13, 14].includes(digitos.length)) {
+        digitos = digitos.slice(3);
       }
 
-      const pendencias = obterPendenciasWhatsApp();
-      if (!pendencias.includes(id)) {
-        pendencias.push(id);
-      }
+      if (digitos.startsWith("55")) {
+        let numeroNacional = digitos.slice(2);
 
-      try {
-        localStorage.setItem(
-          chavePendenciasWhatsApp,
-          JSON.stringify(pendencias)
-        );
-      }
-      catch (erro) {
-        console.warn("Não foi possível guardar o aviso pendente:", erro);
-      }
-
-      atualizarBotaoWhatsAppPendentes();
-    }
-
-    function removerPendenteWhatsApp(envioId) {
-
-      const id = String(envioId || "").trim();
-      const pendencias = obterPendenciasWhatsApp()
-        .filter(function(item) { return item !== id; });
-
-      try {
-        if (chavePendenciasWhatsApp) {
-          localStorage.setItem(
-            chavePendenciasWhatsApp,
-            JSON.stringify(pendencias)
-          );
+        if (numeroNacional.startsWith("0") && [11, 12].includes(numeroNacional.length)) {
+          numeroNacional = numeroNacional.slice(1);
         }
-      }
-      catch (erro) {
-        console.warn("Não foi possível atualizar os avisos pendentes:", erro);
-      }
-
-      atualizarBotaoWhatsAppPendentes();
-    }
-
-    function atualizarBotaoWhatsAppPendentes() {
-
-      const botao = document.getElementById("btnReenviarWhatsApp");
-      if (!botao) {
-        return;
-      }
-
-      const total = obterPendenciasWhatsApp().length;
-      botao.style.display = total ? "block" : "none";
-      botao.textContent = total
-        ? "🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES (" + total + ")"
-        : "🔄 TENTAR ENVIAR AVISOS WHATSAPP PENDENTES";
-    }
-
-    async function chamarNotificacaoWhatsApp(envioId) {
-
-      const { data, error } = await supabaseClient.functions.invoke(
-        "whatsapp-notificar-envio",
-        { body: { envioId: String(envioId) } }
-      );
-
-      if (error) {
-        let mensagem = error.message || "NÃO FOI POSSÍVEL ACIONAR O WHATSAPP.";
-
-        try {
-          if (error.context && typeof error.context.json === "function") {
-            const detalhe = await error.context.json();
-            mensagem = detalhe.message || mensagem;
-          }
-        }
-        catch (_) {
-          // Mantém a mensagem padrão do erro de comunicação.
+        else if (numeroNacional.startsWith("0") && [13, 14].includes(numeroNacional.length)) {
+          numeroNacional = numeroNacional.slice(3);
         }
 
-        throw new Error(mensagem);
+        return [10, 11].includes(numeroNacional.length)
+          ? "55" + numeroNacional
+          : null;
       }
 
-      if (!data || data.ok !== true) {
-        throw new Error(
-          data && data.message
-            ? data.message
-            : "O WHATSAPP NÃO CONFIRMOU O ENVIO DA MENSAGEM."
-        );
-      }
-
-      return data;
+      return [10, 11].includes(digitos.length)
+        ? "55" + digitos
+        : null;
     }
 
-    function textoResultadoWhatsApp(resultado, nf, clienteNome) {
+    function formatarDataMensagem(data) {
 
-      if (resultado.status === "sent") {
-        return "✅ NF " + nf + " SALVA. AVISO ENVIADO AO WHATSAPP DE " + clienteNome + ".";
+      if (!data) {
+        return "ainda não informada";
       }
 
-      if (resultado.status === "already_sent") {
-        return "✅ NF " + nf + " SALVA. O AVISO DE WHATSAPP JÁ HAVIA SIDO ENVIADO.";
+      const partes = String(data).split("-");
+      if (partes.length === 3) {
+        return partes[2] + "/" + partes[1] + "/" + partes[0];
       }
 
-      const motivos = {
-        "sem_cliente": "O CLIENTE NÃO ESTÁ VINCULADO A UM CADASTRO.",
-        "sem_telefone": "INFORME O TELEFONE / WHATSAPP DO CLIENTE.",
-        "sem_autorizacao": "MARQUE A AUTORIZAÇÃO DO CLIENTE PARA AVISOS POR WHATSAPP.",
-        "telefone_invalido": "O NÚMERO INFORMADO NÃO É VÁLIDO PARA WHATSAPP.",
-        "em_processamento": "O AVISO JÁ ESTÁ SENDO PROCESSADO."
-      };
-
-      const motivo = motivos[resultado.reason || resultado.status] ||
-        resultado.message || "NÃO FOI POSSÍVEL ENVIAR O AVISO.";
-
-      const orientacao =
-        resultado.reason === "em_processamento"
-          ? " AGUARDE ALGUNS SEGUNDOS E USE O BOTÃO DE REENVIO SE NECESSÁRIO."
-          : " CORRIJA O TELEFONE OU A AUTORIZAÇÃO NO REGISTRO ANTES DE UMA NOVA TENTATIVA.";
-
-      return "⚠️ NF " + nf + " SALVA, MAS O WHATSAPP NÃO FOI ENVIADO: " +
-        motivo + orientacao;
+      return String(data);
     }
 
-    async function reenviarWhatsAppsPendentes() {
+    function criarLinkWhatsApp(numero, mensagem) {
 
-      const botao = document.getElementById("btnReenviarWhatsApp");
-      const pendencias = obterPendenciasWhatsApp();
-
-      if (!pendencias.length) {
-        atualizarBotaoWhatsAppPendentes();
-        return;
-      }
-
-      botao.disabled = true;
-      botao.textContent = "🔄 TENTANDO ENVIAR AVISOS...";
-      mostrarMensagem("TENTANDO ENVIAR OS AVISOS DE WHATSAPP PENDENTES...", "info");
-
-      let enviados = 0;
-      let ignorados = 0;
-      let continuamPendentes = [];
-
-      for (const envioId of pendencias) {
-        try {
-          const resultado = await chamarNotificacaoWhatsApp(envioId);
-
-          if (["sent", "already_sent"].includes(resultado.status)) {
-            enviados += 1;
-          }
-          else if (
-            resultado.status === "skipped" &&
-            resultado.reason !== "em_processamento"
-          ) {
-            ignorados += 1;
-          }
-          else {
-            continuamPendentes.push(envioId);
-          }
-        }
-        catch (erro) {
-          console.error("Erro ao reenviar aviso WhatsApp:", erro);
-          continuamPendentes.push(envioId);
-        }
-      }
-
-      try {
-        localStorage.setItem(
-          chavePendenciasWhatsApp,
-          JSON.stringify(continuamPendentes)
-        );
-      }
-      catch (erro) {
-        console.warn("Não foi possível atualizar os avisos pendentes:", erro);
-      }
-
-      atualizarBotaoWhatsAppPendentes();
-      botao.disabled = false;
-
-      if (continuamPendentes.length) {
-        mostrarMensagem(
-          "" + enviados + " AVISO(S) ENVIADO(S). " +
-          ignorados + " NÃO ENVIADO(S) POR TELEFONE/AUTORIZAÇÃO. " +
-          continuamPendentes.length + " CONTINUAM PENDENTES POR ERRO OU PROCESSAMENTO.",
-          "info"
-        );
-      }
-      else if (ignorados) {
-        mostrarMensagem(
-          "" + enviados + " AVISO(S) ENVIADO(S). " + ignorados +
-          " NÃO ENVIADO(S): CORRIJA O TELEFONE OU A AUTORIZAÇÃO NO REGISTRO.",
-          "info"
-        );
-      }
-      else {
-        mostrarMensagem(
-          "✅ TODOS OS AVISOS PENDENTES FORAM ENVIADOS OU JÁ ESTAVAM REGISTRADOS COMO ENVIADOS.",
-          "sucesso"
-        );
-      }
+      return "whatsapp://send?phone=" + numero +
+        "&text=" + encodeURIComponent(mensagem);
     }
 
     async function salvarEnvio() {
@@ -3139,6 +2909,12 @@ content="width=device-width, initial-scale=1.0"
         document.getElementById(
           "btnSalvar"
         );
+
+      const linkWhatsApp =
+        document.getElementById("btnAbrirWhatsApp");
+
+      linkWhatsApp.style.display = "none";
+      linkWhatsApp.removeAttribute("href");
 
       const nf =
         String(
@@ -3181,11 +2957,6 @@ content="width=device-width, initial-scale=1.0"
           ).value ||
           ""
         ).trim();
-
-      const whatsappAutorizado =
-        document.getElementById(
-          "whatsappAutorizado"
-        ).checked;
 
       const cidade =
         String(
@@ -3392,23 +3163,17 @@ content="width=device-width, initial-scale=1.0"
 
       }
 
-      if (whatsappAutorizado) {
-        const digitosTelefone =
-          clienteTelefone.replace(/\D/g, "").replace(/^00/, "");
+      const telefoneWhatsApp = clienteTelefone
+        ? normalizarTelefoneWhatsApp(clienteTelefone)
+        : null;
 
-        const telefoneNacional =
-          digitosTelefone.startsWith("55")
-            ? digitosTelefone.slice(2)
-            : digitosTelefone;
-
-        if (![10, 11].includes(telefoneNacional.length)) {
-          mostrarMensagem(
-            "INFORME UM TELEFONE VÁLIDO ANTES DE MARCAR A AUTORIZAÇÃO DO WHATSAPP.",
-            "erro"
-          );
-          document.getElementById("telefoneCliente").focus();
-          return;
-        }
+      if (clienteTelefone && !telefoneWhatsApp) {
+        mostrarMensagem(
+          "O TELEFONE NÃO PARECE VÁLIDO PARA WHATSAPP. CORRIJA O DDD E O NÚMERO OU APAGUE O CAMPO PARA SALVAR SEM ABRIR O WHATSAPP.",
+          "erro"
+        );
+        document.getElementById("telefoneCliente").focus();
+        return;
       }
 
       btn.disabled =
@@ -3421,6 +3186,23 @@ content="width=device-width, initial-scale=1.0"
         "SALVANDO ENVIO...",
         "info"
       );
+
+      const mensagemWhatsApp =
+        "Olá, " + clienteNome +
+        ". Informamos que seu pedido foi encaminhado para entrega.\n\n" +
+        "*Nota Fiscal nº " + nf + "*\n" +
+        "*Transportadora: " +
+        (transportadoraNome || "transportadora") +
+        "*\n" +
+        "*Previsão de entrega: " +
+        formatarDataMensagem(previsao) +
+        "*\n\n" +
+        "Permanecemos à disposição para quaisquer esclarecimentos.\n\n" +
+        "Atenciosamente,\nEquipe BIRIVET.";
+
+      const urlWhatsApp = telefoneWhatsApp
+        ? criarLinkWhatsApp(telefoneWhatsApp, mensagemWhatsApp)
+        : null;
 
       try {
 
@@ -3469,18 +3251,6 @@ content="width=device-width, initial-scale=1.0"
 
           cliente_nome:
             clienteNome,
-
-          cliente_telefone:
-            clienteTelefone ||
-            null,
-
-          whatsapp_autorizado:
-            whatsappAutorizado,
-
-          whatsapp_autorizado_em:
-            whatsappAutorizado
-              ? new Date().toISOString()
-              : null,
 
           cidade:
             cidade,
@@ -3556,46 +3326,35 @@ content="width=device-width, initial-scale=1.0"
 
         if (!envioIdSalvo) {
           mostrarMensagem(
-            "✅ ENVIO DA NF " + nf + " SALVO. NÃO FOI POSSÍVEL OBTER O ID PARA DISPARAR O WHATSAPP.",
+            "✅ ENVIO DA NF " + nf + " SALVO.",
             "info"
           );
           return;
         }
 
-        try {
-          const notificacao =
-            await chamarNotificacaoWhatsApp(envioIdSalvo);
-
-          if (["sent", "already_sent"].includes(notificacao.status)) {
-            removerPendenteWhatsApp(envioIdSalvo);
-          }
-          else if (
-            notificacao.status === "skipped" &&
-            notificacao.reason !== "em_processamento"
-          ) {
-            removerPendenteWhatsApp(envioIdSalvo);
-          }
-          else {
-            guardarPendenteWhatsApp(envioIdSalvo);
-          }
-
+        if (!clienteTelefone) {
           mostrarMensagem(
-            textoResultadoWhatsApp(notificacao, nf, clienteNome),
-            ["sent", "already_sent"].includes(notificacao.status)
-              ? "sucesso"
-              : "info"
-          );
-        }
-        catch (erroWhatsApp) {
-          console.error("Envio salvo, mas o aviso WhatsApp falhou:", erroWhatsApp);
-          guardarPendenteWhatsApp(envioIdSalvo);
-          mostrarMensagem(
-            "✅ NF " + nf + " SALVA. ⚠️ NÃO FOI POSSÍVEL ENVIAR O AVISO PELO WHATSAPP: " +
-              String(erroWhatsApp.message || "ERRO DE COMUNICAÇÃO").toUpperCase() +
-              " USE O BOTÃO DE REENVIO APÓS CORRIGIR A CONFIGURAÇÃO.",
+            "✅ NF " + nf + " SALVA. INFORME O TELEFONE DO CLIENTE SE QUISER ABRIR A CONVERSA NO WHATSAPP.",
             "info"
           );
+          return;
         }
+
+        linkWhatsApp.href = urlWhatsApp;
+        linkWhatsApp.style.display = "inline-flex";
+
+        try {
+          // Abre o aplicativo instalado sem criar uma nova página do WhatsApp Web.
+          window.location.href = urlWhatsApp;
+        }
+        catch (erroAbertura) {
+          console.warn("Não foi possível abrir o aplicativo WhatsApp automaticamente:", erroAbertura);
+        }
+
+        mostrarMensagem(
+          "✅ NF " + nf + " SALVA. O APLICATIVO WHATSAPP FOI SOLICITADO COM A MENSAGEM PRONTA. TOQUE EM ENVIAR NO APLICATIVO. SE NÃO ABRIR, CLIQUE NO BOTÃO ABRIR NO APLICATIVO WHATSAPP.",
+          "sucesso"
+        );
 
       }
 
@@ -3643,11 +3402,6 @@ content="width=device-width, initial-scale=1.0"
         "telefoneCliente"
       ).value =
         "";
-
-      document.getElementById(
-        "whatsappAutorizado"
-      ).checked =
-        false;
 
       document.getElementById(
         "resultadosClientes"
